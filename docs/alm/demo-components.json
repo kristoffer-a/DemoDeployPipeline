@@ -1,0 +1,124 @@
+{
+  "generatedAt": "2026-09-16",
+  "updatedAt": "2026-09-17",
+  "status": "complete",
+  "target": {
+    "role": "DEV",
+    "displayName": "dev-eu-6eea207f",
+    "url": "https://devorgf20ef6ea.crm17.dynamics.com",
+    "environmentId": "8f7d7c0e-e59d-e988-9dde-4ca7428aa659",
+    "organizationId": "e021aa4d-16b1-f111-aaa0-002248f24a5a",
+    "account": "kriall076@7xpydh.onmicrosoft.com",
+    "dataverseUserId": "de4edcb3-31b1-f111-aaac-002248f40b2b"
+  },
+  "sharePoint": {
+    "connection": {
+      "id": "2a3c71ea-b7b4-4af4-82c2-d87154edc8ee",
+      "idEvidence": "derived from the connection row context-menu identifier in the supported Power Apps connections UI",
+      "account": "kriall076@7xpydh.onmicrosoft.com",
+      "connector": "SharePoint",
+      "state": "Connected"
+    },
+    "site": {
+      "name": "ALM Dev",
+      "url": "https://7xpydh.sharepoint.com/sites/ALM-Dev"
+    },
+    "list": {
+      "name": "Products",
+      "url": "https://7xpydh.sharepoint.com/sites/ALM-Dev/Lists/Products/AllItems.aspx",
+      "id": "54358b50-7727-4a83-adc9-d76dbed307e3"
+    }
+  },
+  "approvedBlueprint": {
+    "publisher": {
+      "id": "42307624-19b2-f111-aaac-002248f40b2b",
+      "uniqueName": "dev",
+      "displayName": "dev",
+      "prefix": "dev",
+      "choiceValuePrefix": 77573,
+      "status": "created-ui-readback"
+    },
+    "solution": {
+      "id": "90b3512e-19b2-f111-aaac-002248f40b2b",
+      "uniqueName": "Demo",
+      "displayName": "Demo",
+      "version": "1.0.0.0",
+      "managed": false,
+      "status": "created-ui-readback"
+    },
+    "environmentVariables": [
+      {
+        "id": null,
+        "idEvidence": "record GUID is not exposed by the supported maker UI",
+        "displayName": "SharePoint Site",
+        "schemaName": "dev_SharePointSite",
+        "type": "SharePoint Site",
+        "connector": "SharePoint",
+        "parameter": "Site",
+        "currentValue": "https://7xpydh.sharepoint.com/sites/ALM-Dev",
+        "currentDisplayValue": "ALM Dev - https://7xpydh.sharepoint.com/sites/ALM-Dev",
+        "defaultValue": null,
+        "exportValue": false,
+        "status": "created-ui-readback"
+      },
+      {
+        "id": null,
+        "idEvidence": "record GUID is not exposed by the supported maker UI",
+        "displayName": "SharePoint List",
+        "schemaName": "dev_ProductsList",
+        "type": "SharePoint List",
+        "connector": "SharePoint",
+        "parameter": "List",
+        "relatedSiteSchemaName": "dev_SharePointSite",
+        "currentValue": "54358b50-7727-4a83-adc9-d76dbed307e3",
+        "currentDisplayValue": "Products",
+        "defaultValue": null,
+        "exportValue": false,
+        "status": "created-ui-readback"
+      }
+    ],
+    "connectionReference": {
+      "id": null,
+      "idEvidence": "record GUID is not exposed by the supported maker UI",
+      "displayName": "SharePoint",
+      "requestedSchemaName": "dev_SharePoint",
+      "actualSchemaName": "dev_SharePoint",
+      "connector": "SharePoint",
+      "account": "kriall076@7xpydh.onmicrosoft.com",
+      "connectionId": "2a3c71ea-b7b4-4af4-82c2-d87154edc8ee",
+      "connectionState": "Connected",
+      "status": "created-ui-readback"
+    }
+  },
+  "readback": {
+    "targetIdentity": "verified",
+    "customizationAccess": "verified-after-user-role-assignment",
+    "publisherCollisionCheck": "passed-no-dev-publisher-found-before-create",
+    "solutionCollisionCheck": "passed-no-Demo-solution-found-before-create",
+    "solutionMembership": {
+      "all": 3,
+      "connectionReferences": 1,
+      "environmentVariables": 2,
+      "members": [
+        "dev_SharePoint",
+        "dev_ProductsList",
+        "dev_SharePointSite"
+      ]
+    },
+    "duplicateCheck": "passed-exactly-three-approved-members",
+    "connectionState": "SharePoint-Connected",
+    "tenantWrites": 6,
+    "lastVerified": "2026-09-17"
+  },
+  "resolvedBlocker": {
+    "errorCode": "2147746581",
+    "missingPrivilege": "prvReadEntity",
+    "makerError": "Could not create solution. Failed to load publishers.",
+    "ppacMessage": "You dont have any role in this organization.",
+    "resolution": "The user assigned roles outside this task. Fresh maker readback then loaded the DEV solution and publisher data successfully. This task did not change roles."
+  },
+  "unresolvedChecks": {
+    "componentRecordIds": "Environment-variable-definition and connection-reference record GUIDs are not exposed by the supported maker UI and remain null.",
+    "dlpEntitlement": "No DLP, connector authorization, or entitlement error was observed during creation and binding. This is operational evidence, not an exhaustive policy audit."
+  }
+}

@@ -1,0 +1,22 @@
+# Copy this file to config.toml on each machine and replace <PROJECT_ROOT>.
+# Authentication caches must remain outside the repository.
+
+[mcp_servers.canvas-authoring]
+command = 'C:/Program Files/dotnet/dnx.cmd'
+args = ['Microsoft.PowerApps.CanvasAuthoring.McpServer', '--yes']
+startup_timeout_sec = 120
+
+[mcp_servers.flowagent]
+command = 'C:/Program Files/nodejs/node.exe'
+args = ['<PROJECT_ROOT>/docs/alm/flowagent-tenant-guard.mjs']
+cwd = '<PROJECT_ROOT>'
+startup_timeout_sec = 60
+
+[mcp_servers.flowagent.env]
+PA_TENANT_ID = '1c5afb69-a82c-4c81-b2cc-743ce7f91dac'
+PA_DEFAULT_ENVIRONMENT = '8f7d7c0e-e59d-e988-9dde-4ca7428aa659'
+PA_CLOUD = 'commercial'
+PA_BASE_URL = 'https://api.flow.microsoft.com'
+PA_PPAPI_SUFFIX = 'environment.api.powerplatform.com'
+PA_CLIENT_ID = '9cee029c-6210-4654-90bb-17e6e9d36617'
+FLOWAGENT_TENANT_ID = '1c5afb69-a82c-4c81-b2cc-743ce7f91dac'

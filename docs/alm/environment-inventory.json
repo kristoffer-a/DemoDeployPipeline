@@ -1,0 +1,154 @@
+{
+  "generatedAt": "2026-09-15",
+  "status": "partial",
+  "environments": [
+    {
+      "role": "ADMIN",
+      "url": "https://adminorg774eae27.crm17.dynamics.com",
+      "environmentId": "f2280ea5-6793-e664-8f21-ea3ba6a4cb5c",
+      "organizationId": "2a49ea7b-18b1-f111-8add-0022486f7441",
+      "verifiedAccount": null,
+      "evidence": [
+        {
+          "source": "controller-browser",
+          "reference": "docs/alm/browser-preflight.md",
+          "result": "Ready Developer environment in Switzerland; Dataverse enabled; version 9.2.26085.142"
+        },
+        {
+          "source": "local-pac",
+          "result": "Explicit URL identity check failed with AADSTS70043 because the cached refresh token expired under the sign-in-frequency policy"
+        }
+      ],
+      "status": "browser-verified; API identity and privileges unverified"
+    },
+    {
+      "role": "DEV",
+      "url": "https://devorgf20ef6ea.crm17.dynamics.com",
+      "environmentId": "8f7d7c0e-e59d-e988-9dde-4ca7428aa659",
+      "organizationId": "e021aa4d-16b1-f111-aaa0-002248f24a5a",
+      "verifiedAccount": null,
+      "evidence": [
+        {
+          "source": "controller-browser",
+          "reference": "docs/alm/browser-preflight.md",
+          "result": "Ready Developer environment in Switzerland; Dataverse enabled; version 9.2.26085.142"
+        },
+        {
+          "source": "local-pac",
+          "result": "No stored PAC profile targets this URL; API queries were not run after the ADMIN authentication blocker was confirmed"
+        }
+      ],
+      "status": "browser-verified; API identity and privileges unverified"
+    },
+    {
+      "role": "TEST",
+      "url": "https://testorg5fd244de.crm17.dynamics.com",
+      "environmentId": "8fcc484b-d74e-e479-84da-ad5a78d6d55b",
+      "organizationId": "2352de63-16b1-f111-8add-0022486f7065",
+      "verifiedAccount": null,
+      "evidence": [
+        {
+          "source": "controller-browser",
+          "reference": "docs/alm/browser-preflight.md",
+          "result": "Ready Developer environment in Switzerland; Dataverse enabled; version 9.2.26085.142"
+        },
+        {
+          "source": "local-pac",
+          "result": "No stored PAC profile targets this URL; API queries were not run after the ADMIN authentication blocker was confirmed"
+        }
+      ],
+      "status": "browser-verified; API identity and privileges unverified"
+    }
+  ],
+  "sharePoint": {
+    "observedUrls": [
+      {
+        "purpose": "tenantRoot",
+        "url": "https://7xpydh.sharepoint.com/",
+        "status": "user-supplied and browser-reachable"
+      },
+      {
+        "purpose": "adminCenter",
+        "url": "https://7xpydh-admin.sharepoint.com/_layouts/15/online/AdminHome.aspx#/siteManagement/view/ALL%20SITES",
+        "status": "browser-observed"
+      }
+    ],
+    "browserAccountObserved": "kriall076@7xpydh.onmicrosoft.com",
+    "owner": "kriall076@7xpydh.onmicrosoft.com",
+    "ownerStatus": "user approved 2026-09-16",
+    "proposedSites": [
+      {
+        "role": "ADMIN",
+        "path": "/sites/ALM-Admin",
+        "url": "https://7xpydh.sharepoint.com/sites/ALM-Admin",
+        "approved": true
+      },
+      {
+        "role": "DEV",
+        "path": "/sites/ALM-Dev",
+        "url": "https://7xpydh.sharepoint.com/sites/ALM-Dev",
+        "approved": true
+      },
+      {
+        "role": "TEST",
+        "path": "/sites/ALM-Test",
+        "url": "https://7xpydh.sharepoint.com/sites/ALM-Test",
+        "approved": true
+      }
+    ],
+    "activeSiteCollisionCheck": {
+      "query": "ALM-",
+      "result": "0 active sites found",
+      "source": "docs/alm/browser-preflight.md"
+    },
+    "deletedSiteReservationsChecked": false,
+    "creationPermissionVerified": false
+  },
+  "tooling": {
+    "workspaceIsGitRepository": false,
+    "pac": {
+      "path": "C:/Users/KristofferAllåker/.dotnet/tools/pac.exe",
+      "version": "2.10.1+g52c3983",
+      "status": "installed",
+      "explicitEnvironmentSupport": {
+        "orgWho": true,
+        "solutionList": true,
+        "connectionList": true,
+        "envFetch": true
+      },
+      "storedProfileCount": 3,
+      "targetProfileCount": 0,
+      "authenticationStatus": "blocked by expired cached refresh token (AADSTS70043)"
+    },
+    "dataverseCli": {
+      "version": "1.0.72",
+      "status": "installed; no authentication profiles"
+    },
+    "python": {
+      "version": "3.12.10",
+      "status": "installed"
+    },
+    "git": {
+      "version": "2.53.0.windows.3",
+      "status": "installed; workspace has no repository"
+    },
+    "node": {
+      "version": "25.9.0",
+      "status": "installed"
+    },
+    "dotnetSdk": {
+      "version": "10.0.204",
+      "status": "installed"
+    },
+    "azureCli": {
+      "version": "2.90.0",
+      "status": "2.90.0 installed; authenticated approved account/tenant on 2026-09-17; Power Automate token acquisition verified without token output"
+    },
+    "sharePoint": {
+      "cliForMicrosoft365": "not installed",
+      "pnpPowerShell": "not installed",
+      "sharePointOnlineManagementShell": "not installed",
+      "status": "no local SharePoint administration tool found"
+    }
+  }
+}

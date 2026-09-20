@@ -1,0 +1,27 @@
+# Machine-local Codex/browser state
+.playwright-mcp/
+.codex/config.toml
+
+# Reinstallable Power Platform skill bundle
+.tooling/
+
+# Authentication and secret material
+.env
+.env.*
+!.env.example
+*.token
+*.tokens
+*.secret
+*.secrets
+*credentials*.json
+*token-cache*/
+*msal-cache*/
+azureProfile.json
+
+# Common generated files
+node_modules/
+coverage/
+*.log
+*.tmp
+.DS_Store
+Thumbs.db

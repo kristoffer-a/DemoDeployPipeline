@@ -1,0 +1,3 @@
+# Task 5 review
+
+Review task-5-flow-brief.md against demo-flow.md and actual component bindings. Verify solution-aware manual flow in exact DEV Demo, existing variables/reference, Get_items Order By ID asc Top1, empty guard before first(), actual successful nonempty and empty run evidence, restored unfiltered final configuration and successful final rerun. Report ID/Title of composed first product, actual null empty outcome. No deployment worker/app trigger or extra features expected. No tenant writes or subagents. Write task-5-review.md PASS or actionable findings with severity and required correction; browser read-only only if granted and evidence contradictory.
