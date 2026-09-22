@@ -1,10 +1,12 @@
 import assert from "node:assert/strict";
+import path from "node:path";
 import test from "node:test";
 import {
   approvedIdentity,
   assertApprovedEnvironmentArguments,
   assertApprovedToolCall,
   buildIsolatedProcessEnvironment,
+  isolatedAuthEnvironment,
   redactSensitiveText,
 } from "./flowagent-auth-policy.mjs";
 
@@ -22,6 +24,8 @@ test("isolated environment pins endpoints, tenant, client, and cache locations",
   assert.equal(environment.PA_CLIENT_ID, "9cee029c-6210-4654-90bb-17e6e9d36617");
   assert.equal(environment.PA_CLOUD, "commercial");
   assert.equal("PA_PPAPI_BASE_URL" in environment, false);
+  assert.equal(path.isAbsolute(isolatedAuthEnvironment.AZURE_CONFIG_DIR), true);
+  assert.equal(path.relative(process.cwd(), isolatedAuthEnvironment.AZURE_CONFIG_DIR).startsWith(".."), true);
 });
 
 test("environment argument policy allows only the three approved tenant environments", () => {

@@ -1,4 +1,5 @@
 import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { homedir } from "node:os";
 import path from "node:path";
 
 export const approvedIdentity = Object.freeze({
@@ -13,7 +14,8 @@ export const approvedIdentity = Object.freeze({
 });
 
 const localAppData = process.env.LOCALAPPDATA
-  ?? path.join(process.env.USERPROFILE ?? "", "AppData", "Local");
+  ?? process.env.XDG_STATE_HOME
+  ?? path.join(homedir(), ".local", "state");
 const authRoot = path.join(localAppData, "flowagent", "projects", "AdminEnv-7xpydh-bosso");
 
 export const isolatedAuthEnvironment = Object.freeze({
