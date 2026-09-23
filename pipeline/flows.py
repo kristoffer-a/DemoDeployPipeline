@@ -159,7 +159,7 @@ def c3():
                     "organization": target,
                     "entityName": "environmentvariablevalues",
                     "recordId": "@first(body('Value_row'))?['valueid']",
-                    "item/value": "@items('For_each_variable')?['Value']",
+                    "item": {"value": "@items('For_each_variable')?['Value']"},
                 })},
             ),
         }},
@@ -174,8 +174,7 @@ def c3():
                 "organization": target,
                 "entityName": "workflows",
                 "recordId": "@items('For_each_flow')?['workflowid']",
-                "item/statecode": 1,
-                "item/statuscode": 2,
+                "item": {"statecode": 1, "statuscode": 2},
             })},
         }},
         {"Reply": respond({

@@ -47,7 +47,7 @@ def test_c3_runs_check_then_variables_then_flows():
     assert a["Check_value_rows"]["actions"]["Stop_no_value_row"]["type"] == "Terminate"
     upd = a["For_each_variable"]["actions"]["Update_value"]["inputs"]["parameters"]
     assert upd["entityName"] == "environmentvariablevalues"
-    assert upd["item/value"] == "@items('For_each_variable')?['Value']"
+    assert upd["item"] == {"value": "@items('For_each_variable')?['Value']"}
 
 
 def test_children_stop_when_config_row_missing():
@@ -108,3 +108,22 @@ def test_c1_archives_per_solution_and_logs_per_run():
 
 def test_flows_deploy_children_first():
     assert [name for name, _ in flows.FLOWS] == [flows.s.C2_NAME, flows.s.C3_NAME, flows.s.C1_NAME]
+
+
+def test_update_row_actions_pass_item_as_one_object():
+    """UpdateOnlyRecordWithOrganization with a dynamic organization needs 'item' as a single object."""
+    def walk(actions):
+        for name, a in actions.items():
+            yield name, a
+            for key in ("actions",):
+                if isinstance(a.get(key), dict):
+                    yield from walk(a[key])
+            if isinstance(a.get("else"), dict):
+                yield from walk(a["else"]["actions"])
+    for cd in (flows.c2(), flows.c3(), flows.c1(IDS)):
+        for name, a in walk(acts(cd)):
+            host = a.get("inputs", {}).get("host", {}) if isinstance(a.get("inputs"), dict) else {}
+            if host.get("operationId") == "UpdateOnlyRecordWithOrganization":
+                params = a["inputs"]["parameters"]
+                assert isinstance(params.get("item"), dict), name
+                assert not any(k.startswith("item/") for k in params), name
