@@ -1,0 +1,679 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "alm_PipelineDataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_sharepointonline": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "alm_PipelineSharePoint"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "Solution",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "Solution unique name (default Demo)",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "Target",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "TEST or PROD (default TEST)",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "Solution": {
+          "type": "Compose",
+          "inputs": "@coalesce(triggerBody()?['text'], 'Demo')"
+        },
+        "Target": {
+          "type": "Compose",
+          "inputs": "@coalesce(triggerBody()?['text_1'], 'TEST')",
+          "runAfter": {
+            "Solution": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Init_FailMessage": {
+          "type": "InitializeVariable",
+          "inputs": {
+            "variables": [
+              {
+                "name": "FailMessage",
+                "type": "string",
+                "value": ""
+              }
+            ]
+          },
+          "runAfter": {
+            "Target": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Main": {
+          "type": "Scope",
+          "actions": {
+            "Get_config": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline",
+                  "operationId": "GetItems",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "https://7xpydh.sharepoint.com/sites/ALM-Admin",
+                  "table": "049eba5a-700e-44db-9d2b-4e95c3af51b6",
+                  "$filter": "SolutionName eq '@{outputs('Solution')}' and TargetEnvironment eq '@{outputs('Target')}'",
+                  "$top": 1
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Config": {
+              "type": "Compose",
+              "inputs": "@first(body('Get_config')?['value'])",
+              "runAfter": {
+                "Get_config": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Check_config": {
+              "type": "If",
+              "expression": {
+                "equals": [
+                  "@empty(body('Get_config')?['value'])",
+                  true
+                ]
+              },
+              "actions": {
+                "Set_Fail_no_config": {
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "FailMessage",
+                    "value": "@concat('No ALMConfig row for ', outputs('Solution'), ' -> ', outputs('Target'))"
+                  }
+                },
+                "Fail_no_config": {
+                  "type": "Compose",
+                  "inputs": "@int(variables('FailMessage'))",
+                  "runAfter": {
+                    "Set_Fail_no_config": [
+                      "Succeeded"
+                    ]
+                  }
+                }
+              },
+              "runAfter": {
+                "Config": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Dev_url": {
+              "type": "Compose",
+              "inputs": "@outputs('Config')?['DevPowerPlatformUrl']",
+              "runAfter": {
+                "Check_config": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Target_url": {
+              "type": "Compose",
+              "inputs": "@outputs('Config')?['TargetPowerPlatformUrl']",
+              "runAfter": {
+                "Dev_url": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Get_connection_map": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline",
+                  "operationId": "GetItems",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "https://7xpydh.sharepoint.com/sites/ALM-Admin",
+                  "table": "",
+                  "$filter": "Environment eq '@{outputs('Target')}'"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runAfter": {
+                "Target_url": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Get_variable_map": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline",
+                  "operationId": "GetItems",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "https://7xpydh.sharepoint.com/sites/ALM-Admin",
+                  "table": "",
+                  "$filter": "SolutionName eq '@{outputs('Solution')}' and Environment eq '@{outputs('Target')}'"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runAfter": {
+                "Get_connection_map": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Dev_refs": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecordsWithOrganization",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "organization": "@outputs('Dev_url')",
+                  "entityName": "connectionreferences",
+                  "fetchXml": "<fetch distinct=\"true\"><entity name=\"connectionreference\"><attribute name=\"connectionreferencelogicalname\"/><link-entity name=\"solutioncomponent\" from=\"objectid\" to=\"connectionreferenceid\" link-type=\"inner\"><link-entity name=\"solution\" from=\"solutionid\" to=\"solutionid\" link-type=\"inner\"><filter><condition attribute=\"uniquename\" operator=\"eq\" value=\"@{outputs('Solution')}\"/></filter></link-entity></link-entity></entity></fetch>"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runAfter": {
+                "Get_variable_map": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Dev_ref_names": {
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Dev_refs')?['value']",
+                "select": "@item()?['connectionreferencelogicalname']"
+              },
+              "runAfter": {
+                "Dev_refs": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Dev_vars": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecordsWithOrganization",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "organization": "@outputs('Dev_url')",
+                  "entityName": "environmentvariabledefinitions",
+                  "fetchXml": "<fetch distinct=\"true\"><entity name=\"environmentvariabledefinition\"><attribute name=\"schemaname\"/><link-entity name=\"solutioncomponent\" from=\"objectid\" to=\"environmentvariabledefinitionid\" link-type=\"inner\"><link-entity name=\"solution\" from=\"solutionid\" to=\"solutionid\" link-type=\"inner\"><filter><condition attribute=\"uniquename\" operator=\"eq\" value=\"@{outputs('Solution')}\"/></filter></link-entity></link-entity></entity></fetch>"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runAfter": {
+                "Dev_ref_names": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Dev_var_names": {
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Dev_vars')?['value']",
+                "select": "@item()?['schemaname']"
+              },
+              "runAfter": {
+                "Dev_vars": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Mapped_refs": {
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Get_connection_map')?['value']",
+                "select": "@item()?['ConnectionReference']"
+              },
+              "runAfter": {
+                "Dev_var_names": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Missing_refs": {
+              "type": "Query",
+              "inputs": {
+                "from": "@body('Dev_ref_names')",
+                "where": "@not(contains(body('Mapped_refs'), item()))"
+              },
+              "runAfter": {
+                "Mapped_refs": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Mapped_vars": {
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Get_variable_map')?['value']",
+                "select": "@item()?['SchemaName']"
+              },
+              "runAfter": {
+                "Missing_refs": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Missing_vars": {
+              "type": "Query",
+              "inputs": {
+                "from": "@body('Dev_var_names')",
+                "where": "@not(contains(body('Mapped_vars'), item()))"
+              },
+              "runAfter": {
+                "Mapped_vars": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Check_mappings": {
+              "type": "If",
+              "expression": {
+                "greater": [
+                  "@add(length(body('Missing_refs')), length(body('Missing_vars')))",
+                  0
+                ]
+              },
+              "actions": {
+                "Set_Fail_missing_mapping": {
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "FailMessage",
+                    "value": "@concat('Missing mapping rows for ', outputs('Target'), ': ', join(union(body('Missing_refs'), body('Missing_vars')), ', '))"
+                  }
+                },
+                "Fail_missing_mapping": {
+                  "type": "Compose",
+                  "inputs": "@int(variables('FailMessage'))",
+                  "runAfter": {
+                    "Set_Fail_missing_mapping": [
+                      "Succeeded"
+                    ]
+                  }
+                }
+              },
+              "runAfter": {
+                "Missing_vars": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Export_from_DEV": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "PerformUnboundActionWithOrganization",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "organization": "@outputs('Dev_url')",
+                  "actionName": "ExportSolutionAsync",
+                  "item/SolutionName": "@outputs('Solution')",
+                  "item/Managed": true
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runAfter": {
+                "Check_mappings": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Export_Wait_for_job": {
+              "type": "Until",
+              "expression": "@equals(body('Export_Get_job')?['statecode'], 3)",
+              "limit": {
+                "count": 90,
+                "timeout": "PT30M"
+              },
+              "actions": {
+                "Export_Delay": {
+                  "type": "Wait",
+                  "inputs": {
+                    "interval": {
+                      "count": 20,
+                      "unit": "Second"
+                    }
+                  }
+                },
+                "Export_Get_job": {
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "GetItemWithOrganization",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "organization": "@outputs('Dev_url')",
+                      "entityName": "asyncoperations",
+                      "recordId": "@body('Export_from_DEV')?['AsyncOperationId']",
+                      "$select": "statecode,statuscode,message,friendlymessage"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  },
+                  "runAfter": {
+                    "Export_Delay": [
+                      "Succeeded"
+                    ]
+                  }
+                }
+              },
+              "runAfter": {
+                "Export_from_DEV": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Export_succeeded": {
+              "type": "If",
+              "expression": {
+                "equals": [
+                  "@body('Export_Get_job')?['statuscode']",
+                  30
+                ]
+              },
+              "actions": {
+                "Download_export": {
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "PerformUnboundActionWithOrganization",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "organization": "@outputs('Dev_url')",
+                      "actionName": "DownloadSolutionExportData",
+                      "item/ExportJobId": "@body('Export_from_DEV')?['ExportJobId']"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                },
+                "Archive_ZIP": {
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_sharepointonline",
+                      "operationId": "CreateFile",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                    },
+                    "parameters": {
+                      "dataset": "https://7xpydh.sharepoint.com/sites/ALM-Admin",
+                      "folderPath": "/Solutions/@{outputs('Solution')}",
+                      "name": "@{concat(outputs('Solution'), '_managed_', utcNow('yyyyMMdd-HHmmss'), '.zip')}",
+                      "body": "@base64ToBinary(body('Download_export')?['ExportSolutionFile'])"
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  },
+                  "runAfter": {
+                    "Download_export": [
+                      "Succeeded"
+                    ]
+                  }
+                }
+              },
+              "else": {
+                "actions": {
+                  "Set_Fail_export": {
+                    "type": "SetVariable",
+                    "inputs": {
+                      "name": "FailMessage",
+                      "value": "@coalesce(body('Export_Get_job')?['friendlymessage'], body('Export_Get_job')?['message'], 'no message')"
+                    }
+                  },
+                  "Fail_export": {
+                    "type": "Compose",
+                    "inputs": "@int(variables('FailMessage'))",
+                    "runAfter": {
+                      "Set_Fail_export": [
+                        "Succeeded"
+                      ]
+                    }
+                  }
+                }
+              },
+              "runAfter": {
+                "Export_Wait_for_job": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "If_RunImport": {
+              "type": "If",
+              "expression": {
+                "equals": [
+                  "@outputs('Config')?['RunImport']",
+                  true
+                ]
+              },
+              "actions": {
+                "Run_C2_import": {
+                  "type": "Workflow",
+                  "inputs": {
+                    "host": {
+                      "workflowReferenceName": "00000000-0000-0000-0000-000000000000"
+                    },
+                    "body": {
+                      "text": "@body('Archive_ZIP')?['Path']",
+                      "text_1": "@outputs('Solution')",
+                      "text_2": "@outputs('Target')"
+                    }
+                  }
+                }
+              },
+              "runAfter": {
+                "Export_succeeded": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "If_RunPostImport": {
+              "type": "If",
+              "expression": {
+                "equals": [
+                  "@outputs('Config')?['RunPostImport']",
+                  true
+                ]
+              },
+              "actions": {
+                "Run_C3_post_import": {
+                  "type": "Workflow",
+                  "inputs": {
+                    "host": {
+                      "workflowReferenceName": "00000000-0000-0000-0000-000000000000"
+                    },
+                    "body": {
+                      "text": "@outputs('Solution')",
+                      "text_1": "@outputs('Target')"
+                    }
+                  }
+                }
+              },
+              "runAfter": {
+                "If_RunImport": [
+                  "Succeeded"
+                ]
+              }
+            }
+          },
+          "runAfter": {
+            "Init_FailMessage": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Log": {
+          "type": "Scope",
+          "actions": {
+            "Log_entry": {
+              "type": "Compose",
+              "inputs": {
+                "runId": "@{workflow()?['run']?['name']}",
+                "solution": "@{outputs('Solution')}",
+                "target": "@{outputs('Target')}",
+                "status": "@{actions('Main')?['status']}",
+                "zipPath": "@{actions('Archive_ZIP')?['outputs']?['body']?['Path']}",
+                "switches": {
+                  "RunImport": "@{actions('Config')?['outputs']?['RunImport']}",
+                  "RunPostImport": "@{actions('Config')?['outputs']?['RunPostImport']}"
+                },
+                "message": "@{if(empty(variables('FailMessage')), coalesce(actions('Run_C2_import')?['error']?['message'], actions('Run_C3_post_import')?['error']?['message'], ''), variables('FailMessage'))}",
+                "steps": [
+                  {
+                    "step": "Prechecks",
+                    "status": "@{actions('Check_mappings')?['status']}",
+                    "seconds": "@{div(sub(ticks(coalesce(actions('Check_mappings')?['endTime'], utcNow())), ticks(coalesce(actions('Check_mappings')?['startTime'], utcNow()))), 10000000)}",
+                    "message": "@{coalesce(actions('Check_mappings')?['outputs']?['body']?['message'], actions('Check_mappings')?['error']?['message'], '')}"
+                  },
+                  {
+                    "step": "Export",
+                    "status": "@{actions('Export_succeeded')?['status']}",
+                    "seconds": "@{div(sub(ticks(coalesce(actions('Export_succeeded')?['endTime'], utcNow())), ticks(coalesce(actions('Export_succeeded')?['startTime'], utcNow()))), 10000000)}",
+                    "message": "@{coalesce(actions('Export_succeeded')?['outputs']?['body']?['message'], actions('Export_succeeded')?['error']?['message'], '')}"
+                  },
+                  {
+                    "step": "Import",
+                    "status": "@{actions('Run_C2_import')?['status']}",
+                    "seconds": "@{div(sub(ticks(coalesce(actions('Run_C2_import')?['endTime'], utcNow())), ticks(coalesce(actions('Run_C2_import')?['startTime'], utcNow()))), 10000000)}",
+                    "message": "@{coalesce(actions('Run_C2_import')?['outputs']?['body']?['message'], actions('Run_C2_import')?['error']?['message'], '')}"
+                  },
+                  {
+                    "step": "PostImport",
+                    "status": "@{actions('Run_C3_post_import')?['status']}",
+                    "seconds": "@{div(sub(ticks(coalesce(actions('Run_C3_post_import')?['endTime'], utcNow())), ticks(coalesce(actions('Run_C3_post_import')?['startTime'], utcNow()))), 10000000)}",
+                    "message": "@{coalesce(actions('Run_C3_post_import')?['outputs']?['body']?['message'], actions('Run_C3_post_import')?['error']?['message'], '')}"
+                  }
+                ]
+              }
+            },
+            "Write_log": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline",
+                  "operationId": "CreateFile",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "https://7xpydh.sharepoint.com/sites/ALM-Admin",
+                  "folderPath": "/DeploymentLogs",
+                  "name": "@{concat(outputs('Solution'), '_', outputs('Target'), '_', utcNow('yyyyMMdd-HHmmss'), '.json')}",
+                  "body": "@{string(outputs('Log_entry'))}"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runAfter": {
+                "Log_entry": [
+                  "Succeeded"
+                ]
+              }
+            }
+          },
+          "runAfter": {
+            "Main": [
+              "Succeeded",
+              "Failed",
+              "Skipped",
+              "TimedOut"
+            ]
+          }
+        },
+        "Report_failure": {
+          "type": "If",
+          "expression": {
+            "equals": [
+              "@actions('Main')?['status']",
+              "Succeeded"
+            ]
+          },
+          "actions": {},
+          "else": {
+            "actions": {
+              "Stop_failed": {
+                "type": "Terminate",
+                "inputs": {
+                  "runStatus": "Failed",
+                  "runError": {
+                    "code": "DeployStepFailed",
+                    "message": "@{outputs('Log_entry')?['message']}"
+                  }
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Log": [
+              "Succeeded",
+              "Failed"
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
