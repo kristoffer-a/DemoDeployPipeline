@@ -1,7 +1,7 @@
 """Definitions of the deploy pipeline flows: C1 parent, C2 import child, C3 post-import child."""
 from pipeline import settings as s
-from pipeline.defs import (after, clientdata, fetch_in_solution, if_job_succeeded, job_message, list_rows,
-                           manual_trigger, op, poll_block, respond, seq, sp_items, terminate, unbound, url_expr)
+from pipeline.defs import (after, clientdata, fail_steps, fetch_in_solution, if_job_succeeded, job_message, list_rows,
+                           manual_trigger, op, poll_block, respond, run_child, seq, sp_items, terminate, unbound, url_expr)
 
 DV, SP = s.DV_KEY, s.SP_KEY
 
@@ -192,3 +192,118 @@ def c3():
         ("text", "Solution", "Solution unique name, e.g. Demo"),
         ("text_1", "Target", "TEST or PROD"),
     ]), actions, s.FLOW_REFS)
+
+
+# ---------- C1: parent ----------
+
+SOL, TARGET = "outputs('Solution')", "outputs('Target')"
+PLACEHOLDER_ID = "00000000-0000-0000-0000-000000000000"
+
+
+def export_steps():
+    """Export managed from DEV, wait, download, archive as Solutions/<sol>/<sol>_managed_<time>.zip."""
+    dev = "@outputs('Dev_url')"
+    acts = {"Export_from_DEV": unbound(DV, dev, "ExportSolutionAsync", {"SolutionName": f"@{SOL}", "Managed": True})}
+    acts.update({k: after(v, "Export_from_DEV") for k, v in poll_block(
+        DV, dev, "@body('Export_from_DEV')?['AsyncOperationId']", "Export").items()})
+    acts["Export_succeeded"] = after(if_job_succeeded("Export", {
+        "Download_export": unbound(DV, dev, "DownloadSolutionExportData",
+                                   {"ExportJobId": "@body('Export_from_DEV')?['ExportJobId']"}),
+        "Archive_ZIP": after(op(SP, s.SP_API, "CreateFile", {
+            "dataset": s.ADMIN_SITE,
+            "folderPath": f"/Solutions/@{{{SOL}}}",
+            "name": f"@{{concat({SOL}, '_managed_', utcNow('yyyyMMdd-HHmmss'), '.zip')}}",
+            "body": "@base64ToBinary(body('Download_export')?['ExportSolutionFile'])",
+        }), "Download_export"),
+    }, fail_steps("Fail_export", "@" + job_message("Export"))), "Export_Wait_for_job")
+    return acts
+
+
+def log_step(step, action):
+    """One log line. actions('X') works for skipped actions; body('X') would throw."""
+    a = f"actions('{action}')"
+    return {
+        "step": step,
+        "status": f"@{{{a}?['status']}}",
+        "seconds": f"@{{div(sub(ticks(coalesce({a}?['endTime'], utcNow())), "
+                   f"ticks(coalesce({a}?['startTime'], utcNow()))), 10000000)}}",
+        "message": f"@{{coalesce({a}?['outputs']?['body']?['message'], {a}?['error']?['message'], '')}}",
+    }
+
+
+def c1(ids):
+    missing = ("@concat('Missing mapping rows for ', outputs('Target'), ': ', "
+               "join(union(body('Missing_refs'), body('Missing_vars')), ', '))")
+    main = seq(
+        config_actions(SOL, TARGET, fail_steps("Fail_no_config", no_config_message(SOL, TARGET))),
+        {"Mapped_refs": {"type": "Select", "inputs": {
+            "from": "@body('Get_connection_map')?['value']", "select": "@item()?['ConnectionReference']"}}},
+        {"Missing_refs": {"type": "Query", "inputs": {
+            "from": "@body('Dev_ref_names')", "where": "@not(contains(body('Mapped_refs'), item()))"}}},
+        {"Mapped_vars": {"type": "Select", "inputs": {
+            "from": "@body('Get_variable_map')?['value']", "select": "@item()?['SchemaName']"}}},
+        {"Missing_vars": {"type": "Query", "inputs": {
+            "from": "@body('Dev_var_names')", "where": "@not(contains(body('Mapped_vars'), item()))"}}},
+        {"Check_mappings": {"type": "If",
+                            "expression": {"greater": ["@add(length(body('Missing_refs')), length(body('Missing_vars')))", 0]},
+                            "actions": fail_steps("Fail_missing_mapping", missing)}},
+        export_steps(),
+        {"If_RunImport": {"type": "If",
+                          "expression": {"equals": ["@outputs('Config')?['RunImport']", True]},
+                          "actions": {"Run_C2_import": run_child(ids.get(s.C2_NAME, PLACEHOLDER_ID), {
+                              "text": "@body('Archive_ZIP')?['Path']", "text_1": f"@{SOL}", "text_2": f"@{TARGET}"})}}},
+        {"If_RunPostImport": {"type": "If",
+                              "expression": {"equals": ["@outputs('Config')?['RunPostImport']", True]},
+                              "actions": {"Run_C3_post_import": run_child(ids.get(s.C3_NAME, PLACEHOLDER_ID), {
+                                  "text": f"@{SOL}", "text_1": f"@{TARGET}"})}}},
+    )
+    message = ("@{if(empty(variables('FailMessage')), coalesce(actions('Run_C2_import')?['error']?['message'], "
+               "actions('Run_C3_post_import')?['error']?['message'], ''), variables('FailMessage'))}")
+    log = seq(
+        {"Log_entry": {"type": "Compose", "inputs": {
+            "runId": "@{workflow()?['run']?['name']}",
+            "solution": f"@{{{SOL}}}",
+            "target": f"@{{{TARGET}}}",
+            "status": "@{actions('Main')?['status']}",
+            "zipPath": "@{actions('Archive_ZIP')?['outputs']?['body']?['Path']}",
+            "switches": {
+                "RunImport": "@{actions('Config')?['outputs']?['RunImport']}",
+                "RunPostImport": "@{actions('Config')?['outputs']?['RunPostImport']}",
+            },
+            "message": message,
+            "steps": [log_step("Prechecks", "Check_mappings"), log_step("Export", "Export_succeeded"),
+                      log_step("Import", "Run_C2_import"), log_step("PostImport", "Run_C3_post_import")],
+        }}},
+        {"Write_log": op(SP, s.SP_API, "CreateFile", {
+            "dataset": s.ADMIN_SITE,
+            "folderPath": s.LOG_FOLDER,
+            "name": f"@{{concat({SOL}, '_', {TARGET}, '_', utcNow('yyyyMMdd-HHmmss'), '.json')}}",
+            "body": "@{string(outputs('Log_entry'))}",
+        })},
+    )
+    actions = seq(
+        {"Solution": {"type": "Compose", "inputs": "@coalesce(triggerBody()?['text'], 'Demo')"}},
+        {"Target": {"type": "Compose", "inputs": "@coalesce(triggerBody()?['text_1'], 'TEST')"}},
+        {"Init_FailMessage": {"type": "InitializeVariable", "inputs": {
+            "variables": [{"name": "FailMessage", "type": "string", "value": ""}]}}},
+        {"Main": {"type": "Scope", "actions": main}},
+    )
+    actions["Log"] = after({"type": "Scope", "actions": log}, "Main",
+                           status=("Succeeded", "Failed", "Skipped", "TimedOut"))
+    actions["Report_failure"] = after({
+        "type": "If",
+        "expression": {"equals": ["@actions('Main')?['status']", "Succeeded"]},
+        "actions": {},
+        "else": {"actions": {"Stop_failed": terminate("@{outputs('Log_entry')?['message']}")}},
+    }, "Log", status=("Succeeded", "Failed"))
+    return clientdata(manual_trigger([
+        ("text", "Solution", "Solution unique name (default Demo)"),
+        ("text_1", "Target", "TEST or PROD (default TEST)"),
+    ]), actions, s.FLOW_REFS)
+
+
+FLOWS = [
+    (s.C2_NAME, lambda ids: c2()),
+    (s.C3_NAME, lambda ids: c3()),
+    (s.C1_NAME, c1),
+]

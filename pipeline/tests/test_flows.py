@@ -55,3 +55,56 @@ def test_children_stop_when_config_row_missing():
         check = acts(cd)["Check_config"]
         assert check["expression"] == {"equals": ["@empty(body('Get_config')?['value'])", True]}
         assert check["actions"]["Stop_no_config"]["type"] == "Terminate"
+
+
+IDS = {flows.s.C2_NAME: "c2-id", flows.s.C3_NAME: "c3-id"}
+
+
+def test_c1_validates_clean():
+    cd = flows.c1(IDS)
+    assert defs.validate(cd) == []
+    json.dumps(cd)
+
+
+def test_c1_structure_main_log_report():
+    a = acts(flows.c1(IDS))
+    assert a["Init_FailMessage"]["type"] == "InitializeVariable"
+    assert a["Main"]["type"] == "Scope"
+    assert a["Log"]["runAfter"] == {"Main": ["Succeeded", "Failed", "Skipped", "TimedOut"]}
+    assert a["Report_failure"]["runAfter"] == {"Log": ["Succeeded", "Failed"]}
+    assert a["Report_failure"]["else"]["actions"]["Stop_failed"]["type"] == "Terminate"
+
+
+def test_c1_children_are_switched_and_get_the_archived_path():
+    main = acts(flows.c1(IDS))["Main"]["actions"]
+    imp = main["If_RunImport"]
+    assert imp["expression"] == {"equals": ["@outputs('Config')?['RunImport']", True]}
+    call = imp["actions"]["Run_C2_import"]["inputs"]
+    assert call["host"]["workflowReferenceName"] == "c2-id"
+    assert call["body"]["text"] == "@body('Archive_ZIP')?['Path']"
+    post = main["If_RunPostImport"]
+    assert post["runAfter"] == {"If_RunImport": ["Succeeded"]}
+    assert post["actions"]["Run_C3_post_import"]["inputs"]["host"]["workflowReferenceName"] == "c3-id"
+
+
+def test_c1_prechecks_before_export():
+    main = acts(flows.c1(IDS))["Main"]["actions"]
+    assert main["Missing_refs"]["inputs"]["where"] == "@not(contains(body('Mapped_refs'), item()))"
+    assert main["Export_from_DEV"]["runAfter"] == {"Check_mappings": ["Succeeded"]}
+    assert main["Check_config"]["actions"]["Fail_no_config"]["inputs"] == "@int(variables('FailMessage'))"
+
+
+def test_c1_archives_per_solution_and_logs_per_run():
+    a = acts(flows.c1(IDS))
+    archive = a["Main"]["actions"]["Export_succeeded"]["actions"]["Archive_ZIP"]["inputs"]["parameters"]
+    assert archive["folderPath"] == "/Solutions/@{outputs('Solution')}"
+    assert archive["name"] == "@{concat(outputs('Solution'), '_managed_', utcNow('yyyyMMdd-HHmmss'), '.zip')}"
+    log = a["Log"]["actions"]["Write_log"]["inputs"]["parameters"]
+    assert log["folderPath"] == "/DeploymentLogs"
+    assert log["name"] == "@{concat(outputs('Solution'), '_', outputs('Target'), '_', utcNow('yyyyMMdd-HHmmss'), '.json')}"
+    steps = a["Log"]["actions"]["Log_entry"]["inputs"]["steps"]
+    assert [x["step"] for x in steps] == ["Prechecks", "Export", "Import", "PostImport"]
+
+
+def test_flows_deploy_children_first():
+    assert [name for name, _ in flows.FLOWS] == [flows.s.C2_NAME, flows.s.C3_NAME, flows.s.C1_NAME]
