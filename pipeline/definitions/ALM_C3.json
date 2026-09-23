@@ -142,7 +142,7 @@
             },
             "parameters": {
               "dataset": "https://7xpydh.sharepoint.com/sites/ALM-Admin",
-              "table": "",
+              "table": "bc640935-9503-44de-87d1-699d65c8d351",
               "$filter": "Environment eq '@{triggerBody()?['text_1']}'"
             },
             "authentication": "@parameters('$authentication')"
@@ -163,7 +163,7 @@
             },
             "parameters": {
               "dataset": "https://7xpydh.sharepoint.com/sites/ALM-Admin",
-              "table": "",
+              "table": "1ffc8ca3-1458-423b-81cb-49226b41664f",
               "$filter": "SolutionName eq '@{triggerBody()?['text']}' and Environment eq '@{triggerBody()?['text_1']}'"
             },
             "authentication": "@parameters('$authentication')"

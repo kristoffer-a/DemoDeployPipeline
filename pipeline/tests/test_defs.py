@@ -65,3 +65,15 @@ def test_validate_accepts_nested_scopes():
 
 def after_ok(action, prev):
     return defs.after(action, prev)
+
+
+import re as _re
+
+from pipeline import settings
+
+GUID = _re.compile(r"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$")
+
+
+def test_config_list_ids_are_set():
+    for value in (settings.LIST_CONFIG, settings.LIST_CONNECTIONS, settings.LIST_VARIABLES):
+        assert GUID.match(value), value
