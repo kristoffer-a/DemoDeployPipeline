@@ -41,6 +41,13 @@ def no_config_message(sol, target):
     return f"@concat('No ALMConfig row for ', {sol}, ' -> ', {target})"
 
 
+def solution_connections():
+    """ALMConnections rows whose connection reference is part of the DEV solution."""
+    return {"Solution_connections": {"type": "Query", "inputs": {
+        "from": "@body('Get_connection_map')?['value']",
+        "where": "@contains(body('Dev_ref_names'), item()?['ConnectionReference'])"}}}
+
+
 # ---------- C2: import child ----------
 
 C2_SOL, C2_TARGET = "triggerBody()?['text_1']", "triggerBody()?['text_2']"
@@ -76,9 +83,7 @@ def c2():
 
     actions = seq(
         config_actions(C2_SOL, C2_TARGET, {"Stop_no_config": terminate(no_config_message(C2_SOL, C2_TARGET))}),
-        {"Solution_connections": {"type": "Query", "inputs": {
-            "from": "@body('Get_connection_map')?['value']",
-            "where": "@contains(body('Dev_ref_names'), item()?['ConnectionReference'])"}}},
+        solution_connections(),
         {"Connection_params": {"type": "Select", "inputs": {
             "from": "@body('Solution_connections')", "select": conn_param}}},
         {"Variable_params": {"type": "Select", "inputs": {
@@ -102,9 +107,7 @@ C3_SOL, C3_TARGET = "triggerBody()?['text']", "triggerBody()?['text_1']"
 def c3():
     target = "@outputs('Target_url')"
     check = seq(
-        {"Solution_connections": {"type": "Query", "inputs": {
-            "from": "@body('Get_connection_map')?['value']",
-            "where": "@contains(body('Dev_ref_names'), item()?['ConnectionReference'])"}}},
+        solution_connections(),
         {"Expected_pairs": {"type": "Select", "inputs": {
             "from": "@body('Solution_connections')",
             "select": "@concat(item()?['ConnectionReference'], '|', item()?['ConnectionId'])"}}},
