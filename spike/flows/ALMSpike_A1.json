@@ -1,0 +1,186 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "alm_Dataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_sharepointonline": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "alm_SharePoint"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {},
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "Export_Demo_from_DEV": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "PerformUnboundActionWithOrganization",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "organization": "https://devorgf20ef6ea.crm17.dynamics.com",
+              "actionName": "ExportSolutionAsync",
+              "item/SolutionName": "Demo",
+              "item/Managed": true
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Export_Wait_for_job": {
+          "type": "Until",
+          "expression": "@equals(body('Export_Get_job')?['statecode'], 3)",
+          "limit": {
+            "count": 90,
+            "timeout": "PT30M"
+          },
+          "actions": {
+            "Export_Delay": {
+              "type": "Wait",
+              "inputs": {
+                "interval": {
+                  "count": 20,
+                  "unit": "Second"
+                }
+              }
+            },
+            "Export_Get_job": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItemWithOrganization",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "organization": "https://devorgf20ef6ea.crm17.dynamics.com",
+                  "entityName": "asyncoperations",
+                  "recordId": "@body('Export_Demo_from_DEV')?['AsyncOperationId']",
+                  "$select": "statecode,statuscode,message,friendlymessage"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runAfter": {
+                "Export_Delay": [
+                  "Succeeded"
+                ]
+              }
+            }
+          },
+          "runAfter": {
+            "Export_Demo_from_DEV": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Export_succeeded": {
+          "type": "If",
+          "expression": {
+            "equals": [
+              "@body('Export_Get_job')?['statuscode']",
+              30
+            ]
+          },
+          "actions": {
+            "Download_export": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "PerformUnboundActionWithOrganization",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "organization": "https://devorgf20ef6ea.crm17.dynamics.com",
+                  "actionName": "DownloadSolutionExportData",
+                  "item/ExportJobId": "@body('Export_Demo_from_DEV')?['ExportJobId']"
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Archive_ZIP_in_ALM_Admin": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline",
+                  "operationId": "CreateFile",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "https://7xpydh.sharepoint.com/sites/ALM-Admin",
+                  "folderPath": "/Solutions/Demo",
+                  "name": "@{concat('Demo_managed_', utcNow('yyyyMMdd-HHmmss'), '.zip')}",
+                  "body": "@base64ToBinary(body('Download_export')?['ExportSolutionFile'])"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runAfter": {
+                "Download_export": [
+                  "Succeeded"
+                ]
+              }
+            }
+          },
+          "else": {
+            "actions": {
+              "Export_Job_failed": {
+                "type": "Terminate",
+                "inputs": {
+                  "runStatus": "Failed",
+                  "runError": {
+                    "code": "@{string(body('Export_Get_job')?['statuscode'])}",
+                    "message": "@{coalesce(body('Export_Get_job')?['friendlymessage'], body('Export_Get_job')?['message'], 'no message')}"
+                  }
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Export_Wait_for_job": [
+              "Succeeded"
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}

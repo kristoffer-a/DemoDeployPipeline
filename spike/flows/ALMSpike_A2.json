@@ -1,0 +1,203 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "alm_Dataverse"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_sharepointonline": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "alm_SharePoint"
+        },
+        "api": {
+          "name": "shared_sharepointonline"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "manual": {
+          "type": "Request",
+          "kind": "Button",
+          "inputs": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "title": "Archived ZIP path",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "e.g. /Solutions/Demo/Demo_managed_20260923-120000.zip",
+                  "x-ms-content-hint": "TEXT"
+                },
+                "text_1": {
+                  "title": "TEST Products list ID",
+                  "type": "string",
+                  "x-ms-dynamically-added": true,
+                  "description": "GUID of the Products list on the ALM-Test site",
+                  "x-ms-content-hint": "TEXT"
+                }
+              },
+              "required": []
+            }
+          }
+        }
+      },
+      "actions": {
+        "Get_archived_ZIP": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_sharepointonline",
+              "operationId": "GetFileContentByPath",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+            },
+            "parameters": {
+              "dataset": "https://7xpydh.sharepoint.com/sites/ALM-Admin",
+              "path": "@coalesce(triggerBody()?['text'], '/Solutions/Demo/Demo_managed_20260923-160145.zip')",
+              "inferContentType": false
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Component_parameters": {
+          "type": "Compose",
+          "inputs": "[{\"@@odata.type\": \"Microsoft.Dynamics.CRM.environmentvariablevalue\", \"schemaname\": \"dev_SharePointSite\", \"value\": \"https://7xpydh.sharepoint.com/sites/ALM-Test\"}, {\"@@odata.type\": \"Microsoft.Dynamics.CRM.environmentvariablevalue\", \"schemaname\": \"dev_ProductsList\", \"value\": \"@{coalesce(triggerBody()?['text_1'], '00000000-0000-0000-0000-000000000000')}\"}, {\"@@odata.type\": \"Microsoft.Dynamics.CRM.connectionreference\", \"connectionreferencelogicalname\": \"dev_SharePoint\", \"connectionid\": \"shared-sharepointonl-0f567e53\", \"connectorid\": \"/providers/Microsoft.PowerApps/apis/shared_sharepointonline\"}]",
+          "runAfter": {
+            "Get_archived_ZIP": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Import_Demo_to_TEST": {
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "PerformUnboundActionWithOrganization",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "organization": "https://testorg5fd244de.crm17.dynamics.com",
+              "actionName": "ImportSolutionAsync",
+              "item/CustomizationFile": "@body('Get_archived_ZIP')?['$content']",
+              "item/OverwriteUnmanagedCustomizations": false,
+              "item/PublishWorkflows": true,
+              "item/ComponentParameters": "@json(replace(outputs('Component_parameters'), '@@odata', '@odata'))"
+            },
+            "authentication": "@parameters('$authentication')"
+          },
+          "runAfter": {
+            "Component_parameters": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Import_Wait_for_job": {
+          "type": "Until",
+          "expression": "@equals(body('Import_Get_job')?['statecode'], 3)",
+          "limit": {
+            "count": 90,
+            "timeout": "PT30M"
+          },
+          "actions": {
+            "Import_Delay": {
+              "type": "Wait",
+              "inputs": {
+                "interval": {
+                  "count": 20,
+                  "unit": "Second"
+                }
+              }
+            },
+            "Import_Get_job": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "GetItemWithOrganization",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "organization": "https://testorg5fd244de.crm17.dynamics.com",
+                  "entityName": "asyncoperations",
+                  "recordId": "@body('Import_Demo_to_TEST')?['AsyncOperationId']",
+                  "$select": "statecode,statuscode,message,friendlymessage"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runAfter": {
+                "Import_Delay": [
+                  "Succeeded"
+                ]
+              }
+            }
+          },
+          "runAfter": {
+            "Import_Demo_to_TEST": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Import_succeeded": {
+          "type": "If",
+          "expression": {
+            "equals": [
+              "@body('Import_Get_job')?['statuscode']",
+              30
+            ]
+          },
+          "actions": {
+            "Import_result": {
+              "type": "Compose",
+              "inputs": {
+                "ImportJobKey": "@body('Import_Demo_to_TEST')?['ImportJobKey']",
+                "AsyncOperationId": "@body('Import_Demo_to_TEST')?['AsyncOperationId']",
+                "statuscode": "@body('Import_Get_job')?['statuscode']"
+              }
+            }
+          },
+          "else": {
+            "actions": {
+              "Import_Job_failed": {
+                "type": "Terminate",
+                "inputs": {
+                  "runStatus": "Failed",
+                  "runError": {
+                    "code": "@{string(body('Import_Get_job')?['statuscode'])}",
+                    "message": "@{coalesce(body('Import_Get_job')?['friendlymessage'], body('Import_Get_job')?['message'], 'no message')}"
+                  }
+                }
+              }
+            }
+          },
+          "runAfter": {
+            "Import_Wait_for_job": [
+              "Succeeded"
+            ]
+          }
+        }
+      }
+    },
+    "templateName": ""
+  },
+  "schemaVersion": "1.0.0.0"
+}
