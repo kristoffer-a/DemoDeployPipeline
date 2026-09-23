@@ -38,6 +38,13 @@ def test_fail_steps_sets_message_then_fails():
     assert steps["Fail_x"]["runAfter"] == {"Set_Fail_x": ["Succeeded"]}
 
 
+def test_unbound_passes_item_as_one_object():
+    a = defs.unbound("k", "@outputs('Dev_url')", "ExportSolutionAsync", {"SolutionName": "@outputs('Solution')", "Managed": True})
+    params = a["inputs"]["parameters"]
+    assert params["item"] == {"SolutionName": "@outputs('Solution')", "Managed": True}
+    assert not any(k.startswith("item/") for k in params)
+
+
 def _cd(actions):
     return defs.clientdata(defs.manual_trigger([]), actions, {})
 

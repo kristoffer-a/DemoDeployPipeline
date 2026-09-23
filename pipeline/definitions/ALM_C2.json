@@ -315,10 +315,12 @@
             "parameters": {
               "organization": "@outputs('Target_url')",
               "actionName": "ImportSolutionAsync",
-              "item/CustomizationFile": "@body('Get_archived_ZIP')?['$content']",
-              "item/OverwriteUnmanagedCustomizations": false,
-              "item/PublishWorkflows": true,
-              "item/ComponentParameters": "@union(body('Connection_params'), body('Variable_params'))"
+              "item": {
+                "CustomizationFile": "@body('Get_archived_ZIP')?['$content']",
+                "OverwriteUnmanagedCustomizations": false,
+                "PublishWorkflows": true,
+                "ComponentParameters": "@union(body('Connection_params'), body('Variable_params'))"
+              }
             },
             "authentication": "@parameters('$authentication')"
           },

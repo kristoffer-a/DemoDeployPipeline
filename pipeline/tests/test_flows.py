@@ -15,7 +15,7 @@ def test_children_validate_clean():
 
 def test_c2_builds_component_parameters_from_config_rows():
     a = acts(flows.c2())
-    assert a["Import_to_target"]["inputs"]["parameters"]["item/ComponentParameters"] == \
+    assert a["Import_to_target"]["inputs"]["parameters"]["item"]["ComponentParameters"] == \
         "@union(body('Connection_params'), body('Variable_params'))"
     assert "'@odata.type', 'Microsoft.Dynamics.CRM.connectionreference'" in a["Connection_params"]["inputs"]["select"]
     assert "'@odata.type', 'Microsoft.Dynamics.CRM.environmentvariablevalue'" in a["Variable_params"]["inputs"]["select"]
@@ -123,7 +123,18 @@ def test_update_row_actions_pass_item_as_one_object():
     for cd in (flows.c2(), flows.c3(), flows.c1(IDS)):
         for name, a in walk(acts(cd)):
             host = a.get("inputs", {}).get("host", {}) if isinstance(a.get("inputs"), dict) else {}
-            if host.get("operationId") == "UpdateOnlyRecordWithOrganization":
+            if host.get("operationId") in ("UpdateOnlyRecordWithOrganization", "PerformUnboundActionWithOrganization"):
                 params = a["inputs"]["parameters"]
                 assert isinstance(params.get("item"), dict), name
                 assert not any(k.startswith("item/") for k in params), name
+
+
+def test_c1_failure_message_ignores_skipped_children_and_reads_export_errors():
+    msg = acts(flows.c1(IDS))["Log"]["actions"]["Log_entry"]["inputs"]["message"]
+    assert "actions('Export_from_DEV')?['outputs']?['body']?['error']?['message']" in msg
+    assert "if(equals(actions('Run_C2_import')?['status'], 'Failed')" in msg
+
+
+def test_log_step_message_only_reports_errors_for_failed_steps():
+    step = flows.log_step("Import", "Run_C2_import")
+    assert step["message"].startswith("@{if(equals(actions('Run_C2_import')?['status'], 'Failed')")

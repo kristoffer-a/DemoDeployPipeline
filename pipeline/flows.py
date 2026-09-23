@@ -226,7 +226,9 @@ def log_step(step, action):
         "status": f"@{{{a}?['status']}}",
         "seconds": f"@{{div(sub(ticks(coalesce({a}?['endTime'], utcNow())), "
                    f"ticks(coalesce({a}?['startTime'], utcNow()))), 10000000)}}",
-        "message": f"@{{coalesce({a}?['outputs']?['body']?['message'], {a}?['error']?['message'], '')}}",
+        "message": f"@{{if(equals({a}?['status'], 'Failed'), "
+                   f"coalesce({a}?['outputs']?['body']?['error']?['message'], {a}?['error']?['message'], ''), "
+                   f"coalesce({a}?['outputs']?['body']?['message'], ''))}}",
     }
 
 
@@ -256,8 +258,14 @@ def c1(ids):
                               "actions": {"Run_C3_post_import": run_child(ids.get(s.C3_NAME, PLACEHOLDER_ID), {
                                   "text": f"@{SOL}", "text_1": f"@{TARGET}"})}}},
     )
-    message = ("@{if(empty(variables('FailMessage')), coalesce(actions('Run_C2_import')?['error']?['message'], "
-               "actions('Run_C3_post_import')?['error']?['message'], ''), variables('FailMessage'))}")
+    # FailMessage covers pre-checks and export-job failure (set by fail_steps); the rest are action errors.
+    message = ("@{if(not(empty(variables('FailMessage'))), variables('FailMessage'), coalesce("
+               "actions('Export_from_DEV')?['outputs']?['body']?['error']?['message'], "
+               "actions('Download_export')?['outputs']?['body']?['error']?['message'], "
+               "actions('Archive_ZIP')?['outputs']?['body']?['message'], "
+               "if(equals(actions('Run_C2_import')?['status'], 'Failed'), actions('Run_C2_import')?['error']?['message'], null), "
+               "if(equals(actions('Run_C3_post_import')?['status'], 'Failed'), actions('Run_C3_post_import')?['error']?['message'], null), "
+               "''))}")
     log = seq(
         {"Log_entry": {"type": "Compose", "inputs": {
             "runId": "@{workflow()?['run']?['name']}",

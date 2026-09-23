@@ -35,7 +35,7 @@ def seq(*groups):
 
 def unbound(conn_key, org, action_name, item):
     params = {"organization": org, "actionName": action_name}
-    params.update({f"item/{k}": v for k, v in item.items()})
+    params["item"] = dict(item)
     return op(conn_key, DV_API, "PerformUnboundActionWithOrganization", params)
 
 
