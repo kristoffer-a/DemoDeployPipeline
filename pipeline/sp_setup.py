@@ -161,9 +161,10 @@ def command_ops(argv):
                        {k: parse_value(v) for k, v in (a.split("=", 1) for a in args)})]
     if cmd == "connection-env":
         env = args[0]
-        other = "PROD" if env == "TEST" else "TEST"
+        if env not in ("TEST", "PROD"):
+            sys.exit(__doc__)
         return [upsert("connection", "ALMConnections",
-                       f"ConnectionReference eq 'dev_SharePoint' and Environment eq '{other}'",
+                       "ConnectionReference eq 'dev_SharePoint'",
                        {"Environment": env})]
     if cmd == "variable":
         name, value = args[0].split("=", 1)
