@@ -14,11 +14,13 @@ Design: `docs/superpowers/specs/2026-09-23-deploy-orchestrator-design.md`. Plan:
 
 | List | One row per | Columns |
 |---|---|---|
-| `ALMConfig` | solution × target | `SolutionName`, `DevPowerPlatformUrl`, `TargetEnvironment` (TEST/PROD), `TargetPowerPlatformUrl`, `TargetSharePointUrl`, `RunImport`, `RunPostImport`, `RunShare`, `AppShareGroupId` |
+| `ALMConfig` | solution × target | `SolutionName`, `DevPowerPlatformUrl`, `DevSharePointUrl`, `TargetEnvironment` (TEST/PROD), `TargetPowerPlatformUrl`, `TargetSharePointUrl`, `RunImport`, `RunPostImport`, `RunShare`, `AppShareGroupId` |
 | `ALMConnections` | environment × connection reference | `Environment`, `ConnectionReference`, `ConnectionId`, `ConnectorId` |
 | `ALMVariables` | solution × environment × variable | `SolutionName`, `Environment`, `SchemaName`, `Value` |
 
-Edit rows in SharePoint directly. For scripted changes (the browser pane can't reach SharePoint), use the setup flow:
+Edit rights on these ALM-Admin lists are deployment rights: the rows in `ALMConnections`/`ALMConfig` decide which target URLs and connections a deployment writes to, so treat list-edit access the same as deploy access.
+
+Edit rows in SharePoint directly. For scripted changes (the browser pane can't reach SharePoint), use the setup flow - which is a **Demo → TEST test/admin helper, not a general config tool**: `provision` and `config` are hard-pinned to solution `Demo` and target `TEST`.
 
 ```bash
 python3 -m pipeline.sp_setup config RunImport=false RunPostImport=true
@@ -36,7 +38,7 @@ python3 -m pytest pipeline/tests -q
 python3 -m pipeline.deploy
 ```
 
-This deploys C2, C3, then C1 into solution `ALMPipeline` and prints each flow's Power Automate ID. `--dry-run` only writes `pipeline/definitions/*.json`.
+This deploys C2, C3, then C1 into solution `ALMPipeline` and prints each flow's Power Automate ID. `--dry-run` writes the same JSON to a fresh temp directory (`tempfile.mkdtemp(prefix="alm-defs-")`, printed by the command) instead of `pipeline/definitions/`, so it never overwrites the committed definitions - those carry real, already-deployed child workflow ids that a dry run has no ids to substitute for.
 
 ## 4. Run a deployment
 
@@ -63,11 +65,13 @@ It shows the Demo solution (managed, version), the last import job, the `dev_*` 
 
 ## 6. Known limits
 
-- A child flow must reply within 120 s. Demo's import took about 60 s. Children always reply, on failure too, so the parent never hangs.
+- A child flow must reply within 120 s. Demo's import took about 60 s. Children always reply, on failure too, so the parent never hangs. If a child does exceed 120 s, the built-in "Run a Child Flow" action itself fails in the parent (independent of the child's own reply), and the run log shows the corresponding stage - Import for C2, PostImport for C3 - as `Failed`, with `seconds` showing that stage's real elapsed time.
 - Every failed ALM run in ADMIN opens a FlowAdmin-Monitoring incident and a Teams card (owned by the FlowError project).
 - ADMIN's preferred solution is `Development` (not ours). `pipeline.deploy` always sends `MSCRM.SolutionUniqueName: ALMPipeline`.
 - C4 (share app) is not built. See `docs/alm/c4-share-spike.md`.
 - Service account still to replace kriall076.
+- C3's flow turn-on step is untested live: Demo has no cloud flow in TEST to turn on, so that code path has only been validated by unit tests, not a real run.
+- The setup flow (**ALM Setup - SharePoint config**) stays deployed in ADMIN after use - turn it off after each use and delete it at cleanup.
 
 ## Acceptance results (2026-09-24, Demo → TEST)
 
