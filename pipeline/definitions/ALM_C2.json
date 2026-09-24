@@ -101,15 +101,6 @@
                 "authentication": "@parameters('$authentication')"
               }
             },
-            "Config": {
-              "type": "Compose",
-              "inputs": "@first(body('Get_config')?['value'])",
-              "runAfter": {
-                "Get_config": [
-                  "Succeeded"
-                ]
-              }
-            },
             "Check_config": {
               "type": "If",
               "expression": {
@@ -137,7 +128,16 @@
                 }
               },
               "runAfter": {
-                "Config": [
+                "Get_config": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Config": {
+              "type": "Compose",
+              "inputs": "@first(body('Get_config')?['value'])",
+              "runAfter": {
+                "Check_config": [
                   "Succeeded"
                 ]
               }
@@ -146,7 +146,7 @@
               "type": "Compose",
               "inputs": "@outputs('Config')?['DevPowerPlatformUrl']",
               "runAfter": {
-                "Check_config": [
+                "Config": [
                   "Succeeded"
                 ]
               }
@@ -529,7 +529,7 @@
             "runStatus": "Failed",
             "runError": {
               "code": "DeployStepFailed",
-              "message": "@{variables('FailMessage')}"
+              "message": "@{if(empty(variables('FailMessage')), coalesce(first(body('Failed_actions'))?['outputs']?['body']?['error']?['message'], first(body('Failed_actions'))?['error']?['message'], 'unknown error'), variables('FailMessage'))}"
             }
           },
           "runAfter": {
