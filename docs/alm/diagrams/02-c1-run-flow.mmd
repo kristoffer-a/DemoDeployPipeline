@@ -1,0 +1,44 @@
+flowchart TD
+  start([C1 started<br/>Solution=Demo, Target=TEST]) --> init[Init FailMessage]
+  init --> getcfg
+
+  subgraph PRE["Stage 1 · Prechecks"]
+    getcfg[Read ALMConfig row] --> hascfg{Row found?}
+    hascfg -- no --> f1[FailMessage: No ALMConfig row]
+    hascfg -- yes --> maps[Read ALMConnections + ALMVariables<br/>List DEV solution conn refs + variables]
+    maps --> missing{Any ref or variable<br/>without mapping row?}
+    missing -- yes --> f2[FailMessage: Missing mapping rows]
+  end
+
+  subgraph EXP["Stage 2 · Export"]
+    export[ExportSolutionAsync managed from DEV] --> poll[Poll async job every 20 s]
+    poll --> ok{Job succeeded?}
+    ok -- no --> f3[FailMessage: export job error]
+    ok -- yes --> dl[Download ZIP] --> arch[Archive to Solutions/Demo/Demo_managed_time.zip]
+  end
+
+  subgraph IMP["Stage 3 · Import"]
+    sw1{RunImport?}
+    sw1 -- yes --> c2[Run C2 with ZIP path]
+    c2 --> r2{C2 replied Succeeded?}
+    r2 -- no --> f4[FailMessage: Import: reason]
+  end
+
+  subgraph POST["Stage 4 · PostImport"]
+    sw2{RunPostImport?}
+    sw2 -- yes --> c3[Run C3]
+    c3 --> r3{C3 replied Succeeded?}
+    r3 -- no --> f5[FailMessage: Post-import: reason]
+  end
+
+  missing -- no --> export
+  arch --> sw1
+  sw1 -- no, Skipped --> sw2
+  r2 -- yes --> sw2
+
+  f1 & f2 & f3 & f4 & f5 --> log
+  r3 -- yes --> log
+  sw2 -- no, Skipped --> log
+  log[Log: write DeploymentLogs/Demo_TEST_time.json<br/>per stage: status, seconds, message] --> res{Main and Log succeeded?}
+  res -- yes --> done([Run Succeeded])
+  res -- no --> fail([Run Failed with message])
