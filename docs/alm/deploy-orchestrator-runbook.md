@@ -71,6 +71,7 @@ It shows the Demo solution (managed, version), the last import job, the `dev_*` 
 - C4 (share app) is not built. See `docs/alm/c4-share-spike.md`.
 - Service account still to replace kriall076.
 - C3's flow turn-on step is untested live: Demo has no cloud flow in TEST to turn on, so that code path has only been validated by unit tests, not a real run.
+- Open cleanup: an earlier non-idempotent `provision` run (before commit 9a1b7aa) created duplicate columns `AppShareGroupId0`, `RunImport0`, `RunPostImport0`, `RunShare0`, `TargetEnvironment0`, `TargetPowerPlatformUrl0`, `TargetSharePointUrl0` in `ALMConfig` and `ConnectionId0`, `ConnectionReference0`, `ConnectorId0`, `Environment0` in `ALMConnections`. The flows don't use them. Some are required, which blocks new rows in the SharePoint form. Delete them once the user approves.
 - The setup flow (**ALM Setup - SharePoint config**) stays deployed in ADMIN after use - turn it off after each use and delete it at cleanup.
 
 ## Acceptance results (2026-09-24, Demo → TEST)
@@ -82,3 +83,5 @@ It shows the Demo solution (managed, version), the last import job, the `dev_*` 
 | 3 | TEST mapping row hidden | `08584113798300123008547905201CU30` | ✅ stopped before export: "Missing mapping rows for TEST: dev_SharePoint" |
 | 4 | import off, post-import on, new variable | `08584113806260430767225925607CU28` | ✅ `dev_ProductsList` updated, no import |
 | — | restore run | `08584113797947949442479376819CU26` | ✅ all green |
+| 5 | regression after stage-scope log fix | `08584113785786468893531670159CU09` | ✅ log durations: Prechecks 1 s, Export 63 s, Import 67 s, PostImport 5 s |
+| 6 | child failure: wrong TEST `ConnectionId`, import off | `08584113783912272076327088956CU31` | ✅ C3 replied Failed; C1 failed with "Post-import: Connection references not bound as mapped …"; log: Import Skipped, PostImport Failed |
