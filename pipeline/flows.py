@@ -84,13 +84,13 @@ C2_SOL, C2_TARGET = "triggerBody()?['text_1']", "triggerBody()?['text_2']"
 
 
 def c2():
-    # setProperty() builds the '@odata.type' key at run time; a literal '@' key is rejected by the engine.
+    # setProperty() rejects '.' in names, so build 'odata_type' and rename it to '@odata.type' in text form below.
     conn_param = ("@setProperty(setProperty(setProperty(setProperty(json('{}'), "
-                  "'@odata.type', 'Microsoft.Dynamics.CRM.connectionreference'), "
+                  "'odata_type', 'Microsoft.Dynamics.CRM.connectionreference'), "
                   "'connectionreferencelogicalname', item()?['ConnectionReference']), "
                   "'connectionid', item()?['ConnectionId']), 'connectorid', item()?['ConnectorId'])")
     var_param = ("@setProperty(setProperty(setProperty(json('{}'), "
-                 "'@odata.type', 'Microsoft.Dynamics.CRM.environmentvariablevalue'), "
+                 "'odata_type', 'Microsoft.Dynamics.CRM.environmentvariablevalue'), "
                  "'schemaname', item()?['SchemaName']), 'value', item()?['Value'])")
 
     importing = {
@@ -98,7 +98,7 @@ def c2():
             "CustomizationFile": "@body('Get_archived_ZIP')?['$content']",
             "OverwriteUnmanagedCustomizations": False,
             "PublishWorkflows": True,
-            "ComponentParameters": "@union(body('Connection_params'), body('Variable_params'))",
+            "ComponentParameters": "@json(replace(string(union(body('Connection_params'), body('Variable_params'))), '\"odata_type\"', '\"@odata.type\"'))",
         }),
     }
     importing.update({k: after(v, "Import_to_target") for k, v in poll_block(

@@ -33,9 +33,11 @@ def test_children_validate_clean():
 def test_c2_builds_component_parameters_from_config_rows():
     a = acts(flows.c2())["Try"]["actions"]
     assert a["Import_to_target"]["inputs"]["parameters"]["item"]["ComponentParameters"] == \
-        "@union(body('Connection_params'), body('Variable_params'))"
-    assert "'@odata.type', 'Microsoft.Dynamics.CRM.connectionreference'" in a["Connection_params"]["inputs"]["select"]
-    assert "'@odata.type', 'Microsoft.Dynamics.CRM.environmentvariablevalue'" in a["Variable_params"]["inputs"]["select"]
+        "@json(replace(string(union(body('Connection_params'), body('Variable_params'))), '\"odata_type\"', '\"@odata.type\"'))"
+    assert "'odata_type', 'Microsoft.Dynamics.CRM.connectionreference'" in a["Connection_params"]["inputs"]["select"]
+    assert "'odata_type', 'Microsoft.Dynamics.CRM.environmentvariablevalue'" in a["Variable_params"]["inputs"]["select"]
+    assert "'@odata.type'" not in a["Connection_params"]["inputs"]["select"]
+    assert "'@odata.type'" not in a["Variable_params"]["inputs"]["select"]
     assert a["Import_to_target"]["inputs"]["parameters"]["organization"] == "@outputs('Target_url')"
 
 

@@ -284,7 +284,7 @@
               "type": "Select",
               "inputs": {
                 "from": "@body('Solution_connections')",
-                "select": "@setProperty(setProperty(setProperty(setProperty(json('{}'), '@odata.type', 'Microsoft.Dynamics.CRM.connectionreference'), 'connectionreferencelogicalname', item()?['ConnectionReference']), 'connectionid', item()?['ConnectionId']), 'connectorid', item()?['ConnectorId'])"
+                "select": "@setProperty(setProperty(setProperty(setProperty(json('{}'), 'odata_type', 'Microsoft.Dynamics.CRM.connectionreference'), 'connectionreferencelogicalname', item()?['ConnectionReference']), 'connectionid', item()?['ConnectionId']), 'connectorid', item()?['ConnectorId'])"
               },
               "runAfter": {
                 "Solution_connections": [
@@ -296,7 +296,7 @@
               "type": "Select",
               "inputs": {
                 "from": "@body('Get_variable_map')?['value']",
-                "select": "@setProperty(setProperty(setProperty(json('{}'), '@odata.type', 'Microsoft.Dynamics.CRM.environmentvariablevalue'), 'schemaname', item()?['SchemaName']), 'value', item()?['Value'])"
+                "select": "@setProperty(setProperty(setProperty(json('{}'), 'odata_type', 'Microsoft.Dynamics.CRM.environmentvariablevalue'), 'schemaname', item()?['SchemaName']), 'value', item()?['Value'])"
               },
               "runAfter": {
                 "Connection_params": [
@@ -340,7 +340,7 @@
                     "CustomizationFile": "@body('Get_archived_ZIP')?['$content']",
                     "OverwriteUnmanagedCustomizations": false,
                     "PublishWorkflows": true,
-                    "ComponentParameters": "@union(body('Connection_params'), body('Variable_params'))"
+                    "ComponentParameters": "@json(replace(string(union(body('Connection_params'), body('Variable_params'))), '\"odata_type\"', '\"@odata.type\"'))"
                   }
                 },
                 "authentication": "@parameters('$authentication')"
