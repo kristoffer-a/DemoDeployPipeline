@@ -2,9 +2,10 @@
 import json
 import urllib.parse
 
+from pipeline import settings as s
 from pipeline.flowapi import az_token, get_json
 
-TEST = "https://testorg5fd244de.crm17.dynamics.com"
+TEST = s.TEST_ORG
 
 
 def q(tok, path):

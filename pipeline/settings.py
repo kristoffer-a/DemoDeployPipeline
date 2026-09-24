@@ -39,3 +39,7 @@ URL_AS_OBJECT = False
 C1_NAME = "ALM C1 - Deploy (parent)"
 C2_NAME = "ALM C2 - Import (child)"
 C3_NAME = "ALM C3 - Post-import (child)"
+
+# Demo -> TEST test/admin constants (sp_setup.py, verify_target.py). Not general-purpose.
+TEST_ORG = "https://testorg5fd244de.crm17.dynamics.com"
+TEST_SITE = "https://7xpydh.sharepoint.com/sites/ALM-Test"

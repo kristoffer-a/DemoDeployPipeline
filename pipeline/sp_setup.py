@@ -1,5 +1,10 @@
 """Change ALM-Admin SharePoint config through a flow (the browser pane cannot reach SharePoint).
 
+This is a Demo -> TEST test/admin helper, not a general config tool: `provision` and `config` are
+hard-pinned to solution 'Demo' and target 'TEST' (see DEMO_CONFIG below), matching the fixed
+TEST_ORG/TEST_SITE constants in pipeline.settings. `connection-env` and `variable` take an explicit
+environment/solution argument, but are only ever exercised against Demo/TEST in this project.
+
 Each command regenerates and deploys the flow "ALM Setup - SharePoint config" with a fixed list of
 SharePoint REST requests, sent through the kriall076 SharePoint connection. Run the flow afterwards
 (FlowAgent run_flow) and read its 'Results' action with pipeline.flowapi.
@@ -19,8 +24,8 @@ from pipeline.defs import after, clientdata, manual_trigger, op, validate
 
 SETUP_NAME = "ALM Setup - SharePoint config"
 JSON_NOMETA = "application/json;odata=nometadata"
-TEST_SITE = "https://7xpydh.sharepoint.com/sites/ALM-Test"
-TEST_ORG = "https://testorg5fd244de.crm17.dynamics.com"
+TEST_SITE = s.TEST_SITE
+TEST_ORG = s.TEST_ORG
 PLACEHOLDER_LIST_ID = "00000000-0000-0000-0000-000000000000"
 
 
@@ -108,7 +113,7 @@ def url_value(u):
 
 # ---------- commands ----------
 
-DEMO_CONFIG = "SolutionName eq 'Demo'"
+DEMO_CONFIG = "SolutionName eq 'Demo' and TargetEnvironment eq 'TEST'"
 TEST_SP_REF = "Environment eq 'TEST' and ConnectionReference eq 'dev_SharePoint'"
 
 
@@ -175,16 +180,21 @@ def command_ops(argv):
 
 
 def build(groups):
-    """Chain every group; later groups run even if an earlier request failed (e.g. 'already exists')."""
+    """Chain every group so each group's first action runs after the previous group's last action,
+    on ["Succeeded", "Failed", "Skipped"] (not just Succeeded/Failed): a group whose own first
+    action was Skipped (e.g. its Find failed, so its If-branch Upsert never ran) must not skip every
+    later group too. One failed request (e.g. 'already exists') therefore never cascades past its
+    own group.
+    """
     actions, prev = {}, None
     for group in groups + [readback()]:
         names = list(group)
         for i, name in enumerate(names):
             action = group[name]
             if i == 0 and prev:
-                after(action, prev, status=("Succeeded", "Failed"))
+                after(action, prev, status=("Succeeded", "Failed", "Skipped"))
             elif i > 0 and "runAfter" not in action:
-                after(action, names[i - 1], status=("Succeeded", "Failed"))
+                after(action, names[i - 1], status=("Succeeded", "Failed", "Skipped"))
             actions[name] = action
         prev = names[-1]
     step_names = [n for n in actions if n != "Results"]

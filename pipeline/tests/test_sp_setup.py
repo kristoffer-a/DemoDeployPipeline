@@ -42,5 +42,19 @@ def test_config_parses_booleans():
 
 def test_later_groups_run_after_failures():
     a = acts(sp_setup.build(sp_setup.command_ops(["provision"])))
-    assert a["Create_list_ALMConnections"]["runAfter"] == {"Create_field_ALMConfig_AppShareGroupId": ["Succeeded", "Failed"]}
+    assert a["Create_list_ALMConnections"]["runAfter"] == \
+        {"Create_field_ALMConfig_AppShareGroupId": ["Succeeded", "Failed", "Skipped"]}
     assert a["Results"]["runAfter"] == {"Read_variables": ["Succeeded", "Failed", "Skipped"]}
+
+
+def test_config_filter_is_pinned_to_demo_test():
+    find = acts(sp_setup.build(sp_setup.command_ops(["config", "RunImport=false"])))["Find_config"]
+    uri = find["inputs"]["parameters"]["parameters/uri"]
+    assert "SolutionName%20eq%20'Demo'" in uri
+    assert "TargetEnvironment%20eq%20'TEST'" in uri
+
+
+def test_provision_config_row_uses_demo_test_filter():
+    find = acts(sp_setup.build(sp_setup.command_ops(["provision"])))["Find_config"]
+    uri = find["inputs"]["parameters"]["parameters/uri"]
+    assert "TargetEnvironment%20eq%20'TEST'" in uri

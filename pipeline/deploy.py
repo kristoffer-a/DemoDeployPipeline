@@ -4,6 +4,7 @@ Usage: python3 -m pipeline.deploy [--dry-run]
 """
 import json
 import sys
+import tempfile
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -70,30 +71,34 @@ def ensure_flow(tok, name, cd):
     return wid
 
 
-def build(ids):
-    OUT.mkdir(exist_ok=True)
+def build(ids, out_dir):
+    out_dir.mkdir(parents=True, exist_ok=True)
     out = {}
     for name, make in FLOWS:
         cd = make(ids)
         errors = validate(cd)
         if errors:
             sys.exit(f"STOP: {name} failed validation:\n  " + "\n  ".join(errors))
-        (OUT / (name.split(" - ")[0].replace(" ", "_") + ".json")).write_text(json.dumps(cd, indent=2))
+        (out_dir / (name.split(" - ")[0].replace(" ", "_") + ".json")).write_text(json.dumps(cd, indent=2))
         out[name] = cd
     return out
 
 
 def main():
-    build({})
-    print(f"wrote {len(FLOWS)} definitions to {OUT}")
-    if "--dry-run" in sys.argv:
+    dry_run = "--dry-run" in sys.argv
+    # Dry runs never touch the committed pipeline/definitions/*.json: those files carry real,
+    # already-deployed child workflow ids, and a dry run has no ids to substitute for them.
+    out_dir = Path(tempfile.mkdtemp(prefix="alm-defs-")) if dry_run else OUT
+    build({}, out_dir)
+    print(f"wrote {len(FLOWS)} definitions to {out_dir}")
+    if dry_run:
         return
     tok = az_token(s.ADMIN)
     ensure_solution(tok)
     ids = {}
     for name, make in FLOWS:  # children first: C1 needs their workflowids
         ids[name] = ensure_flow(tok, name, make(ids))
-    build(ids)
+    build(ids, out_dir)
     pa = flow_ids()
     for name, wid in ids.items():
         print(f"{name}: workflowid={wid} flow={pa.get(name, '?')}")
