@@ -71,7 +71,7 @@ It shows the Demo solution (managed, version), the last import job, the `dev_*` 
 - C4 (share app) is not built. See `docs/alm/c4-share-spike.md`.
 - Service account still to replace kriall076.
 - C3's flow turn-on step is untested live: Demo has no cloud flow in TEST to turn on, so that code path has only been validated by unit tests, not a real run.
-- Open cleanup: an earlier non-idempotent `provision` run (before commit 9a1b7aa) created duplicate columns `AppShareGroupId0`, `RunImport0`, `RunPostImport0`, `RunShare0`, `TargetEnvironment0`, `TargetPowerPlatformUrl0`, `TargetSharePointUrl0` in `ALMConfig` and `ConnectionId0`, `ConnectionReference0`, `ConnectorId0`, `Environment0` in `ALMConnections`. The flows don't use them. Some are required, which blocks new rows in the SharePoint form. Delete them once the user approves.
+- Resolved 2026-09-24: an earlier non-idempotent `provision` run (before commit 9a1b7aa) created 11 duplicate columns (`RunImport0`, `ConnectionId0`, …). The user approved deletion; `python3 -m pipeline.sp_setup delete-duplicates` removed them (run `08584113333816292777389315330CU12`), and readback confirmed the real columns and values are intact. `provision` now checks before it creates.
 - The setup flow (**ALM Setup - SharePoint config**) stays deployed in ADMIN after use - turn it off after each use and delete it at cleanup.
 
 ## Acceptance results (2026-09-24, Demo → TEST)

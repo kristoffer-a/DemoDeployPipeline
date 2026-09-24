@@ -86,3 +86,18 @@ def test_provision_config_row_uses_demo_test_filter():
     find = acts(sp_setup.build(sp_setup.command_ops(["provision"])))["Find_config"]
     uri = find["inputs"]["parameters"]["parameters/uri"]
     assert "TargetEnvironment%20eq%20'TEST'" in uri
+
+
+def test_delete_duplicates_targets_only_the_eleven_suffixed_columns():
+    a = acts(sp_setup.build(sp_setup.command_ops(["delete-duplicates"])))
+    deletes = {n: x for n, x in a.items() if n.startswith("Delete_field_")}
+    assert len(deletes) == 11
+    for name, x in deletes.items():
+        p = x["inputs"]["parameters"]
+        assert p["parameters/method"] == "POST"
+        assert p["parameters/headers"]["X-HTTP-Method"] == "DELETE"
+        column = p["parameters/uri"].split("getbyinternalnameortitle('", 1)[1].split("'", 1)[0]
+        assert column.endswith("0") and column[:-1] in {
+            "AppShareGroupId", "RunImport", "RunPostImport", "RunShare", "TargetEnvironment",
+            "TargetPowerPlatformUrl", "TargetSharePointUrl",
+            "ConnectionId", "ConnectionReference", "ConnectorId", "Environment"}

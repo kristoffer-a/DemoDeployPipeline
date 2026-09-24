@@ -15,6 +15,7 @@ Usage:
   python3 -m pipeline.sp_setup connection-env TEST|PROD
   python3 -m pipeline.sp_setup variable dev_ProductsList=<value>
   python3 -m pipeline.sp_setup readback
+  python3 -m pipeline.sp_setup delete-duplicates   (one-off cleanup, user-approved 2026-09-24)
 """
 import json
 import sys
@@ -163,6 +164,20 @@ def provision_ops():
     return groups
 
 
+# Duplicates left by a provision run before check-before-create (2026-09-24). Exact internal names only.
+DUPLICATE_COLUMNS = {
+    "ALMConfig": ["AppShareGroupId0", "RunImport0", "RunPostImport0", "RunShare0", "TargetEnvironment0",
+                  "TargetPowerPlatformUrl0", "TargetSharePointUrl0"],
+    "ALMConnections": ["ConnectionId0", "ConnectionReference0", "ConnectorId0", "Environment0"],
+}
+
+
+def delete_field(title, internal_name):
+    return {f"Delete_field_{title}_{internal_name}": request(
+        "POST", f"{lst(title)}/fields/getbyinternalnameortitle('{internal_name}')", None,
+        {"X-HTTP-Method": "DELETE", "IF-MATCH": "*"})}
+
+
 def parse_value(v):
     return {"true": True, "false": False}.get(v.lower(), v)
 
@@ -184,6 +199,8 @@ def command_ops(argv):
     if cmd == "variable":
         name, value = args[0].split("=", 1)
         return [upsert("variable", "ALMVariables", variable_filter(name), {"Value": value})]
+    if cmd == "delete-duplicates":
+        return [delete_field(t, n) for t, names in DUPLICATE_COLUMNS.items() for n in names]
     if cmd == "readback":
         return []
     sys.exit(__doc__)
