@@ -48,6 +48,36 @@ def solution_connections():
         "where": "@contains(body('Dev_ref_names'), item()?['ConnectionReference'])"}}}
 
 
+def child_wrapper(try_actions, reply_body):
+    """Wrap a child flow's real work so a failure always produces a reply and a Failed run.
+
+    Top-level shape (same for C2 and C3): InitializeVariable FailMessage, a Try scope holding
+    every existing action (with all internal Terminate actions replaced by fail_steps so the
+    scope itself fails instead of ending the run early), a Query over the failed actions inside
+    Try, a Reply with the same body keys as the success Reply, then a Terminate so the run is
+    marked Failed in history after the reply has already gone out.
+    """
+    fail_message_expr = (
+        "@{if(empty(variables('FailMessage')), coalesce("
+        "first(body('Failed_actions'))?['outputs']?['body']?['error']?['message'], "
+        "first(body('Failed_actions'))?['error']?['message'], 'unknown error'), "
+        "variables('FailMessage'))}")
+    reply = dict(reply_body)
+    reply["message"] = fail_message_expr
+
+    actions = seq(
+        {"Init_FailMessage": {"type": "InitializeVariable", "inputs": {
+            "variables": [{"name": "FailMessage", "type": "string", "value": ""}]}}},
+        {"Try": {"type": "Scope", "actions": try_actions}},
+    )
+    actions["Failed_actions"] = after({"type": "Query", "inputs": {
+        "from": "@result('Try')", "where": "@equals(item()?['status'], 'Failed')"}},
+        "Try", status=("Failed", "Skipped", "TimedOut"))
+    actions["Reply_failed"] = after(respond(reply), "Failed_actions")
+    actions["Stop_failed"] = after(terminate("@{variables('FailMessage')}"), "Reply_failed")
+    return actions
+
+
 # ---------- C2: import child ----------
 
 C2_SOL, C2_TARGET = "triggerBody()?['text_1']", "triggerBody()?['text_2']"
@@ -79,10 +109,10 @@ def c2():
             "message": "@{concat('Imported ', triggerBody()?['text'])}",
             "importjobkey": "@{body('Import_to_target')?['ImportJobKey']}",
         }),
-    }, {"Import_failed": terminate("@{" + job_message("Import") + "}")}), "Import_Wait_for_job")
+    }, fail_steps("Import_failed", "@" + job_message("Import"))), "Import_Wait_for_job")
 
-    actions = seq(
-        config_actions(C2_SOL, C2_TARGET, {"Stop_no_config": terminate(no_config_message(C2_SOL, C2_TARGET))}),
+    try_actions = seq(
+        config_actions(C2_SOL, C2_TARGET, fail_steps("Stop_no_config", no_config_message(C2_SOL, C2_TARGET))),
         solution_connections(),
         {"Connection_params": {"type": "Select", "inputs": {
             "from": "@body('Solution_connections')", "select": conn_param}}},
@@ -92,6 +122,7 @@ def c2():
             "dataset": s.ADMIN_SITE, "path": "@triggerBody()?['text']", "inferContentType": False})},
         importing,
     )
+    actions = child_wrapper(try_actions, {"status": "Failed", "importjobkey": ""})
     return clientdata(manual_trigger([
         ("text", "Archived ZIP path", "Set by C1, e.g. /Solutions/Demo/Demo_managed_20260923-164536.zip"),
         ("text_1", "Solution", "Solution unique name, e.g. Demo"),
@@ -120,9 +151,9 @@ def c3():
             "from": "@body('Expected_pairs')", "where": "@not(contains(body('Target_pairs'), item()))"}}},
         {"Check_bindings": {"type": "If",
                             "expression": {"greater": ["@length(body('Wrong_bindings'))", 0]},
-                            "actions": {"Stop_wrong_bindings": terminate(
+                            "actions": fail_steps("Stop_wrong_bindings",
                                 "@concat('Connection references not bound as mapped (reference|connection): ', "
-                                "join(body('Wrong_bindings'), ', '))")}}},
+                                "join(body('Wrong_bindings'), ', '))")}},
     )
     # Terminate is not allowed inside a Foreach, so missing value rows are checked before the loop.
     variables = seq(
@@ -144,9 +175,9 @@ def c3():
             "from": "@body('Wanted_names')", "where": "@not(contains(body('Names_with_value'), item()))"}}},
         {"Check_value_rows": {"type": "If",
                               "expression": {"greater": ["@length(body('Missing_value_rows'))", 0]},
-                              "actions": {"Stop_no_value_row": terminate(
+                              "actions": fail_steps("Stop_no_value_row",
                                   "@concat('No value row in the target for: ', join(body('Missing_value_rows'), ', '), "
-                                  "'. Run the import first.')")}}},
+                                  "'. Run the import first.')")}},
         {"For_each_variable": {
             "type": "Foreach",
             "foreach": "@body('Get_variable_map')?['value']",
@@ -183,10 +214,11 @@ def c3():
                        "'; flows turned on: ', length(body('Off_flows')?['value']))}",
         })},
     )
-    actions = seq(
-        config_actions(C3_SOL, C3_TARGET, {"Stop_no_config": terminate(no_config_message(C3_SOL, C3_TARGET))}),
+    try_actions = seq(
+        config_actions(C3_SOL, C3_TARGET, fail_steps("Stop_no_config", no_config_message(C3_SOL, C3_TARGET))),
         check, variables, turn_on,
     )
+    actions = child_wrapper(try_actions, {"status": "Failed"})
     return clientdata(manual_trigger([
         ("text", "Solution", "Solution unique name, e.g. Demo"),
         ("text_1", "Target", "TEST or PROD"),
@@ -218,17 +250,25 @@ def export_steps():
     return acts
 
 
-def log_step(step, action):
-    """One log line. actions('X') works for skipped actions; body('X') would throw."""
-    a = f"actions('{action}')"
+def log_step(step, status_action, message_action=None):
+    """One log line. actions('X') works for skipped actions; body('X') would throw.
+
+    status/seconds come from `status_action`. On failure the message is that action's own error;
+    otherwise it's `message_action`'s (default: same as status_action) reply body message - used
+    for Import/PostImport where the real status now lives on Check_C2/Check_C3 (which reflects
+    the child's reply) but the success message is on the Run_C2_import/Run_C3_post_import reply.
+    """
+    message_action = message_action or status_action
+    sa = f"actions('{status_action}')"
+    ma = f"actions('{message_action}')"
     return {
         "step": step,
-        "status": f"@{{{a}?['status']}}",
-        "seconds": f"@{{div(sub(ticks(coalesce({a}?['endTime'], utcNow())), "
-                   f"ticks(coalesce({a}?['startTime'], utcNow()))), 10000000)}}",
-        "message": f"@{{if(equals({a}?['status'], 'Failed'), "
-                   f"coalesce({a}?['outputs']?['body']?['error']?['message'], {a}?['error']?['message'], ''), "
-                   f"coalesce({a}?['outputs']?['body']?['message'], ''))}}",
+        "status": f"@{{{sa}?['status']}}",
+        "seconds": f"@{{div(sub(ticks(coalesce({sa}?['endTime'], utcNow())), "
+                   f"ticks(coalesce({sa}?['startTime'], utcNow()))), 10000000)}}",
+        "message": f"@{{if(equals({sa}?['status'], 'Failed'), "
+                   f"coalesce({sa}?['outputs']?['body']?['error']?['message'], {sa}?['error']?['message'], ''), "
+                   f"coalesce({ma}?['outputs']?['body']?['message'], ''))}}",
     }
 
 
@@ -251,20 +291,34 @@ def c1(ids):
         export_steps(),
         {"If_RunImport": {"type": "If",
                           "expression": {"equals": ["@outputs('Config')?['RunImport']", True]},
-                          "actions": {"Run_C2_import": run_child(ids.get(s.C2_NAME, PLACEHOLDER_ID), {
-                              "text": "@body('Archive_ZIP')?['Path']", "text_1": f"@{SOL}", "text_2": f"@{TARGET}"})}}},
+                          "actions": seq(
+                              {"Run_C2_import": run_child(ids.get(s.C2_NAME, PLACEHOLDER_ID), {
+                                  "text": "@body('Archive_ZIP')?['Path']", "text_1": f"@{SOL}", "text_2": f"@{TARGET}"})},
+                              {"Check_C2": {"type": "If",
+                                           "expression": {"equals": ["@body('Run_C2_import')?['status']", "Succeeded"]},
+                                           "actions": {},
+                                           "else": {"actions": fail_steps(
+                                               "Fail_import", "@concat('Import: ', body('Run_C2_import')?['message'])")}}},
+                          )}},
         {"If_RunPostImport": {"type": "If",
                               "expression": {"equals": ["@outputs('Config')?['RunPostImport']", True]},
-                              "actions": {"Run_C3_post_import": run_child(ids.get(s.C3_NAME, PLACEHOLDER_ID), {
-                                  "text": f"@{SOL}", "text_1": f"@{TARGET}"})}}},
+                              "actions": seq(
+                                  {"Run_C3_post_import": run_child(ids.get(s.C3_NAME, PLACEHOLDER_ID), {
+                                      "text": f"@{SOL}", "text_1": f"@{TARGET}"})},
+                                  {"Check_C3": {"type": "If",
+                                               "expression": {"equals": ["@body('Run_C3_post_import')?['status']", "Succeeded"]},
+                                               "actions": {},
+                                               "else": {"actions": fail_steps(
+                                                   "Fail_post_import",
+                                                   "@concat('Post-import: ', body('Run_C3_post_import')?['message'])")}}},
+                              )}},
     )
-    # FailMessage covers pre-checks and export-job failure (set by fail_steps); the rest are action errors.
+    # FailMessage covers pre-checks, export-job failure, and now Fail_import/Fail_post_import
+    # (set when Check_C2/Check_C3 see a non-Succeeded child reply); the rest are export errors.
     message = ("@{if(not(empty(variables('FailMessage'))), variables('FailMessage'), coalesce("
                "actions('Export_from_DEV')?['outputs']?['body']?['error']?['message'], "
                "actions('Download_export')?['outputs']?['body']?['error']?['message'], "
                "actions('Archive_ZIP')?['outputs']?['body']?['message'], "
-               "if(equals(actions('Run_C2_import')?['status'], 'Failed'), actions('Run_C2_import')?['error']?['message'], null), "
-               "if(equals(actions('Run_C3_post_import')?['status'], 'Failed'), actions('Run_C3_post_import')?['error']?['message'], null), "
                "''))}")
     log = seq(
         {"Log_entry": {"type": "Compose", "inputs": {
@@ -279,7 +333,8 @@ def c1(ids):
             },
             "message": message,
             "steps": [log_step("Prechecks", "Check_mappings"), log_step("Export", "Export_succeeded"),
-                      log_step("Import", "Run_C2_import"), log_step("PostImport", "Run_C3_post_import")],
+                      log_step("Import", "Check_C2", "Run_C2_import"),
+                      log_step("PostImport", "Check_C3", "Run_C3_post_import")],
         }}},
         {"Write_log": op(SP, s.SP_API, "CreateFile", {
             "dataset": s.ADMIN_SITE,

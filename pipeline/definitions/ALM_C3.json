@@ -62,497 +62,582 @@
         }
       },
       "actions": {
-        "Get_config": {
-          "type": "OpenApiConnection",
+        "Init_FailMessage": {
+          "type": "InitializeVariable",
           "inputs": {
-            "host": {
-              "connectionName": "shared_sharepointonline",
-              "operationId": "GetItems",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
-            },
-            "parameters": {
-              "dataset": "https://7xpydh.sharepoint.com/sites/ALM-Admin",
-              "table": "049eba5a-700e-44db-9d2b-4e95c3af51b6",
-              "$filter": "SolutionName eq '@{triggerBody()?['text']}' and TargetEnvironment eq '@{triggerBody()?['text_1']}'",
-              "$top": 1
-            },
-            "authentication": "@parameters('$authentication')"
-          }
-        },
-        "Config": {
-          "type": "Compose",
-          "inputs": "@first(body('Get_config')?['value'])",
-          "runAfter": {
-            "Get_config": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Check_config": {
-          "type": "If",
-          "expression": {
-            "equals": [
-              "@empty(body('Get_config')?['value'])",
-              true
-            ]
-          },
-          "actions": {
-            "Stop_no_config": {
-              "type": "Terminate",
-              "inputs": {
-                "runStatus": "Failed",
-                "runError": {
-                  "code": "DeployStepFailed",
-                  "message": "@concat('No ALMConfig row for ', triggerBody()?['text'], ' -> ', triggerBody()?['text_1'])"
-                }
+            "variables": [
+              {
+                "name": "FailMessage",
+                "type": "string",
+                "value": ""
               }
-            }
-          },
-          "runAfter": {
-            "Config": [
-              "Succeeded"
             ]
           }
         },
-        "Dev_url": {
-          "type": "Compose",
-          "inputs": "@outputs('Config')?['DevPowerPlatformUrl']",
-          "runAfter": {
-            "Check_config": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Target_url": {
-          "type": "Compose",
-          "inputs": "@outputs('Config')?['TargetPowerPlatformUrl']",
-          "runAfter": {
-            "Dev_url": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Get_connection_map": {
-          "type": "OpenApiConnection",
-          "inputs": {
-            "host": {
-              "connectionName": "shared_sharepointonline",
-              "operationId": "GetItems",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
-            },
-            "parameters": {
-              "dataset": "https://7xpydh.sharepoint.com/sites/ALM-Admin",
-              "table": "bc640935-9503-44de-87d1-699d65c8d351",
-              "$filter": "Environment eq '@{triggerBody()?['text_1']}'"
-            },
-            "authentication": "@parameters('$authentication')"
-          },
-          "runAfter": {
-            "Target_url": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Get_variable_map": {
-          "type": "OpenApiConnection",
-          "inputs": {
-            "host": {
-              "connectionName": "shared_sharepointonline",
-              "operationId": "GetItems",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
-            },
-            "parameters": {
-              "dataset": "https://7xpydh.sharepoint.com/sites/ALM-Admin",
-              "table": "1ffc8ca3-1458-423b-81cb-49226b41664f",
-              "$filter": "SolutionName eq '@{triggerBody()?['text']}' and Environment eq '@{triggerBody()?['text_1']}'"
-            },
-            "authentication": "@parameters('$authentication')"
-          },
-          "runAfter": {
-            "Get_connection_map": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Dev_refs": {
-          "type": "OpenApiConnection",
-          "inputs": {
-            "host": {
-              "connectionName": "shared_commondataserviceforapps",
-              "operationId": "ListRecordsWithOrganization",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-            },
-            "parameters": {
-              "organization": "@outputs('Dev_url')",
-              "entityName": "connectionreferences",
-              "fetchXml": "<fetch distinct=\"true\"><entity name=\"connectionreference\"><attribute name=\"connectionreferencelogicalname\"/><link-entity name=\"solutioncomponent\" from=\"objectid\" to=\"connectionreferenceid\" link-type=\"inner\"><link-entity name=\"solution\" from=\"solutionid\" to=\"solutionid\" link-type=\"inner\"><filter><condition attribute=\"uniquename\" operator=\"eq\" value=\"@{triggerBody()?['text']}\"/></filter></link-entity></link-entity></entity></fetch>"
-            },
-            "authentication": "@parameters('$authentication')"
-          },
-          "runAfter": {
-            "Get_variable_map": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Dev_ref_names": {
-          "type": "Select",
-          "inputs": {
-            "from": "@body('Dev_refs')?['value']",
-            "select": "@item()?['connectionreferencelogicalname']"
-          },
-          "runAfter": {
-            "Dev_refs": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Dev_vars": {
-          "type": "OpenApiConnection",
-          "inputs": {
-            "host": {
-              "connectionName": "shared_commondataserviceforapps",
-              "operationId": "ListRecordsWithOrganization",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-            },
-            "parameters": {
-              "organization": "@outputs('Dev_url')",
-              "entityName": "environmentvariabledefinitions",
-              "fetchXml": "<fetch distinct=\"true\"><entity name=\"environmentvariabledefinition\"><attribute name=\"schemaname\"/><link-entity name=\"solutioncomponent\" from=\"objectid\" to=\"environmentvariabledefinitionid\" link-type=\"inner\"><link-entity name=\"solution\" from=\"solutionid\" to=\"solutionid\" link-type=\"inner\"><filter><condition attribute=\"uniquename\" operator=\"eq\" value=\"@{triggerBody()?['text']}\"/></filter></link-entity></link-entity></entity></fetch>"
-            },
-            "authentication": "@parameters('$authentication')"
-          },
-          "runAfter": {
-            "Dev_ref_names": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Dev_var_names": {
-          "type": "Select",
-          "inputs": {
-            "from": "@body('Dev_vars')?['value']",
-            "select": "@item()?['schemaname']"
-          },
-          "runAfter": {
-            "Dev_vars": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Solution_connections": {
-          "type": "Query",
-          "inputs": {
-            "from": "@body('Get_connection_map')?['value']",
-            "where": "@contains(body('Dev_ref_names'), item()?['ConnectionReference'])"
-          },
-          "runAfter": {
-            "Dev_var_names": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Expected_pairs": {
-          "type": "Select",
-          "inputs": {
-            "from": "@body('Solution_connections')",
-            "select": "@concat(item()?['ConnectionReference'], '|', item()?['ConnectionId'])"
-          },
-          "runAfter": {
-            "Solution_connections": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Target_refs": {
-          "type": "OpenApiConnection",
-          "inputs": {
-            "host": {
-              "connectionName": "shared_commondataserviceforapps",
-              "operationId": "ListRecordsWithOrganization",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-            },
-            "parameters": {
-              "organization": "@outputs('Target_url')",
-              "entityName": "connectionreferences",
-              "$select": "connectionreferencelogicalname,connectionid"
-            },
-            "authentication": "@parameters('$authentication')"
-          },
-          "runAfter": {
-            "Expected_pairs": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Target_pairs": {
-          "type": "Select",
-          "inputs": {
-            "from": "@body('Target_refs')?['value']",
-            "select": "@concat(item()?['connectionreferencelogicalname'], '|', item()?['connectionid'])"
-          },
-          "runAfter": {
-            "Target_refs": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Wrong_bindings": {
-          "type": "Query",
-          "inputs": {
-            "from": "@body('Expected_pairs')",
-            "where": "@not(contains(body('Target_pairs'), item()))"
-          },
-          "runAfter": {
-            "Target_pairs": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Check_bindings": {
-          "type": "If",
-          "expression": {
-            "greater": [
-              "@length(body('Wrong_bindings'))",
-              0
-            ]
-          },
+        "Try": {
+          "type": "Scope",
           "actions": {
-            "Stop_wrong_bindings": {
-              "type": "Terminate",
-              "inputs": {
-                "runStatus": "Failed",
-                "runError": {
-                  "code": "DeployStepFailed",
-                  "message": "@concat('Connection references not bound as mapped (reference|connection): ', join(body('Wrong_bindings'), ', '))"
-                }
-              }
-            }
-          },
-          "runAfter": {
-            "Wrong_bindings": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Target_defs": {
-          "type": "OpenApiConnection",
-          "inputs": {
-            "host": {
-              "connectionName": "shared_commondataserviceforapps",
-              "operationId": "ListRecordsWithOrganization",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-            },
-            "parameters": {
-              "organization": "@outputs('Target_url')",
-              "entityName": "environmentvariabledefinitions",
-              "$select": "schemaname",
-              "$expand": "environmentvariabledefinition_environmentvariablevalue($select=environmentvariablevalueid)"
-            },
-            "authentication": "@parameters('$authentication')"
-          },
-          "runAfter": {
-            "Check_bindings": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Target_value_rows": {
-          "type": "Select",
-          "inputs": {
-            "from": "@body('Target_defs')?['value']",
-            "select": {
-              "schemaname": "@item()?['schemaname']",
-              "valueid": "@first(item()?['environmentvariabledefinition_environmentvariablevalue'])?['environmentvariablevalueid']"
-            }
-          },
-          "runAfter": {
-            "Target_defs": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Rows_with_value": {
-          "type": "Query",
-          "inputs": {
-            "from": "@body('Target_value_rows')",
-            "where": "@not(empty(item()?['valueid']))"
-          },
-          "runAfter": {
-            "Target_value_rows": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Names_with_value": {
-          "type": "Select",
-          "inputs": {
-            "from": "@body('Rows_with_value')",
-            "select": "@item()?['schemaname']"
-          },
-          "runAfter": {
-            "Rows_with_value": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Wanted_names": {
-          "type": "Select",
-          "inputs": {
-            "from": "@body('Get_variable_map')?['value']",
-            "select": "@item()?['SchemaName']"
-          },
-          "runAfter": {
-            "Names_with_value": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Missing_value_rows": {
-          "type": "Query",
-          "inputs": {
-            "from": "@body('Wanted_names')",
-            "where": "@not(contains(body('Names_with_value'), item()))"
-          },
-          "runAfter": {
-            "Wanted_names": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Check_value_rows": {
-          "type": "If",
-          "expression": {
-            "greater": [
-              "@length(body('Missing_value_rows'))",
-              0
-            ]
-          },
-          "actions": {
-            "Stop_no_value_row": {
-              "type": "Terminate",
-              "inputs": {
-                "runStatus": "Failed",
-                "runError": {
-                  "code": "DeployStepFailed",
-                  "message": "@concat('No value row in the target for: ', join(body('Missing_value_rows'), ', '), '. Run the import first.')"
-                }
-              }
-            }
-          },
-          "runAfter": {
-            "Missing_value_rows": [
-              "Succeeded"
-            ]
-          }
-        },
-        "For_each_variable": {
-          "type": "Foreach",
-          "foreach": "@body('Get_variable_map')?['value']",
-          "runtimeConfiguration": {
-            "concurrency": {
-              "repetitions": 1
-            }
-          },
-          "actions": {
-            "Value_row": {
-              "type": "Query",
-              "inputs": {
-                "from": "@body('Rows_with_value')",
-                "where": "@equals(item()?['schemaname'], items('For_each_variable')?['SchemaName'])"
-              }
-            },
-            "Update_value": {
+            "Get_config": {
               "type": "OpenApiConnection",
               "inputs": {
                 "host": {
-                  "connectionName": "shared_commondataserviceforapps",
-                  "operationId": "UpdateOnlyRecordWithOrganization",
-                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                  "connectionName": "shared_sharepointonline",
+                  "operationId": "GetItems",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
                 },
                 "parameters": {
-                  "organization": "@outputs('Target_url')",
-                  "entityName": "environmentvariablevalues",
-                  "recordId": "@first(body('Value_row'))?['valueid']",
-                  "item": {
-                    "value": "@items('For_each_variable')?['Value']"
+                  "dataset": "https://7xpydh.sharepoint.com/sites/ALM-Admin",
+                  "table": "049eba5a-700e-44db-9d2b-4e95c3af51b6",
+                  "$filter": "SolutionName eq '@{triggerBody()?['text']}' and TargetEnvironment eq '@{triggerBody()?['text_1']}'",
+                  "$top": 1
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            },
+            "Config": {
+              "type": "Compose",
+              "inputs": "@first(body('Get_config')?['value'])",
+              "runAfter": {
+                "Get_config": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Check_config": {
+              "type": "If",
+              "expression": {
+                "equals": [
+                  "@empty(body('Get_config')?['value'])",
+                  true
+                ]
+              },
+              "actions": {
+                "Set_Stop_no_config": {
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "FailMessage",
+                    "value": "@concat('No ALMConfig row for ', triggerBody()?['text'], ' -> ', triggerBody()?['text_1'])"
                   }
+                },
+                "Stop_no_config": {
+                  "type": "Compose",
+                  "inputs": "@int(variables('FailMessage'))",
+                  "runAfter": {
+                    "Set_Stop_no_config": [
+                      "Succeeded"
+                    ]
+                  }
+                }
+              },
+              "runAfter": {
+                "Config": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Dev_url": {
+              "type": "Compose",
+              "inputs": "@outputs('Config')?['DevPowerPlatformUrl']",
+              "runAfter": {
+                "Check_config": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Target_url": {
+              "type": "Compose",
+              "inputs": "@outputs('Config')?['TargetPowerPlatformUrl']",
+              "runAfter": {
+                "Dev_url": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Get_connection_map": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline",
+                  "operationId": "GetItems",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "https://7xpydh.sharepoint.com/sites/ALM-Admin",
+                  "table": "bc640935-9503-44de-87d1-699d65c8d351",
+                  "$filter": "Environment eq '@{triggerBody()?['text_1']}'"
                 },
                 "authentication": "@parameters('$authentication')"
               },
               "runAfter": {
-                "Value_row": [
+                "Target_url": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Get_variable_map": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_sharepointonline",
+                  "operationId": "GetItems",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_sharepointonline"
+                },
+                "parameters": {
+                  "dataset": "https://7xpydh.sharepoint.com/sites/ALM-Admin",
+                  "table": "1ffc8ca3-1458-423b-81cb-49226b41664f",
+                  "$filter": "SolutionName eq '@{triggerBody()?['text']}' and Environment eq '@{triggerBody()?['text_1']}'"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runAfter": {
+                "Get_connection_map": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Dev_refs": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecordsWithOrganization",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "organization": "@outputs('Dev_url')",
+                  "entityName": "connectionreferences",
+                  "fetchXml": "<fetch distinct=\"true\"><entity name=\"connectionreference\"><attribute name=\"connectionreferenceid\"/><attribute name=\"connectionreferencelogicalname\"/><link-entity name=\"solutioncomponent\" from=\"objectid\" to=\"connectionreferenceid\" link-type=\"inner\"><link-entity name=\"solution\" from=\"solutionid\" to=\"solutionid\" link-type=\"inner\"><filter><condition attribute=\"uniquename\" operator=\"eq\" value=\"@{triggerBody()?['text']}\"/></filter></link-entity></link-entity></entity></fetch>"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runAfter": {
+                "Get_variable_map": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Dev_ref_names": {
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Dev_refs')?['value']",
+                "select": "@item()?['connectionreferencelogicalname']"
+              },
+              "runAfter": {
+                "Dev_refs": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Dev_vars": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecordsWithOrganization",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "organization": "@outputs('Dev_url')",
+                  "entityName": "environmentvariabledefinitions",
+                  "fetchXml": "<fetch distinct=\"true\"><entity name=\"environmentvariabledefinition\"><attribute name=\"environmentvariabledefinitionid\"/><attribute name=\"schemaname\"/><link-entity name=\"solutioncomponent\" from=\"objectid\" to=\"environmentvariabledefinitionid\" link-type=\"inner\"><link-entity name=\"solution\" from=\"solutionid\" to=\"solutionid\" link-type=\"inner\"><filter><condition attribute=\"uniquename\" operator=\"eq\" value=\"@{triggerBody()?['text']}\"/></filter></link-entity></link-entity></entity></fetch>"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runAfter": {
+                "Dev_ref_names": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Dev_var_names": {
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Dev_vars')?['value']",
+                "select": "@item()?['schemaname']"
+              },
+              "runAfter": {
+                "Dev_vars": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Solution_connections": {
+              "type": "Query",
+              "inputs": {
+                "from": "@body('Get_connection_map')?['value']",
+                "where": "@contains(body('Dev_ref_names'), item()?['ConnectionReference'])"
+              },
+              "runAfter": {
+                "Dev_var_names": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Expected_pairs": {
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Solution_connections')",
+                "select": "@concat(item()?['ConnectionReference'], '|', item()?['ConnectionId'])"
+              },
+              "runAfter": {
+                "Solution_connections": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Target_refs": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecordsWithOrganization",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "organization": "@outputs('Target_url')",
+                  "entityName": "connectionreferences",
+                  "$select": "connectionreferencelogicalname,connectionid"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runAfter": {
+                "Expected_pairs": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Target_pairs": {
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Target_refs')?['value']",
+                "select": "@concat(item()?['connectionreferencelogicalname'], '|', item()?['connectionid'])"
+              },
+              "runAfter": {
+                "Target_refs": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Wrong_bindings": {
+              "type": "Query",
+              "inputs": {
+                "from": "@body('Expected_pairs')",
+                "where": "@not(contains(body('Target_pairs'), item()))"
+              },
+              "runAfter": {
+                "Target_pairs": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Check_bindings": {
+              "type": "If",
+              "expression": {
+                "greater": [
+                  "@length(body('Wrong_bindings'))",
+                  0
+                ]
+              },
+              "actions": {
+                "Set_Stop_wrong_bindings": {
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "FailMessage",
+                    "value": "@concat('Connection references not bound as mapped (reference|connection): ', join(body('Wrong_bindings'), ', '))"
+                  }
+                },
+                "Stop_wrong_bindings": {
+                  "type": "Compose",
+                  "inputs": "@int(variables('FailMessage'))",
+                  "runAfter": {
+                    "Set_Stop_wrong_bindings": [
+                      "Succeeded"
+                    ]
+                  }
+                }
+              },
+              "runAfter": {
+                "Wrong_bindings": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Target_defs": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecordsWithOrganization",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "organization": "@outputs('Target_url')",
+                  "entityName": "environmentvariabledefinitions",
+                  "$select": "schemaname",
+                  "$expand": "environmentvariabledefinition_environmentvariablevalue($select=environmentvariablevalueid)"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runAfter": {
+                "Check_bindings": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Target_value_rows": {
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Target_defs')?['value']",
+                "select": {
+                  "schemaname": "@item()?['schemaname']",
+                  "valueid": "@first(item()?['environmentvariabledefinition_environmentvariablevalue'])?['environmentvariablevalueid']"
+                }
+              },
+              "runAfter": {
+                "Target_defs": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Rows_with_value": {
+              "type": "Query",
+              "inputs": {
+                "from": "@body('Target_value_rows')",
+                "where": "@not(empty(item()?['valueid']))"
+              },
+              "runAfter": {
+                "Target_value_rows": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Names_with_value": {
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Rows_with_value')",
+                "select": "@item()?['schemaname']"
+              },
+              "runAfter": {
+                "Rows_with_value": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Wanted_names": {
+              "type": "Select",
+              "inputs": {
+                "from": "@body('Get_variable_map')?['value']",
+                "select": "@item()?['SchemaName']"
+              },
+              "runAfter": {
+                "Names_with_value": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Missing_value_rows": {
+              "type": "Query",
+              "inputs": {
+                "from": "@body('Wanted_names')",
+                "where": "@not(contains(body('Names_with_value'), item()))"
+              },
+              "runAfter": {
+                "Wanted_names": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Check_value_rows": {
+              "type": "If",
+              "expression": {
+                "greater": [
+                  "@length(body('Missing_value_rows'))",
+                  0
+                ]
+              },
+              "actions": {
+                "Set_Stop_no_value_row": {
+                  "type": "SetVariable",
+                  "inputs": {
+                    "name": "FailMessage",
+                    "value": "@concat('No value row in the target for: ', join(body('Missing_value_rows'), ', '), '. Run the import first.')"
+                  }
+                },
+                "Stop_no_value_row": {
+                  "type": "Compose",
+                  "inputs": "@int(variables('FailMessage'))",
+                  "runAfter": {
+                    "Set_Stop_no_value_row": [
+                      "Succeeded"
+                    ]
+                  }
+                }
+              },
+              "runAfter": {
+                "Missing_value_rows": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "For_each_variable": {
+              "type": "Foreach",
+              "foreach": "@body('Get_variable_map')?['value']",
+              "runtimeConfiguration": {
+                "concurrency": {
+                  "repetitions": 1
+                }
+              },
+              "actions": {
+                "Value_row": {
+                  "type": "Query",
+                  "inputs": {
+                    "from": "@body('Rows_with_value')",
+                    "where": "@equals(item()?['schemaname'], items('For_each_variable')?['SchemaName'])"
+                  }
+                },
+                "Update_value": {
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "UpdateOnlyRecordWithOrganization",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "organization": "@outputs('Target_url')",
+                      "entityName": "environmentvariablevalues",
+                      "recordId": "@first(body('Value_row'))?['valueid']",
+                      "item": {
+                        "value": "@items('For_each_variable')?['Value']"
+                      }
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  },
+                  "runAfter": {
+                    "Value_row": [
+                      "Succeeded"
+                    ]
+                  }
+                }
+              },
+              "runAfter": {
+                "Check_value_rows": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Off_flows": {
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "ListRecordsWithOrganization",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "organization": "@outputs('Target_url')",
+                  "entityName": "workflows",
+                  "fetchXml": "<fetch distinct=\"true\"><entity name=\"workflow\"><attribute name=\"workflowid\"/><attribute name=\"name\"/><filter><condition attribute=\"category\" operator=\"eq\" value=\"5\"/><condition attribute=\"statecode\" operator=\"eq\" value=\"0\"/></filter><link-entity name=\"solutioncomponent\" from=\"objectid\" to=\"workflowid\" link-type=\"inner\"><link-entity name=\"solution\" from=\"solutionid\" to=\"solutionid\" link-type=\"inner\"><filter><condition attribute=\"uniquename\" operator=\"eq\" value=\"@{triggerBody()?['text']}\"/></filter></link-entity></link-entity></entity></fetch>"
+                },
+                "authentication": "@parameters('$authentication')"
+              },
+              "runAfter": {
+                "For_each_variable": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "For_each_flow": {
+              "type": "Foreach",
+              "foreach": "@body('Off_flows')?['value']",
+              "actions": {
+                "Turn_on_flow": {
+                  "type": "OpenApiConnection",
+                  "inputs": {
+                    "host": {
+                      "connectionName": "shared_commondataserviceforapps",
+                      "operationId": "UpdateOnlyRecordWithOrganization",
+                      "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                    },
+                    "parameters": {
+                      "organization": "@outputs('Target_url')",
+                      "entityName": "workflows",
+                      "recordId": "@items('For_each_flow')?['workflowid']",
+                      "item": {
+                        "statecode": 1,
+                        "statuscode": 2
+                      }
+                    },
+                    "authentication": "@parameters('$authentication')"
+                  }
+                }
+              },
+              "runAfter": {
+                "Off_flows": [
+                  "Succeeded"
+                ]
+              }
+            },
+            "Reply": {
+              "type": "Response",
+              "kind": "PowerApp",
+              "inputs": {
+                "statusCode": 200,
+                "body": {
+                  "status": "Succeeded",
+                  "message": "@{concat('Bindings OK; variables set: ', length(body('Get_variable_map')?['value']), '; flows turned on: ', length(body('Off_flows')?['value']))}"
+                },
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "title": "status",
+                      "type": "string",
+                      "x-ms-dynamically-added": true
+                    },
+                    "message": {
+                      "title": "message",
+                      "type": "string",
+                      "x-ms-dynamically-added": true
+                    }
+                  }
+                }
+              },
+              "runAfter": {
+                "For_each_flow": [
                   "Succeeded"
                 ]
               }
             }
           },
           "runAfter": {
-            "Check_value_rows": [
+            "Init_FailMessage": [
               "Succeeded"
             ]
           }
         },
-        "Off_flows": {
-          "type": "OpenApiConnection",
+        "Failed_actions": {
+          "type": "Query",
           "inputs": {
-            "host": {
-              "connectionName": "shared_commondataserviceforapps",
-              "operationId": "ListRecordsWithOrganization",
-              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-            },
-            "parameters": {
-              "organization": "@outputs('Target_url')",
-              "entityName": "workflows",
-              "fetchXml": "<fetch distinct=\"true\"><entity name=\"workflow\"><attribute name=\"workflowid\"/><attribute name=\"name\"/><filter><condition attribute=\"category\" operator=\"eq\" value=\"5\"/><condition attribute=\"statecode\" operator=\"eq\" value=\"0\"/></filter><link-entity name=\"solutioncomponent\" from=\"objectid\" to=\"workflowid\" link-type=\"inner\"><link-entity name=\"solution\" from=\"solutionid\" to=\"solutionid\" link-type=\"inner\"><filter><condition attribute=\"uniquename\" operator=\"eq\" value=\"@{triggerBody()?['text']}\"/></filter></link-entity></link-entity></entity></fetch>"
-            },
-            "authentication": "@parameters('$authentication')"
+            "from": "@result('Try')",
+            "where": "@equals(item()?['status'], 'Failed')"
           },
           "runAfter": {
-            "For_each_variable": [
-              "Succeeded"
+            "Try": [
+              "Failed",
+              "Skipped",
+              "TimedOut"
             ]
           }
         },
-        "For_each_flow": {
-          "type": "Foreach",
-          "foreach": "@body('Off_flows')?['value']",
-          "actions": {
-            "Turn_on_flow": {
-              "type": "OpenApiConnection",
-              "inputs": {
-                "host": {
-                  "connectionName": "shared_commondataserviceforapps",
-                  "operationId": "UpdateOnlyRecordWithOrganization",
-                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
-                },
-                "parameters": {
-                  "organization": "@outputs('Target_url')",
-                  "entityName": "workflows",
-                  "recordId": "@items('For_each_flow')?['workflowid']",
-                  "item": {
-                    "statecode": 1,
-                    "statuscode": 2
-                  }
-                },
-                "authentication": "@parameters('$authentication')"
-              }
-            }
-          },
-          "runAfter": {
-            "Off_flows": [
-              "Succeeded"
-            ]
-          }
-        },
-        "Reply": {
+        "Reply_failed": {
           "type": "Response",
           "kind": "PowerApp",
           "inputs": {
             "statusCode": 200,
             "body": {
-              "status": "Succeeded",
-              "message": "@{concat('Bindings OK; variables set: ', length(body('Get_variable_map')?['value']), '; flows turned on: ', length(body('Off_flows')?['value']))}"
+              "status": "Failed",
+              "message": "@{if(empty(variables('FailMessage')), coalesce(first(body('Failed_actions'))?['outputs']?['body']?['error']?['message'], first(body('Failed_actions'))?['error']?['message'], 'unknown error'), variables('FailMessage'))}"
             },
             "schema": {
               "type": "object",
@@ -571,7 +656,22 @@
             }
           },
           "runAfter": {
-            "For_each_flow": [
+            "Failed_actions": [
+              "Succeeded"
+            ]
+          }
+        },
+        "Stop_failed": {
+          "type": "Terminate",
+          "inputs": {
+            "runStatus": "Failed",
+            "runError": {
+              "code": "DeployStepFailed",
+              "message": "@{variables('FailMessage')}"
+            }
+          },
+          "runAfter": {
+            "Reply_failed": [
               "Succeeded"
             ]
           }

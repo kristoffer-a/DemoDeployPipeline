@@ -18,6 +18,18 @@ def test_fetch_in_solution_filters_on_solution_and_extra_conditions():
     assert '<condition attribute="category" operator="eq" value="5"/>' in xml
 
 
+def test_fetch_in_solution_always_includes_pk_first_no_duplicate():
+    xml = defs.fetch_in_solution("connectionreference", "connectionreferenceid",
+                                 ["connectionreferencelogicalname"], "outputs('Solution')")
+    assert xml.count('<attribute name="connectionreferenceid"/>') == 1
+    assert xml.index('<attribute name="connectionreferenceid"/>') < xml.index(
+        '<attribute name="connectionreferencelogicalname"/>')
+
+    xml2 = defs.fetch_in_solution("workflow", "workflowid", ["workflowid", "name"], "outputs('Solution')")
+    assert xml2.count('<attribute name="workflowid"/>') == 1
+    assert xml2.index('<attribute name="workflowid"/>') < xml2.index('<attribute name="name"/>')
+
+
 def test_url_expr_plain_and_object(monkeypatch):
     monkeypatch.setattr(defs, "URL_AS_OBJECT", False)
     assert defs.url_expr("outputs('Config')", "DevPowerPlatformUrl") == "outputs('Config')?['DevPowerPlatformUrl']"
@@ -68,6 +80,20 @@ def test_validate_accepts_nested_scopes():
         "B": after_ok({"type": "Compose", "inputs": "@outputs('A')"}, "S"),
     })
     assert defs.validate(cd) == []
+
+
+def test_validate_accepts_result_reference():
+    cd = _cd({
+        "S": {"type": "Scope", "actions": {"A": {"type": "Compose", "inputs": 1}}},
+        "B": after_ok({"type": "Query", "inputs": {"from": "@result('S')", "where": "@true"}}, "S"),
+    })
+    assert defs.validate(cd) == []
+
+
+def test_run_child_sets_no_retry_policy():
+    a = defs.run_child("wf-id", {"text": "@x"})
+    assert a["inputs"]["retryPolicy"] == {"type": "none"}
+    assert a["inputs"]["host"]["workflowReferenceName"] == "wf-id"
 
 
 def after_ok(action, prev):

@@ -120,8 +120,13 @@ def respond(outputs):
 
 
 def run_child(workflow_id, body):
-    """Built-in 'Run a Child Flow'. workflow_id is the child's Dataverse workflowid."""
-    return {"type": "Workflow", "inputs": {"host": {"workflowReferenceName": workflow_id}, "body": body}}
+    """Built-in 'Run a Child Flow'. workflow_id is the child's Dataverse workflowid.
+
+    retryPolicy 'none': a child failure must not be retried by the built-in action; the parent
+    inspects the child's own reply (see Check_C2/Check_C3 in c1()) to decide success/failure.
+    """
+    return {"type": "Workflow", "inputs": {"host": {"workflowReferenceName": workflow_id}, "body": body,
+                                           "retryPolicy": {"type": "none"}}}
 
 
 def manual_trigger(inputs):
@@ -155,8 +160,13 @@ def clientdata(trigger, actions, refs):
 # ---------- expressions ----------
 
 def fetch_in_solution(entity, pk, attrs, solution_expr, conditions=()):
-    """FetchXML for rows of `entity` that are components of the solution named by solution_expr."""
-    attr_xml = "".join(f'<attribute name="{a}"/>' for a in attrs)
+    """FetchXML for rows of `entity` that are components of the solution named by solution_expr.
+
+    `pk` is always emitted first (the connector needs the entity's key property populated even
+    when only other attributes are selected), and is never duplicated if already in `attrs`.
+    """
+    ordered_attrs = [pk] + [a for a in attrs if a != pk]
+    attr_xml = "".join(f'<attribute name="{a}"/>' for a in ordered_attrs)
     cond_xml = "".join(f'<condition attribute="{a}" operator="eq" value="{v}"/>' for a, v in conditions)
     filter_xml = f"<filter>{cond_xml}</filter>" if conditions else ""
     return (f'<fetch distinct="true"><entity name="{entity}">{attr_xml}{filter_xml}'
@@ -174,7 +184,7 @@ def url_expr(obj_expr, field):
 
 # ---------- validation ----------
 
-_REF = re.compile(r"\b(?:body|outputs|actions|items)\('([^']+)'\)")
+_REF = re.compile(r"\b(?:body|outputs|actions|items|result)\('([^']+)'\)")
 _NESTED = ("actions",)
 
 

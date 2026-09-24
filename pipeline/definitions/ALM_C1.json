@@ -224,7 +224,7 @@
                 "parameters": {
                   "organization": "@outputs('Dev_url')",
                   "entityName": "connectionreferences",
-                  "fetchXml": "<fetch distinct=\"true\"><entity name=\"connectionreference\"><attribute name=\"connectionreferencelogicalname\"/><link-entity name=\"solutioncomponent\" from=\"objectid\" to=\"connectionreferenceid\" link-type=\"inner\"><link-entity name=\"solution\" from=\"solutionid\" to=\"solutionid\" link-type=\"inner\"><filter><condition attribute=\"uniquename\" operator=\"eq\" value=\"@{outputs('Solution')}\"/></filter></link-entity></link-entity></entity></fetch>"
+                  "fetchXml": "<fetch distinct=\"true\"><entity name=\"connectionreference\"><attribute name=\"connectionreferenceid\"/><attribute name=\"connectionreferencelogicalname\"/><link-entity name=\"solutioncomponent\" from=\"objectid\" to=\"connectionreferenceid\" link-type=\"inner\"><link-entity name=\"solution\" from=\"solutionid\" to=\"solutionid\" link-type=\"inner\"><filter><condition attribute=\"uniquename\" operator=\"eq\" value=\"@{outputs('Solution')}\"/></filter></link-entity></link-entity></entity></fetch>"
                 },
                 "authentication": "@parameters('$authentication')"
               },
@@ -257,7 +257,7 @@
                 "parameters": {
                   "organization": "@outputs('Dev_url')",
                   "entityName": "environmentvariabledefinitions",
-                  "fetchXml": "<fetch distinct=\"true\"><entity name=\"environmentvariabledefinition\"><attribute name=\"schemaname\"/><link-entity name=\"solutioncomponent\" from=\"objectid\" to=\"environmentvariabledefinitionid\" link-type=\"inner\"><link-entity name=\"solution\" from=\"solutionid\" to=\"solutionid\" link-type=\"inner\"><filter><condition attribute=\"uniquename\" operator=\"eq\" value=\"@{outputs('Solution')}\"/></filter></link-entity></link-entity></entity></fetch>"
+                  "fetchXml": "<fetch distinct=\"true\"><entity name=\"environmentvariabledefinition\"><attribute name=\"environmentvariabledefinitionid\"/><attribute name=\"schemaname\"/><link-entity name=\"solutioncomponent\" from=\"objectid\" to=\"environmentvariabledefinitionid\" link-type=\"inner\"><link-entity name=\"solution\" from=\"solutionid\" to=\"solutionid\" link-type=\"inner\"><filter><condition attribute=\"uniquename\" operator=\"eq\" value=\"@{outputs('Solution')}\"/></filter></link-entity></link-entity></entity></fetch>"
                 },
                 "authentication": "@parameters('$authentication')"
               },
@@ -524,7 +524,45 @@
                       "text": "@body('Archive_ZIP')?['Path']",
                       "text_1": "@outputs('Solution')",
                       "text_2": "@outputs('Target')"
+                    },
+                    "retryPolicy": {
+                      "type": "none"
                     }
+                  }
+                },
+                "Check_C2": {
+                  "type": "If",
+                  "expression": {
+                    "equals": [
+                      "@body('Run_C2_import')?['status']",
+                      "Succeeded"
+                    ]
+                  },
+                  "actions": {},
+                  "else": {
+                    "actions": {
+                      "Set_Fail_import": {
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "FailMessage",
+                          "value": "@concat('Import: ', body('Run_C2_import')?['message'])"
+                        }
+                      },
+                      "Fail_import": {
+                        "type": "Compose",
+                        "inputs": "@int(variables('FailMessage'))",
+                        "runAfter": {
+                          "Set_Fail_import": [
+                            "Succeeded"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Run_C2_import": [
+                      "Succeeded"
+                    ]
                   }
                 }
               },
@@ -552,7 +590,45 @@
                     "body": {
                       "text": "@outputs('Solution')",
                       "text_1": "@outputs('Target')"
+                    },
+                    "retryPolicy": {
+                      "type": "none"
                     }
+                  }
+                },
+                "Check_C3": {
+                  "type": "If",
+                  "expression": {
+                    "equals": [
+                      "@body('Run_C3_post_import')?['status']",
+                      "Succeeded"
+                    ]
+                  },
+                  "actions": {},
+                  "else": {
+                    "actions": {
+                      "Set_Fail_post_import": {
+                        "type": "SetVariable",
+                        "inputs": {
+                          "name": "FailMessage",
+                          "value": "@concat('Post-import: ', body('Run_C3_post_import')?['message'])"
+                        }
+                      },
+                      "Fail_post_import": {
+                        "type": "Compose",
+                        "inputs": "@int(variables('FailMessage'))",
+                        "runAfter": {
+                          "Set_Fail_post_import": [
+                            "Succeeded"
+                          ]
+                        }
+                      }
+                    }
+                  },
+                  "runAfter": {
+                    "Run_C3_post_import": [
+                      "Succeeded"
+                    ]
                   }
                 }
               },
@@ -584,7 +660,7 @@
                   "RunImport": "@{actions('Config')?['outputs']?['RunImport']}",
                   "RunPostImport": "@{actions('Config')?['outputs']?['RunPostImport']}"
                 },
-                "message": "@{if(not(empty(variables('FailMessage'))), variables('FailMessage'), coalesce(actions('Export_from_DEV')?['outputs']?['body']?['error']?['message'], actions('Download_export')?['outputs']?['body']?['error']?['message'], actions('Archive_ZIP')?['outputs']?['body']?['message'], if(equals(actions('Run_C2_import')?['status'], 'Failed'), actions('Run_C2_import')?['error']?['message'], null), if(equals(actions('Run_C3_post_import')?['status'], 'Failed'), actions('Run_C3_post_import')?['error']?['message'], null), ''))}",
+                "message": "@{if(not(empty(variables('FailMessage'))), variables('FailMessage'), coalesce(actions('Export_from_DEV')?['outputs']?['body']?['error']?['message'], actions('Download_export')?['outputs']?['body']?['error']?['message'], actions('Archive_ZIP')?['outputs']?['body']?['message'], ''))}",
                 "steps": [
                   {
                     "step": "Prechecks",
@@ -600,15 +676,15 @@
                   },
                   {
                     "step": "Import",
-                    "status": "@{actions('Run_C2_import')?['status']}",
-                    "seconds": "@{div(sub(ticks(coalesce(actions('Run_C2_import')?['endTime'], utcNow())), ticks(coalesce(actions('Run_C2_import')?['startTime'], utcNow()))), 10000000)}",
-                    "message": "@{if(equals(actions('Run_C2_import')?['status'], 'Failed'), coalesce(actions('Run_C2_import')?['outputs']?['body']?['error']?['message'], actions('Run_C2_import')?['error']?['message'], ''), coalesce(actions('Run_C2_import')?['outputs']?['body']?['message'], ''))}"
+                    "status": "@{actions('Check_C2')?['status']}",
+                    "seconds": "@{div(sub(ticks(coalesce(actions('Check_C2')?['endTime'], utcNow())), ticks(coalesce(actions('Check_C2')?['startTime'], utcNow()))), 10000000)}",
+                    "message": "@{if(equals(actions('Check_C2')?['status'], 'Failed'), coalesce(actions('Check_C2')?['outputs']?['body']?['error']?['message'], actions('Check_C2')?['error']?['message'], ''), coalesce(actions('Run_C2_import')?['outputs']?['body']?['message'], ''))}"
                   },
                   {
                     "step": "PostImport",
-                    "status": "@{actions('Run_C3_post_import')?['status']}",
-                    "seconds": "@{div(sub(ticks(coalesce(actions('Run_C3_post_import')?['endTime'], utcNow())), ticks(coalesce(actions('Run_C3_post_import')?['startTime'], utcNow()))), 10000000)}",
-                    "message": "@{if(equals(actions('Run_C3_post_import')?['status'], 'Failed'), coalesce(actions('Run_C3_post_import')?['outputs']?['body']?['error']?['message'], actions('Run_C3_post_import')?['error']?['message'], ''), coalesce(actions('Run_C3_post_import')?['outputs']?['body']?['message'], ''))}"
+                    "status": "@{actions('Check_C3')?['status']}",
+                    "seconds": "@{div(sub(ticks(coalesce(actions('Check_C3')?['endTime'], utcNow())), ticks(coalesce(actions('Check_C3')?['startTime'], utcNow()))), 10000000)}",
+                    "message": "@{if(equals(actions('Check_C3')?['status'], 'Failed'), coalesce(actions('Check_C3')?['outputs']?['body']?['error']?['message'], actions('Check_C3')?['error']?['message'], ''), coalesce(actions('Run_C3_post_import')?['outputs']?['body']?['message'], ''))}"
                   }
                 ]
               }
