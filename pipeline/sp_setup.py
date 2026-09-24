@@ -35,7 +35,9 @@ def request(method, uri, body=None, extra_headers=None):
                                      **(extra_headers or {})}}
     if body is not None:
         params["parameters/body"] = json.dumps(body)
-    return op(s.SP_KEY, s.SP_API, "HttpRequest", params)
+    action = op(s.SP_KEY, s.SP_API, "HttpRequest", params)
+    action["inputs"]["retryPolicy"] = {"type": "none"}
+    return action
 
 
 def lst(title):
@@ -49,15 +51,23 @@ def item_type(title):
 # ---------- operations: each returns an ordered dict of actions ----------
 
 def ensure_list(title):
-    return {f"Create_list_{title}": request("POST", "_api/web/lists", {
-        "__metadata": {"type": "SP.List"}, "BaseTemplate": 100, "Title": title})}
+    get_name = f"Get_list_{title}"
+    create_name = f"Create_list_{title}"
+    get = request("GET", f"_api/web/lists/getbytitle('{title}')?$select=Id")
+    create = after(request("POST", "_api/web/lists", {
+        "__metadata": {"type": "SP.List"}, "BaseTemplate": 100, "Title": title}), get_name, status=("Failed",))
+    return {get_name: get, create_name: create}
 
 
 def ensure_field(title, schema_xml):
     name = schema_xml.split("Name='", 1)[1].split("'", 1)[0]
-    return {f"Create_field_{title}_{name}": request("POST", f"{lst(title)}/fields/CreateFieldAsXml", {
+    get_name = f"Get_field_{title}_{name}"
+    create_name = f"Create_field_{title}_{name}"
+    get = request("GET", f"{lst(title)}/fields/getbyinternalnameortitle('{name}')?$select=InternalName")
+    create = after(request("POST", f"{lst(title)}/fields/CreateFieldAsXml", {
         "parameters": {"__metadata": {"type": "SP.XmlSchemaFieldCreationInformation"},
-                       "SchemaXml": schema_xml, "Options": 25}})}
+                       "SchemaXml": schema_xml, "Options": 25}}), get_name, status=("Failed",))
+    return {get_name: get, create_name: create}
 
 
 def upsert(key, title, odata_filter, fields):

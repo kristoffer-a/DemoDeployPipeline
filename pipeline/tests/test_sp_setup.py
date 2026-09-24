@@ -42,9 +42,37 @@ def test_config_parses_booleans():
 
 def test_later_groups_run_after_failures():
     a = acts(sp_setup.build(sp_setup.command_ops(["provision"])))
-    assert a["Create_list_ALMConnections"]["runAfter"] == \
+    assert a["Get_list_ALMConnections"]["runAfter"] == \
         {"Create_field_ALMConfig_AppShareGroupId": ["Succeeded", "Failed", "Skipped"]}
     assert a["Results"]["runAfter"] == {"Read_variables": ["Succeeded", "Failed", "Skipped"]}
+
+
+def test_ensure_field_checks_before_creating():
+    group = sp_setup.ensure_field("ALMConfig", sp_setup.text("Foo"))
+    assert list(group) == ["Get_field_ALMConfig_Foo", "Create_field_ALMConfig_Foo"]
+    assert group["Create_field_ALMConfig_Foo"]["runAfter"] == {"Get_field_ALMConfig_Foo": ["Failed"]}
+
+
+def test_ensure_list_checks_before_creating():
+    group = sp_setup.ensure_list("ALMConnections")
+    assert list(group) == ["Get_list_ALMConnections", "Create_list_ALMConnections"]
+    assert group["Create_list_ALMConnections"]["runAfter"] == {"Get_list_ALMConnections": ["Failed"]}
+
+
+def test_setup_requests_have_no_retry_policy():
+    for argv in (["provision"], ["config", "RunImport=false"], ["connection-env", "PROD"],
+                 ["variable", "dev_ProductsList=abc"], ["readback"]):
+        a = acts(sp_setup.build(sp_setup.command_ops(argv)))
+        for name, action in a.items():
+            if action.get("type") == "OpenApiConnection" and \
+                    action["inputs"]["host"].get("operationId") == "HttpRequest":
+                assert action["inputs"]["retryPolicy"] == {"type": "none"}, name
+
+
+def test_results_includes_get_actions():
+    a = acts(sp_setup.build(sp_setup.command_ops(["provision"])))
+    assert "Get_field_ALMConfig_AppShareGroupId" in a["Results"]["inputs"]
+    assert "Get_list_ALMConnections" in a["Results"]["inputs"]
 
 
 def test_config_filter_is_pinned_to_demo_test():
