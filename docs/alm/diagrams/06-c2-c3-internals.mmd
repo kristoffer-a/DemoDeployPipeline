@@ -1,0 +1,31 @@
+flowchart TD
+  subgraph C2["C2 Import (child) · inputs: ZIP path, Solution, Target"]
+    a0[Init FailMessage] --> a1[Read ALMConfig row]
+    a1 --> a2{Row found?}
+    a2 -- yes --> a3[Read ALMConnections + ALMVariables]
+    a3 --> a4[FetchXML: DEV conn refs in solution]
+    a4 --> a5[Keep mapping rows for those refs]
+    a5 --> a6[Build ComponentParameters<br/>conn refs + env var values<br/>odata_type renamed to @odata.type]
+    a6 --> a7[Read archived ZIP from ALM-Admin]
+    a7 --> a8[ImportSolutionAsync to TEST, poll job]
+    a8 --> a9{Job succeeded?}
+    a9 -- yes --> aok([Reply Succeeded + importjobkey])
+    a2 -- no --> afail
+    a9 -- no --> afail
+    afail([Reply Failed + reason, then Terminate Failed])
+  end
+
+  subgraph C3["C3 Post-import (child) · inputs: Solution, Target"]
+    b0[Init FailMessage] --> b1[Read config + mappings<br/>DEV conn refs in solution]
+    b1 --> b2[Compare TEST bindings<br/>with ALMConnections]
+    b2 --> b3{All bound as mapped?}
+    b3 -- yes --> b4[Find TEST env var value rows]
+    b4 --> b5{Value row exists<br/>for every ALMVariables row?}
+    b5 -- yes --> b6[Update each value]
+    b6 --> b7[Find solution flows that are off]
+    b7 --> b8[Turn each on]
+    b8 --> bok([Reply Succeeded:<br/>bindings OK, n variables, m flows on])
+    b3 -- no --> bfail
+    b5 -- no --> bfail
+    bfail([Reply Failed + reason, then Terminate Failed])
+  end

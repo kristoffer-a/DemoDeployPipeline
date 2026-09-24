@@ -1,0 +1,41 @@
+sequenceDiagram
+  autonumber
+  actor M as Maker
+  participant C1 as C1 Deploy (parent)
+  participant SP as ALM-Admin SharePoint
+  participant DEV as DEV Dataverse
+  participant C2 as C2 Import (child)
+  participant C3 as C3 Post-import (child)
+  participant TEST as TEST Dataverse
+
+  M->>C1: Run (Solution=Demo, Target=TEST)
+  C1->>SP: Get ALMConfig row, ALMConnections, ALMVariables
+  C1->>DEV: FetchXML: conn refs + env vars in solution
+  alt mapping row missing
+    C1->>SP: Write log (Prechecks Failed)
+    C1-->>M: Failed: Missing mapping rows
+  end
+  C1->>DEV: ExportSolutionAsync (managed) + poll job
+  C1->>DEV: DownloadSolutionExportData
+  C1->>SP: Create Solutions/Demo/Demo_managed_time.zip
+  opt RunImport = Yes
+    C1->>C2: Run child: text=ZIP path, text_1=Demo, text_2=TEST (no retry)
+    C2->>SP: Read config + mappings, read ZIP
+    C2->>DEV: FetchXML conn refs (filter mapping rows)
+    C2->>TEST: ImportSolutionAsync + ComponentParameters, poll job
+    alt import ok
+      C2-->>C1: Reply status=Succeeded, message, importjobkey
+    else any failure
+      C2-->>C1: Reply status=Failed, message=reason
+      Note over C2: then Terminate Failed (run history)
+    end
+  end
+  opt RunPostImport = Yes
+    C1->>C3: Run child: text=Demo, text_1=TEST (no retry)
+    C3->>TEST: Check conn ref bindings = ALMConnections
+    C3->>TEST: Update env variable values from ALMVariables
+    C3->>TEST: Turn on solution flows that are off
+    C3-->>C1: Reply status + message
+  end
+  C1->>SP: Write DeploymentLogs/Demo_TEST_time.json
+  C1-->>M: Succeeded, or Failed with first failure message

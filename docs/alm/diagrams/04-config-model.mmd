@@ -1,0 +1,41 @@
+erDiagram
+  ALMConfig {
+    text SolutionName "Demo"
+    choice TargetEnvironment "TEST or PROD"
+    url DevPowerPlatformUrl "DEV org"
+    url DevSharePointUrl "ALM-Dev site"
+    url TargetPowerPlatformUrl "TEST org"
+    url TargetSharePointUrl "ALM-Test site"
+    bool RunImport "switch C2"
+    bool RunPostImport "switch C3"
+    bool RunShare "switch C4 (future)"
+    text AppShareGroupId "Entra group (C4)"
+  }
+  ALMConnections {
+    choice Environment "TEST or PROD"
+    text ConnectionReference "dev_SharePoint"
+    text ConnectionId "shared-sharepointonl-0f567e53"
+    text ConnectorId "shared_sharepointonline"
+  }
+  ALMVariables {
+    text SolutionName "Demo"
+    choice Environment "TEST or PROD"
+    text SchemaName "dev_SharePointSite / dev_ProductsList"
+    text Value "target value"
+  }
+  DEV_ConnectionReference {
+    text connectionreferencelogicalname "dev_SharePoint"
+  }
+  DEV_EnvironmentVariable {
+    text schemaname "dev_SharePointSite"
+  }
+  TEST_Connection {
+    text name "shared-sharepointonl-0f567e53"
+    text owner "kriall076"
+  }
+
+  ALMConfig ||--o{ ALMVariables : "SolutionName + TargetEnvironment = Environment"
+  ALMConfig }o--o{ ALMConnections : "TargetEnvironment = Environment"
+  DEV_ConnectionReference ||--|| ALMConnections : "must have a row per target (precheck)"
+  DEV_EnvironmentVariable ||--|| ALMVariables : "must have a row per target (precheck)"
+  ALMConnections }o--|| TEST_Connection : "ConnectionId binds at import"

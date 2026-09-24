@@ -1,0 +1,15 @@
+flowchart LR
+  P[Prechecks] --> SPD
+  SPD["C5 SharePoint deploy<br/>switch RunSharePoint<br/>new or existing list<br/>→ writes list ID to ALMVariables"]:::future --> E
+  E[Export + archive] --> C2
+  C2["C2 Import<br/>switch RunImport"]:::live --> C3
+  C3["C3 Post-import<br/>switch RunPostImport<br/>bindings, variables, flows on"]:::live --> SG
+  SG["C6 Security groups<br/>switch RunSecurity<br/>ensure Entra group + members"]:::future --> C4
+  C4["C4 Share app<br/>switch RunShare<br/>share with AppShareGroupId"]:::future --> L
+  L[Log + result]
+
+  classDef live fill:#d4edda,stroke:#2e7d32
+  classDef future fill:#fff3cd,stroke:#b8860b,stroke-dasharray:5 5
+
+  N1["Proposed order, to refine:<br/>SharePoint before import so the list ID exists for dev_ProductsList.<br/>Groups before sharing so C4 has a group to share with.<br/>C4 needs a Power Apps for Admins connection first."]
+  N1 -.- SPD
