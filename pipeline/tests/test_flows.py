@@ -138,21 +138,30 @@ def test_c1_structure_main_log_report():
     assert a["Report_failure"]["else"]["actions"]["Stop_failed"]["type"] == "Terminate"
 
 
+def test_report_failure_also_fails_when_log_scope_failed():
+    rf = acts(flows.c1(IDS))["Report_failure"]
+    assert rf["expression"] == {"and": [{"equals": ["@actions('Main')?['status']", "Succeeded"]},
+                                        {"equals": ["@actions('Log')?['status']", "Succeeded"]}]}
+    msg = rf["else"]["actions"]["Stop_failed"]["inputs"]["runError"]["message"]
+    assert "Run log could not be written" in msg
+    assert "outputs('Log_entry')?['message']" in msg
+
+
 def test_c1_children_are_switched_and_get_the_archived_path():
     main = acts(flows.c1(IDS))["Main"]["actions"]
-    imp = main["If_RunImport"]
+    imp = main["Import"]["actions"]["If_RunImport"]
     assert imp["expression"] == {"equals": ["@outputs('Config')?['RunImport']", True]}
     call = imp["actions"]["Run_C2_import"]["inputs"]
     assert call["host"]["workflowReferenceName"] == "c2-id"
     assert call["body"]["text"] == "@body('Archive_ZIP')?['Path']"
-    post = main["If_RunPostImport"]
-    assert post["runAfter"] == {"If_RunImport": ["Succeeded"]}
+    assert main["PostImport"]["runAfter"] == {"Import": ["Succeeded"]}
+    post = main["PostImport"]["actions"]["If_RunPostImport"]
     assert post["actions"]["Run_C3_post_import"]["inputs"]["host"]["workflowReferenceName"] == "c3-id"
 
 
 def test_c1_checks_child_status_and_fails_on_non_succeeded():
     main = acts(flows.c1(IDS))["Main"]["actions"]
-    imp_actions = main["If_RunImport"]["actions"]
+    imp_actions = main["Import"]["actions"]["If_RunImport"]["actions"]
     check_c2 = imp_actions["Check_C2"]
     assert check_c2["expression"] == {"equals": ["@body('Run_C2_import')?['status']", "Succeeded"]}
     assert check_c2["runAfter"] == {"Run_C2_import": ["Succeeded"]}
@@ -161,7 +170,7 @@ def test_c1_checks_child_status_and_fails_on_non_succeeded():
     assert "Fail_import" in fail_import
     assert fail_import["Set_Fail_import"]["inputs"]["value"] == "@concat('Import: ', body('Run_C2_import')?['message'])"
 
-    post_actions = main["If_RunPostImport"]["actions"]
+    post_actions = main["PostImport"]["actions"]["If_RunPostImport"]["actions"]
     check_c3 = post_actions["Check_C3"]
     assert check_c3["expression"] == {"equals": ["@body('Run_C3_post_import')?['status']", "Succeeded"]}
     fail_post = check_c3["else"]["actions"]
@@ -172,20 +181,48 @@ def test_c1_checks_child_status_and_fails_on_non_succeeded():
 
 def test_run_child_calls_carry_no_retry_policy():
     main = acts(flows.c1(IDS))["Main"]["actions"]
-    assert main["If_RunImport"]["actions"]["Run_C2_import"]["inputs"]["retryPolicy"] == {"type": "none"}
-    assert main["If_RunPostImport"]["actions"]["Run_C3_post_import"]["inputs"]["retryPolicy"] == {"type": "none"}
+    assert main["Import"]["actions"]["If_RunImport"]["actions"]["Run_C2_import"]["inputs"]["retryPolicy"] == \
+        {"type": "none"}
+    assert main["PostImport"]["actions"]["If_RunPostImport"]["actions"]["Run_C3_post_import"]["inputs"]["retryPolicy"] == \
+        {"type": "none"}
+
+
+def test_run_c2_import_sits_inside_import_scope():
+    main = acts(flows.c1(IDS))["Main"]["actions"]
+    assert "Run_C2_import" in main["Import"]["actions"]["If_RunImport"]["actions"]
+
+
+def test_main_stage_scopes_exist_in_order_with_runafter():
+    main = acts(flows.c1(IDS))["Main"]["actions"]
+    assert list(main) == ["Prechecks", "Export", "Import", "PostImport"]
+    assert "runAfter" not in main["Prechecks"]
+    assert main["Export"]["runAfter"] == {"Prechecks": ["Succeeded"]}
+    assert main["Import"]["runAfter"] == {"Export": ["Succeeded"]}
+    assert main["PostImport"]["runAfter"] == {"Import": ["Succeeded"]}
+    for stage in ("Prechecks", "Export", "Import", "PostImport"):
+        assert main[stage]["type"] == "Scope"
 
 
 def test_c1_prechecks_before_export():
     main = acts(flows.c1(IDS))["Main"]["actions"]
-    assert main["Missing_refs"]["inputs"]["where"] == "@not(contains(body('Mapped_refs'), item()))"
-    assert main["Export_from_DEV"]["runAfter"] == {"Check_mappings": ["Succeeded"]}
-    assert main["Check_config"]["actions"]["Fail_no_config"]["inputs"] == "@int(variables('FailMessage'))"
+    prechecks = main["Prechecks"]["actions"]
+    assert prechecks["Missing_refs"]["inputs"]["where"] == "@not(contains(body('Mapped_refs'), item()))"
+    assert prechecks["Check_config"]["actions"]["Fail_no_config"]["inputs"] == "@int(variables('FailMessage'))"
+    export = main["Export"]["actions"]
+    assert "runAfter" not in export["Export_from_DEV"]
+
+
+def test_config_actions_checks_before_reading_config():
+    """Check_config must run (and, on a missing row, fail) before Config's first() runs."""
+    prechecks = acts(flows.c1(IDS))["Main"]["actions"]["Prechecks"]["actions"]
+    names = list(prechecks)
+    assert names.index("Check_config") < names.index("Config")
+    assert prechecks["Config"]["runAfter"] == {"Check_config": ["Succeeded"]}
 
 
 def test_c1_archives_per_solution_and_logs_per_run():
     a = acts(flows.c1(IDS))
-    archive = a["Main"]["actions"]["Export_succeeded"]["actions"]["Archive_ZIP"]["inputs"]["parameters"]
+    archive = a["Main"]["actions"]["Export"]["actions"]["Export_succeeded"]["actions"]["Archive_ZIP"]["inputs"]["parameters"]
     assert archive["folderPath"] == "/Solutions/@{outputs('Solution')}"
     assert archive["name"] == "@{concat(outputs('Solution'), '_managed_', utcNow('yyyyMMdd-HHmmss'), '.zip')}"
     log = a["Log"]["actions"]["Write_log"]["inputs"]["parameters"]
@@ -218,35 +255,69 @@ def test_update_row_actions_pass_item_as_one_object():
                 assert not any(k.startswith("item/") for k in params), name
 
 
-def test_c1_failure_message_prefers_fail_message_then_export_errors():
+def test_c1_stage_failed_queries_reference_scope_results():
+    """The only way to reach a stage Scope's real error for cases fail_steps doesn't cover
+    (a bare connector failure) is result('<Scope>') - Query is the only inline way to filter it."""
+    log = acts(flows.c1(IDS))["Log"]["actions"]
+    for stage in ("Prechecks", "Export", "Import", "PostImport"):
+        q = log[f"{stage}_failed"]
+        assert q["type"] == "Query"
+        assert q["inputs"]["from"] == f"@result('{stage}')"
+        assert q["inputs"]["where"] == "@equals(item()?['status'], 'Failed')"
+
+
+def test_c1_top_level_message_prefers_fail_message_then_stage_fallbacks_then_default():
     msg = acts(flows.c1(IDS))["Log"]["actions"]["Log_entry"]["inputs"]["message"]
     assert "variables('FailMessage')" in msg
-    assert "actions('Export_from_DEV')?['outputs']?['body']?['error']?['message']" in msg
-    assert "actions('Download_export')?['outputs']?['body']?['error']?['message']" in msg
-    assert "actions('Archive_ZIP')?['outputs']?['body']?['message']" in msg
-    # child status is now checked by Check_C2/Check_C3 + Fail_import/Fail_post_import (which set
-    # FailMessage), so the message no longer needs to inspect Run_C2_import/Run_C3_post_import itself.
+    for stage in ("Prechecks", "Export", "Import", "PostImport"):
+        assert f"body('{stage}_failed')" in msg
+    assert "Deployment failed; see run history" in msg
+    # child status is checked by Check_C2/Check_C3 + Fail_import/Fail_post_import (which set
+    # FailMessage), so the message doesn't need to inspect Run_C2_import/Run_C3_post_import itself.
     assert "Run_C2_import" not in msg
     assert "Run_C3_post_import" not in msg
 
 
-def test_log_step_message_only_reports_errors_for_failed_steps():
-    step = flows.log_step("Import", "Check_C2", "Run_C2_import")
-    assert step["status"] == "@{actions('Check_C2')?['status']}"
-    assert step["message"].startswith("@{if(equals(actions('Check_C2')?['status'], 'Failed')")
-    assert "actions('Check_C2')?['outputs']?['body']?['error']?['message']" in step["message"]
+def test_log_step_reads_its_stage_scope_status_and_seconds():
+    step = flows.log_step("Prechecks", "Prechecks")
+    assert step["status"] == "@{actions('Prechecks')?['status']}"
+    assert "actions('Prechecks')?['endTime']" in step["seconds"]
+    assert "actions('Prechecks')?['startTime']" in step["seconds"]
+
+
+def test_log_step_message_falls_back_to_stage_failed_query_when_no_fail_message():
+    step = flows.log_step("Export", "Export")
+    assert step["message"].startswith("@{if(equals(actions('Export')?['status'], 'Failed')")
+    assert "variables('FailMessage')" in step["message"]
+    assert "body('Export_failed')" in step["message"]
+    assert "outputs']?['body']?['error']?['message']" in step["message"]
+
+
+def test_log_step_import_postimport_report_child_reply_message_and_skip_when_switch_off():
+    step = flows.log_step("Import", "Import", switch_expr="actions('Config')?['outputs']?['RunImport']",
+                          child_action="Run_C2_import")
+    assert "'Skipped'" in step["status"]
+    assert "actions('Config')?['outputs']?['RunImport']" in step["status"]
+    assert "actions('Import')?['status']" in step["status"]
     assert "actions('Run_C2_import')?['outputs']?['body']?['message']" in step["message"]
 
 
-def test_log_step_defaults_message_action_to_status_action():
-    step = flows.log_step("Export", "Export_succeeded")
-    assert "actions('Export_succeeded')?['outputs']?['body']?['message']" in step["message"]
-
-
-def test_c1_uses_check_actions_for_import_and_postimport_log_steps():
+def test_c1_log_steps_read_stage_scopes_with_skip_mapping():
     steps = acts(flows.c1(IDS))["Log"]["actions"]["Log_entry"]["inputs"]["steps"]
-    by_step = {s["step"]: s for s in steps}
-    assert by_step["Import"]["status"] == "@{actions('Check_C2')?['status']}"
+    by_step = {st["step"]: st for st in steps}
+    assert by_step["Import"]["status"] == flows.log_step(
+        "Import", "Import", switch_expr="actions('Config')?['outputs']?['RunImport']",
+        child_action="Run_C2_import")["status"]
     assert "actions('Run_C2_import')?['outputs']?['body']?['message']" in by_step["Import"]["message"]
-    assert by_step["PostImport"]["status"] == "@{actions('Check_C3')?['status']}"
+    assert by_step["PostImport"]["status"] == flows.log_step(
+        "PostImport", "PostImport", switch_expr="actions('Config')?['outputs']?['RunPostImport']",
+        child_action="Run_C3_post_import")["status"]
     assert "actions('Run_C3_post_import')?['outputs']?['body']?['message']" in by_step["PostImport"]["message"]
+    assert by_step["Prechecks"]["status"] == "@{actions('Prechecks')?['status']}"
+    assert by_step["Export"]["status"] == "@{actions('Export')?['status']}"
+
+
+def test_child_stop_failed_uses_same_message_as_reply_failed():
+    for cd in (flows.c2(), flows.c3()):
+        a = acts(cd)
+        assert a["Stop_failed"]["inputs"]["runError"]["message"] == a["Reply_failed"]["inputs"]["body"]["message"]

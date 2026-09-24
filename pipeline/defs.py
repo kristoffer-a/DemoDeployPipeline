@@ -185,7 +185,6 @@ def url_expr(obj_expr, field):
 # ---------- validation ----------
 
 _REF = re.compile(r"\b(?:body|outputs|actions|items|result)\('([^']+)'\)")
-_NESTED = ("actions",)
 
 
 def _action_maps(actions, path="actions"):

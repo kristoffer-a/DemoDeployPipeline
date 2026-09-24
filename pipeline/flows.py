@@ -11,14 +11,17 @@ def config_actions(sol, target, on_missing):
 
     sol / target are expressions without a leading @, e.g. "outputs('Solution')".
     on_missing: actions run when no ALMConfig row matches (they must stop the run).
+
+    Check_config runs (and, on a missing row, fails and stops the chain) before Config, so
+    Config's first() only ever runs once a row is known to exist.
     """
     return seq(
         {"Get_config": sp_items(SP, s.LIST_CONFIG,
                                 f"SolutionName eq '@{{{sol}}}' and TargetEnvironment eq '@{{{target}}}'", top=1)},
-        {"Config": {"type": "Compose", "inputs": "@first(body('Get_config')?['value'])"}},
         {"Check_config": {"type": "If",
                           "expression": {"equals": ["@empty(body('Get_config')?['value'])", True]},
                           "actions": on_missing}},
+        {"Config": {"type": "Compose", "inputs": "@first(body('Get_config')?['value'])"}},
         {"Dev_url": {"type": "Compose", "inputs": "@" + url_expr("outputs('Config')", "DevPowerPlatformUrl")}},
         {"Target_url": {"type": "Compose", "inputs": "@" + url_expr("outputs('Config')", "TargetPowerPlatformUrl")}},
         {"Get_connection_map": sp_items(SP, s.LIST_CONNECTIONS, f"Environment eq '@{{{target}}}'")},
@@ -74,7 +77,7 @@ def child_wrapper(try_actions, reply_body):
         "from": "@result('Try')", "where": "@equals(item()?['status'], 'Failed')"}},
         "Try", status=("Failed", "Skipped", "TimedOut"))
     actions["Reply_failed"] = after(respond(reply), "Failed_actions")
-    actions["Stop_failed"] = after(terminate("@{variables('FailMessage')}"), "Reply_failed")
+    actions["Stop_failed"] = after(terminate(fail_message_expr), "Reply_failed")
     return actions
 
 
@@ -155,7 +158,8 @@ def c3():
                                 "@concat('Connection references not bound as mapped (reference|connection): ', "
                                 "join(body('Wrong_bindings'), ', '))")}},
     )
-    # Terminate is not allowed inside a Foreach, so missing value rows are checked before the loop.
+    # Missing value rows are checked before the loop, so the loop body only ever updates rows
+    # known to exist.
     variables = seq(
         {"Target_defs": list_rows(
             DV, target, "environmentvariabledefinitions", select="schemaname",
@@ -250,32 +254,61 @@ def export_steps():
     return acts
 
 
-def log_step(step, status_action, message_action=None):
-    """One log line. actions('X') works for skipped actions; body('X') would throw.
+STAGES = ("Prechecks", "Export", "Import", "PostImport")
 
-    status/seconds come from `status_action`. On failure the message is that action's own error;
-    otherwise it's `message_action`'s (default: same as status_action) reply body message - used
-    for Import/PostImport where the real status now lives on Check_C2/Check_C3 (which reflects
-    the child's reply) but the success message is on the Run_C2_import/Run_C3_post_import reply.
+
+def stage_failed_query(scope):
+    """Query action (top-level, in Log) finding the Failed entry (if any) of a stage Scope's own
+    result(). Skips through fine on a Succeeded/Skipped scope (empty result). This is the only
+    reliable way to get a scope's real underlying error: result() reflects top-level actions of
+    the scope, but the Scope action itself doesn't surface an aggregate error message, and the
+    consumption workflow language has no inline array-filter expression - only the Query action.
     """
-    message_action = message_action or status_action
-    sa = f"actions('{status_action}')"
-    ma = f"actions('{message_action}')"
+    return {f"{scope}_failed": {"type": "Query", "inputs": {
+        "from": f"@result('{scope}')", "where": "@equals(item()?['status'], 'Failed')"}}}
+
+
+def stage_fallback_message(scope):
+    """The failed action's own error message inside a stage Scope, via its _failed query."""
+    q = f"body('{scope}_failed')"
+    return (f"coalesce(first({q})?['outputs']?['body']?['error']?['message'], "
+            f"first({q})?['error']?['message'])")
+
+
+def log_step(step, scope, switch_expr=None, child_action=None):
+    """One log line, reading the stage Scope itself (actions('X') works even when the scope was
+    skipped; body('X') would throw).
+
+    status: the Scope's own status, except when switch_expr is given and false while the Scope
+    Succeeded - the switch was off and the inner If just skipped the child, so report Skipped.
+    seconds: from the Scope's own start/end time (this is what makes the 120s child-timeout
+    finding show up as an Import duration).
+    message: on Failed, FailMessage if set (covers every fail_steps path within the stage), else
+    the stage's own _failed-query fallback (covers a bare connector failure that never went
+    through fail_steps); when not Failed, the child's reply message for Import/PostImport, else ''.
+    """
+    sc = f"actions('{scope}')"
+    raw_status = f"{sc}?['status']"
+    status = raw_status
+    if switch_expr:
+        status = f"if(and(equals({raw_status}, 'Succeeded'), equals({switch_expr}, False)), 'Skipped', {raw_status})"
+    seconds = (f"div(sub(ticks(coalesce({sc}?['endTime'], utcNow())), "
+               f"ticks(coalesce({sc}?['startTime'], utcNow()))), 10000000)")
+    success_message = f"coalesce(actions('{child_action}')?['outputs']?['body']?['message'], '')" if child_action else "''"
     return {
         "step": step,
-        "status": f"@{{{sa}?['status']}}",
-        "seconds": f"@{{div(sub(ticks(coalesce({sa}?['endTime'], utcNow())), "
-                   f"ticks(coalesce({sa}?['startTime'], utcNow()))), 10000000)}}",
-        "message": f"@{{if(equals({sa}?['status'], 'Failed'), "
-                   f"coalesce({sa}?['outputs']?['body']?['error']?['message'], {sa}?['error']?['message'], ''), "
-                   f"coalesce({ma}?['outputs']?['body']?['message'], ''))}}",
+        "status": f"@{{{status}}}",
+        "seconds": f"@{{{seconds}}}",
+        "message": f"@{{if(equals({raw_status}, 'Failed'), "
+                   f"if(not(empty(variables('FailMessage'))), variables('FailMessage'), "
+                   f"{stage_fallback_message(scope)}), {success_message})}}",
     }
 
 
 def c1(ids):
     missing = ("@concat('Missing mapping rows for ', outputs('Target'), ': ', "
                "join(union(body('Missing_refs'), body('Missing_vars')), ', '))")
-    main = seq(
+    prechecks = seq(
         config_actions(SOL, TARGET, fail_steps("Fail_no_config", no_config_message(SOL, TARGET))),
         {"Mapped_refs": {"type": "Select", "inputs": {
             "from": "@body('Get_connection_map')?['value']", "select": "@item()?['ConnectionReference']"}}},
@@ -288,39 +321,51 @@ def c1(ids):
         {"Check_mappings": {"type": "If",
                             "expression": {"greater": ["@add(length(body('Missing_refs')), length(body('Missing_vars')))", 0]},
                             "actions": fail_steps("Fail_missing_mapping", missing)}},
-        export_steps(),
-        {"If_RunImport": {"type": "If",
-                          "expression": {"equals": ["@outputs('Config')?['RunImport']", True]},
-                          "actions": seq(
-                              {"Run_C2_import": run_child(ids.get(s.C2_NAME, PLACEHOLDER_ID), {
-                                  "text": "@body('Archive_ZIP')?['Path']", "text_1": f"@{SOL}", "text_2": f"@{TARGET}"})},
-                              {"Check_C2": {"type": "If",
-                                           "expression": {"equals": ["@body('Run_C2_import')?['status']", "Succeeded"]},
-                                           "actions": {},
-                                           "else": {"actions": fail_steps(
-                                               "Fail_import", "@concat('Import: ', body('Run_C2_import')?['message'])")}}},
-                          )}},
-        {"If_RunPostImport": {"type": "If",
-                              "expression": {"equals": ["@outputs('Config')?['RunPostImport']", True]},
-                              "actions": seq(
-                                  {"Run_C3_post_import": run_child(ids.get(s.C3_NAME, PLACEHOLDER_ID), {
-                                      "text": f"@{SOL}", "text_1": f"@{TARGET}"})},
-                                  {"Check_C3": {"type": "If",
-                                               "expression": {"equals": ["@body('Run_C3_post_import')?['status']", "Succeeded"]},
-                                               "actions": {},
-                                               "else": {"actions": fail_steps(
-                                                   "Fail_post_import",
-                                                   "@concat('Post-import: ', body('Run_C3_post_import')?['message'])")}}},
-                              )}},
     )
-    # FailMessage covers pre-checks, export-job failure, and now Fail_import/Fail_post_import
-    # (set when Check_C2/Check_C3 see a non-Succeeded child reply); the rest are export errors.
-    message = ("@{if(not(empty(variables('FailMessage'))), variables('FailMessage'), coalesce("
-               "actions('Export_from_DEV')?['outputs']?['body']?['error']?['message'], "
-               "actions('Download_export')?['outputs']?['body']?['error']?['message'], "
-               "actions('Archive_ZIP')?['outputs']?['body']?['message'], "
-               "''))}")
+    import_actions = {
+        "If_RunImport": {"type": "If",
+                         "expression": {"equals": ["@outputs('Config')?['RunImport']", True]},
+                         "actions": seq(
+                             {"Run_C2_import": run_child(ids.get(s.C2_NAME, PLACEHOLDER_ID), {
+                                 "text": "@body('Archive_ZIP')?['Path']", "text_1": f"@{SOL}", "text_2": f"@{TARGET}"})},
+                             {"Check_C2": {"type": "If",
+                                          "expression": {"equals": ["@body('Run_C2_import')?['status']", "Succeeded"]},
+                                          "actions": {},
+                                          "else": {"actions": fail_steps(
+                                              "Fail_import", "@concat('Import: ', body('Run_C2_import')?['message'])")}}},
+                         )}}
+    post_import_actions = {
+        "If_RunPostImport": {"type": "If",
+                             "expression": {"equals": ["@outputs('Config')?['RunPostImport']", True]},
+                             "actions": seq(
+                                 {"Run_C3_post_import": run_child(ids.get(s.C3_NAME, PLACEHOLDER_ID), {
+                                     "text": f"@{SOL}", "text_1": f"@{TARGET}"})},
+                                 {"Check_C3": {"type": "If",
+                                              "expression": {"equals": ["@body('Run_C3_post_import')?['status']", "Succeeded"]},
+                                              "actions": {},
+                                              "else": {"actions": fail_steps(
+                                                  "Fail_post_import",
+                                                  "@concat('Post-import: ', body('Run_C3_post_import')?['message'])")}}},
+                             )}}
+    # Four stage Scopes, in sequence, each running only after the previous one Succeeded: a
+    # failure in one stage stops the later stages, and each Scope's own start/end/status become
+    # the run log's per-step status/seconds/message (see log_step).
+    main = seq(
+        {"Prechecks": {"type": "Scope", "actions": prechecks}},
+        {"Export": {"type": "Scope", "actions": export_steps()}},
+        {"Import": {"type": "Scope", "actions": import_actions}},
+        {"PostImport": {"type": "Scope", "actions": post_import_actions}},
+    )
+    # The stage that actually failed sets FailMessage via fail_steps in almost every case (that's
+    # what Check_mappings/Check_config/Check_C2/Check_C3 do); the per-stage _failed queries are the
+    # fallback for a bare connector failure that never went through fail_steps.
+    fallback_chain = ", ".join(stage_fallback_message(stage) for stage in STAGES)
+    top_message = (
+        "@{if(not(empty(variables('FailMessage'))), variables('FailMessage'), "
+        f"coalesce({fallback_chain}, "
+        "if(equals(actions('Main')?['status'], 'Failed'), 'Deployment failed; see run history', '')))}")
     log = seq(
+        *(stage_failed_query(stage) for stage in STAGES),
         {"Log_entry": {"type": "Compose", "inputs": {
             "runId": "@{workflow()?['run']?['name']}",
             "solution": f"@{{{SOL}}}",
@@ -331,10 +376,15 @@ def c1(ids):
                 "RunImport": "@{actions('Config')?['outputs']?['RunImport']}",
                 "RunPostImport": "@{actions('Config')?['outputs']?['RunPostImport']}",
             },
-            "message": message,
-            "steps": [log_step("Prechecks", "Check_mappings"), log_step("Export", "Export_succeeded"),
-                      log_step("Import", "Check_C2", "Run_C2_import"),
-                      log_step("PostImport", "Check_C3", "Run_C3_post_import")],
+            "message": top_message,
+            "steps": [
+                log_step("Prechecks", "Prechecks"),
+                log_step("Export", "Export"),
+                log_step("Import", "Import", switch_expr="actions('Config')?['outputs']?['RunImport']",
+                         child_action="Run_C2_import"),
+                log_step("PostImport", "PostImport", switch_expr="actions('Config')?['outputs']?['RunPostImport']",
+                         child_action="Run_C3_post_import"),
+            ],
         }}},
         {"Write_log": op(SP, s.SP_API, "CreateFile", {
             "dataset": s.ADMIN_SITE,
@@ -352,11 +402,14 @@ def c1(ids):
     )
     actions["Log"] = after({"type": "Scope", "actions": log}, "Main",
                            status=("Succeeded", "Failed", "Skipped", "TimedOut"))
+    report_message = ("@{if(equals(actions('Main')?['status'], 'Succeeded'), "
+                       "'Run log could not be written', outputs('Log_entry')?['message'])}")
     actions["Report_failure"] = after({
         "type": "If",
-        "expression": {"equals": ["@actions('Main')?['status']", "Succeeded"]},
+        "expression": {"and": [{"equals": ["@actions('Main')?['status']", "Succeeded"]},
+                               {"equals": ["@actions('Log')?['status']", "Succeeded"]}]},
         "actions": {},
-        "else": {"actions": {"Stop_failed": terminate("@{outputs('Log_entry')?['message']}")}},
+        "else": {"actions": {"Stop_failed": terminate(report_message)}},
     }, "Log", status=("Succeeded", "Failed"))
     return clientdata(manual_trigger([
         ("text", "Solution", "Solution unique name (default Demo)"),
