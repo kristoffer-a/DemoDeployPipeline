@@ -518,7 +518,7 @@
                   "type": "Workflow",
                   "inputs": {
                     "host": {
-                      "workflowReferenceName": "00000000-0000-0000-0000-000000000000"
+                      "workflowReferenceName": "0fb24d06-aab7-f111-aaae-000d3a832204"
                     },
                     "body": {
                       "text": "@body('Archive_ZIP')?['Path']",
@@ -585,7 +585,7 @@
                   "type": "Workflow",
                   "inputs": {
                     "host": {
-                      "workflowReferenceName": "00000000-0000-0000-0000-000000000000"
+                      "workflowReferenceName": "20b24d06-aab7-f111-aaae-000d3a832204"
                     },
                     "body": {
                       "text": "@outputs('Solution')",
