@@ -291,7 +291,7 @@ def log_step(step, scope, switch_expr=None, child_action=None):
     raw_status = f"{sc}?['status']"
     status = raw_status
     if switch_expr:
-        status = f"if(and(equals({raw_status}, 'Succeeded'), equals({switch_expr}, False)), 'Skipped', {raw_status})"
+        status = f"if(and(equals({raw_status}, 'Succeeded'), equals({switch_expr}, false)), 'Skipped', {raw_status})"
     seconds = (f"div(sub(ticks(coalesce({sc}?['endTime'], utcNow())), "
                f"ticks(coalesce({sc}?['startTime'], utcNow()))), 10000000)")
     success_message = f"coalesce(actions('{child_action}')?['outputs']?['body']?['message'], '')" if child_action else "''"

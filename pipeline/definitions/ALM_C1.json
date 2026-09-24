@@ -739,13 +739,13 @@
                   },
                   {
                     "step": "Import",
-                    "status": "@{if(and(equals(actions('Import')?['status'], 'Succeeded'), equals(actions('Config')?['outputs']?['RunImport'], False)), 'Skipped', actions('Import')?['status'])}",
+                    "status": "@{if(and(equals(actions('Import')?['status'], 'Succeeded'), equals(actions('Config')?['outputs']?['RunImport'], false)), 'Skipped', actions('Import')?['status'])}",
                     "seconds": "@{div(sub(ticks(coalesce(actions('Import')?['endTime'], utcNow())), ticks(coalesce(actions('Import')?['startTime'], utcNow()))), 10000000)}",
                     "message": "@{if(equals(actions('Import')?['status'], 'Failed'), if(not(empty(variables('FailMessage'))), variables('FailMessage'), coalesce(first(body('Import_failed'))?['outputs']?['body']?['error']?['message'], first(body('Import_failed'))?['error']?['message'])), coalesce(actions('Run_C2_import')?['outputs']?['body']?['message'], ''))}"
                   },
                   {
                     "step": "PostImport",
-                    "status": "@{if(and(equals(actions('PostImport')?['status'], 'Succeeded'), equals(actions('Config')?['outputs']?['RunPostImport'], False)), 'Skipped', actions('PostImport')?['status'])}",
+                    "status": "@{if(and(equals(actions('PostImport')?['status'], 'Succeeded'), equals(actions('Config')?['outputs']?['RunPostImport'], false)), 'Skipped', actions('PostImport')?['status'])}",
                     "seconds": "@{div(sub(ticks(coalesce(actions('PostImport')?['endTime'], utcNow())), ticks(coalesce(actions('PostImport')?['startTime'], utcNow()))), 10000000)}",
                     "message": "@{if(equals(actions('PostImport')?['status'], 'Failed'), if(not(empty(variables('FailMessage'))), variables('FailMessage'), coalesce(first(body('PostImport_failed'))?['outputs']?['body']?['error']?['message'], first(body('PostImport_failed'))?['error']?['message'])), coalesce(actions('Run_C3_post_import')?['outputs']?['body']?['message'], ''))}"
                   }
