@@ -28,3 +28,8 @@ Thumbs.db
 
 __pycache__/
 *.pyc
+
+# draw.io desktop backups
+BACKUP*.drawio
+*.bkp
+.$*.drawio.bkp

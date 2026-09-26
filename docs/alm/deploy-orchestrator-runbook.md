@@ -6,7 +6,7 @@ Design: `docs/superpowers/specs/2026-09-23-deploy-orchestrator-design.md`. Plan 
 ## 1. Prerequisites
 
 - `az login` into tenant `1c5afb69-a82c-4c81-b2cc-743ce7f91dac`. Every script stops if az shows another tenant.
-- Account: `kriall076@7xpydh.onmicrosoft.com`. This is the user's explicit exception to the bosso-only rule for this work; replace it with a service account before production.
+- Account: `kriall076@7xpydh.onmicrosoft.com` (default) or `bosso@7xpydh.onmicrosoft.com` (same tenant and permissions). Replace with a service account before production.
 - ADMIN connections owned by kriall076: Dataverse `shared-commondataser-88f9738e`, SharePoint `shared-sharepointonl-a0f00819`.
 - One connection per connector in each target environment, created once by a person, e.g. TEST SharePoint `shared-sharepointonl-0f567e53`. Deployments never sign in; they only bind.
 

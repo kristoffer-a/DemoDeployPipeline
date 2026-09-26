@@ -72,7 +72,7 @@
         <mxCell id="r_21" value="&lt;b&gt;To build for PROD&lt;/b&gt;&lt;br&gt;1. Put the solution version in the ZIP name.&lt;br&gt;2. C1 option: &lt;b&gt;deploy an archived ZIP&lt;/b&gt; (skip export).&lt;br&gt;3. Approval step before PROD.&lt;br&gt;4. PROD rows in ALMConfig, ALMConnections, ALMVariables." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;fontSize=14;" parent="1" vertex="1">
           <mxGeometry x="1040" y="430" width="420" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="r_22" value="&lt;b&gt;Matches ALMPipeline 1.0.0.0&lt;/b&gt; (ADMIN) · Demo 1.0.0.0&lt;br&gt;pipeline/ code @ 9f20d8d · diagram 2026-09-26" style="rounded=1;arcSize=20;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=11;align=left;spacingLeft=8;" parent="1" vertex="1">
+        <mxCell id="r_22" value="&lt;b&gt;Matches ALMPipeline 1.0.0.0&lt;/b&gt; (ADMIN) · Demo 1.0.0.0&lt;br&gt;pipeline/ @ tag alm-pipeline-1.0.0.0 · diagram 2026-09-26" style="rounded=1;arcSize=20;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=11;align=left;spacingLeft=8;" parent="1" vertex="1">
           <mxGeometry x="1480" y="16" width="330" height="42" as="geometry" />
         </mxCell>
       </root>
@@ -251,7 +251,7 @@
         <mxCell id="a_56" value="app reads" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#038387;fontColor=#038387;dashed=1;dashPattern=8 5;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_37" target="a_45">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="a_57" value="&lt;b&gt;Matches ALMPipeline 1.0.0.0&lt;/b&gt; (ADMIN) · Demo 1.0.0.0&lt;br&gt;pipeline/ code @ 9f20d8d · diagram 2026-09-26" style="rounded=1;arcSize=20;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=11;align=left;spacingLeft=8;" parent="1" vertex="1">
+        <mxCell id="a_57" value="&lt;b&gt;Matches ALMPipeline 1.0.0.0&lt;/b&gt; (ADMIN) · Demo 1.0.0.0&lt;br&gt;pipeline/ @ tag alm-pipeline-1.0.0.0 · diagram 2026-09-26" style="rounded=1;arcSize=20;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=11;align=left;spacingLeft=8;" parent="1" vertex="1">
           <mxGeometry x="1480" y="16" width="330" height="42" as="geometry" />
         </mxCell>
       </root>
@@ -397,7 +397,7 @@
         <mxCell id="c_45" value="Off switch = stage does nothing and the log says &lt;b&gt;Skipped&lt;/b&gt;." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;" parent="1" vertex="1">
           <mxGeometry x="40" y="800" width="900" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="c_46" value="&lt;b&gt;Matches ALMPipeline 1.0.0.0&lt;/b&gt; (ADMIN) · Demo 1.0.0.0&lt;br&gt;pipeline/ code @ 9f20d8d · diagram 2026-09-26" style="rounded=1;arcSize=20;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=11;align=left;spacingLeft=8;" parent="1" vertex="1">
+        <mxCell id="c_46" value="&lt;b&gt;Matches ALMPipeline 1.0.0.0&lt;/b&gt; (ADMIN) · Demo 1.0.0.0&lt;br&gt;pipeline/ @ tag alm-pipeline-1.0.0.0 · diagram 2026-09-26" style="rounded=1;arcSize=20;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=11;align=left;spacingLeft=8;" parent="1" vertex="1">
           <mxGeometry x="1480" y="16" width="330" height="42" as="geometry" />
         </mxCell>
       </root>
@@ -510,7 +510,7 @@
         <mxCell id="k_34" value="&lt;b&gt;Why this split?&lt;/b&gt; C2 can run alone (fresh import). C3 can run alone too (fix values without importing: RunImport off, RunPostImport on)." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;" parent="1" vertex="1">
           <mxGeometry x="40" y="580" width="1300" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="k_35" value="&lt;b&gt;Matches ALMPipeline 1.0.0.0&lt;/b&gt; (ADMIN) · Demo 1.0.0.0&lt;br&gt;pipeline/ code @ 9f20d8d · diagram 2026-09-26" style="rounded=1;arcSize=20;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=11;align=left;spacingLeft=8;" parent="1" vertex="1">
+        <mxCell id="k_35" value="&lt;b&gt;Matches ALMPipeline 1.0.0.0&lt;/b&gt; (ADMIN) · Demo 1.0.0.0&lt;br&gt;pipeline/ @ tag alm-pipeline-1.0.0.0 · diagram 2026-09-26" style="rounded=1;arcSize=20;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=11;align=left;spacingLeft=8;" parent="1" vertex="1">
           <mxGeometry x="1480" y="16" width="330" height="42" as="geometry" />
         </mxCell>
       </root>
@@ -602,7 +602,7 @@
         <mxCell id="s_27" value="&lt;b&gt;New product or target&lt;/b&gt;&lt;br&gt;1. ALMConfig row&lt;br&gt;2. ALMConnections row per connection reference&lt;br&gt;3. ALMVariables row per variable&lt;br&gt;Prechecks stop the run until 2 and 3 are complete." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;fontSize=14;" parent="1" vertex="1">
           <mxGeometry x="40" y="500" width="600" height="130" as="geometry" />
         </mxCell>
-        <mxCell id="s_28" value="&lt;b&gt;Matches ALMPipeline 1.0.0.0&lt;/b&gt; (ADMIN) · Demo 1.0.0.0&lt;br&gt;pipeline/ code @ 9f20d8d · diagram 2026-09-26" style="rounded=1;arcSize=20;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=11;align=left;spacingLeft=8;" parent="1" vertex="1">
+        <mxCell id="s_28" value="&lt;b&gt;Matches ALMPipeline 1.0.0.0&lt;/b&gt; (ADMIN) · Demo 1.0.0.0&lt;br&gt;pipeline/ @ tag alm-pipeline-1.0.0.0 · diagram 2026-09-26" style="rounded=1;arcSize=20;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=11;align=left;spacingLeft=8;" parent="1" vertex="1">
           <mxGeometry x="1480" y="16" width="330" height="42" as="geometry" />
         </mxCell>
       </root>
@@ -691,7 +691,7 @@
         <mxCell id="m_26" value="&lt;b style='font-size:15px'&gt;Release to PROD&lt;/b&gt;&lt;br&gt;&lt;font color='#444444'&gt;deploy the archived ZIP that passed TEST&lt;br&gt;(page 1, steps ③ ④)&lt;/font&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFF8E1;strokeColor=#B8860B;strokeWidth=2;verticalAlign=top;align=center;spacingTop=14;fontSize=13;dashed=1;dashPattern=8 5;" parent="1" vertex="1">
           <mxGeometry x="40" y="380" width="520" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="m_27" value="&lt;b&gt;Matches ALMPipeline 1.0.0.0&lt;/b&gt; (ADMIN) · Demo 1.0.0.0&lt;br&gt;pipeline/ code @ 9f20d8d · diagram 2026-09-26" style="rounded=1;arcSize=20;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=11;align=left;spacingLeft=8;" parent="1" vertex="1">
+        <mxCell id="m_27" value="&lt;b&gt;Matches ALMPipeline 1.0.0.0&lt;/b&gt; (ADMIN) · Demo 1.0.0.0&lt;br&gt;pipeline/ @ tag alm-pipeline-1.0.0.0 · diagram 2026-09-26" style="rounded=1;arcSize=20;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=11;align=left;spacingLeft=8;" parent="1" vertex="1">
           <mxGeometry x="1480" y="16" width="330" height="42" as="geometry" />
         </mxCell>
       </root>

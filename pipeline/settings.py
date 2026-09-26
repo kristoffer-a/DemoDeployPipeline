@@ -26,14 +26,14 @@ FLOW_REFS = {
     SP_KEY: ("alm_PipelineSharePoint", SP_API),
 }
 
-# ALM-Admin lists. ALMConnections and ALMVariables IDs are filled in by Task 2.
+# ALM-Admin SharePoint lists (site ADMIN_SITE).
 LIST_CONFIG = "049eba5a-700e-44db-9d2b-4e95c3af51b6"
 LIST_CONNECTIONS = "bc640935-9503-44de-87d1-699d65c8d351"
 LIST_VARIABLES = "1ffc8ca3-1458-423b-81cb-49226b41664f"
 LOG_FOLDER = "/DeploymentLogs"
 
 # How the SharePoint connector returns Hyperlink columns from Get items.
-# False: plain URL string. True: object with 'Url'. Confirmed by the first live run (Task 5).
+# False: plain URL string. True: object with 'Url'. Confirmed by the first live run.
 URL_AS_OBJECT = False
 
 C1_NAME = "ALM C1 - Deploy (parent)"
