@@ -1,0 +1,81 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram id="alm-demo-status" name="Demo status">
+    <mxGraphModel grid="1" gridSize="10" page="0" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" parent="1" vertex="1" value="ALM demo: what exists, what's next" style="text;html=1;fontSize=26;fontStyle=1;fontColor=#19354A;align=left;verticalAlign=middle;">
+          <mxGeometry x="40" y="20" width="700" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="sub" parent="1" vertex="1" value="Scope: ADMIN / DEV / TEST only. Goal: Demo solution from DEV runs as managed in TEST, reading TEST data. As of 2026-09-23." style="text;html=1;fontSize=14;fontColor=#4A5A6A;align=left;verticalAlign=middle;whiteSpace=wrap;">
+          <mxGeometry x="40" y="60" width="900" height="30" as="geometry" />
+        </mxCell>
+
+        <!-- Legend -->
+        <mxCell id="lg1" parent="1" vertex="1" value="Done in tenant" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=12;">
+          <mxGeometry x="960" y="20" width="130" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="lg2" parent="1" vertex="1" value="Next (you, in UI)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;fontSize=12;fontStyle=1;">
+          <mxGeometry x="960" y="54" width="130" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="lg3" parent="1" vertex="1" value="Not started" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;fontSize=12;">
+          <mxGeometry x="1100" y="20" width="130" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="lg4" parent="1" vertex="1" value="Parked (out of scope)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B85450;dashed=1;fontSize=12;fontColor=#B85450;">
+          <mxGeometry x="1100" y="54" width="130" height="28" as="geometry" />
+        </mxCell>
+
+        <!-- Row 1: done -->
+        <mxCell id="s1" parent="1" vertex="1" value="&lt;b&gt;1. Environments&lt;/b&gt;&lt;br&gt;ADMIN, DEV, TEST&lt;br&gt;created + Dataverse" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=13;">
+          <mxGeometry x="40" y="120" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" parent="1" vertex="1" value="&lt;b&gt;2. SharePoint&lt;/b&gt;&lt;br&gt;ALM-Admin / Dev / Test sites&lt;br&gt;DEV Products: 3 rows&lt;br&gt;TEST Products: empty" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=13;">
+          <mxGeometry x="270" y="120" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" parent="1" vertex="1" value="&lt;b&gt;3. Demo solution 1.0.0.0&lt;/b&gt;&lt;br&gt;publisher dev&lt;br&gt;env vars: Site, List&lt;br&gt;conn ref: dev_SharePoint" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=13;">
+          <mxGeometry x="500" y="120" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" parent="1" vertex="1" value="&lt;b&gt;4. Canvas app&lt;/b&gt;&lt;br&gt;published in DEV&lt;br&gt;reads DEV Products" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=13;">
+          <mxGeometry x="730" y="120" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="s5" parent="1" vertex="1" value="&lt;b&gt;5. New SP connection&lt;/b&gt;&lt;br&gt;shared-sharepointonl-4f3b8a9e&lt;br&gt;owner bosso, Connected" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=13;">
+          <mxGeometry x="960" y="120" width="190" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="e12" parent="1" edge="1" source="s1" target="s2" style="endArrow=block;html=1;strokeColor=#82B366;strokeWidth=2;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e23" parent="1" edge="1" source="s2" target="s3" style="endArrow=block;html=1;strokeColor=#82B366;strokeWidth=2;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e34" parent="1" edge="1" source="s3" target="s4" style="endArrow=block;html=1;strokeColor=#82B366;strokeWidth=2;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e45" parent="1" edge="1" source="s4" target="s5" style="endArrow=block;html=1;strokeColor=#82B366;strokeWidth=2;"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Row 2: next + remaining -->
+        <mxCell id="s6" parent="1" vertex="1" value="&lt;b&gt;6. NEXT: Rebind dev_SharePoint&lt;/b&gt;&lt;br&gt;make.powerapps.com → DEV → Demo&lt;br&gt;→ Connection references&lt;br&gt;→ pick 4f3b8a9e → Save" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6CC;strokeColor=#D79B00;strokeWidth=3;fontSize=13;">
+          <mxGeometry x="960" y="250" width="190" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="s7" parent="1" vertex="1" value="&lt;b&gt;7. Flow in Demo&lt;/b&gt;&lt;br&gt;&quot;Demo - Get First Product&quot;&lt;br&gt;manual trigger → Get items&lt;br&gt;Top 1 → Compose" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;fontSize=13;">
+          <mxGeometry x="730" y="250" width="190" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="s8" parent="1" vertex="1" value="&lt;b&gt;8. Spike: export&lt;/b&gt;&lt;br&gt;Export Demo from DEV&lt;br&gt;(managed + unmanaged ZIP)&lt;br&gt;save to ALM-Admin site" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;fontSize=13;">
+          <mxGeometry x="500" y="250" width="190" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="s9" parent="1" vertex="1" value="&lt;b&gt;9. Import to TEST&lt;/b&gt;&lt;br&gt;same managed ZIP&lt;br&gt;TEST Site/List values&lt;br&gt;TEST connection" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;fontSize=13;">
+          <mxGeometry x="270" y="250" width="190" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="s10" parent="1" vertex="1" value="&lt;b&gt;10. Verify&lt;/b&gt;&lt;br&gt;TEST app reads TEST data&lt;br&gt;DEV still reads DEV&lt;br&gt;= DEMO DONE" style="rhombus;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#999999;fontSize=13;">
+          <mxGeometry x="40" y="235" width="190" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="e56" parent="1" edge="1" source="s5" target="s6" style="endArrow=block;html=1;strokeColor=#D79B00;strokeWidth=3;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e67" parent="1" edge="1" source="s6" target="s7" style="endArrow=block;html=1;strokeColor=#999999;strokeWidth=2;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e78" parent="1" edge="1" source="s7" target="s8" style="endArrow=block;html=1;strokeColor=#999999;strokeWidth=2;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e89" parent="1" edge="1" source="s8" target="s9" style="endArrow=block;html=1;strokeColor=#999999;strokeWidth=2;"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="e910" parent="1" edge="1" source="s9" target="s10" style="endArrow=block;html=1;strokeColor=#999999;strokeWidth=2;"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <!-- Parked -->
+        <mxCell id="parked" parent="1" vertex="1" value="&lt;b&gt;Parked — not needed for the demo&lt;/b&gt;&lt;br&gt;• ALMAdmin request/worker flows&lt;br&gt;• Operator UI&lt;br&gt;• JS helper model + 8 local tests&lt;br&gt;• Failure/timeout test matrix&lt;br&gt;• Prod / 4th environment" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#B85450;dashed=1;fontSize=13;fontColor=#B85450;align=left;spacingLeft=10;">
+          <mxGeometry x="270" y="400" width="420" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="effort" parent="1" vertex="1" value="&lt;b&gt;Where the work went&lt;/b&gt;&lt;br&gt;~40 docs in docs/alm, auth guard tooling,&lt;br&gt;reviews + handoffs. Tenant work = steps 1–5." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#6C8EBF;fontSize=13;fontColor=#19354A;align=left;spacingLeft=10;">
+          <mxGeometry x="730" y="400" width="420" height="120" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

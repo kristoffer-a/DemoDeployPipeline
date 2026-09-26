@@ -1,0 +1,232 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1580" height="1260" viewBox="0 0 1580 1260">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/></marker></defs>
+<rect width="1580" height="1260" fill="#F3F7FA"/>
+<text x="50" y="66" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" text-anchor="start">
+<tspan x="50" dy="0">A practical ALM model for Power Platform</tspan>
+</text>
+<text x="50" y="105" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" text-anchor="start">
+<tspan x="50" dy="0">Three shared environments · SharePoint business data · Dataverse metadata · Manual solution delivery</tspan>
+</text>
+<text x="50" y="136" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" text-anchor="start">
+<tspan x="50" dy="0">REFERENCE DESIGN  /  Confirmed constraints, with recommended access and release controls</tspan>
+</text>
+<rect x="50" y="172" width="470" height="782" rx="14" fill="white" stroke="#C7D4DC" stroke-width="1.5"/>
+<rect x="50" y="172" width="470" height="88" rx="14" fill="#EAF3FD" stroke="#EAF3FD" stroke-width="1.5"/>
+<text x="74" y="212" fill="#1766B3" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start">
+<tspan x="74" dy="0">DEV</tspan>
+</text>
+<text x="74" y="239" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="74" dy="0">Build and own the source</tspan>
+</text>
+<rect x="70" y="280" width="430" height="99" rx="14" fill="white" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="90" y="314" fill="#1766B3" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="90" dy="0">01  Environment admission</tspan>
+</text>
+<text x="90" y="345" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="90" dy="0">Makers + admins + runtime accounts</tspan>
+<tspan x="90" dy="22.950000000000003">Environment group + required roles</tspan>
+</text>
+<rect x="70" y="398" width="430" height="118" rx="14" fill="#EAF3FD" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="90" y="432" fill="#1766B3" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="90" dy="0">02  Audience groups</tspan>
+</text>
+<text x="90" y="463" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="90" dy="0">Development users, per solution</tspan>
+<tspan x="90" dy="22.950000000000003">Share canvas apps with these groups.</tspan>
+<tspan x="90" dy="22.950000000000003">Grant SharePoint roles separately.</tspan>
+</text>
+<rect x="70" y="538" width="430" height="209" rx="14" fill="white" stroke="#1766B3" stroke-width="1.5"/>
+<text x="90" y="564" fill="#1766B3" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="start">
+<tspan x="90" dy="0">POWER PLATFORM</tspan>
+</text>
+<text x="90" y="603" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="start">
+<tspan x="90" dy="0">Unmanaged solutions</tspan>
+</text>
+<rect x="90" y="620" width="118" height="42" rx="8" fill="#EAF3FD" stroke="#EAF3FD" stroke-width="1.5"/>
+<text x="149.0" y="645" fill="#1766B3" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="middle">
+<tspan x="149.0" dy="0">Solution 1</tspan>
+</text>
+<rect x="218" y="620" width="118" height="42" rx="8" fill="#EAF3FD" stroke="#EAF3FD" stroke-width="1.5"/>
+<text x="277.0" y="645" fill="#1766B3" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="middle">
+<tspan x="277.0" dy="0">Solution …</tspan>
+</text>
+<rect x="346" y="620" width="118" height="42" rx="8" fill="#EAF3FD" stroke="#EAF3FD" stroke-width="1.5"/>
+<text x="405.0" y="645" fill="#1766B3" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="middle">
+<tspan x="405.0" dy="0">Solution N</tspan>
+</text>
+<text x="90" y="696" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="90" dy="0">Developers may change components.</tspan>
+<tspan x="90" dy="21.6">Dataverse stores solution metadata.</tspan>
+</text>
+<rect x="70" y="800" width="430" height="131" rx="14" fill="#E6F5F1" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="90" y="834" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="90" dy="0">Dev sites + lists</tspan>
+</text>
+<text x="90" y="865" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="90" dy="0">Synthetic / non-sensitive test data</tspan>
+<tspan x="90" dy="22.950000000000003">Provision schema and permissions</tspan>
+<tspan x="90" dy="22.950000000000003">separately from solution imports.</tspan>
+</text>
+<polyline points="285.0,747 285.0,800" fill="none" stroke="#087F78" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="305" y="776" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" text-anchor="start">
+<tspan x="305" dy="0">Runtime access</tspan>
+</text>
+<rect x="555" y="172" width="470" height="782" rx="14" fill="white" stroke="#C7D4DC" stroke-width="1.5"/>
+<rect x="555" y="172" width="470" height="88" rx="14" fill="#F1ECF8" stroke="#F1ECF8" stroke-width="1.5"/>
+<text x="579" y="212" fill="#7353AC" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start">
+<tspan x="579" dy="0">TEST</tspan>
+</text>
+<text x="579" y="239" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="579" dy="0">Validate a release candidate</tspan>
+</text>
+<rect x="575" y="280" width="430" height="99" rx="14" fill="white" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="595" y="314" fill="#7353AC" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="595" dy="0">01  Environment admission</tspan>
+</text>
+<text x="595" y="345" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="595" dy="0">Testers + admins + runtime accounts</tspan>
+<tspan x="595" dy="22.950000000000003">Environment group + required roles</tspan>
+</text>
+<rect x="575" y="398" width="430" height="118" rx="14" fill="#F1ECF8" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="595" y="432" fill="#7353AC" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="595" dy="0">02  Audience groups</tspan>
+</text>
+<text x="595" y="463" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="595" dy="0">UAT testers, per solution</tspan>
+<tspan x="595" dy="22.950000000000003">Share canvas apps with these groups.</tspan>
+<tspan x="595" dy="22.950000000000003">Grant SharePoint roles separately.</tspan>
+</text>
+<rect x="575" y="538" width="430" height="209" rx="14" fill="white" stroke="#7353AC" stroke-width="1.5"/>
+<text x="595" y="564" fill="#7353AC" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="start">
+<tspan x="595" dy="0">POWER PLATFORM</tspan>
+</text>
+<text x="595" y="603" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="start">
+<tspan x="595" dy="0">Managed solutions</tspan>
+</text>
+<rect x="595" y="620" width="118" height="42" rx="8" fill="#F1ECF8" stroke="#F1ECF8" stroke-width="1.5"/>
+<text x="654.0" y="645" fill="#7353AC" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="middle">
+<tspan x="654.0" dy="0">Solution 1</tspan>
+</text>
+<rect x="723" y="620" width="118" height="42" rx="8" fill="#F1ECF8" stroke="#F1ECF8" stroke-width="1.5"/>
+<text x="782.0" y="645" fill="#7353AC" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="middle">
+<tspan x="782.0" dy="0">Solution …</tspan>
+</text>
+<rect x="851" y="620" width="118" height="42" rx="8" fill="#F1ECF8" stroke="#F1ECF8" stroke-width="1.5"/>
+<text x="910.0" y="645" fill="#7353AC" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="middle">
+<tspan x="910.0" dy="0">Solution N</tspan>
+</text>
+<text x="595" y="696" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="595" dy="0">Test the package intended for Prod.</tspan>
+<tspan x="595" dy="21.6">Dataverse stores solution metadata.</tspan>
+</text>
+<rect x="575" y="800" width="430" height="131" rx="14" fill="#E6F5F1" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="595" y="834" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="595" dy="0">Test sites + lists</tspan>
+</text>
+<text x="595" y="865" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="595" dy="0">Independent from Dev and Prod</tspan>
+<tspan x="595" dy="22.950000000000003">Provision schema and permissions</tspan>
+<tspan x="595" dy="22.950000000000003">separately from solution imports.</tspan>
+</text>
+<polyline points="790.0,747 790.0,800" fill="none" stroke="#087F78" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="810" y="776" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" text-anchor="start">
+<tspan x="810" dy="0">Runtime access</tspan>
+</text>
+<rect x="1060" y="172" width="470" height="782" rx="14" fill="white" stroke="#C7D4DC" stroke-width="1.5"/>
+<rect x="1060" y="172" width="470" height="88" rx="14" fill="#E6F5F1" stroke="#E6F5F1" stroke-width="1.5"/>
+<text x="1084" y="212" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="27" font-weight="700" text-anchor="start">
+<tspan x="1084" dy="0">PROD</tspan>
+</text>
+<text x="1084" y="239" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="1084" dy="0">Operate the approved release</tspan>
+</text>
+<rect x="1080" y="280" width="430" height="99" rx="14" fill="white" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="1100" y="314" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="1100" dy="0">01  Environment admission</tspan>
+</text>
+<text x="1100" y="345" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="1100" dy="0">End users + admins + runtime accounts</tspan>
+<tspan x="1100" dy="22.950000000000003">Environment group + required roles</tspan>
+</text>
+<rect x="1080" y="398" width="430" height="118" rx="14" fill="#E6F5F1" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="1100" y="432" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="1100" dy="0">02  Audience groups</tspan>
+</text>
+<text x="1100" y="463" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="1100" dy="0">Business users, per solution</tspan>
+<tspan x="1100" dy="22.950000000000003">Share canvas apps with these groups.</tspan>
+<tspan x="1100" dy="22.950000000000003">Grant SharePoint roles separately.</tspan>
+</text>
+<rect x="1080" y="538" width="430" height="209" rx="14" fill="white" stroke="#087F78" stroke-width="1.5"/>
+<text x="1100" y="564" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" text-anchor="start">
+<tspan x="1100" dy="0">POWER PLATFORM</tspan>
+</text>
+<text x="1100" y="603" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="700" text-anchor="start">
+<tspan x="1100" dy="0">Managed solutions</tspan>
+</text>
+<rect x="1100" y="620" width="118" height="42" rx="8" fill="#E6F5F1" stroke="#E6F5F1" stroke-width="1.5"/>
+<text x="1159.0" y="645" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="middle">
+<tspan x="1159.0" dy="0">Solution 1</tspan>
+</text>
+<rect x="1228" y="620" width="118" height="42" rx="8" fill="#E6F5F1" stroke="#E6F5F1" stroke-width="1.5"/>
+<text x="1287.0" y="645" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="middle">
+<tspan x="1287.0" dy="0">Solution …</tspan>
+</text>
+<rect x="1356" y="620" width="118" height="42" rx="8" fill="#E6F5F1" stroke="#E6F5F1" stroke-width="1.5"/>
+<text x="1415.0" y="645" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="middle">
+<tspan x="1415.0" dy="0">Solution N</tspan>
+</text>
+<text x="1100" y="696" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="1100" dy="0">Restrict maker and co-owner rights.</tspan>
+<tspan x="1100" dy="21.6">Dataverse stores solution metadata.</tspan>
+</text>
+<rect x="1080" y="800" width="430" height="131" rx="14" fill="#E6F5F1" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="1100" y="834" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="1100" dy="0">Production sites + lists</tspan>
+</text>
+<text x="1100" y="865" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="1100" dy="0">Business data; explicit access grants</tspan>
+<tspan x="1100" dy="22.950000000000003">Provision schema and permissions</tspan>
+<tspan x="1100" dy="22.950000000000003">separately from solution imports.</tspan>
+</text>
+<polyline points="1295.0,747 1295.0,800" fill="none" stroke="#087F78" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1315" y="776" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" text-anchor="start">
+<tspan x="1315" dy="0">Runtime access</tspan>
+</text>
+<text x="50" y="995" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" text-anchor="start">
+<tspan x="50" dy="0">RELEASE PATH  /  Promote one versioned managed ZIP; retain its unmanaged source snapshot</tspan>
+</text>
+<rect x="50" y="1020" width="440" height="105" rx="14" fill="#EAF3FD" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="70" y="1054" fill="#1766B3" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="70" dy="0">1  Build and archive</tspan>
+</text>
+<text x="70" y="1085" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="70" dy="0">Export managed + unmanaged packages.</tspan>
+<tspan x="70" dy="22.950000000000003">Record schema steps and target settings.</tspan>
+</text>
+<rect x="570" y="1020" width="440" height="105" rx="14" fill="#F1ECF8" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="590" y="1054" fill="#7353AC" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="590" dy="0">2  Import and verify</tspan>
+</text>
+<text x="590" y="1085" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="590" dy="0">Bind Test connections and variables.</tspan>
+<tspan x="590" dy="22.950000000000003">Run functional and negative access tests.</tspan>
+</text>
+<rect x="1090" y="1020" width="440" height="105" rx="14" fill="#E6F5F1" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="1110" y="1054" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="1110" dy="0">3  Approve and promote</tspan>
+</text>
+<text x="1110" y="1085" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="1110" dy="0">Import the same managed ZIP into Prod.</tspan>
+<tspan x="1110" dy="22.950000000000003">Apply Prod bindings; smoke-test and monitor.</tspan>
+</text>
+<polyline points="490,1072.5 570,1072.5" fill="none" stroke="#1766B3" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1010,1072.5 1090,1072.5" fill="none" stroke="#1766B3" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="50" y="1170" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" text-anchor="start">
+<tspan x="50" dy="0">Guardrails: separate Prod identity where possible • no Dev/Test connection to Prod data • no routine edits in Test/Prod</tspan>
+</text>
+<text x="50" y="1206" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="50" dy="0">SharePoint sites sit outside Power Platform environments. Managed solutions do not require Managed Environments.</tspan>
+<tspan x="50" dy="21.6">“Dev” is a lifecycle stage; use a suitable shared environment type. See the research note for prerequisites and limitations.</tspan>
+</text>
+</svg>

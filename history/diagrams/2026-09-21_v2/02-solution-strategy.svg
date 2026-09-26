@@ -1,0 +1,268 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1290" viewBox="0 0 1800 1290">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/></marker></defs>
+<rect width="1800" height="1290" fill="#F3F7FA"/>
+<text x="60" y="43" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="start">
+<tspan x="60" dy="0">02  /  POWER PLATFORM ALM</tspan>
+</text>
+<text x="60" y="100" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700" text-anchor="start">
+<tspan x="60" dy="0">Several business solutions. Three shared environments.</tspan>
+</text>
+<text x="60" y="137" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" text-anchor="start">
+<tspan x="60" dy="0">Each business solution follows the same lifecycle and retains its own components, audience and SharePoint mapping.</tspan>
+</text>
+<rect x="250" y="180" width="410" height="897" rx="14" fill="white" stroke="#C7D4DC" stroke-width="1.5"/>
+<rect x="250" y="180" width="410" height="77" rx="14" fill="#EAF3FD" stroke="#EAF3FD" stroke-width="1.5"/>
+<text x="272" y="220" fill="#1766B3" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" text-anchor="start">
+<tspan x="272" dy="0">DEV</tspan>
+</text>
+<text x="272" y="245" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="272" dy="0">One shared Power Platform environment</tspan>
+</text>
+<rect x="265" y="275" width="380" height="99" rx="14" fill="white" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="285" y="309" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" text-anchor="start">
+<tspan x="285" dy="0">Environment admission</tspan>
+</text>
+<text x="285" y="343" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="285" dy="0">Makers + admins + service users</tspan>
+<tspan x="285" dy="22.950000000000003">Environment group + assigned roles</tspan>
+</text>
+<rect x="790" y="180" width="410" height="897" rx="14" fill="white" stroke="#C7D4DC" stroke-width="1.5"/>
+<rect x="790" y="180" width="410" height="77" rx="14" fill="#F1ECF8" stroke="#F1ECF8" stroke-width="1.5"/>
+<text x="812" y="220" fill="#7353AC" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" text-anchor="start">
+<tspan x="812" dy="0">TEST</tspan>
+</text>
+<text x="812" y="245" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="812" dy="0">One shared Power Platform environment</tspan>
+</text>
+<rect x="805" y="275" width="380" height="99" rx="14" fill="white" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="825" y="309" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" text-anchor="start">
+<tspan x="825" dy="0">Environment admission</tspan>
+</text>
+<text x="825" y="343" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="825" dy="0">Testers + admins + service users</tspan>
+<tspan x="825" dy="22.950000000000003">Environment group + assigned roles</tspan>
+</text>
+<rect x="1330" y="180" width="410" height="897" rx="14" fill="white" stroke="#C7D4DC" stroke-width="1.5"/>
+<rect x="1330" y="180" width="410" height="77" rx="14" fill="#E6F5F1" stroke="#E6F5F1" stroke-width="1.5"/>
+<text x="1352" y="220" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" text-anchor="start">
+<tspan x="1352" dy="0">PROD</tspan>
+</text>
+<text x="1352" y="245" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="1352" dy="0">One shared Power Platform environment</tspan>
+</text>
+<rect x="1345" y="275" width="380" height="99" rx="14" fill="white" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="1365" y="309" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700" text-anchor="start">
+<tspan x="1365" dy="0">Environment admission</tspan>
+</text>
+<text x="1365" y="343" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="1365" dy="0">Business users + admins + service users</tspan>
+<tspan x="1365" dy="22.950000000000003">Environment group + assigned roles</tspan>
+</text>
+<text x="60" y="298" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="start">
+<tspan x="60" dy="0">ACCESS</tspan>
+</text>
+<text x="60" y="331" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="start">
+<tspan x="60" dy="0">Stage-wide</tspan>
+<tspan x="60" dy="24.3">membership</tspan>
+</text>
+<text x="60" y="450" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="start">
+<tspan x="60" dy="0">BUSINESS NEED A</tspan>
+</text>
+<text x="60" y="487" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="60" dy="0">Independent owner</tspan>
+<tspan x="60" dy="22.950000000000003">and release cycle</tspan>
+</text>
+<rect x="265" y="417" width="380" height="79" rx="14" fill="#EAF3FD" stroke="#1766B3" stroke-width="1.5"/>
+<text x="285" y="453" fill="#1766B3" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="start">
+<tspan x="285" dy="0">Solution A</tspan>
+</text>
+<text x="285" y="485" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="285" dy="0">Unmanaged source</tspan>
+</text>
+<text x="280" y="527" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="280" dy="0">App group   SG-A-Dev-Users</tspan>
+</text>
+<text x="280" y="557" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="280" dy="0">Data site     /sites/A-Dev</tspan>
+</text>
+<text x="280" y="582" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" text-anchor="start">
+<tspan x="280" dy="0">Connection + variable values for this stage</tspan>
+</text>
+<rect x="805" y="417" width="380" height="79" rx="14" fill="#F1ECF8" stroke="#7353AC" stroke-width="1.5"/>
+<text x="825" y="453" fill="#7353AC" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="start">
+<tspan x="825" dy="0">Solution A</tspan>
+</text>
+<text x="825" y="485" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="825" dy="0">Managed package</tspan>
+</text>
+<text x="820" y="527" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="820" dy="0">App group   SG-A-Test-Users</tspan>
+</text>
+<text x="820" y="557" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="820" dy="0">Data site     /sites/A-Test</tspan>
+</text>
+<text x="820" y="582" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" text-anchor="start">
+<tspan x="820" dy="0">Connection + variable values for this stage</tspan>
+</text>
+<rect x="1345" y="417" width="380" height="79" rx="14" fill="#E6F5F1" stroke="#087F78" stroke-width="1.5"/>
+<text x="1365" y="453" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="start">
+<tspan x="1365" dy="0">Solution A</tspan>
+</text>
+<text x="1365" y="485" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="1365" dy="0">Managed package</tspan>
+</text>
+<text x="1360" y="527" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="1360" dy="0">App group   SG-A-Prod-Users</tspan>
+</text>
+<text x="1360" y="557" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="1360" dy="0">Data site     /sites/A-Prod</tspan>
+</text>
+<text x="1360" y="582" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" text-anchor="start">
+<tspan x="1360" dy="0">Connection + variable values for this stage</tspan>
+</text>
+<polyline points="645,456.5 805,456.5" fill="none" stroke="#7353AC" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="724.0" y="437" fill="#7353AC" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" text-anchor="middle">
+<tspan x="724.0" dy="0">deploy</tspan>
+</text>
+<polyline points="1185,456.5 1345,456.5" fill="none" stroke="#087F78" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1264.0" y="437" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" text-anchor="middle">
+<tspan x="1264.0" dy="0">promote</tspan>
+</text>
+<text x="60" y="665" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="start">
+<tspan x="60" dy="0">BUSINESS NEED B</tspan>
+</text>
+<text x="60" y="702" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="60" dy="0">Independent owner</tspan>
+<tspan x="60" dy="22.950000000000003">and release cycle</tspan>
+</text>
+<rect x="265" y="632" width="380" height="79" rx="14" fill="#EAF3FD" stroke="#1766B3" stroke-width="1.5"/>
+<text x="285" y="668" fill="#1766B3" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="start">
+<tspan x="285" dy="0">Solution B</tspan>
+</text>
+<text x="285" y="700" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="285" dy="0">Unmanaged source</tspan>
+</text>
+<text x="280" y="742" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="280" dy="0">App group   SG-B-Dev-Users</tspan>
+</text>
+<text x="280" y="772" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="280" dy="0">Data site     /sites/B-Dev</tspan>
+</text>
+<text x="280" y="797" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" text-anchor="start">
+<tspan x="280" dy="0">Connection + variable values for this stage</tspan>
+</text>
+<rect x="805" y="632" width="380" height="79" rx="14" fill="#F1ECF8" stroke="#7353AC" stroke-width="1.5"/>
+<text x="825" y="668" fill="#7353AC" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="start">
+<tspan x="825" dy="0">Solution B</tspan>
+</text>
+<text x="825" y="700" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="825" dy="0">Managed package</tspan>
+</text>
+<text x="820" y="742" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="820" dy="0">App group   SG-B-Test-Users</tspan>
+</text>
+<text x="820" y="772" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="820" dy="0">Data site     /sites/B-Test</tspan>
+</text>
+<text x="820" y="797" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" text-anchor="start">
+<tspan x="820" dy="0">Connection + variable values for this stage</tspan>
+</text>
+<rect x="1345" y="632" width="380" height="79" rx="14" fill="#E6F5F1" stroke="#087F78" stroke-width="1.5"/>
+<text x="1365" y="668" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="start">
+<tspan x="1365" dy="0">Solution B</tspan>
+</text>
+<text x="1365" y="700" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="1365" dy="0">Managed package</tspan>
+</text>
+<text x="1360" y="742" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="1360" dy="0">App group   SG-B-Prod-Users</tspan>
+</text>
+<text x="1360" y="772" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="1360" dy="0">Data site     /sites/B-Prod</tspan>
+</text>
+<text x="1360" y="797" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" text-anchor="start">
+<tspan x="1360" dy="0">Connection + variable values for this stage</tspan>
+</text>
+<polyline points="645,671.5 805,671.5" fill="none" stroke="#7353AC" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="724.0" y="652" fill="#7353AC" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" text-anchor="middle">
+<tspan x="724.0" dy="0">deploy</tspan>
+</text>
+<polyline points="1185,671.5 1345,671.5" fill="none" stroke="#087F78" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1264.0" y="652" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" text-anchor="middle">
+<tspan x="1264.0" dy="0">promote</tspan>
+</text>
+<text x="60" y="880" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="700" text-anchor="start">
+<tspan x="60" dy="0">BUSINESS NEED N</tspan>
+</text>
+<text x="60" y="917" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="60" dy="0">Independent owner</tspan>
+<tspan x="60" dy="22.950000000000003">and release cycle</tspan>
+</text>
+<rect x="265" y="847" width="380" height="79" rx="14" fill="#EAF3FD" stroke="#1766B3" stroke-width="1.5"/>
+<text x="285" y="883" fill="#1766B3" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="start">
+<tspan x="285" dy="0">Solution N</tspan>
+</text>
+<text x="285" y="915" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="285" dy="0">Unmanaged source</tspan>
+</text>
+<text x="280" y="957" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="280" dy="0">App group   SG-N-Dev-Users</tspan>
+</text>
+<text x="280" y="987" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="280" dy="0">Data site     /sites/N-Dev</tspan>
+</text>
+<text x="280" y="1012" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" text-anchor="start">
+<tspan x="280" dy="0">Connection + variable values for this stage</tspan>
+</text>
+<rect x="805" y="847" width="380" height="79" rx="14" fill="#F1ECF8" stroke="#7353AC" stroke-width="1.5"/>
+<text x="825" y="883" fill="#7353AC" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="start">
+<tspan x="825" dy="0">Solution N</tspan>
+</text>
+<text x="825" y="915" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="825" dy="0">Managed package</tspan>
+</text>
+<text x="820" y="957" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="820" dy="0">App group   SG-N-Test-Users</tspan>
+</text>
+<text x="820" y="987" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="820" dy="0">Data site     /sites/N-Test</tspan>
+</text>
+<text x="820" y="1012" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" text-anchor="start">
+<tspan x="820" dy="0">Connection + variable values for this stage</tspan>
+</text>
+<rect x="1345" y="847" width="380" height="79" rx="14" fill="#E6F5F1" stroke="#087F78" stroke-width="1.5"/>
+<text x="1365" y="883" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" text-anchor="start">
+<tspan x="1365" dy="0">Solution N</tspan>
+</text>
+<text x="1365" y="915" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="1365" dy="0">Managed package</tspan>
+</text>
+<text x="1360" y="957" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="1360" dy="0">App group   SG-N-Prod-Users</tspan>
+</text>
+<text x="1360" y="987" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="1360" dy="0">Data site     /sites/N-Prod</tspan>
+</text>
+<text x="1360" y="1012" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" text-anchor="start">
+<tspan x="1360" dy="0">Connection + variable values for this stage</tspan>
+</text>
+<polyline points="645,886.5 805,886.5" fill="none" stroke="#7353AC" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="724.0" y="867" fill="#7353AC" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" text-anchor="middle">
+<tspan x="724.0" dy="0">deploy</tspan>
+</text>
+<polyline points="1185,886.5 1345,886.5" fill="none" stroke="#087F78" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1264.0" y="867" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" text-anchor="middle">
+<tspan x="1264.0" dy="0">promote</tspan>
+</text>
+<text x="60" y="1115" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" text-anchor="start">
+<tspan x="60" dy="0">READ ACROSS  /  The same business solution moves from Dev to Test to Prod. Each row can release independently.</tspan>
+</text>
+<text x="60" y="1155" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="start">
+<tspan x="60" dy="0">READ DOWN  /  Multiple solutions share the environment. Custom component dependencies between business solutions are prohibited.</tspan>
+</text>
+<rect x="60" y="1180" width="1680" height="69" rx="14" fill="#E6F5F1" stroke="#E6F5F1" stroke-width="1.5"/>
+<text x="80" y="1208" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="80" dy="0">SharePoint remains outside Power Platform. Site names above are illustrative mappings, not a requirement for one site per solution.</tspan>
+<tspan x="80" dy="21.6">Dataverse stores solution metadata. Runtime identities are assigned from the available service accounts; no account per solution is implied.</tspan>
+</text>
+</svg>

@@ -1,7 +1,7 @@
 # Deploy orchestrator runbook
 
 Deploys a solution from DEV to a target environment with one click on flow **ALM C1 - Deploy (parent)** in ADMIN.
-Design: `docs/superpowers/specs/2026-09-23-deploy-orchestrator-design.md`. Plan: `docs/superpowers/plans/2026-09-24-deploy-orchestrator.md`.
+Design: `docs/superpowers/specs/2026-09-23-deploy-orchestrator-design.md`. Plan (done): `history/2026-09-24_deploy-orchestrator/plan.md`.
 
 ## 1. Prerequisites
 

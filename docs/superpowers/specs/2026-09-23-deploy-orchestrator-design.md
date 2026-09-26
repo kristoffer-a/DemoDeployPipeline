@@ -1,7 +1,7 @@
 # Deploy orchestrator design
 
 Date: 2026-09-23. Status: approved in chat, awaiting written review.
-Builds on: `2026-09-15-simple-alm.md` and the ALMSpike results below.
+Builds on: `history/2026-09-15_simple-alm/spec.md` and the ALMSpike results below.
 
 ## Goal
 
@@ -26,7 +26,7 @@ re-import an older ZIP. TEST readback after each run: Demo managed 1.0.0.0, `dev
 = ALM-Test, `dev_SharePoint` bound to TEST connection `shared-sharepointonl-0f567e53`.
 
 Known constraint: `@odata.type` keys in `ComponentParameters` must be built as text with `@@odata`
-and restored with `replace()` inside `json()`. See `spike/build_spike.py`.
+and restored with `replace()` inside `json()`. See `history/2026-09-23_spike/spike/build_spike.py`.
 
 ## Decisions
 
@@ -127,5 +127,5 @@ own result to the log.
 ## Cleanup (each needs user approval)
 
 - Delete spike flows A1, A2, B (and C1/C2 once replaced).
-- Rename `spike/build_spike.py` into the pipeline builder.
+- Rename `spike/build_spike.py` into the pipeline builder (done: `pipeline/`; spike now in `history/`).
 - Remove `Test*` columns from `ALMConfig`.

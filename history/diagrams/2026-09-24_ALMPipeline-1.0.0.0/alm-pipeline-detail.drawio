@@ -1,0 +1,1224 @@
+<mxfile host="Electron" agent="ALM pipeline generator" version="24.0.0">
+  <diagram id="p0" name="0 Legend">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p0_title" value="ALM deploy pipeline · legend and environments" style="text;html=1;align=left;verticalAlign=top;fontSize=20;fontStyle=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="40" y="20" width="1400" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_sub" value="How to read every page in this file. Colour = platform / component family. Shape = component type. Dashed yellow = not built yet. Source of truth for the flows: pipeline/flows.py (branch feat/deploy-orchestrator)." style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="40" y="54" width="1400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_1" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#FFFFFF&quot;&gt;&lt;b&gt;Container&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;Power Platform environment&lt;/b&gt;" style="whiteSpace=wrap;html=1;swimlane;startSize=40;rounded=1;arcSize=2;fillColor=#742774;fontColor=#FFFFFF;strokeColor=#742774;swimlaneFillColor=#FAF3FA;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="120" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_2" value="Dataverse org, e.g. ADMIN, DEV, TEST" style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="340" y="130" width="420" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_3" value="&lt;b&gt;Solution&lt;/b&gt; (inside an environment)" style="whiteSpace=wrap;html=1;swimlane;startSize=34;dashed=1;fillColor=#E1BEE7;strokeColor=#9C27B0;swimlaneFillColor=#FFFFFF;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="230" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_4" value="Unit that is exported / imported (ALMPipeline, Demo)" style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="340" y="240" width="420" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_5" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#0066FF&quot;&gt;&lt;b&gt;Power Automate&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;Cloud flow&lt;/b&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=10;fillColor=#DAE8FC;strokeColor=#0066FF;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="40" y="340" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_6" value="C1 parent, C2 / C3 children" style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="340" y="350" width="420" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_7" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Solution component&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;Connection reference&lt;/b&gt;" style="whiteSpace=wrap;html=1;shape=hexagon;perimeter=hexagonPerimeter2;size=0.08;fillColor=#F3E5F5;strokeColor=#742774;strokeWidth=2;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="40" y="450" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_8" value="Pointer in a solution; bound to a connection per environment" style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="340" y="460" width="420" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_9" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#666666&quot;&gt;&lt;b&gt;Power Platform&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;Connection&lt;/b&gt;" style="whiteSpace=wrap;html=1;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=8;fillColor=#F5F5F5;strokeColor=#666666;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="40" y="560" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_10" value="Signed-in connection (owner kriall076), one per env × connector" style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="340" y="570" width="420" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_11" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Solution component&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;Environment variable&lt;/b&gt;" style="whiteSpace=wrap;html=1;shape=note;size=12;fillColor=#F3E5F5;strokeColor=#742774;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="800" y="120" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_12" value="Definition in the solution; value set per environment" style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="1100" y="130" width="420" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_13" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#FFFFFF&quot;&gt;&lt;b&gt;Container&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;SharePoint site&lt;/b&gt;" style="whiteSpace=wrap;html=1;swimlane;startSize=40;rounded=1;arcSize=2;fillColor=#038387;fontColor=#FFFFFF;strokeColor=#038387;swimlaneFillColor=#EEF7F7;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="800" y="230" width="280" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_14" value="ALM-Admin (pipeline config) or ALM-Test (app data)" style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="1100" y="240" width="420" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_15" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;SharePoint&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;SharePoint list&lt;/b&gt;" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.rect;rounded=0;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="800" y="340" width="280" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_16" value="ALMConfig, ALMConnections, ALMVariables, Products" style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="1100" y="350" width="420" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_17" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;SharePoint&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;Document library&lt;/b&gt;" style="whiteSpace=wrap;html=1;shape=folder;tabWidth=50;tabHeight=12;tabPosition=left;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;verticalAlign=middle;" parent="1" vertex="1">
+          <mxGeometry x="800" y="450" width="280" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_18" value="Solutions (ZIP archive), DeploymentLogs (JSON)" style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="1100" y="460" width="420" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_19" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#D86613&quot;&gt;&lt;b&gt;Entra ID&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;Security group&lt;/b&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=30;fillColor=#FFE6CC;strokeColor=#D86613;strokeWidth=2;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="800" y="560" width="280" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_20" value="Who gets the app shared (future C6 / C4)" style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="1100" y="570" width="420" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_21" value="&lt;b&gt;Inside a flow page&lt;/b&gt;" style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="40" y="690" width="400" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_22" value="&lt;b&gt;Action_name&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;SharePoint · Get items&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;What the action does, in plain words&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#038387;" parent="1" vertex="1">
+          <mxGeometry x="40" y="726" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_23" value="Border colour = connector: &lt;font color='#742774'&gt;&lt;b&gt;Dataverse&lt;/b&gt;&lt;/font&gt;, &lt;font color='#038387'&gt;&lt;b&gt;SharePoint&lt;/b&gt;&lt;/font&gt;, &lt;font color='#666666'&gt;&lt;b&gt;Built-in&lt;/b&gt;&lt;/font&gt;, &lt;font color='#0066FF'&gt;&lt;b&gt;Power Automate&lt;/b&gt;&lt;/font&gt;, &lt;font color='#B8860B'&gt;&lt;b&gt;Control&lt;/b&gt;&lt;/font&gt;. The bold name is the real action name in the flow." style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="420" y="736" width="700" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_24" value="&lt;b&gt;Check_x&lt;/b&gt;&lt;br&gt;Condition?" style="whiteSpace=wrap;html=1;rhombus;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="40" y="836" width="230" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_25" value="If / Condition action. Edge labels = branch taken." style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="420" y="846" width="700" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_26" value="&lt;b&gt;Fail_x&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#B85450&quot;&gt;&lt;b&gt;fail_steps · Set variable + Compose int()&lt;/b&gt;&lt;/font&gt;&lt;br&gt;FailMessage = reason. The stage fails; later stages are skipped; Log still runs." style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#F8CECC;strokeColor=#B85450;align=left;spacingLeft=8;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="40" y="946" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_27" value="Failure path. Parent uses fail_steps (no Terminate) so the log is always written." style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="420" y="956" width="700" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_28" value="Stage scope" style="whiteSpace=wrap;html=1;swimlane;startSize=30;rounded=1;arcSize=2;fillColor=#DAE8FC;strokeColor=#0066FF;swimlaneFillColor=#F7FAFF;fontStyle=1;align=left;spacingLeft=10;" parent="1" vertex="1">
+          <mxGeometry x="40" y="1056" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_29" value="Scope action. C1 has 4 stage scopes inside Main; their status + duration go in the run log." style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="420" y="1066" width="700" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_30" value="&lt;b&gt;Future component&lt;/b&gt;&lt;br&gt;not built yet" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFF3CD;strokeColor=#B8860B;strokeWidth=2;dashed=1;dashPattern=8 4;align=left;spacingLeft=8;" parent="1" vertex="1">
+          <mxGeometry x="40" y="1166" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_31" value="Proposal only (roadmap page)." style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="420" y="1176" width="700" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_32" value="&lt;b&gt;Environments and sites&lt;/b&gt; (tenant 1c5afb69-a82c-4c81-b2cc-743ce7f91dac)&lt;br&gt;&lt;br&gt;&lt;b&gt;ADMIN&lt;/b&gt; f2280ea5-6793-e664-8f21-ea3ba6a4cb5c · adminorg774eae27.crm17.dynamics.com&lt;br&gt;&amp;nbsp;&amp;nbsp;runs the pipeline flows (solution ALMPipeline, publisher almspike, prefix alm)&lt;br&gt;&lt;b&gt;DEV&lt;/b&gt; devorgf20ef6ea.crm17.dynamics.com · where makers build solution Demo (unmanaged)&lt;br&gt;&lt;b&gt;TEST&lt;/b&gt; 8fcc484b-d74e-e479-84da-ad5a78d6d55b · testorg5fd244de.crm17.dynamics.com · Demo (managed)&lt;br&gt;&lt;br&gt;&lt;b&gt;SharePoint ALM-Admin&lt;/b&gt; 7xpydh.sharepoint.com/sites/ALM-Admin · pipeline config, ZIP archive, logs&lt;br&gt;&lt;b&gt;SharePoint ALM-Test&lt;/b&gt; 7xpydh.sharepoint.com/sites/ALM-Test · data the Demo app uses in TEST&lt;br&gt;&lt;br&gt;&lt;b&gt;Identity&lt;/b&gt; kriall076@7xpydh.onmicrosoft.com owns every connection for now (service account later)." style="whiteSpace=wrap;html=1;shape=note;size=14;fillColor=#FFFDE7;strokeColor=#C0A000;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1180" y="726" width="440" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="p0_33" value="&lt;b&gt;Pages&lt;/b&gt;&lt;br&gt;1 Architecture · 2 C1 run flow · 3 Sequence · 4 Config model · 5 C2 internals · 6 C3 internals · 7 Roadmap (proposal)" style="whiteSpace=wrap;html=1;shape=note;size=14;fillColor=#FFFDE7;strokeColor=#C0A000;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1180" y="1040" width="440" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p1" name="1 Architecture">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p1_title" value="1 · Architecture: what lives where, and who talks to whom" style="text;html=1;align=left;verticalAlign=top;fontSize=20;fontStyle=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="40" y="20" width="1400" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_sub" value="Every box says its component type. Edges are labelled with the action / operation used. Solid = pipeline run. Dashed = binding, config edit or future." style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="40" y="54" width="1400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="a_maker" value="&lt;b&gt;Maker&lt;/b&gt;&lt;br&gt;runs C1&lt;br&gt;inputs: Solution, Target" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#DAE8FC;strokeColor=#0066FF;" parent="1" vertex="1">
+          <mxGeometry x="50" y="250" width="40" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="a_admin" value="Power Platform environment · &lt;b&gt;ADMIN&lt;/b&gt; · adminorg774eae27" style="whiteSpace=wrap;html=1;swimlane;startSize=40;rounded=1;arcSize=2;fillColor=#742774;fontColor=#FFFFFF;strokeColor=#742774;swimlaneFillColor=#FAF3FA;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="150" y="120" width="720" height="740" as="geometry" />
+        </mxCell>
+        <mxCell id="a_sol" value="Solution &lt;b&gt;ALMPipeline&lt;/b&gt; (unmanaged · publisher almspike · prefix alm) · deployed by python3 -m pipeline.deploy" style="whiteSpace=wrap;html=1;swimlane;startSize=34;dashed=1;fillColor=#E1BEE7;strokeColor=#9C27B0;swimlaneFillColor=#FFFFFF;fontStyle=1;" parent="a_admin" vertex="1">
+          <mxGeometry x="20" y="50" width="680" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="a_c1" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#0066FF&quot;&gt;&lt;b&gt;⚡ Power Automate · cloud flow · manual trigger&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;ALM C1 - Deploy (parent)&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Prechecks → Export → Import → PostImport → Log&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=10;fillColor=#DAE8FC;strokeColor=#0066FF;strokeWidth=2;" parent="a_sol" vertex="1">
+          <mxGeometry x="30" y="60" width="300" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="a_c2" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#0066FF&quot;&gt;&lt;b&gt;⚡ Power Automate · child flow&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;ALM C2 - Import (child)&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Imports the archived ZIP with connection + variable values&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=10;fillColor=#DAE8FC;strokeColor=#0066FF;strokeWidth=2;" parent="a_sol" vertex="1">
+          <mxGeometry x="400" y="60" width="250" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="a_c3" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#0066FF&quot;&gt;&lt;b&gt;⚡ Power Automate · child flow&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;ALM C3 - Post-import (child)&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Checks bindings, sets variable values, turns flows on&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=10;fillColor=#DAE8FC;strokeColor=#0066FF;strokeWidth=2;" parent="a_sol" vertex="1">
+          <mxGeometry x="400" y="190" width="250" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="a_setup" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#0066FF&quot;&gt;&lt;b&gt;⚡ helper flow · OFF&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;ALM Setup - SharePoint config&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Scripted edits of the ALM lists (Demo → TEST)&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=10;fillColor=#F5F5F5;strokeColor=#0066FF;strokeWidth=2;dashed=1;" parent="a_sol" vertex="1">
+          <mxGeometry x="30" y="330" width="200" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="a_crdv" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Connection reference&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;alm_PipelineDataverse&lt;/b&gt;" style="whiteSpace=wrap;html=1;shape=hexagon;perimeter=hexagonPerimeter2;size=0.08;fillColor=#F3E5F5;strokeColor=#742774;strokeWidth=2;fontSize=11;" parent="a_sol" vertex="1">
+          <mxGeometry x="360" y="340" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="a_crsp" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Connection reference&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;alm_PipelineSharePoint&lt;/b&gt;" style="whiteSpace=wrap;html=1;shape=hexagon;perimeter=hexagonPerimeter2;size=0.08;fillColor=#F3E5F5;strokeColor=#742774;strokeWidth=2;fontSize=11;" parent="a_sol" vertex="1">
+          <mxGeometry x="520" y="340" width="150" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="a_cdv" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#666666&quot;&gt;&lt;b&gt;Connection · kriall076&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;Dataverse&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;shared-commondataser-88f9738e&lt;/font&gt;" style="whiteSpace=wrap;html=1;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=8;fillColor=#F5F5F5;strokeColor=#666666;fontSize=11;" parent="a_admin" vertex="1">
+          <mxGeometry x="380" y="560" width="150" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="a_csp" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#666666&quot;&gt;&lt;b&gt;Connection · kriall076&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;SharePoint&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;shared-sharepointonl-a0f00819&lt;/font&gt;" style="whiteSpace=wrap;html=1;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=8;fillColor=#F5F5F5;strokeColor=#666666;fontSize=11;" parent="a_admin" vertex="1">
+          <mxGeometry x="540" y="560" width="150" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_1" value="bound to" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;dashed=1;" parent="1" edge="1" source="a_crdv" target="a_cdv">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_2" value="bound to" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;dashed=1;" parent="1" edge="1" source="a_crsp" target="a_csp">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_3" value="All pipeline flows use both references." style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="a_admin" vertex="1">
+          <mxGeometry x="50" y="580" width="280" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="a_dev" value="Power Platform environment · &lt;b&gt;DEV&lt;/b&gt; · devorgf20ef6ea" style="whiteSpace=wrap;html=1;swimlane;startSize=40;rounded=1;arcSize=2;fillColor=#742774;fontColor=#FFFFFF;strokeColor=#742774;swimlaneFillColor=#FAF3FA;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="980" y="120" width="440" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="a_dsol" value="Solution &lt;b&gt;Demo&lt;/b&gt; (unmanaged)" style="whiteSpace=wrap;html=1;swimlane;startSize=34;dashed=1;fillColor=#E1BEE7;strokeColor=#9C27B0;swimlaneFillColor=#FFFFFF;fontStyle=1;" parent="a_dev" vertex="1">
+          <mxGeometry x="20" y="50" width="400" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="a_dref" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Connection reference&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;dev_SharePoint&lt;/b&gt;" style="whiteSpace=wrap;html=1;shape=hexagon;perimeter=hexagonPerimeter2;size=0.08;fillColor=#F3E5F5;strokeColor=#742774;strokeWidth=2;fontSize=11;" parent="a_dsol" vertex="1">
+          <mxGeometry x="20" y="45" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a_dvar" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Environment variables&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;dev_SharePointSite&lt;br&gt;dev_ProductsList&lt;/b&gt;" style="whiteSpace=wrap;html=1;shape=note;size=12;fillColor=#F3E5F5;strokeColor=#742774;fontSize=11;" parent="a_dsol" vertex="1">
+          <mxGeometry x="210" y="40" width="170" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_4" value="+ app / flows / tables of the product" style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="a_dsol" vertex="1">
+          <mxGeometry x="20" y="125" width="360" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="a_test" value="Power Platform environment · &lt;b&gt;TEST&lt;/b&gt; · testorg5fd244de" style="whiteSpace=wrap;html=1;swimlane;startSize=40;rounded=1;arcSize=2;fillColor=#742774;fontColor=#FFFFFF;strokeColor=#742774;swimlaneFillColor=#FAF3FA;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="980" y="400" width="440" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="a_tsol" value="Solution &lt;b&gt;Demo&lt;/b&gt; (managed · imported by C2)" style="whiteSpace=wrap;html=1;swimlane;startSize=34;dashed=1;fillColor=#E1BEE7;strokeColor=#9C27B0;swimlaneFillColor=#FFFFFF;fontStyle=1;" parent="a_test" vertex="1">
+          <mxGeometry x="20" y="50" width="400" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="a_tref" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Connection reference&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;dev_SharePoint&lt;/b&gt;" style="whiteSpace=wrap;html=1;shape=hexagon;perimeter=hexagonPerimeter2;size=0.08;fillColor=#F3E5F5;strokeColor=#742774;strokeWidth=2;fontSize=11;" parent="a_tsol" vertex="1">
+          <mxGeometry x="20" y="50" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a_tvar" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Environment variable values&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;values set by C2 / C3&lt;/b&gt;" style="whiteSpace=wrap;html=1;shape=note;size=12;fillColor=#F3E5F5;strokeColor=#742774;fontSize=11;" parent="a_tsol" vertex="1">
+          <mxGeometry x="210" y="45" width="170" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="a_tcon" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#666666&quot;&gt;&lt;b&gt;Connection · kriall076&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;SharePoint&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;shared-sharepointonl-0f567e53&lt;/font&gt;" style="whiteSpace=wrap;html=1;shape=cylinder3;boundedLbl=1;backgroundOutline=1;size=8;fillColor=#F5F5F5;strokeColor=#666666;fontSize=11;" parent="a_test" vertex="1">
+          <mxGeometry x="40" y="230" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_5" value="bound" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;dashed=1;" parent="1" edge="1" source="a_tref" target="a_tcon">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_sptest" value="SharePoint site · &lt;b&gt;ALM-Test&lt;/b&gt;" style="whiteSpace=wrap;html=1;swimlane;startSize=40;rounded=1;arcSize=2;fillColor=#038387;fontColor=#FFFFFF;strokeColor=#038387;swimlaneFillColor=#EEF7F7;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="1480" y="400" width="270" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="a_prod" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;📋 SharePoint list · to create&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;Products&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;its ID goes into dev_ProductsList&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFF3CD;strokeColor=#B8860B;strokeWidth=2;dashed=1;dashPattern=8 4;align=left;spacingLeft=8;" parent="a_sptest" vertex="1">
+          <mxGeometry x="15" y="70" width="240" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_6" value="variables point here" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_tvar" target="a_prod">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_entra" value="Entra ID · tenant 7xpydh (future)" style="whiteSpace=wrap;html=1;swimlane;startSize=40;rounded=1;arcSize=2;fillColor=#D86613;fontColor=#FFFFFF;strokeColor=#D86613;swimlaneFillColor=#FFF5EC;fontStyle=1;dashed=1;" parent="1" vertex="1">
+          <mxGeometry x="1480" y="120" width="270" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="a_grp" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#D86613&quot;&gt;&lt;b&gt;👥 Security group · future C6&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;App users group&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;ID in ALMConfig.AppShareGroupId; C4 shares the app with it&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=30;fillColor=#FFE6CC;strokeColor=#D86613;strokeWidth=2;fontSize=11;" parent="a_entra" vertex="1">
+          <mxGeometry x="15" y="60" width="240" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="a_mon" value="&lt;b&gt;FlowAdmin-Monitoring&lt;/b&gt; (other project)&lt;br&gt;any failed run in ADMIN → incident + Teams card" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontColor=#555555;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1480" y="660" width="270" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="a_spadmin" value="SharePoint site · &lt;b&gt;ALM-Admin&lt;/b&gt; · pipeline config, ZIP archive, run logs · edit rights here = deploy rights" style="whiteSpace=wrap;html=1;swimlane;startSize=40;rounded=1;arcSize=2;fillColor=#038387;fontColor=#FFFFFF;strokeColor=#038387;swimlaneFillColor=#EEF7F7;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="150" y="900" width="1270" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="a_cfg" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;📋 SharePoint list&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;ALMConfig&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;solution × target: URLs + switches&lt;/font&gt;" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.rect;rounded=0;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;" parent="a_spadmin" vertex="1">
+          <mxGeometry x="20" y="60" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="a_con" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;📋 SharePoint list&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;ALMConnections&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;env × reference → ConnectionId&lt;/font&gt;" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.rect;rounded=0;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;" parent="a_spadmin" vertex="1">
+          <mxGeometry x="270" y="60" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="a_var" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;📋 SharePoint list&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;ALMVariables&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;solution × env × variable → Value&lt;/font&gt;" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.rect;rounded=0;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;" parent="a_spadmin" vertex="1">
+          <mxGeometry x="520" y="60" width="220" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="a_zip" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;📁 Document library&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;Solutions&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;/Solutions/Demo/Demo_managed_&amp;lt;time&amp;gt;.zip&lt;/font&gt;" style="whiteSpace=wrap;html=1;shape=folder;tabWidth=50;tabHeight=12;tabPosition=left;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;verticalAlign=middle;" parent="a_spadmin" vertex="1">
+          <mxGeometry x="770" y="60" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="a_log" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;📁 Document library&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;DeploymentLogs&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;/DeploymentLogs/Demo_TEST_&amp;lt;time&amp;gt;.json&lt;/font&gt;" style="whiteSpace=wrap;html=1;shape=folder;tabWidth=50;tabHeight=12;tabPosition=left;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;verticalAlign=middle;" parent="a_spadmin" vertex="1">
+          <mxGeometry x="1020" y="60" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_7" value="① Run" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_maker" target="a_c1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_8" value="② read config + mappings" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0;exitY=0.8;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_c1" target="a_cfg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_9" value="③ list refs / variables · export managed" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_c1" target="a_dsol">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_10" value="④ archive ZIP" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0.7;exitY=1;exitDx=0;exitDy=0;entryX=0.3;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_c1" target="a_zip">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="410" y="868" />
+              <mxPoint x="989" y="868" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p1_11" value="⑤ run child" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_c1" target="a_c2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_12" value="⑥ read ZIP" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.8;exitDx=0;exitDy=0;entryX=0.7;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_c2" target="a_zip">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="930" y="310" />
+              <mxPoint x="930" y="878" />
+              <mxPoint x="1081" y="878" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p1_13" value="⑦ import" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.2;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_c2" target="a_tsol">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_14" value="⑧ run child" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.8;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_c1" target="a_c3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_15" value="⑨ bindings · values · flows on" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.7;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_c3" target="a_tsol">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p1_16" value="⑩ write run log" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0.9;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_c1" target="a_log">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="470" y="886" />
+              <mxPoint x="1285" y="886" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p1_17" value="edits lists" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_setup" target="a_con">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="860" />
+              <mxPoint x="530" y="860" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p1_18" value="&lt;b&gt;Numbered interactions&lt;/b&gt; (connector · operation)&lt;br&gt;① Maker runs C1 (Solution, Target)&lt;br&gt;② SharePoint · Get items: ALMConfig, ALMConnections, ALMVariables&lt;br&gt;③ Dataverse · List rows (FetchXML) + ExportSolutionAsync + DownloadSolutionExportData on DEV&lt;br&gt;④ SharePoint · Create file in Solutions&lt;br&gt;⑤ Power Automate · Run a Child Flow C2 (ZIP path)&lt;br&gt;⑥ SharePoint · Get file content using path&lt;br&gt;⑦ Dataverse · ImportSolutionAsync + ComponentParameters on TEST&lt;br&gt;⑧ Power Automate · Run a Child Flow C3&lt;br&gt;⑨ Dataverse · List rows + Update a row on TEST&lt;br&gt;⑩ SharePoint · Create file in DeploymentLogs&lt;br&gt;Dashed = binding, pointer or config edit." style="whiteSpace=wrap;html=1;shape=note;size=14;fillColor=#FFFDE7;strokeColor=#C0A000;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1480" y="790" width="400" height="300" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p2" name="2 C1 run flow">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p2_title" value="2 · ALM C1 - Deploy (parent): every action, in run order" style="text;html=1;align=left;verticalAlign=top;fontSize=20;fontStyle=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="40" y="20" width="1400" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_sub" value="Environment: ADMIN · solution ALMPipeline · trigger: manual. Stages run in sequence inside scope Main; a failing stage skips the rest. Log runs after Main whatever happened." style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="40" y="54" width="1400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="c1_trig" value="&lt;b&gt;Manually trigger a flow&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#0066FF&quot;&gt;&lt;b&gt;Power Automate · trigger&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Solution (default Demo) · Target (default TEST)" style="whiteSpace=wrap;html=1;ellipse;fillColor=#DAE8FC;strokeColor=#0066FF;strokeWidth=2;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="150.0" y="110" width="300" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_1" value="&lt;b&gt;Solution · Target · Init_FailMessage&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#666666&quot;&gt;&lt;b&gt;Built-in · Compose + Initialize variable&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Apply input defaults. FailMessage = '' (any failing check fills it).&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="130.0" y="216" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="c1_trig" target="p2_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c1_main" value="Scope &lt;b&gt;Main&lt;/b&gt; · Control · Scope (holds the 4 stage scopes)" style="whiteSpace=wrap;html=1;swimlane;startSize=30;rounded=1;arcSize=2;fillColor=#FFF2CC;strokeColor=#B8860B;swimlaneFillColor=#FFFDF5;fontStyle=1;align=left;spacingLeft=10;" parent="1" vertex="1">
+          <mxGeometry x="40" y="320" width="900" height="2564" as="geometry" />
+        </mxCell>
+        <mxCell id="c1_pre" value="Stage 1 · &lt;b&gt;Prechecks&lt;/b&gt; (Scope)" style="whiteSpace=wrap;html=1;swimlane;startSize=30;rounded=1;arcSize=2;fillColor=#DAE8FC;strokeColor=#0066FF;swimlaneFillColor=#F7FAFF;fontStyle=1;align=left;spacingLeft=10;" parent="c1_main" vertex="1">
+          <mxGeometry x="20" y="50" width="860" height="1026" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_3" value="&lt;b&gt;Get_config&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;SharePoint · Get items · ALMConfig&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Row where SolutionName = Solution and TargetEnvironment = Target (top 1).&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#038387;" parent="c1_pre" vertex="1">
+          <mxGeometry x="70.0" y="46" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_4" value="&lt;b&gt;Check_config&lt;/b&gt;&lt;br&gt;no row found?" style="whiteSpace=wrap;html=1;rhombus;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" parent="c1_pre" vertex="1">
+          <mxGeometry x="125.0" y="150" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_3" target="p2_4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_6" value="&lt;b&gt;Fail_no_config&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#B85450&quot;&gt;&lt;b&gt;fail_steps · Set variable + Compose int()&lt;/b&gt;&lt;/font&gt;&lt;br&gt;'No ALMConfig row for Demo -&amp;gt; TEST'" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#F8CECC;strokeColor=#B85450;align=left;spacingLeft=8;fontSize=11;" parent="c1_pre" vertex="1">
+          <mxGeometry x="560" y="165.0" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_7" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="p2_4" target="p2_6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_8" value="&lt;b&gt;Config · Dev_url · Target_url&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#666666&quot;&gt;&lt;b&gt;Built-in · Compose&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Take the row; read DEV and target org URLs from the hyperlink columns.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#666666;" parent="c1_pre" vertex="1">
+          <mxGeometry x="70.0" y="276" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_9" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_4" target="p2_8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_10" value="&lt;b&gt;Get_connection_map&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;SharePoint · Get items · ALMConnections&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Mapping rows for the target: reference → ConnectionId.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#038387;" parent="c1_pre" vertex="1">
+          <mxGeometry x="70.0" y="380" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_8" target="p2_10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_12" value="&lt;b&gt;Get_variable_map&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;SharePoint · Get items · ALMVariables&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Mapping rows for Solution + target: variable → Value.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#038387;" parent="c1_pre" vertex="1">
+          <mxGeometry x="70.0" y="484" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_10" target="p2_12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_14" value="&lt;b&gt;Dev_refs → Dev_ref_names&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Dataverse · List rows (FetchXML) + Select&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;DEV org: connection references in the solution → logical names.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#742774;" parent="c1_pre" vertex="1">
+          <mxGeometry x="70.0" y="588" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_12" target="p2_14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_16" value="&lt;b&gt;Dev_vars → Dev_var_names&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Dataverse · List rows (FetchXML) + Select&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;DEV org: environment variables in the solution → schema names.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#742774;" parent="c1_pre" vertex="1">
+          <mxGeometry x="70.0" y="692" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_17" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_14" target="p2_16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_18" value="&lt;b&gt;Mapped_* · Missing_refs · Missing_vars&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#666666&quot;&gt;&lt;b&gt;Built-in · Select + Filter array&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;DEV names that have no mapping row for the target.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#666666;" parent="c1_pre" vertex="1">
+          <mxGeometry x="70.0" y="796" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_16" target="p2_18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_20" value="&lt;b&gt;Check_mappings&lt;/b&gt;&lt;br&gt;anything missing?" style="whiteSpace=wrap;html=1;rhombus;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" parent="c1_pre" vertex="1">
+          <mxGeometry x="125.0" y="900" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_18" target="p2_20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_22" value="&lt;b&gt;Fail_missing_mapping&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#B85450&quot;&gt;&lt;b&gt;fail_steps · Set variable + Compose int()&lt;/b&gt;&lt;/font&gt;&lt;br&gt;'Missing mapping rows for TEST: dev_…'. Nothing is exported." style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#F8CECC;strokeColor=#B85450;align=left;spacingLeft=8;fontSize=11;" parent="c1_pre" vertex="1">
+          <mxGeometry x="560" y="915.0" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_23" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="p2_20" target="p2_22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_1" target="p2_3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c1_exp" value="Stage 2 · &lt;b&gt;Export&lt;/b&gt; (Scope) · runs if Prechecks succeeded" style="whiteSpace=wrap;html=1;swimlane;startSize=30;rounded=1;arcSize=2;fillColor=#DAE8FC;strokeColor=#0066FF;swimlaneFillColor=#F7FAFF;fontStyle=1;align=left;spacingLeft=10;" parent="c1_main" vertex="1">
+          <mxGeometry x="20" y="1100" width="860" height="588" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_25" value="&lt;b&gt;Export_from_DEV&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Dataverse · Perform unbound action · ExportSolutionAsync&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Start a &lt;b&gt;managed&lt;/b&gt; export in DEV. Returns AsyncOperationId + ExportJobId.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#742774;" parent="c1_exp" vertex="1">
+          <mxGeometry x="70.0" y="46" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_26" value="&lt;b&gt;Export_Wait_for_job&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#B8860B&quot;&gt;&lt;b&gt;Control · Do until (Delay 20 s → Get a row asyncoperations)&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Poll the job until statecode = 3. Max 90 loops / 30 min.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#B8860B;" parent="c1_exp" vertex="1">
+          <mxGeometry x="70.0" y="150" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_25" target="p2_26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_28" value="&lt;b&gt;Export_succeeded&lt;/b&gt;&lt;br&gt;job succeeded?" style="whiteSpace=wrap;html=1;rhombus;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" parent="c1_exp" vertex="1">
+          <mxGeometry x="125.0" y="254" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_26" target="p2_28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_30" value="&lt;b&gt;Fail_export&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#B85450&quot;&gt;&lt;b&gt;fail_steps · Set variable + Compose int()&lt;/b&gt;&lt;/font&gt;&lt;br&gt;FailMessage = the job's friendlymessage" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#F8CECC;strokeColor=#B85450;align=left;spacingLeft=8;fontSize=11;" parent="c1_exp" vertex="1">
+          <mxGeometry x="560" y="269.0" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_31" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="p2_28" target="p2_30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_32" value="&lt;b&gt;Download_export&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Dataverse · Perform unbound action · DownloadSolutionExportData&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Fetch the exported ZIP (base64).&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#742774;" parent="c1_exp" vertex="1">
+          <mxGeometry x="70.0" y="380" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_33" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_28" target="p2_32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_34" value="&lt;b&gt;Archive_ZIP&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;SharePoint · Create file · ALM-Admin&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;/Solutions/Demo/Demo_managed_yyyyMMdd-HHmmss.zip. This path goes to C2.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#038387;" parent="c1_exp" vertex="1">
+          <mxGeometry x="70.0" y="484" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_32" target="p2_34">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_36" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_20" target="p2_25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c1_imp" value="Stage 3 · &lt;b&gt;Import&lt;/b&gt; (Scope) · runs if Export succeeded" style="whiteSpace=wrap;html=1;swimlane;startSize=30;rounded=1;arcSize=2;fillColor=#DAE8FC;strokeColor=#0066FF;swimlaneFillColor=#F7FAFF;fontStyle=1;align=left;spacingLeft=10;" parent="c1_main" vertex="1">
+          <mxGeometry x="20" y="1712" width="860" height="402" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_37" value="&lt;b&gt;If_RunImport&lt;/b&gt;&lt;br&gt;ALMConfig.RunImport = Yes?" style="whiteSpace=wrap;html=1;rhombus;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" parent="c1_imp" vertex="1">
+          <mxGeometry x="125.0" y="46" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_38" value="Stage does nothing. Log shows &lt;b&gt;Skipped&lt;/b&gt;." style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontColor=#555555;" parent="c1_imp" vertex="1">
+          <mxGeometry x="560" y="61.0" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_39" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="p2_37" target="p2_38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_40" value="&lt;b&gt;Run_C2_import&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#0066FF&quot;&gt;&lt;b&gt;Power Automate · Run a Child Flow · no retry&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Call C2 with ZIP path, Solution, Target. Waits for C2's reply (max 120 s).&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=10;fillColor=#DAE8FC;strokeColor=#0066FF;strokeWidth=2;" parent="c1_imp" vertex="1">
+          <mxGeometry x="70.0" y="172" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_41" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_37" target="p2_40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_42" value="&lt;b&gt;Check_C2&lt;/b&gt;&lt;br&gt;reply status = Succeeded?" style="whiteSpace=wrap;html=1;rhombus;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" parent="c1_imp" vertex="1">
+          <mxGeometry x="125.0" y="276" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_43" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_40" target="p2_42">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_44" value="&lt;b&gt;Fail_import&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#B85450&quot;&gt;&lt;b&gt;fail_steps · Set variable + Compose int()&lt;/b&gt;&lt;/font&gt;&lt;br&gt;'Import: ' + C2's message" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#F8CECC;strokeColor=#B85450;align=left;spacingLeft=8;fontSize=11;" parent="c1_imp" vertex="1">
+          <mxGeometry x="560" y="291.0" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_45" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="p2_42" target="p2_44">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_46" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_34" target="p2_37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c1_post" value="Stage 4 · &lt;b&gt;PostImport&lt;/b&gt; (Scope) · runs if Import succeeded" style="whiteSpace=wrap;html=1;swimlane;startSize=30;rounded=1;arcSize=2;fillColor=#DAE8FC;strokeColor=#0066FF;swimlaneFillColor=#F7FAFF;fontStyle=1;align=left;spacingLeft=10;" parent="c1_main" vertex="1">
+          <mxGeometry x="20" y="2138" width="860" height="402" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_47" value="&lt;b&gt;If_RunPostImport&lt;/b&gt;&lt;br&gt;ALMConfig.RunPostImport = Yes?" style="whiteSpace=wrap;html=1;rhombus;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" parent="c1_post" vertex="1">
+          <mxGeometry x="125.0" y="46" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_48" value="Stage does nothing. Log shows &lt;b&gt;Skipped&lt;/b&gt;." style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#F5F5F5;strokeColor=#999999;dashed=1;fontSize=11;fontColor=#555555;" parent="c1_post" vertex="1">
+          <mxGeometry x="560" y="61.0" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_49" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="p2_47" target="p2_48">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_50" value="&lt;b&gt;Run_C3_post_import&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#0066FF&quot;&gt;&lt;b&gt;Power Automate · Run a Child Flow · no retry&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Call C3 with Solution, Target. Waits for C3's reply.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=10;fillColor=#DAE8FC;strokeColor=#0066FF;strokeWidth=2;" parent="c1_post" vertex="1">
+          <mxGeometry x="70.0" y="172" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_51" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_47" target="p2_50">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_52" value="&lt;b&gt;Check_C3&lt;/b&gt;&lt;br&gt;reply status = Succeeded?" style="whiteSpace=wrap;html=1;rhombus;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" parent="c1_post" vertex="1">
+          <mxGeometry x="125.0" y="276" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_53" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_50" target="p2_52">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_54" value="&lt;b&gt;Fail_post_import&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#B85450&quot;&gt;&lt;b&gt;fail_steps · Set variable + Compose int()&lt;/b&gt;&lt;/font&gt;&lt;br&gt;'Post-import: ' + C3's message" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#F8CECC;strokeColor=#B85450;align=left;spacingLeft=8;fontSize=11;" parent="c1_post" vertex="1">
+          <mxGeometry x="560" y="291.0" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_55" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="p2_52" target="p2_54">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_56" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_42" target="p2_47">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c1_log" value="Scope &lt;b&gt;Log&lt;/b&gt; · runs after Main on Succeeded / Failed / Skipped / TimedOut" style="whiteSpace=wrap;html=1;swimlane;startSize=30;rounded=1;arcSize=2;fillColor=#FFF2CC;strokeColor=#B8860B;swimlaneFillColor=#FFFDF5;fontStyle=1;align=left;spacingLeft=10;" parent="1" vertex="1">
+          <mxGeometry x="40" y="2924" width="900" height="358" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_57" value="&lt;b&gt;Prechecks_failed … PostImport_failed&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#666666&quot;&gt;&lt;b&gt;Built-in · Filter array × 4 over result(stage)&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Find the failed action per stage (fallback error text).&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#666666;" parent="c1_log" vertex="1">
+          <mxGeometry x="90.0" y="46" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_58" value="&lt;b&gt;Log_entry&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#666666&quot;&gt;&lt;b&gt;Built-in · Compose&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;JSON: runId, solution, target, status, zipPath, switches, message, steps[ status · seconds · message ] per stage.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#666666;" parent="c1_log" vertex="1">
+          <mxGeometry x="90.0" y="150" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_59" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_57" target="p2_58">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_60" value="&lt;b&gt;Write_log&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;SharePoint · Create file · ALM-Admin&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;/DeploymentLogs/Demo_TEST_yyyyMMdd-HHmmss.json&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#038387;" parent="c1_log" vertex="1">
+          <mxGeometry x="90.0" y="254" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_61" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p2_58" target="p2_60">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_62" value="Main finished (any status)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="c1_main" target="c1_log">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c1_rep" value="&lt;b&gt;Report_failure&lt;/b&gt;&lt;br&gt;Main and Log both Succeeded?" style="whiteSpace=wrap;html=1;rhombus;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="175" y="3312" width="250" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_63" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="c1_log" target="c1_rep">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c1_ok" value="&lt;b&gt;Run Succeeded&lt;/b&gt;" style="whiteSpace=wrap;html=1;ellipse;fillColor=#D5E8D4;strokeColor=#82B366;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="210" y="3462" width="180" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_64" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="c1_rep" target="c1_ok">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c1_stop" value="&lt;b&gt;Stop_failed&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#B85450&quot;&gt;&lt;b&gt;Control · Terminate (Failed)&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Run fails with the first failure message. FlowAdmin-Monitoring alerts." style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#F8CECC;strokeColor=#B85450;align=left;spacingLeft=8;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="620" y="3327" width="300" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_65" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="c1_rep" target="c1_stop">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_66" value="&lt;b&gt;How a failure travels&lt;/b&gt;&lt;br&gt;1. A check fails → &lt;b&gt;fail_steps&lt;/b&gt;: Set FailMessage, then a Compose with int(text) throws.&lt;br&gt;2. That stage scope is Failed → later stages Skipped → Main Failed.&lt;br&gt;3. No Terminate inside Main, so &lt;b&gt;Log&lt;/b&gt; always runs and writes the JSON.&lt;br&gt;4. Report_failure ends the run as Failed with FailMessage.&lt;br&gt;&lt;br&gt;&lt;b&gt;Switches&lt;/b&gt; come from the ALMConfig row (one per solution × target). An off switch = stage Succeeded but logged as Skipped." style="whiteSpace=wrap;html=1;shape=note;size=14;fillColor=#FFFDE7;strokeColor=#C0A000;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="990" y="120" width="420" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="p2_67" value="&lt;b&gt;Proven live 2026-09-24&lt;/b&gt; (Demo → TEST)&lt;br&gt;1 all on ✅ · 2 RunImport off ✅&lt;br&gt;3 missing mapping ✅ (stopped before export)&lt;br&gt;4 variable only ✅ · 5 regression ✅ (Import 67 s)&lt;br&gt;6 child failure ✅" style="whiteSpace=wrap;html=1;shape=note;size=14;fillColor=#FFFDE7;strokeColor=#C0A000;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="990" y="370" width="420" height="130" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p3" name="3 Sequence">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p3_title" value="3 · Sequence: C1 parent ↔ C2 / C3 children ↔ environments" style="text;html=1;align=left;verticalAlign=top;fontSize=20;fontStyle=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="40" y="20" width="1400" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_sub" value="Read top to bottom. Solid arrow = call / request. Dashed arrow = reply. Grey frames = only when the switch or condition holds." style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="40" y="54" width="1400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_1" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#333333&quot;&gt;&lt;b&gt;👤 person&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;Maker&lt;/b&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=64;fillColor=#FFFFFF;strokeColor=#333333;" parent="1" vertex="1">
+          <mxGeometry x="60" y="120" width="170" height="1060" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_2" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#0066FF&quot;&gt;&lt;b&gt;⚡ cloud flow · ADMIN&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;C1 Deploy (parent)&lt;/b&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=64;fillColor=#DAE8FC;strokeColor=#0066FF;" parent="1" vertex="1">
+          <mxGeometry x="275" y="120" width="170" height="1060" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_3" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;📋 lists + 📁 libraries&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;ALM-Admin SharePoint&lt;/b&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=64;fillColor=#E6F4F4;strokeColor=#038387;" parent="1" vertex="1">
+          <mxGeometry x="490" y="120" width="170" height="1060" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_4" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Power Platform env · DEV&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;DEV Dataverse&lt;/b&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=64;fillColor=#F3E5F5;strokeColor=#742774;" parent="1" vertex="1">
+          <mxGeometry x="705" y="120" width="170" height="1060" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_5" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#0066FF&quot;&gt;&lt;b&gt;⚡ child flow · ADMIN&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;C2 Import (child)&lt;/b&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=64;fillColor=#DAE8FC;strokeColor=#0066FF;" parent="1" vertex="1">
+          <mxGeometry x="920" y="120" width="170" height="1060" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_6" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#0066FF&quot;&gt;&lt;b&gt;⚡ child flow · ADMIN&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;C3 Post-import (child)&lt;/b&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=64;fillColor=#DAE8FC;strokeColor=#0066FF;" parent="1" vertex="1">
+          <mxGeometry x="1135" y="120" width="170" height="1060" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_7" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Power Platform env · TEST&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;TEST Dataverse&lt;/b&gt;" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;collapsible=0;recursiveResize=0;outlineConnect=0;size=64;fillColor=#F3E5F5;strokeColor=#742774;" parent="1" vertex="1">
+          <mxGeometry x="1350" y="120" width="170" height="1060" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_8" value="1 Run (Solution=Demo, Target=TEST)" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="145.0" y="220" as="sourcePoint" />
+            <mxPoint x="360.0" y="220" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_9" value="2 Get items: ALMConfig row, ALMConnections, ALMVariables" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360.0" y="258" as="sourcePoint" />
+            <mxPoint x="575.0" y="258" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_10" value="3 List rows FetchXML: conn refs + env vars in Demo" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360.0" y="296" as="sourcePoint" />
+            <mxPoint x="790.0" y="296" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_11" value="4a Create file: log (Prechecks Failed)" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360.0" y="364" as="sourcePoint" />
+            <mxPoint x="575.0" y="364" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_12" value="4b Run Failed: Missing mapping rows …" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;dashed=1;endArrow=open;endFill=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360.0" y="402" as="sourcePoint" />
+            <mxPoint x="145.0" y="402" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_13" value="alt · a mapping row is missing" style="shape=umlFrame;whiteSpace=wrap;html=1;width=170;height=26;boundedLbl=1;verticalAlign=top;align=left;spacingLeft=6;fillColor=none;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="115.0" y="318" width="635.0" height="108" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_14" value="5 ExportSolutionAsync (managed) → poll job every 20 s" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360.0" y="452" as="sourcePoint" />
+            <mxPoint x="790.0" y="452" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_15" value="6 DownloadSolutionExportData" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360.0" y="490" as="sourcePoint" />
+            <mxPoint x="790.0" y="490" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_16" value="7 Create file Solutions/Demo/Demo_managed_time.zip" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360.0" y="528" as="sourcePoint" />
+            <mxPoint x="575.0" y="528" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_17" value="8 Run child: ZIP path, Demo, TEST (no retry)" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360.0" y="596" as="sourcePoint" />
+            <mxPoint x="1005.0" y="596" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_18" value="9 Get config + mappings, Get file content (ZIP)" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1005.0" y="634" as="sourcePoint" />
+            <mxPoint x="575.0" y="634" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_19" value="10 FetchXML: conn refs in solution" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1005.0" y="672" as="sourcePoint" />
+            <mxPoint x="790.0" y="672" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_20" value="11 ImportSolutionAsync + ComponentParameters → poll job" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1005.0" y="710" as="sourcePoint" />
+            <mxPoint x="1435.0" y="710" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_21" value="12a ok: Reply status=Succeeded, message, importjobkey" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;dashed=1;endArrow=open;endFill=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1005.0" y="778" as="sourcePoint" />
+            <mxPoint x="360.0" y="778" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_22" value="12b failure: Reply status=Failed, reason → then Terminate Failed" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;dashed=1;endArrow=open;endFill=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1005.0" y="816" as="sourcePoint" />
+            <mxPoint x="360.0" y="816" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_23" value="alt · import ok / any failure" style="shape=umlFrame;whiteSpace=wrap;html=1;width=170;height=26;boundedLbl=1;verticalAlign=top;align=left;spacingLeft=6;fillColor=none;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="330.0" y="732" width="705.0" height="108" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_24" value="opt · RunImport = Yes" style="shape=umlFrame;whiteSpace=wrap;html=1;width=170;height=26;boundedLbl=1;verticalAlign=top;align=left;spacingLeft=6;fillColor=none;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="310.0" y="550" width="1185.0" height="302" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_25" value="13 Run child: Demo, TEST (no retry)" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360.0" y="908" as="sourcePoint" />
+            <mxPoint x="1220.0" y="908" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_26" value="14 List rows: bindings = ALMConnections?" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1220.0" y="946" as="sourcePoint" />
+            <mxPoint x="1435.0" y="946" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_27" value="15 Update a row: variable values" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1220.0" y="984" as="sourcePoint" />
+            <mxPoint x="1435.0" y="984" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_28" value="16 Update a row: turn on flows" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1220.0" y="1022" as="sourcePoint" />
+            <mxPoint x="1435.0" y="1022" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_29" value="17 Reply status + message" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;dashed=1;endArrow=open;endFill=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1220.0" y="1060" as="sourcePoint" />
+            <mxPoint x="360.0" y="1060" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_30" value="opt · RunPostImport = Yes" style="shape=umlFrame;whiteSpace=wrap;html=1;width=170;height=26;boundedLbl=1;verticalAlign=top;align=left;spacingLeft=6;fillColor=none;fontSize=11;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="310.0" y="862" width="1185.0" height="222" as="geometry" />
+        </mxCell>
+        <mxCell id="p3_31" value="18 Create file DeploymentLogs/Demo_TEST_time.json" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360.0" y="1110" as="sourcePoint" />
+            <mxPoint x="575.0" y="1110" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_32" value="19 Succeeded, or Failed with the first failure message" style="html=1;verticalAlign=bottom;endArrow=block;endFill=1;fontSize=11;labelBackgroundColor=#FFFFFF;align=center;dashed=1;endArrow=open;endFill=0;" parent="1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360.0" y="1148" as="sourcePoint" />
+            <mxPoint x="145.0" y="1148" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="p3_33" value="&lt;b&gt;Limit&lt;/b&gt;: a child must reply within 120 s. Children always reply, also on failure, so C1 never hangs." style="whiteSpace=wrap;html=1;shape=note;size=14;fillColor=#FFFDE7;strokeColor=#C0A000;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="1545" y="140" width="260" height="110" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p4" name="4 Config model">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p4_title" value="4 · Config model: the three ALM lists and what they drive" style="text;html=1;align=left;verticalAlign=top;fontSize=20;fontStyle=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="40" y="20" width="1400" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_sub" value="All three lists live in SharePoint site ALM-Admin. Rows are per solution / environment, so one pipeline serves every product and target." style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="40" y="54" width="1400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="t_cfg" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#FFFFFF&quot;&gt;&lt;b&gt;📋 SharePoint list · ALM-Admin&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;ALMConfig&lt;/b&gt; · 1 row per solution × target" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=44;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;rounded=1;arcSize=3;fillColor=#038387;fontColor=#FFFFFF;strokeColor=#038387;swimlaneFillColor=#EEF7F7;" parent="1" vertex="1">
+          <mxGeometry x="40" y="130" width="440" height="304" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_1" value="&lt;b&gt;SolutionName&lt;/b&gt; · text · &lt;i&gt;Demo&lt;/i&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_cfg" vertex="1">
+          <mxGeometry x="0" y="44" width="440" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_2" value="&lt;b&gt;TargetEnvironment&lt;/b&gt; · choice · &lt;i&gt;TEST / PROD&lt;/i&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_cfg" vertex="1">
+          <mxGeometry x="0" y="70" width="440" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_3" value="&lt;b&gt;DevPowerPlatformUrl&lt;/b&gt; · link · DEV org (export from)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_cfg" vertex="1">
+          <mxGeometry x="0" y="96" width="440" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_4" value="&lt;b&gt;DevSharePointUrl&lt;/b&gt; · link · ALM-Dev site" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_cfg" vertex="1">
+          <mxGeometry x="0" y="122" width="440" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_5" value="&lt;b&gt;TargetPowerPlatformUrl&lt;/b&gt; · link · TEST org (import to)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_cfg" vertex="1">
+          <mxGeometry x="0" y="148" width="440" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_6" value="&lt;b&gt;TargetSharePointUrl&lt;/b&gt; · link · ALM-Test site" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_cfg" vertex="1">
+          <mxGeometry x="0" y="174" width="440" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_7" value="&lt;b&gt;RunImport&lt;/b&gt; · yes/no · switch for C2 ✅" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_cfg" vertex="1">
+          <mxGeometry x="0" y="200" width="440" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_8" value="&lt;b&gt;RunPostImport&lt;/b&gt; · yes/no · switch for C3 ✅" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_cfg" vertex="1">
+          <mxGeometry x="0" y="226" width="440" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_9" value="&lt;b&gt;RunShare&lt;/b&gt; · yes/no · switch for C4 (future) ❌" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_cfg" vertex="1">
+          <mxGeometry x="0" y="252" width="440" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_10" value="&lt;b&gt;AppShareGroupId&lt;/b&gt; · text · Entra group for C4 (future)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_cfg" vertex="1">
+          <mxGeometry x="0" y="278" width="440" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t_con" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#FFFFFF&quot;&gt;&lt;b&gt;📋 SharePoint list · ALM-Admin&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;ALMConnections&lt;/b&gt; · 1 row per environment × connection reference" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=44;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;rounded=1;arcSize=3;fillColor=#038387;fontColor=#FFFFFF;strokeColor=#038387;swimlaneFillColor=#EEF7F7;" parent="1" vertex="1">
+          <mxGeometry x="600" y="130" width="480" height="148" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_11" value="&lt;b&gt;Environment&lt;/b&gt; · choice · &lt;i&gt;TEST&lt;/i&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_con" vertex="1">
+          <mxGeometry x="0" y="44" width="480" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_12" value="&lt;b&gt;ConnectionReference&lt;/b&gt; · text · &lt;i&gt;dev_SharePoint&lt;/i&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_con" vertex="1">
+          <mxGeometry x="0" y="70" width="480" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_13" value="&lt;b&gt;ConnectionId&lt;/b&gt; · text · &lt;i&gt;shared-sharepointonl-0f567e53&lt;/i&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_con" vertex="1">
+          <mxGeometry x="0" y="96" width="480" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_14" value="&lt;b&gt;ConnectorId&lt;/b&gt; · text · &lt;i&gt;…/apis/shared_sharepointonline&lt;/i&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_con" vertex="1">
+          <mxGeometry x="0" y="122" width="480" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t_var" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#FFFFFF&quot;&gt;&lt;b&gt;📋 SharePoint list · ALM-Admin&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;ALMVariables&lt;/b&gt; · 1 row per solution × environment × variable" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=44;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;rounded=1;arcSize=3;fillColor=#038387;fontColor=#FFFFFF;strokeColor=#038387;swimlaneFillColor=#EEF7F7;" parent="1" vertex="1">
+          <mxGeometry x="600" y="420" width="480" height="148" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_15" value="&lt;b&gt;SolutionName&lt;/b&gt; · text · &lt;i&gt;Demo&lt;/i&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_var" vertex="1">
+          <mxGeometry x="0" y="44" width="480" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_16" value="&lt;b&gt;Environment&lt;/b&gt; · choice · &lt;i&gt;TEST&lt;/i&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_var" vertex="1">
+          <mxGeometry x="0" y="70" width="480" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_17" value="&lt;b&gt;SchemaName&lt;/b&gt; · text · &lt;i&gt;dev_SharePointSite / dev_ProductsList&lt;/i&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_var" vertex="1">
+          <mxGeometry x="0" y="96" width="480" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_18" value="&lt;b&gt;Value&lt;/b&gt; · text · &lt;i&gt;ALM-Test URL / 00000000-… (placeholder)&lt;/i&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_var" vertex="1">
+          <mxGeometry x="0" y="122" width="480" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t_dref" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#FFFFFF&quot;&gt;&lt;b&gt;Dataverse table · DEV&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;connectionreference&lt;/b&gt; (in solution Demo)" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=44;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;rounded=1;arcSize=3;fillColor=#742774;fontColor=#FFFFFF;strokeColor=#742774;swimlaneFillColor=#FAF3FA;" parent="1" vertex="1">
+          <mxGeometry x="1240" y="130" width="400" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_19" value="&lt;b&gt;connectionreferencelogicalname&lt;/b&gt; · &lt;i&gt;dev_SharePoint&lt;/i&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_dref" vertex="1">
+          <mxGeometry x="0" y="44" width="400" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t_dvar" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#FFFFFF&quot;&gt;&lt;b&gt;Dataverse table · DEV&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;environmentvariabledefinition&lt;/b&gt; (in Demo)" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=44;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;rounded=1;arcSize=3;fillColor=#742774;fontColor=#FFFFFF;strokeColor=#742774;swimlaneFillColor=#FAF3FA;" parent="1" vertex="1">
+          <mxGeometry x="1240" y="420" width="400" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_20" value="&lt;b&gt;schemaname&lt;/b&gt; · &lt;i&gt;dev_SharePointSite, dev_ProductsList&lt;/i&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_dvar" vertex="1">
+          <mxGeometry x="0" y="44" width="400" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t_tcon" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#FFFFFF&quot;&gt;&lt;b&gt;Power Platform connection · TEST&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;Connection&lt;/b&gt; (one per connector)" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=44;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;rounded=1;arcSize=3;fillColor=#666666;fontColor=#FFFFFF;strokeColor=#666666;swimlaneFillColor=#F5F5F5;" parent="1" vertex="1">
+          <mxGeometry x="1240" y="250" width="400" height="122" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_21" value="&lt;b&gt;name&lt;/b&gt; · &lt;i&gt;shared-sharepointonl-0f567e53&lt;/i&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_tcon" vertex="1">
+          <mxGeometry x="0" y="44" width="400" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_22" value="&lt;b&gt;owner&lt;/b&gt; · &lt;i&gt;kriall076&lt;/i&gt; (service account later)" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_tcon" vertex="1">
+          <mxGeometry x="0" y="70" width="400" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_23" value="created once by a person; deployments only bind" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_tcon" vertex="1">
+          <mxGeometry x="0" y="96" width="400" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="t_tval" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#FFFFFF&quot;&gt;&lt;b&gt;Dataverse table · TEST&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;environmentvariablevalue&lt;/b&gt;" style="swimlane;fontStyle=1;childLayout=stackLayout;horizontal=1;startSize=44;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=0;marginBottom=0;html=1;whiteSpace=wrap;rounded=1;arcSize=3;fillColor=#742774;fontColor=#FFFFFF;strokeColor=#742774;swimlaneFillColor=#FAF3FA;" parent="1" vertex="1">
+          <mxGeometry x="1240" y="540" width="400" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_24" value="&lt;b&gt;value&lt;/b&gt; · written by C3 Update_value" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=6;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;fontSize=11;" parent="t_tval" vertex="1">
+          <mxGeometry x="0" y="44" width="400" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_25" value="TargetEnvironment = Environment" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" parent="1" edge="1" source="t_cfg" target="t_con">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_26" value="SolutionName + TargetEnvironment" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" parent="1" edge="1" source="t_cfg" target="t_var">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_27" value="C1 precheck: row needed" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" parent="1" edge="1" source="t_dref" target="t_con">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_28" value="C1 precheck: row needed" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" parent="1" edge="1" source="t_dvar" target="t_var">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_29" value="ConnectionId: C2 binds, C3 verifies" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.85;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="t_con" target="t_tcon">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_30" value="Value: C2 at import, C3 updates" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.85;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="t_var" target="t_tval">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_31" value="&lt;b&gt;Current rows (Demo → TEST)&lt;/b&gt;&lt;br&gt;ALMConfig: RunImport ✅ · RunPostImport ✅ · RunShare ❌&lt;br&gt;ALMConnections: dev_SharePoint → 0f567e53&lt;br&gt;ALMVariables: dev_SharePointSite = ALM-Test&lt;br&gt;dev_ProductsList = 00000000-… (placeholder until the TEST Products list exists)" style="whiteSpace=wrap;html=1;shape=note;size=14;fillColor=#FFFDE7;strokeColor=#C0A000;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="40" y="480" width="440" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="p4_32" value="&lt;b&gt;Add a new product&lt;/b&gt;&lt;br&gt;1. ALMConfig row per target&lt;br&gt;2. ALMConnections row per new reference (per env)&lt;br&gt;3. ALMVariables row per variable (per env)&lt;br&gt;C1 refuses to export until 2 and 3 are complete." style="whiteSpace=wrap;html=1;shape=note;size=14;fillColor=#FFFDE7;strokeColor=#C0A000;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="40" y="630" width="440" height="120" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p5" name="5 C2 internals">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p5_title" value="5 · ALM C2 - Import (child): every action" style="text;html=1;align=left;verticalAlign=top;fontSize=20;fontStyle=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="40" y="20" width="1400" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_sub" value="Environment: ADMIN · solution ALMPipeline · called by C1 Run_C2_import. Writes to: the TARGET environment (TEST)." style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="40" y="54" width="1400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_1" value="&lt;b&gt;Manually trigger (child)&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#0066FF&quot;&gt;&lt;b&gt;Power Automate · trigger&lt;/b&gt;&lt;/font&gt;&lt;br&gt;text = ZIP path · text_1 = Solution · text_2 = Target" style="whiteSpace=wrap;html=1;ellipse;fillColor=#DAE8FC;strokeColor=#0066FF;strokeWidth=2;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="140.0" y="110" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_2" value="&lt;b&gt;Init_FailMessage&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#666666&quot;&gt;&lt;b&gt;Built-in · Initialize variable&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;FailMessage = ''&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="130.0" y="216" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p5_1" target="p5_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_try" value="Scope &lt;b&gt;Try&lt;/b&gt; · all real work (a failure inside fails the scope, no early Terminate)" style="whiteSpace=wrap;html=1;swimlane;startSize=30;rounded=1;arcSize=2;fillColor=#FFF2CC;strokeColor=#B8860B;swimlaneFillColor=#FFFDF5;fontStyle=1;align=left;spacingLeft=10;" parent="1" vertex="1">
+          <mxGeometry x="40" y="320" width="900" height="1130" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_4" value="&lt;b&gt;config block (same as C1 Prechecks)&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;SharePoint · Get items × 3 + Dataverse List rows × 2&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Get_config, Config, Dev_url, Target_url, Get_connection_map, Get_variable_map, Dev_refs, Dev_vars.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#038387;" parent="p5_try" vertex="1">
+          <mxGeometry x="90.0" y="46" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_5" value="&lt;b&gt;Check_config&lt;/b&gt;&lt;br&gt;no row found?" style="whiteSpace=wrap;html=1;rhombus;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" parent="p5_try" vertex="1">
+          <mxGeometry x="145.0" y="150" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p5_4" target="p5_5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_7" value="&lt;b&gt;Stop_no_config&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#B85450&quot;&gt;&lt;b&gt;fail_steps · Set variable + Compose int()&lt;/b&gt;&lt;/font&gt;&lt;br&gt;'No ALMConfig row for …'" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#F8CECC;strokeColor=#B85450;align=left;spacingLeft=8;fontSize=11;" parent="p5_try" vertex="1">
+          <mxGeometry x="580" y="165.0" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_8" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="p5_5" target="p5_7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_9" value="&lt;b&gt;Solution_connections&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#666666&quot;&gt;&lt;b&gt;Built-in · Filter array&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;ALMConnections rows whose reference is in this solution.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#666666;" parent="p5_try" vertex="1">
+          <mxGeometry x="90.0" y="276" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_10" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p5_5" target="p5_9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_11" value="&lt;b&gt;Connection_params&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#666666&quot;&gt;&lt;b&gt;Built-in · Select&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Each row → {odata_type: connectionreference, logical name, connectionid, connectorid}.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#666666;" parent="p5_try" vertex="1">
+          <mxGeometry x="90.0" y="380" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p5_9" target="p5_11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_13" value="&lt;b&gt;Variable_params&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#666666&quot;&gt;&lt;b&gt;Built-in · Select&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Each ALMVariables row → {odata_type: environmentvariablevalue, schemaname, value}.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#666666;" parent="p5_try" vertex="1">
+          <mxGeometry x="90.0" y="484" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p5_11" target="p5_13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_15" value="&lt;b&gt;Get_archived_ZIP&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;SharePoint · Get file content using path · ALM-Admin&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Read the ZIP that C1 archived (trigger input text).&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#038387;" parent="p5_try" vertex="1">
+          <mxGeometry x="90.0" y="588" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p5_13" target="p5_15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_17" value="&lt;b&gt;Import_to_target&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Dataverse · Perform unbound action · ImportSolutionAsync&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Target org. ComponentParameters = both lists (odata_type → @odata.type). Publish workflows = yes.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#742774;" parent="p5_try" vertex="1">
+          <mxGeometry x="90.0" y="692" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p5_15" target="p5_17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_19" value="&lt;b&gt;Import_Wait_for_job&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#B8860B&quot;&gt;&lt;b&gt;Control · Do until (Delay 20 s → Get a row asyncoperations)&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Poll the import job until statecode = 3.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#B8860B;" parent="p5_try" vertex="1">
+          <mxGeometry x="90.0" y="796" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p5_17" target="p5_19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_21" value="&lt;b&gt;Import_succeeded&lt;/b&gt;&lt;br&gt;job succeeded?" style="whiteSpace=wrap;html=1;rhombus;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" parent="p5_try" vertex="1">
+          <mxGeometry x="145.0" y="900" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p5_19" target="p5_21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_23" value="&lt;b&gt;Import_failed&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#B85450&quot;&gt;&lt;b&gt;fail_steps · Set variable + Compose int()&lt;/b&gt;&lt;/font&gt;&lt;br&gt;FailMessage = the job's friendlymessage" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#F8CECC;strokeColor=#B85450;align=left;spacingLeft=8;fontSize=11;" parent="p5_try" vertex="1">
+          <mxGeometry x="580" y="915.0" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_24" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="p5_21" target="p5_23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_25" value="&lt;b&gt;Reply&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#0066FF&quot;&gt;&lt;b&gt;Power Automate · Respond to a PowerApp or flow&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;status = Succeeded, message 'Imported …', importjobkey. C1 continues.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#0066FF;" parent="p5_try" vertex="1">
+          <mxGeometry x="90.0" y="1026" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_26" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p5_21" target="p5_25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p5_2" target="p5_4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_28" value="&lt;b&gt;Failed_actions&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#666666&quot;&gt;&lt;b&gt;Built-in · Filter array over result('Try')&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Runs only if Try Failed / Skipped / TimedOut. Finds the failed action.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="130" y="1490" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_29" value="Try not Succeeded" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="p5_try" target="p5_28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_30" value="&lt;b&gt;Reply_failed&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#0066FF&quot;&gt;&lt;b&gt;Power Automate · Respond to a PowerApp or flow&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;status = Failed, message = FailMessage or the first error text.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#0066FF;" parent="1" vertex="1">
+          <mxGeometry x="130" y="1600" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p5_28" target="p5_30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_32" value="&lt;b&gt;Stop_failed&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#B85450&quot;&gt;&lt;b&gt;Control · Terminate (Failed)&lt;/b&gt;&lt;/font&gt;&lt;br&gt;After the reply: marks the child run Failed in history." style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#F8CECC;strokeColor=#B85450;align=left;spacingLeft=8;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="130" y="1710" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_33" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p5_30" target="p5_32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p5_34" value="&lt;b&gt;Why ComponentParameters&lt;/b&gt;&lt;br&gt;The import binds each connection reference to the existing TEST connection and sets each variable value &lt;b&gt;during&lt;/b&gt; the import, so no one signs in on deploy.&lt;br&gt;&lt;br&gt;&lt;b&gt;Connector quirks handled&lt;/b&gt;&lt;br&gt;· setProperty() rejects '.', so the flow writes odata_type and renames it to @odata.type as text.&lt;br&gt;· Dataverse unbound actions need item as one object.&lt;br&gt;· The import ZIP is managed; unmanaged customisations are not overwritten." style="whiteSpace=wrap;html=1;shape=note;size=14;fillColor=#FFFDE7;strokeColor=#C0A000;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="990" y="120" width="420" height="260" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p6" name="6 C3 internals">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p6_title" value="6 · ALM C3 - Post-import (child): every action" style="text;html=1;align=left;verticalAlign=top;fontSize=20;fontStyle=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="40" y="20" width="1400" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_sub" value="Environment: ADMIN · solution ALMPipeline · called by C1 Run_C3_post_import. Reads/writes: the TARGET environment (TEST)." style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="40" y="54" width="1400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_1" value="&lt;b&gt;Manually trigger (child)&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#0066FF&quot;&gt;&lt;b&gt;Power Automate · trigger&lt;/b&gt;&lt;/font&gt;&lt;br&gt;text = Solution · text_1 = Target" style="whiteSpace=wrap;html=1;ellipse;fillColor=#DAE8FC;strokeColor=#0066FF;strokeWidth=2;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="140.0" y="110" width="320" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_2" value="&lt;b&gt;Init_FailMessage&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#666666&quot;&gt;&lt;b&gt;Built-in · Initialize variable&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;FailMessage = ''&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="130.0" y="216" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p6_1" target="p6_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_try" value="Scope &lt;b&gt;Try&lt;/b&gt; · all real work (a failure inside fails the scope, no early Terminate)" style="whiteSpace=wrap;html=1;swimlane;startSize=30;rounded=1;arcSize=2;fillColor=#FFF2CC;strokeColor=#B8860B;swimlaneFillColor=#FFFDF5;fontStyle=1;align=left;spacingLeft=10;" parent="1" vertex="1">
+          <mxGeometry x="40" y="320" width="900" height="1476" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_4" value="&lt;b&gt;config block (same as C1 Prechecks)&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;SharePoint · Get items × 3 + Dataverse List rows × 2&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Get_config, Config, Dev_url, Target_url, Get_connection_map, Get_variable_map, Dev_refs, Dev_vars.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#038387;" parent="p6_try" vertex="1">
+          <mxGeometry x="90.0" y="46" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_5" value="&lt;b&gt;Check_config&lt;/b&gt;&lt;br&gt;no row found?" style="whiteSpace=wrap;html=1;rhombus;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" parent="p6_try" vertex="1">
+          <mxGeometry x="145.0" y="150" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p6_4" target="p6_5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_7" value="&lt;b&gt;Stop_no_config&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#B85450&quot;&gt;&lt;b&gt;fail_steps · Set variable + Compose int()&lt;/b&gt;&lt;/font&gt;&lt;br&gt;'No ALMConfig row for …'" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#F8CECC;strokeColor=#B85450;align=left;spacingLeft=8;fontSize=11;" parent="p6_try" vertex="1">
+          <mxGeometry x="580" y="165.0" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_8" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="p6_5" target="p6_7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_9" value="&lt;b&gt;Solution_connections · Expected_pairs&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#666666&quot;&gt;&lt;b&gt;Built-in · Filter array + Select&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Wanted 'reference|connectionId' pairs from ALMConnections.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#666666;" parent="p6_try" vertex="1">
+          <mxGeometry x="90.0" y="276" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_10" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p6_5" target="p6_9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_11" value="&lt;b&gt;Target_refs · Target_pairs&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Dataverse · List rows connectionreferences + Select&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Actual 'reference|connectionid' pairs in the target org.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#742774;" parent="p6_try" vertex="1">
+          <mxGeometry x="90.0" y="380" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_12" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p6_9" target="p6_11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_13" value="&lt;b&gt;Wrong_bindings&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#666666&quot;&gt;&lt;b&gt;Built-in · Filter array&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Wanted pairs not found in the target.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#666666;" parent="p6_try" vertex="1">
+          <mxGeometry x="90.0" y="484" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p6_11" target="p6_13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_15" value="&lt;b&gt;Check_bindings&lt;/b&gt;&lt;br&gt;any wrong?" style="whiteSpace=wrap;html=1;rhombus;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" parent="p6_try" vertex="1">
+          <mxGeometry x="145.0" y="588" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p6_13" target="p6_15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_17" value="&lt;b&gt;Stop_wrong_bindings&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#B85450&quot;&gt;&lt;b&gt;fail_steps · Set variable + Compose int()&lt;/b&gt;&lt;/font&gt;&lt;br&gt;'Connection references not bound as mapped: …'" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#F8CECC;strokeColor=#B85450;align=left;spacingLeft=8;fontSize=11;" parent="p6_try" vertex="1">
+          <mxGeometry x="580" y="603.0" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_18" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="p6_15" target="p6_17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_19" value="&lt;b&gt;Target_defs → Rows_with_value&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Dataverse · List rows (expand value) + Select + Filter&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Target variable definitions and their value row IDs.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#742774;" parent="p6_try" vertex="1">
+          <mxGeometry x="90.0" y="714" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_20" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p6_15" target="p6_19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_21" value="&lt;b&gt;Wanted_names · Missing_value_rows&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#666666&quot;&gt;&lt;b&gt;Built-in · Select + Filter array&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;ALMVariables names with no value row in the target.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#666666;" parent="p6_try" vertex="1">
+          <mxGeometry x="90.0" y="818" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p6_19" target="p6_21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_23" value="&lt;b&gt;Check_value_rows&lt;/b&gt;&lt;br&gt;any missing?" style="whiteSpace=wrap;html=1;rhombus;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=11;" parent="p6_try" vertex="1">
+          <mxGeometry x="145.0" y="922" width="230" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p6_21" target="p6_23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_25" value="&lt;b&gt;Stop_no_value_row&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#B85450&quot;&gt;&lt;b&gt;fail_steps · Set variable + Compose int()&lt;/b&gt;&lt;/font&gt;&lt;br&gt;'No value row in the target for: … Run the import first.'" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#F8CECC;strokeColor=#B85450;align=left;spacingLeft=8;fontSize=11;" parent="p6_try" vertex="1">
+          <mxGeometry x="580" y="937.0" width="300" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_26" value="yes" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="p6_23" target="p6_25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_27" value="&lt;b&gt;For_each_variable → Value_row → Update_value&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Dataverse · Apply to each (1 at a time) · Update a row&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;environmentvariablevalues.value = ALMVariables.Value&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#742774;" parent="p6_try" vertex="1">
+          <mxGeometry x="90.0" y="1048" width="340" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_28" value="no" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p6_23" target="p6_27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_29" value="&lt;b&gt;Off_flows&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Dataverse · List rows (FetchXML) · workflows&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Cloud flows (category 5) in the solution that are off (statecode 0).&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#742774;" parent="p6_try" vertex="1">
+          <mxGeometry x="90.0" y="1164" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p6_27" target="p6_29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_31" value="&lt;b&gt;For_each_flow → Turn_on_flow&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;Dataverse · Apply to each · Update a row&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;statecode = 1, statuscode = 2 (turn on). Untested live: Demo has no flow in TEST.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#742774;" parent="p6_try" vertex="1">
+          <mxGeometry x="90.0" y="1268" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p6_29" target="p6_31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_33" value="&lt;b&gt;Reply&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#0066FF&quot;&gt;&lt;b&gt;Power Automate · Respond to a PowerApp or flow&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;status = Succeeded, 'Bindings OK; variables set: n; flows turned on: m'.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#0066FF;" parent="p6_try" vertex="1">
+          <mxGeometry x="90.0" y="1372" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_34" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p6_31" target="p6_33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_35" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p6_2" target="p6_4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_36" value="&lt;b&gt;Failed_actions&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#666666&quot;&gt;&lt;b&gt;Built-in · Filter array over result('Try')&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;Runs only if Try Failed / Skipped / TimedOut. Finds the failed action.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#666666;" parent="1" vertex="1">
+          <mxGeometry x="130" y="1836" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_37" value="Try not Succeeded" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="p6_try" target="p6_36">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_38" value="&lt;b&gt;Reply_failed&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#0066FF&quot;&gt;&lt;b&gt;Power Automate · Respond to a PowerApp or flow&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style=&quot;font-size:11px&quot;&gt;status = Failed, message = FailMessage or the first error text.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeWidth=2;align=left;spacingLeft=8;spacingRight=4;strokeColor=#0066FF;" parent="1" vertex="1">
+          <mxGeometry x="130" y="1946" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_39" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p6_36" target="p6_38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_40" value="&lt;b&gt;Stop_failed&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#B85450&quot;&gt;&lt;b&gt;Control · Terminate (Failed)&lt;/b&gt;&lt;/font&gt;&lt;br&gt;After the reply: marks the child run Failed in history." style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#F8CECC;strokeColor=#B85450;align=left;spacingLeft=8;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="130" y="2056" width="340" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_41" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p6_38" target="p6_40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p6_42" value="&lt;b&gt;What C3 guarantees&lt;/b&gt;&lt;br&gt;1. Every reference is bound to the connection in ALMConnections.&lt;br&gt;2. Every variable value equals ALMVariables (can run without an import: RunImport off + RunPostImport on).&lt;br&gt;3. Solution cloud flows are turned on.&lt;br&gt;&lt;br&gt;&lt;b&gt;Proven live&lt;/b&gt;: test 4 (variable only) and test 6 (wrong ConnectionId → C3 replied Failed, C1 logged PostImport Failed)." style="whiteSpace=wrap;html=1;shape=note;size=14;fillColor=#FFFDE7;strokeColor=#C0A000;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="990" y="120" width="420" height="260" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="p7" name="7 Roadmap">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="p7_title" value="7 · Roadmap (proposal, to refine): future child flows in C1's stage order" style="text;html=1;align=left;verticalAlign=top;fontSize=20;fontStyle=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="40" y="20" width="1400" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_sub" value="Green = live today. Dashed yellow = proposed. Each future child gets its own ALMConfig switch, like RunImport. The row under each stage says which platform and component it touches." style="text;html=1;align=left;verticalAlign=top;fontSize=12;whiteSpace=wrap;fontColor=#444444;" parent="1" vertex="1">
+          <mxGeometry x="40" y="54" width="1400" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_1" value="&lt;b&gt;Prechecks&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#2E7D32&quot;&gt;&lt;b&gt;Stage in C1&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px'&gt;Config + mapping rows exist&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#D4EDDA;strokeColor=#2E7D32;strokeWidth=2;align=left;spacingLeft=8;" parent="1" vertex="1">
+          <mxGeometry x="40" y="160" width="180" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_2" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;touches&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px'&gt;SharePoint ALM-Admin lists · DEV Dataverse&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#333333;align=left;spacingLeft=8;strokeColor=#038387;" parent="1" vertex="1">
+          <mxGeometry x="40" y="350" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;dashed=1;endArrow=none;" parent="1" edge="1" source="p7_1" target="p7_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_4" value="&lt;b&gt;C5 SharePoint deploy&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#B8860B&quot;&gt;&lt;b&gt;switch RunSharePoint&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px'&gt;Create or update target lists (new vs existing). Writes the list ID into ALMVariables.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFF3CD;strokeColor=#B8860B;strokeWidth=2;dashed=1;dashPattern=8 4;align=left;spacingLeft=8;" parent="1" vertex="1">
+          <mxGeometry x="240" y="160" width="180" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_5" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;touches&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px'&gt;SharePoint ALM-Test site · lists + columns&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#333333;align=left;spacingLeft=8;strokeColor=#038387;" parent="1" vertex="1">
+          <mxGeometry x="240" y="350" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;dashed=1;endArrow=none;" parent="1" edge="1" source="p7_4" target="p7_5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p7_1" target="p7_4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_8" value="&lt;b&gt;Export + archive&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#2E7D32&quot;&gt;&lt;b&gt;Stage in C1&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px'&gt;Managed export from DEV, ZIP to ALM-Admin&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#D4EDDA;strokeColor=#2E7D32;strokeWidth=2;align=left;spacingLeft=8;" parent="1" vertex="1">
+          <mxGeometry x="440" y="160" width="180" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_9" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;touches&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px'&gt;DEV Dataverse · SharePoint library&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#333333;align=left;spacingLeft=8;strokeColor=#742774;" parent="1" vertex="1">
+          <mxGeometry x="440" y="350" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;dashed=1;endArrow=none;" parent="1" edge="1" source="p7_8" target="p7_9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_11" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p7_4" target="p7_8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_12" value="&lt;b&gt;C2 Import&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#2E7D32&quot;&gt;&lt;b&gt;switch RunImport&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px'&gt;Import ZIP with connections + variable values&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#D4EDDA;strokeColor=#2E7D32;strokeWidth=2;align=left;spacingLeft=8;" parent="1" vertex="1">
+          <mxGeometry x="640" y="160" width="180" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_13" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;touches&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px'&gt;TEST Dataverse · solution Demo&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#333333;align=left;spacingLeft=8;strokeColor=#742774;" parent="1" vertex="1">
+          <mxGeometry x="640" y="350" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_14" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;dashed=1;endArrow=none;" parent="1" edge="1" source="p7_12" target="p7_13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p7_8" target="p7_12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_16" value="&lt;b&gt;C3 Post-import&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#2E7D32&quot;&gt;&lt;b&gt;switch RunPostImport&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px'&gt;Check bindings, set variables, flows on&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#D4EDDA;strokeColor=#2E7D32;strokeWidth=2;align=left;spacingLeft=8;" parent="1" vertex="1">
+          <mxGeometry x="840" y="160" width="180" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_17" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;touches&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px'&gt;TEST Dataverse · refs, variables, flows&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#333333;align=left;spacingLeft=8;strokeColor=#742774;" parent="1" vertex="1">
+          <mxGeometry x="840" y="350" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;dashed=1;endArrow=none;" parent="1" edge="1" source="p7_16" target="p7_17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p7_12" target="p7_16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_20" value="&lt;b&gt;C6 Security groups&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#B8860B&quot;&gt;&lt;b&gt;switch RunSecurity&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px'&gt;Ensure the Entra group exists with the right members; store its ID in AppShareGroupId.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFF3CD;strokeColor=#B8860B;strokeWidth=2;dashed=1;dashPattern=8 4;align=left;spacingLeft=8;" parent="1" vertex="1">
+          <mxGeometry x="1040" y="160" width="180" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_21" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#D86613&quot;&gt;&lt;b&gt;touches&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px'&gt;Entra ID · security groups (Graph / Office 365 Groups)&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#333333;align=left;spacingLeft=8;strokeColor=#D86613;" parent="1" vertex="1">
+          <mxGeometry x="1040" y="350" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;dashed=1;endArrow=none;" parent="1" edge="1" source="p7_20" target="p7_21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p7_16" target="p7_20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_24" value="&lt;b&gt;C4 Share app&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#B8860B&quot;&gt;&lt;b&gt;switch RunShare&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px'&gt;Share the canvas app with AppShareGroupId. Spike: GO.&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFF3CD;strokeColor=#B8860B;strokeWidth=2;dashed=1;dashPattern=8 4;align=left;spacingLeft=8;" parent="1" vertex="1">
+          <mxGeometry x="1240" y="160" width="180" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_25" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#742774&quot;&gt;&lt;b&gt;touches&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px'&gt;Power Apps for Admins · Edit-AdminAppRoleAssignment (connection needed in ADMIN)&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#333333;align=left;spacingLeft=8;strokeColor=#742774;" parent="1" vertex="1">
+          <mxGeometry x="1240" y="350" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;dashed=1;endArrow=none;" parent="1" edge="1" source="p7_24" target="p7_25">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_27" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p7_20" target="p7_24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_28" value="&lt;b&gt;Log + result&lt;/b&gt;&lt;br&gt;&lt;font style=&quot;font-size:10px&quot; color=&quot;#2E7D32&quot;&gt;&lt;b&gt;Scope in C1&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px'&gt;Write the run log, report&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#D4EDDA;strokeColor=#2E7D32;strokeWidth=2;align=left;spacingLeft=8;" parent="1" vertex="1">
+          <mxGeometry x="1440" y="160" width="180" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_29" value="&lt;font style=&quot;font-size:10px&quot; color=&quot;#038387&quot;&gt;&lt;b&gt;touches&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;font style='font-size:11px'&gt;SharePoint DeploymentLogs&lt;/font&gt;" style="whiteSpace=wrap;html=1;rounded=1;arcSize=8;fillColor=#FFFFFF;strokeColor=#333333;align=left;spacingLeft=8;strokeColor=#038387;" parent="1" vertex="1">
+          <mxGeometry x="1440" y="350" width="180" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;dashed=1;endArrow=none;" parent="1" edge="1" source="p7_28" target="p7_29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_31" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;fontSize=11;labelBackgroundColor=#FFFFFF;endArrow=block;endFill=1;" parent="1" edge="1" source="p7_24" target="p7_28">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_32" value="&lt;b&gt;Why this order&lt;/b&gt;&lt;br&gt;1. C5 before Export/Import: the TEST Products list must exist so its ID can go into dev_ProductsList before C2 imports.&lt;br&gt;2. C6 before C4: C4 needs a group to share the app with.&lt;br&gt;3. Each child replies status + message like C2/C3, and C1 logs it as its own stage.&lt;br&gt;&lt;br&gt;&lt;b&gt;Open decisions&lt;/b&gt;&lt;br&gt;· C5: how to describe lists as config (schema file in repo vs SharePoint list)?&lt;br&gt;· C6: who owns group membership - pipeline or IT?&lt;br&gt;· C4: create the Power Apps for Admins connection (kriall076 → service account)." style="whiteSpace=wrap;html=1;shape=note;size=14;fillColor=#FFFDE7;strokeColor=#C0A000;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="40" y="480" width="780" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="p7_33" value="&lt;b&gt;Open items outside the roadmap&lt;/b&gt;&lt;br&gt;· Create TEST Products list → set dev_ProductsList&lt;br&gt;· Service account instead of kriall076&lt;br&gt;· PR feat/deploy-orchestrator → main" style="whiteSpace=wrap;html=1;shape=note;size=14;fillColor=#FFFDE7;strokeColor=#C0A000;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=11;" parent="1" vertex="1">
+          <mxGeometry x="860" y="480" width="380" height="130" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

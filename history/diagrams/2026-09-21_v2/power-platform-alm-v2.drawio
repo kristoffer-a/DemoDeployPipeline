@@ -1,0 +1,769 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="24.7.17" type="device">
+  <diagram id="alm-v2-1" name="01 — Solution definition">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" page="1" pageWidth="1600" pageHeight="1000" background="#F3F7FA">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="n1" value="A solution: application, data and identity boundaries" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=30;fontColor=#172B3A;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="42" width="1460" height="44.5" />
+        </mxCell>
+        <mxCell id="n2" value="One business capability. Direct app calls use the signed-in person’s SharePoint permissions; flow calls use the configured connection identity." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="94" width="1460" height="26.950000000000003" />
+        </mxCell>
+        <mxCell id="n3" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#EAF3FD;strokeColor=#1766B3;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="150" width="850" height="650" />
+        </mxCell>
+        <mxCell id="n4" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#F1ECF8;strokeColor=#7353AC;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="940" y="150" width="600" height="285" />
+        </mxCell>
+        <mxCell id="n5" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#E6F5F1;strokeColor=#087F78;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="940" y="485" width="600" height="315" />
+        </mxCell>
+        <mxCell id="n6" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=white;strokeColor=#1766B3;strokeWidth=1.5;dashed=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="85" y="255" width="615" height="465" />
+        </mxCell>
+        <mxCell id="n7" value="POWER PLATFORM" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=20;fontColor=#1766B3;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="175" width="350" height="31.0" />
+        </mxCell>
+        <mxCell id="n8" value="Shared environment — Dev, Test or Prod" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="207" width="400" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n9" value="SOLUTION PACKAGE" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#1766B3;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="110" y="275" width="310" height="26.950000000000003" />
+        </mxCell>
+        <mxCell id="n10" value="Unmanaged in Dev • managed in Test and Prod" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="110" y="305" width="420" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n11" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#EAF3FD;strokeColor=#1766B3;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="120" y="365" width="235" height="110" />
+        </mxCell>
+        <mxCell id="n12" value="Canvas app" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#1766B3;fontStyle=1;spacing=0;" vertex="1" parent="n11">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="195" height="26.950000000000003" />
+        </mxCell>
+        <mxCell id="n13" value="User experience and&#10;business logic" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n11">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="195" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n14" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#EAF3FD;strokeColor=#1766B3;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="420" y="365" width="235" height="110" />
+        </mxCell>
+        <mxCell id="n15" value="Cloud flows" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#1766B3;fontStyle=1;spacing=0;" vertex="1" parent="n14">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="195" height="26.950000000000003" />
+        </mxCell>
+        <mxCell id="n16" value="Automation for this&#10;business need" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n14">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="195" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n17" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#F1ECF8;strokeColor=#7353AC;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="120" y="555" width="235" height="105" />
+        </mxCell>
+        <mxCell id="n18" value="Environment variables" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#7353AC;fontStyle=1;spacing=0;" vertex="1" parent="n17">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="195" height="25.6" />
+        </mxCell>
+        <mxCell id="n19" value="Site, list and stage-specific&#10;values" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n17">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="195" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n20" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#F1ECF8;strokeColor=#7353AC;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="420" y="555" width="235" height="105" />
+        </mxCell>
+        <mxCell id="n21" value="Connection references" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#7353AC;fontStyle=1;spacing=0;" vertex="1" parent="n20">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="195" height="25.6" />
+        </mxCell>
+        <mxCell id="n22" value="Included in the solution" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n20">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="195" height="26.950000000000003" />
+        </mxCell>
+        <mxCell id="n23" value="TARGET CONNECTIONS&#10;(not solution components)" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#1766B3;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="720" y="274" width="145" height="41.800000000000004" />
+        </mxCell>
+        <mxCell id="n24" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=white;strokeColor=#1766B3;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="725" y="350" width="140" height="145" />
+        </mxCell>
+        <mxCell id="n25" value="Connections" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=15;fontColor=#1766B3;fontStyle=1;spacing=0;" vertex="1" parent="n24">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="100" height="24.25" />
+        </mxCell>
+        <mxCell id="n26" value="App user’s own&#10;SharePoint connection&#10;Flow service-account&#10;connection" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n24">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="100" height="95.80000000000001" />
+        </mxCell>
+        <mxCell id="n27" value="MICROSOFT ENTRA ID" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=20;fontColor=#7353AC;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="970" y="175" width="350" height="31.0" />
+        </mxCell>
+        <mxCell id="n28" value="Security groups and licensed identities" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="970" y="207" width="350" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n29" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#F1ECF8;strokeColor=#7353AC;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="975" y="260" width="245" height="105" />
+        </mxCell>
+        <mxCell id="n30" value="Entra security group" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#7353AC;fontStyle=1;spacing=0;" vertex="1" parent="n29">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="205" height="25.6" />
+        </mxCell>
+        <mxCell id="n31" value="Canvas app sharing&#10;May be added to&#10;SharePoint groups" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n29">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="205" height="72.85000000000001" />
+        </mxCell>
+        <mxCell id="n32" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=white;strokeColor=#7353AC;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1255" y="260" width="245" height="105" />
+        </mxCell>
+        <mxCell id="n33" value="Licensed service accounts" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#7353AC;fontStyle=1;spacing=0;" vertex="1" parent="n32">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="205" height="25.6" />
+        </mxCell>
+        <mxCell id="n34" value="Used by cloud-flow connections" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n32">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="205" height="26.950000000000003" />
+        </mxCell>
+        <mxCell id="n35" value="SHAREPOINT" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=20;fontColor=#087F78;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="970" y="510" width="350" height="31.0" />
+        </mxCell>
+        <mxCell id="n36" value="Business data and role-based site access" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="970" y="542" width="390" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n37" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#E6F5F1;strokeColor=#087F78;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="975" y="600" width="165" height="105" />
+        </mxCell>
+        <mxCell id="n38" value="SharePoint site" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#087F78;fontStyle=1;spacing=0;" vertex="1" parent="n37">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="125" height="25.6" />
+        </mxCell>
+        <mxCell id="n39" value="Stage-specific&#10;location" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n37">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="125" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n40" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#E6F5F1;strokeColor=#087F78;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1170" y="600" width="165" height="105" />
+        </mxCell>
+        <mxCell id="n41" value="Lists" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#087F78;fontStyle=1;spacing=0;" vertex="1" parent="n40">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="125" height="25.6" />
+        </mxCell>
+        <mxCell id="n42" value="Business data&#10;and schema" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n40">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="125" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n43" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=white;strokeColor=#087F78;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1365" y="600" width="150" height="105" />
+        </mxCell>
+        <mxCell id="n44" value="SharePoint groups" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#087F78;fontStyle=1;spacing=0;" vertex="1" parent="n43">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="110" height="25.6" />
+        </mxCell>
+        <mxCell id="n45" value="Role-based site/list&#10;permissions" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n43">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="110" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n46" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#1766B3;dashed=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="n11" target="n14" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n47" value="calls" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=13;fontColor=#1766B3;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="360" y="405" width="55" height="21.55" />
+        </mxCell>
+        <mxCell id="n48" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#7353AC;dashed=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" source="n17" target="n11" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n49" value="configures" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=13;fontColor=#7353AC;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="185" y="500" width="100" height="21.55" />
+        </mxCell>
+        <mxCell id="n50" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#1766B3;dashed=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="n14" target="n20" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n51" value="uses" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=13;fontColor=#1766B3;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="485" y="505" width="55" height="21.55" />
+        </mxCell>
+        <mxCell id="n52" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#1766B3;dashed=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" source="n20" target="n24" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="700" y="607" />
+              <mxPoint x="795" y="607" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n53" value="binds" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=13;fontColor=#1766B3;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="660" y="595" width="60" height="21.55" />
+        </mxCell>
+        <mxCell id="n54" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#7353AC;dashed=1;exitX=0;exitY=0.1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="n29" target="n11" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="900" y="270" />
+              <mxPoint x="900" y="420" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n55" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#7353AC;dashed=1;exitX=0.4;exitY=1;exitDx=0;exitDy=0;entryX=0.6;entryY=0;entryDx=0;entryDy=0;" edge="1" source="n32" target="n24" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1350" y="450" />
+              <mxPoint x="810" y="450" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n56" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#087F78;dashed=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" source="n11" target="n37" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="238" y="755" />
+              <mxPoint x="1058" y="755" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n57" value="app user’s own SharePoint connection and permissions" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=13;fontColor=#087F78;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="440" y="740" width="320" height="21.55" />
+        </mxCell>
+        <mxCell id="n58" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#087F78;dashed=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" source="n24" target="n40" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="795" y="775" />
+              <mxPoint x="1252" y="775" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n59" value="flow uses the configured connection identity" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=13;fontColor=#087F78;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="805" y="754" width="320" height="21.55" />
+        </mxCell>
+        <mxCell id="n60" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#7353AC;dashed=1;exitX=0.85;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="n29" target="n43" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n61" value="group membership" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=13;fontColor=#7353AC;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1375" y="455" width="160" height="21.55" />
+        </mxCell>
+        <mxCell id="n62" value="Solid arrows show runtime behaviour. Dashed arrows show configuration or access assignment. Each environment has its own connections, groups, site and list mapping." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="40" y="840" width="1480" height="22.900000000000002" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="alm-v2-2" name="02 — Solution strategy">
+    <mxGraphModel dx="1800" dy="1290" grid="1" gridSize="10" page="1" pageWidth="1800" pageHeight="1290" background="#F3F7FA">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="n1" value="02  /  POWER PLATFORM ALM" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=15;fontColor=#087F78;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="28" width="1680" height="24.25" />
+        </mxCell>
+        <mxCell id="n2" value="Several business solutions. Three shared environments." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=36;fontColor=#172B3A;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="64" width="1680" height="52.6" />
+        </mxCell>
+        <mxCell id="n3" value="Each business solution follows the same lifecycle and retains its own components, audience and SharePoint mapping." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=20;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="117" width="1680" height="31.0" />
+        </mxCell>
+        <mxCell id="n4" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=white;strokeColor=#C7D4DC;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="250" y="180" width="410" height="897" />
+        </mxCell>
+        <mxCell id="n5" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#EAF3FD;strokeColor=#EAF3FD;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="250" y="180" width="410" height="77" />
+        </mxCell>
+        <mxCell id="n6" value="DEV" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=28;fontColor=#1766B3;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="272" y="192" width="365" height="41.800000000000004" />
+        </mxCell>
+        <mxCell id="n7" value="One shared Power Platform environment" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="272" y="229" width="365" height="25.6" />
+        </mxCell>
+        <mxCell id="n8" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=white;strokeColor=#C7D4DC;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="265" y="275" width="380" height="99" />
+        </mxCell>
+        <mxCell id="n9" value="Environment admission" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=19;fontColor=#172B3A;fontStyle=1;spacing=0;" vertex="1" parent="n8">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="340" height="29.650000000000002" />
+        </mxCell>
+        <mxCell id="n10" value="Makers + admins + service users&#10;Environment group + assigned roles" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n8">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="340" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n11" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=white;strokeColor=#C7D4DC;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="790" y="180" width="410" height="897" />
+        </mxCell>
+        <mxCell id="n12" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#F1ECF8;strokeColor=#F1ECF8;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="790" y="180" width="410" height="77" />
+        </mxCell>
+        <mxCell id="n13" value="TEST" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=28;fontColor=#7353AC;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="812" y="192" width="365" height="41.800000000000004" />
+        </mxCell>
+        <mxCell id="n14" value="One shared Power Platform environment" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="812" y="229" width="365" height="25.6" />
+        </mxCell>
+        <mxCell id="n15" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=white;strokeColor=#C7D4DC;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="805" y="275" width="380" height="99" />
+        </mxCell>
+        <mxCell id="n16" value="Environment admission" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=19;fontColor=#172B3A;fontStyle=1;spacing=0;" vertex="1" parent="n15">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="340" height="29.650000000000002" />
+        </mxCell>
+        <mxCell id="n17" value="Testers + admins + service users&#10;Environment group + assigned roles" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n15">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="340" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n18" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=white;strokeColor=#C7D4DC;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1330" y="180" width="410" height="897" />
+        </mxCell>
+        <mxCell id="n19" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#E6F5F1;strokeColor=#E6F5F1;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1330" y="180" width="410" height="77" />
+        </mxCell>
+        <mxCell id="n20" value="PROD" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=28;fontColor=#087F78;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1352" y="192" width="365" height="41.800000000000004" />
+        </mxCell>
+        <mxCell id="n21" value="One shared Power Platform environment" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1352" y="229" width="365" height="25.6" />
+        </mxCell>
+        <mxCell id="n22" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=white;strokeColor=#C7D4DC;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1345" y="275" width="380" height="99" />
+        </mxCell>
+        <mxCell id="n23" value="Environment admission" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=19;fontColor=#172B3A;fontStyle=1;spacing=0;" vertex="1" parent="n22">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="340" height="29.650000000000002" />
+        </mxCell>
+        <mxCell id="n24" value="Business users + admins + service users&#10;Environment group + assigned roles" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n22">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="340" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n25" value="ACCESS" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=15;fontColor=#526775;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="283" width="170" height="24.25" />
+        </mxCell>
+        <mxCell id="n26" value="Stage-wide&#10;membership" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=18;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="313" width="170" height="52.6" />
+        </mxCell>
+        <mxCell id="n27" value="BUSINESS NEED A" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=15;fontColor=#172B3A;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="435" width="175" height="24.25" />
+        </mxCell>
+        <mxCell id="n28" value="Independent owner&#10;and release cycle" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="470" width="175" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n29" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#EAF3FD;strokeColor=#1766B3;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="265" y="417" width="380" height="79" />
+        </mxCell>
+        <mxCell id="n30" value="Solution A" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=21;fontColor=#1766B3;fontStyle=1;spacing=0;" vertex="1" parent="n29">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="340" height="32.35" />
+        </mxCell>
+        <mxCell id="n31" value="Unmanaged source" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n29">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="340" height="26.950000000000003" />
+        </mxCell>
+        <mxCell id="n32" value="App group   SG-A-Dev-Users" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#172B3A;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="280" y="511" width="345" height="25.6" />
+        </mxCell>
+        <mxCell id="n33" value="Data site     /sites/A-Dev" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#087F78;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="280" y="541" width="345" height="25.6" />
+        </mxCell>
+        <mxCell id="n34" value="Connection + variable values for this stage" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="280" y="568" width="345" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n35" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#F1ECF8;strokeColor=#7353AC;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="805" y="417" width="380" height="79" />
+        </mxCell>
+        <mxCell id="n36" value="Solution A" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=21;fontColor=#7353AC;fontStyle=1;spacing=0;" vertex="1" parent="n35">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="340" height="32.35" />
+        </mxCell>
+        <mxCell id="n37" value="Managed package" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n35">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="340" height="26.950000000000003" />
+        </mxCell>
+        <mxCell id="n38" value="App group   SG-A-Test-Users" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#172B3A;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="820" y="511" width="345" height="25.6" />
+        </mxCell>
+        <mxCell id="n39" value="Data site     /sites/A-Test" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#087F78;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="820" y="541" width="345" height="25.6" />
+        </mxCell>
+        <mxCell id="n40" value="Connection + variable values for this stage" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="820" y="568" width="345" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n41" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#E6F5F1;strokeColor=#087F78;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1345" y="417" width="380" height="79" />
+        </mxCell>
+        <mxCell id="n42" value="Solution A" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=21;fontColor=#087F78;fontStyle=1;spacing=0;" vertex="1" parent="n41">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="340" height="32.35" />
+        </mxCell>
+        <mxCell id="n43" value="Managed package" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n41">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="340" height="26.950000000000003" />
+        </mxCell>
+        <mxCell id="n44" value="App group   SG-A-Prod-Users" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#172B3A;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1360" y="511" width="345" height="25.6" />
+        </mxCell>
+        <mxCell id="n45" value="Data site     /sites/A-Prod" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#087F78;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1360" y="541" width="345" height="25.6" />
+        </mxCell>
+        <mxCell id="n46" value="Connection + variable values for this stage" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1360" y="568" width="345" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n47" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#7353AC;dashed=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="n29" target="n35" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n48" value="deploy" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#7353AC;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="673" y="423" width="102" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n49" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#087F78;dashed=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="n35" target="n41" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n50" value="promote" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#087F78;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1213" y="423" width="102" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n51" value="BUSINESS NEED B" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=15;fontColor=#172B3A;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="650" width="175" height="24.25" />
+        </mxCell>
+        <mxCell id="n52" value="Independent owner&#10;and release cycle" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="685" width="175" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n53" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#EAF3FD;strokeColor=#1766B3;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="265" y="632" width="380" height="79" />
+        </mxCell>
+        <mxCell id="n54" value="Solution B" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=21;fontColor=#1766B3;fontStyle=1;spacing=0;" vertex="1" parent="n53">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="340" height="32.35" />
+        </mxCell>
+        <mxCell id="n55" value="Unmanaged source" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n53">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="340" height="26.950000000000003" />
+        </mxCell>
+        <mxCell id="n56" value="App group   SG-B-Dev-Users" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#172B3A;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="280" y="726" width="345" height="25.6" />
+        </mxCell>
+        <mxCell id="n57" value="Data site     /sites/B-Dev" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#087F78;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="280" y="756" width="345" height="25.6" />
+        </mxCell>
+        <mxCell id="n58" value="Connection + variable values for this stage" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="280" y="783" width="345" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n59" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#F1ECF8;strokeColor=#7353AC;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="805" y="632" width="380" height="79" />
+        </mxCell>
+        <mxCell id="n60" value="Solution B" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=21;fontColor=#7353AC;fontStyle=1;spacing=0;" vertex="1" parent="n59">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="340" height="32.35" />
+        </mxCell>
+        <mxCell id="n61" value="Managed package" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n59">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="340" height="26.950000000000003" />
+        </mxCell>
+        <mxCell id="n62" value="App group   SG-B-Test-Users" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#172B3A;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="820" y="726" width="345" height="25.6" />
+        </mxCell>
+        <mxCell id="n63" value="Data site     /sites/B-Test" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#087F78;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="820" y="756" width="345" height="25.6" />
+        </mxCell>
+        <mxCell id="n64" value="Connection + variable values for this stage" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="820" y="783" width="345" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n65" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#E6F5F1;strokeColor=#087F78;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1345" y="632" width="380" height="79" />
+        </mxCell>
+        <mxCell id="n66" value="Solution B" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=21;fontColor=#087F78;fontStyle=1;spacing=0;" vertex="1" parent="n65">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="340" height="32.35" />
+        </mxCell>
+        <mxCell id="n67" value="Managed package" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n65">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="340" height="26.950000000000003" />
+        </mxCell>
+        <mxCell id="n68" value="App group   SG-B-Prod-Users" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#172B3A;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1360" y="726" width="345" height="25.6" />
+        </mxCell>
+        <mxCell id="n69" value="Data site     /sites/B-Prod" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#087F78;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1360" y="756" width="345" height="25.6" />
+        </mxCell>
+        <mxCell id="n70" value="Connection + variable values for this stage" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1360" y="783" width="345" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n71" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#7353AC;dashed=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="n53" target="n59" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n72" value="deploy" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#7353AC;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="673" y="638" width="102" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n73" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#087F78;dashed=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="n59" target="n65" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n74" value="promote" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#087F78;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1213" y="638" width="102" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n75" value="BUSINESS NEED N" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=15;fontColor=#172B3A;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="865" width="175" height="24.25" />
+        </mxCell>
+        <mxCell id="n76" value="Independent owner&#10;and release cycle" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="900" width="175" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n77" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#EAF3FD;strokeColor=#1766B3;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="265" y="847" width="380" height="79" />
+        </mxCell>
+        <mxCell id="n78" value="Solution N" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=21;fontColor=#1766B3;fontStyle=1;spacing=0;" vertex="1" parent="n77">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="340" height="32.35" />
+        </mxCell>
+        <mxCell id="n79" value="Unmanaged source" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n77">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="340" height="26.950000000000003" />
+        </mxCell>
+        <mxCell id="n80" value="App group   SG-N-Dev-Users" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#172B3A;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="280" y="941" width="345" height="25.6" />
+        </mxCell>
+        <mxCell id="n81" value="Data site     /sites/N-Dev" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#087F78;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="280" y="971" width="345" height="25.6" />
+        </mxCell>
+        <mxCell id="n82" value="Connection + variable values for this stage" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="280" y="998" width="345" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n83" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#F1ECF8;strokeColor=#7353AC;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="805" y="847" width="380" height="79" />
+        </mxCell>
+        <mxCell id="n84" value="Solution N" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=21;fontColor=#7353AC;fontStyle=1;spacing=0;" vertex="1" parent="n83">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="340" height="32.35" />
+        </mxCell>
+        <mxCell id="n85" value="Managed package" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n83">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="340" height="26.950000000000003" />
+        </mxCell>
+        <mxCell id="n86" value="App group   SG-N-Test-Users" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#172B3A;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="820" y="941" width="345" height="25.6" />
+        </mxCell>
+        <mxCell id="n87" value="Data site     /sites/N-Test" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#087F78;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="820" y="971" width="345" height="25.6" />
+        </mxCell>
+        <mxCell id="n88" value="Connection + variable values for this stage" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="820" y="998" width="345" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n89" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#E6F5F1;strokeColor=#087F78;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1345" y="847" width="380" height="79" />
+        </mxCell>
+        <mxCell id="n90" value="Solution N" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=21;fontColor=#087F78;fontStyle=1;spacing=0;" vertex="1" parent="n89">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="340" height="32.35" />
+        </mxCell>
+        <mxCell id="n91" value="Managed package" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n89">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="340" height="26.950000000000003" />
+        </mxCell>
+        <mxCell id="n92" value="App group   SG-N-Prod-Users" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#172B3A;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1360" y="941" width="345" height="25.6" />
+        </mxCell>
+        <mxCell id="n93" value="Data site     /sites/N-Prod" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#087F78;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1360" y="971" width="345" height="25.6" />
+        </mxCell>
+        <mxCell id="n94" value="Connection + variable values for this stage" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1360" y="998" width="345" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n95" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#7353AC;dashed=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="n77" target="n83" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n96" value="deploy" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#7353AC;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="673" y="853" width="102" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n97" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#087F78;dashed=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="n83" target="n89" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n98" value="promote" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#087F78;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1213" y="853" width="102" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n99" value="READ ACROSS  /  The same business solution moves from Dev to Test to Prod. Each row can release independently." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=18;fontColor=#172B3A;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="1097" width="1680" height="28.3" />
+        </mxCell>
+        <mxCell id="n100" value="READ DOWN  /  Multiple solutions share the environment. Custom component dependencies between business solutions are prohibited." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=18;fontColor=#172B3A;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="1137" width="1680" height="28.3" />
+        </mxCell>
+        <mxCell id="n101" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#E6F5F1;strokeColor=#E6F5F1;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="1180" width="1680" height="69" />
+        </mxCell>
+        <mxCell id="n102" value="SharePoint remains outside Power Platform. Site names above are illustrative mappings, not a requirement for one site per solution.&#10;Dataverse stores solution metadata. Runtime identities are assigned from the available service accounts; no account per solution is implied." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#087F78;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="80" y="1192" width="1640" height="47.2" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="alm-v2-3" name="03 — Deployment pipeline">
+    <mxGraphModel dx="1800" dy="1360" grid="1" gridSize="10" page="1" pageWidth="1800" pageHeight="1360" background="#F3F7FA">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="n1" value="03  /  POWER PLATFORM ALM" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=15;fontColor=#087F78;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="28" width="1680" height="24.25" />
+        </mxCell>
+        <mxCell id="n2" value="Deployment pipeline" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=36;fontColor=#172B3A;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="64" width="1680" height="52.6" />
+        </mxCell>
+        <mxCell id="n3" value="Manual export and import today. The same controlled sequence can later be automated." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=20;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="117" width="1680" height="31.0" />
+        </mxCell>
+        <mxCell id="n4" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#EAF3FD;strokeColor=#EAF3FD;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="185" width="1680" height="235" />
+        </mxCell>
+        <mxCell id="n5" value="DEV  /  BUILD &amp; PACKAGE" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#1766B3;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="80" y="200" width="1600" height="25.6" />
+        </mxCell>
+        <mxCell id="n6" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#F1ECF8;strokeColor=#F1ECF8;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="475" width="1680" height="345" />
+        </mxCell>
+        <mxCell id="n7" value="TEST  /  VALIDATE" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#7353AC;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="80" y="490" width="1600" height="25.6" />
+        </mxCell>
+        <mxCell id="n8" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#E6F5F1;strokeColor=#E6F5F1;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="870" width="1680" height="415" />
+        </mxCell>
+        <mxCell id="n9" value="PROD  /  RELEASE &amp; VERIFY" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#087F78;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="80" y="885" width="1600" height="25.6" />
+        </mxCell>
+        <mxCell id="n10" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=white;strokeColor=#1766B3;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="220" y="264" width="300" height="116" />
+        </mxCell>
+        <mxCell id="n11" value="1  Build in Dev" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=20;fontColor=#1766B3;fontStyle=1;spacing=0;" vertex="1" parent="n10">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="260" height="31.0" />
+        </mxCell>
+        <mxCell id="n12" value="Update the unmanaged solution.&#10;Complete checks and publish." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n10">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="260" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n13" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=white;strokeColor=#1766B3;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="680" y="264" width="300" height="116" />
+        </mxCell>
+        <mxCell id="n14" value="2  Version and export" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=20;fontColor=#1766B3;fontStyle=1;spacing=0;" vertex="1" parent="n13">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="260" height="31.0" />
+        </mxCell>
+        <mxCell id="n15" value="Managed deployment ZIP&#10;Unmanaged source snapshot" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n13">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="260" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n16" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=white;strokeColor=#1766B3;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1140" y="264" width="480" height="116" />
+        </mxCell>
+        <mxCell id="n17" value="3  Archive the release bundle" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=20;fontColor=#1766B3;fontStyle=1;spacing=0;" vertex="1" parent="n16">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="440" height="31.0" />
+        </mxCell>
+        <mxCell id="n18" value="Packages + manifest + SharePoint changes&#10;Record version and package checksum." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n16">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="440" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n19" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#1766B3;dashed=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="n10" target="n13" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n20" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#1766B3;dashed=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="n13" target="n16" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n21" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=white;strokeColor=#7353AC;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1290" y="551" width="340" height="126" />
+        </mxCell>
+        <mxCell id="n22" value="4  Prepare Test" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=20;fontColor=#7353AC;fontStyle=1;spacing=0;" vertex="1" parent="n21">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="300" height="31.0" />
+        </mxCell>
+        <mxCell id="n23" value="Provision / update SharePoint.&#10;Prepare connections and values." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n21">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="300" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n24" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=white;strokeColor=#7353AC;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="830" y="551" width="340" height="126" />
+        </mxCell>
+        <mxCell id="n25" value="5  Import into Test" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=20;fontColor=#7353AC;fontStyle=1;spacing=0;" vertex="1" parent="n24">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="300" height="31.0" />
+        </mxCell>
+        <mxCell id="n26" value="Import the managed package.&#10;Bind Test connections and values." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n24">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="300" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n27" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=white;strokeColor=#7353AC;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="370" y="551" width="340" height="126" />
+        </mxCell>
+        <mxCell id="n28" value="6  Verify the release" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=20;fontColor=#7353AC;fontStyle=1;spacing=0;" vertex="1" parent="n27">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="300" height="31.0" />
+        </mxCell>
+        <mxCell id="n29" value="Check target data and flow state.&#10;Run functional testing and UAT." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n27">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="300" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n30" value="" style="rhombus;whiteSpace=wrap;html=0;fillColor=#FFF5DD;strokeColor=#986310;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="90" y="541.5" width="210" height="145" />
+        </mxCell>
+        <mxCell id="n31" value="Tests&#10;passed?" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=19;fontColor=#986310;fontStyle=1;spacing=0;" vertex="1" parent="n30">
+          <mxGeometry as="geometry" x="20" y="47.5" width="170" height="55.300000000000004" />
+        </mxCell>
+        <mxCell id="n32" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#7353AC;dashed=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="n16" target="n21" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1380" y="446" />
+              <mxPoint x="1460" y="446" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n33" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#7353AC;dashed=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="n21" target="n24" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n34" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#7353AC;dashed=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="n24" target="n27" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n35" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#7353AC;dashed=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="n27" target="n30" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n36" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#986310;dashed=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="n30" target="n10" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="35" y="614" />
+              <mxPoint x="35" y="322" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n37" value="NO  /  Fix in Dev, create a new version and repeat" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#986310;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="70" y="426" width="550" height="25.6" />
+        </mxCell>
+        <mxCell id="n38" value="The Test result and acceptance evidence refer to the exact archived managed package." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=18;fontColor=#7353AC;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="385" y="721" width="1200" height="28.3" />
+        </mxCell>
+        <mxCell id="n39" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=white;strokeColor=#087F78;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="90" y="942" width="300" height="132" />
+        </mxCell>
+        <mxCell id="n40" value="7  Release approval" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=20;fontColor=#087F78;fontStyle=1;spacing=0;" vertex="1" parent="n39">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="260" height="31.0" />
+        </mxCell>
+        <mxCell id="n41" value="Approve the exact release bundle.&#10;If withheld: hold at this step." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n39">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="260" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n42" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=white;strokeColor=#087F78;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="490" y="942" width="300" height="132" />
+        </mxCell>
+        <mxCell id="n43" value="8  Prepare Prod" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=20;fontColor=#087F78;fontStyle=1;spacing=0;" vertex="1" parent="n42">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="260" height="31.0" />
+        </mxCell>
+        <mxCell id="n44" value="Apply planned SharePoint changes.&#10;Prepare Prod configuration." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n42">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="260" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n45" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=white;strokeColor=#087F78;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="890" y="942" width="300" height="132" />
+        </mxCell>
+        <mxCell id="n46" value="9  Import into Prod" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=20;fontColor=#087F78;fontStyle=1;spacing=0;" vertex="1" parent="n45">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="260" height="31.0" />
+        </mxCell>
+        <mxCell id="n47" value="Use the managed ZIP from step 3.&#10;Bind Prod connections and values." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n45">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="260" height="49.900000000000006" />
+        </mxCell>
+        <mxCell id="n48" value="" style="rhombus;whiteSpace=wrap;html=0;fillColor=#FFF5DD;strokeColor=#986310;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1280" y="929" width="240" height="158" />
+        </mxCell>
+        <mxCell id="n49" value="10  Smoke test&#10;passed?" style="text;html=0;strokeColor=none;fillColor=none;align=center;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=19;fontColor=#986310;fontStyle=1;spacing=0;" vertex="1" parent="n48">
+          <mxGeometry as="geometry" x="20" y="54.0" width="200" height="55.300000000000004" />
+        </mxCell>
+        <mxCell id="n50" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#E6F5F1;strokeColor=#087F78;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1570" y="970" width="145" height="73" />
+        </mxCell>
+        <mxCell id="n51" value="Released" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=18;fontColor=#087F78;fontStyle=1;spacing=0;" vertex="1" parent="n50">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="105" height="28.3" />
+        </mxCell>
+        <mxCell id="n52" value="" style="rounded=1;arcSize=10;whiteSpace=wrap;html=0;fillColor=#FFF5DD;strokeColor=#986310;strokeWidth=1.5;dashed=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1230" y="1162" width="465" height="92" />
+        </mxCell>
+        <mxCell id="n53" value="Recover / correct" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=19;fontColor=#986310;fontStyle=1;spacing=0;" vertex="1" parent="n52">
+          <mxGeometry as="geometry" x="20.0" y="15.0" width="425" height="29.650000000000002" />
+        </mxCell>
+        <mxCell id="n54" value="Follow the agreed recovery plan; retest." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="n52">
+          <mxGeometry as="geometry" x="20.0" y="51.0" width="425" height="26.950000000000003" />
+        </mxCell>
+        <mxCell id="n55" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#087F78;dashed=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.8333333333333334;entryY=0;entryDx=0;entryDy=0;" edge="1" source="n30" target="n39" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="195" y="853" />
+              <mxPoint x="340" y="853" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n56" value="YES" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=16;fontColor=#087F78;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="211" y="768" width="140" height="25.6" />
+        </mxCell>
+        <mxCell id="n57" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#087F78;dashed=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="n39" target="n42" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n58" value="approved" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=14;fontColor=#087F78;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="395" y="979" width="95" height="22.900000000000002" />
+        </mxCell>
+        <mxCell id="n59" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#087F78;dashed=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="n42" target="n45" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n60" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#087F78;dashed=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="n45" target="n48" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n61" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#087F78;dashed=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="n48" target="n50" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n62" value="YES" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=13;fontColor=#087F78;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1525" y="976" width="45" height="21.55" />
+        </mxCell>
+        <mxCell id="n63" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#986310;dashed=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.3655913978494624;entryY=0;entryDx=0;entryDy=0;" edge="1" source="n48" target="n52" parent="1">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="n64" value="NO" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=15;fontColor=#986310;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1423" y="1116" width="80" height="24.25" />
+        </mxCell>
+        <mxCell id="n65" style="edgeStyle=none;rounded=0;html=0;endArrow=block;endFill=1;strokeWidth=2;strokeColor=#986310;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.25;entryY=0.75;entryDx=0;entryDy=0;" edge="1" source="n52" target="n48" parent="1">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1210" y="1208" />
+              <mxPoint x="1210" y="1107" />
+              <mxPoint x="1340" y="1107" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="n66" value="PROMOTION RULE" style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=15;fontColor=#087F78;fontStyle=1;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="92" y="1140" width="1070" height="24.25" />
+        </mxCell>
+        <mxCell id="n67" value="One managed artifact travels through Test and Prod.&#10;A change to the package returns to Dev and Test; it requires renewed approval." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=19;fontColor=#172B3A;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="92" y="1174" width="1060" height="55.300000000000004" />
+        </mxCell>
+        <mxCell id="n68" value="Release completion: record the deployed version, configuration, approval and verification result. Monitor the solution after release." style="text;html=0;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;rounded=0;fontFamily=Helvetica;fontSize=17;fontColor=#526775;fontStyle=0;spacing=0;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="1310" width="1680" height="26.950000000000003" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

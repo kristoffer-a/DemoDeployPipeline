@@ -1,0 +1,700 @@
+<mxfile host="Electron" agent="ALM pipeline generator">
+  <diagram id="r" name="1 Release path">
+    <mxGraphModel grid="1" gridSize="10" guides="1" connect="1" arrows="1" page="1" pageWidth="1654" pageHeight="1169" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="r_1" value="Release path: build once in DEV, test it, ship the same ZIP to PROD" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;fontSize=24;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="24" width="1400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="r_2" value="The ZIP that passed TEST is the one that goes to PROD. PROD never gets a fresh export." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;fontColor=#555555;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="40" y="64" width="1400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="r_3" value="&lt;b style='font-size:15px'&gt;DEV&lt;/b&gt;&lt;br&gt;&lt;font color='#444444'&gt;Makers build Demo&lt;br&gt;(unmanaged)&lt;/font&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=2;verticalAlign=top;align=center;spacingTop=66;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="40" y="150" width="220" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="r_4" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/Dataverse.svg;" parent="r_3" vertex="1">
+          <mxGeometry x="84.0" y="14" width="52" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r_5" value="&lt;b style='font-size:15px'&gt;Solution archive&lt;/b&gt;&lt;br&gt;&lt;font color='#444444'&gt;SharePoint ALM-Admin&lt;br&gt;/Solutions/Demo/&lt;br&gt;Demo_managed_&amp;lt;version&amp;gt;.zip&lt;/font&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;verticalAlign=top;align=center;spacingTop=66;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="420" y="150" width="260" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="r_6" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="r_5" vertex="1">
+          <mxGeometry x="97.0" y="14" width="66" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r_7" value="&lt;b style='font-size:15px'&gt;TEST&lt;/b&gt;&lt;br&gt;&lt;font color='#444444'&gt;Demo (managed)&lt;br&gt;tested + approved&lt;/font&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=2;verticalAlign=top;align=center;spacingTop=66;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="840" y="150" width="220" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="r_8" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/Dataverse.svg;" parent="r_7" vertex="1">
+          <mxGeometry x="84.0" y="14" width="52" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r_9" value="&lt;b style='font-size:15px'&gt;PROD&lt;/b&gt;&lt;br&gt;&lt;font color='#444444'&gt;Demo (managed)&lt;br&gt;same version as TEST&lt;/font&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=2;verticalAlign=top;align=center;spacingTop=66;fontSize=13;dashed=1;dashPattern=8 5;" parent="1" vertex="1">
+          <mxGeometry x="1220" y="150" width="220" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="r_10" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/Dataverse.svg;" parent="r_9" vertex="1">
+          <mxGeometry x="84.0" y="14" width="52" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r_11" value="① export managed" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;" parent="1" edge="1" source="r_3" target="r_5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_12" value="② import" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;" parent="1" edge="1" source="r_5" target="r_7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_13" value="③ approve" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;dashed=1;dashPattern=8 5;" parent="1" edge="1" source="r_7" target="r_9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r_14" value="④ import the same ZIP" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;dashed=1;dashPattern=8 5;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="r_5" target="r_9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="550" y="120" />
+              <mxPoint x="1330" y="120" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r_15" value="① ② LIVE" style="rounded=1;arcSize=50;html=1;fillColor=#2E7D32;strokeColor=none;fontColor=#FFFFFF;fontSize=12;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="470" y="340" width="110" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="r_16" value="③ ④ TO BUILD" style="rounded=1;arcSize=50;html=1;fillColor=#B8860B;strokeColor=none;fontColor=#FFFFFF;fontSize=12;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="1275" y="340" width="110" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="r_17" value="&lt;b style='font-size:15px'&gt;Run by Power Automate in ADMIN&lt;/b&gt;&lt;br&gt;&lt;font color='#444444'&gt;C1 Deploy calls C2 Import and C3 Post-import&lt;/font&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#F5F9FF;strokeColor=#0066FF;strokeWidth=2;verticalAlign=top;align=center;spacingTop=66;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="40" y="430" width="480" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="r_18" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/PowerAutomate.svg;" parent="r_17" vertex="1">
+          <mxGeometry x="214.0" y="14" width="52" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="r_19" value="&lt;b style='font-size:15px'&gt;Settings in SharePoint ALM-Admin&lt;/b&gt;&lt;br&gt;&lt;font color='#444444'&gt;Which target, which connection,&lt;br&gt;which variable values, on/off switches&lt;/font&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#F2FAFA;strokeColor=#038387;strokeWidth=2;verticalAlign=top;align=center;spacingTop=66;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="560" y="430" width="440" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="r_20" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="r_19" vertex="1">
+          <mxGeometry x="187.0" y="14" width="66" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="r_21" value="&lt;b&gt;To build for PROD&lt;/b&gt;&lt;br&gt;1. Put the solution version in the ZIP name.&lt;br&gt;2. C1 option: &lt;b&gt;deploy an archived ZIP&lt;/b&gt; (skip export).&lt;br&gt;3. Approval step before PROD.&lt;br&gt;4. PROD rows in ALMConfig, ALMConnections, ALMVariables." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="1040" y="430" width="420" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="r_22" value="&lt;b&gt;Matches ALMPipeline 1.0.0.0&lt;/b&gt; (ADMIN) · Demo 1.0.0.0&lt;br&gt;pipeline/ code @ 9f20d8d · diagram 2026-09-26" style="rounded=1;arcSize=20;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=11;align=left;spacingLeft=8;" parent="1" vertex="1">
+          <mxGeometry x="1480" y="16" width="330" height="42" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="a" name="2 Architecture">
+    <mxGraphModel grid="1" gridSize="10" guides="1" connect="1" arrows="1" page="1" pageWidth="1654" pageHeight="1169" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="a_1" value="Architecture: environments, solutions and components" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;fontSize=24;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="24" width="1400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="a_2" value="Containers = where it lives. Tag above each name = component type. Arrows = what the pipeline does, and which flow does it." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;fontColor=#555555;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="40" y="64" width="1400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="a_3" value="Power Platform environment · DEV" style="swimlane;startSize=36;rounded=1;arcSize=3;html=1;whiteSpace=wrap;fillColor=#742774;fontColor=#FFFFFF;strokeColor=#742774;swimlaneFillColor=#FAF3FA;fontStyle=1;fontSize=14;strokeWidth=2;collapsible=0;" parent="1" vertex="1">
+          <mxGeometry x="40" y="130" width="360" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="a_4" value="Solution Demo · unmanaged" style="swimlane;startSize=30;rounded=1;arcSize=3;html=1;whiteSpace=wrap;fillColor=#EBD9EE;fontColor=#4A154B;strokeColor=#9C27B0;swimlaneFillColor=#FFFFFF;fontStyle=1;fontSize=13;dashed=1;collapsible=0;" parent="a_3" vertex="1">
+          <mxGeometry x="20" y="50" width="320" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="a_5" value="&lt;font style='font-size:11px' color='#742774'&gt;&lt;b&gt;Connection reference&lt;/b&gt;&lt;/font&gt;&lt;br&gt;dev_SharePoint" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=6;fontSize=12;" parent="a_4" vertex="1">
+          <mxGeometry x="15" y="40" width="290" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="a_6" value="&lt;font style='font-size:11px' color='#742774'&gt;&lt;b&gt;Environment variables&lt;/b&gt;&lt;/font&gt;&lt;br&gt;dev_SharePointSite · dev_ProductsList" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=6;fontSize=12;" parent="a_4" vertex="1">
+          <mxGeometry x="15" y="94" width="290" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="a_7" value="&lt;font style='font-size:11px' color='#742774'&gt;&lt;b&gt;App + flows + tables&lt;/b&gt;&lt;/font&gt;&lt;br&gt;the product itself" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="a_4" vertex="1">
+          <mxGeometry x="15" y="154" width="290" height="52" as="geometry" />
+        </mxCell>
+        <mxCell id="a_8" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/PowerApps.svg;" parent="a_7" vertex="1">
+          <mxGeometry x="10" y="9.0" width="35.54545454545455" height="34.0" as="geometry" />
+        </mxCell>
+        <mxCell id="a_9" value="Power Platform environment · ADMIN (runs the pipeline)" style="swimlane;startSize=36;rounded=1;arcSize=3;html=1;whiteSpace=wrap;fillColor=#0066FF;fontColor=#FFFFFF;strokeColor=#0066FF;swimlaneFillColor=#F5F9FF;fontStyle=1;fontSize=14;strokeWidth=2;collapsible=0;" parent="1" vertex="1">
+          <mxGeometry x="460" y="130" width="560" height="480" as="geometry" />
+        </mxCell>
+        <mxCell id="a_10" value="Solution ALMPipeline · deployed from code (pipeline/)" style="swimlane;startSize=30;rounded=1;arcSize=3;html=1;whiteSpace=wrap;fillColor=#EBD9EE;fontColor=#4A154B;strokeColor=#9C27B0;swimlaneFillColor=#FFFFFF;fontStyle=1;fontSize=13;dashed=1;collapsible=0;" parent="a_9" vertex="1">
+          <mxGeometry x="20" y="50" width="520" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="a_11" value="&lt;font style='font-size:11px' color='#0066FF'&gt;&lt;b&gt;Cloud flow · parent · manual trigger&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;C1 Deploy&lt;/b&gt;: prechecks, export, call children, log" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#0066FF;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="a_10" vertex="1">
+          <mxGeometry x="15" y="40" width="490" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="a_12" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/PowerAutomate.svg;" parent="a_11" vertex="1">
+          <mxGeometry x="10" y="14.84615384615384" width="40.0" height="32.30769230769231" as="geometry" />
+        </mxCell>
+        <mxCell id="a_13" value="&lt;font style='font-size:11px' color='#0066FF'&gt;&lt;b&gt;Child flow&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;C2 Import&lt;/b&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#0066FF;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="a_10" vertex="1">
+          <mxGeometry x="265" y="120" width="240" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="a_14" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/PowerAutomate.svg;" parent="a_13" vertex="1">
+          <mxGeometry x="10" y="14.846153846153868" width="40.0" height="32.30769230769231" as="geometry" />
+        </mxCell>
+        <mxCell id="a_15" value="&lt;font style='font-size:11px' color='#0066FF'&gt;&lt;b&gt;Child flow&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;C3 Post-import&lt;/b&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#0066FF;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="a_10" vertex="1">
+          <mxGeometry x="265" y="200" width="240" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="a_16" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/PowerAutomate.svg;" parent="a_15" vertex="1">
+          <mxGeometry x="10" y="14.846153846153868" width="40.0" height="32.30769230769231" as="geometry" />
+        </mxCell>
+        <mxCell id="a_17" value="&lt;font style='font-size:11px' color='#742774'&gt;&lt;b&gt;Connection reference&lt;/b&gt;&lt;/font&gt;&lt;br&gt;alm_PipelineDataverse" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=6;fontSize=12;" parent="a_10" vertex="1">
+          <mxGeometry x="15" y="120" width="240" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="a_18" value="&lt;font style='font-size:11px' color='#742774'&gt;&lt;b&gt;Connection reference&lt;/b&gt;&lt;/font&gt;&lt;br&gt;alm_PipelineSharePoint" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=6;fontSize=12;" parent="a_10" vertex="1">
+          <mxGeometry x="15" y="200" width="240" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="a_19" value="&lt;font style='font-size:11px' color='#9E9E9E'&gt;&lt;b&gt;Connection · kriall076&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Dataverse" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="a_9" vertex="1">
+          <mxGeometry x="35" y="350" width="240" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="a_20" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/Dataverse.svg;" parent="a_19" vertex="1">
+          <mxGeometry x="10" y="12.615384615384642" width="40.0" height="30.76923076923077" as="geometry" />
+        </mxCell>
+        <mxCell id="a_21" value="&lt;font style='font-size:11px' color='#9E9E9E'&gt;&lt;b&gt;Connection · kriall076&lt;/b&gt;&lt;/font&gt;&lt;br&gt;SharePoint" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="a_9" vertex="1">
+          <mxGeometry x="285" y="350" width="240" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="a_22" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="a_21" vertex="1">
+          <mxGeometry x="10" y="15.878787878787875" width="40.0" height="24.242424242424242" as="geometry" />
+        </mxCell>
+        <mxCell id="a_23" value="Connections are made once by a person. Flows only bind to them." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;fontSize=11;fontColor=#666666;" parent="a_9" vertex="1">
+          <mxGeometry x="35" y="418" width="490" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="a_24" value="SharePoint site · ALM-Admin (pipeline settings + archive)" style="swimlane;startSize=36;rounded=1;arcSize=3;html=1;whiteSpace=wrap;fillColor=#038387;fontColor=#FFFFFF;strokeColor=#038387;swimlaneFillColor=#F2FAFA;fontStyle=1;fontSize=14;strokeWidth=2;collapsible=0;" parent="1" vertex="1">
+          <mxGeometry x="460" y="660" width="560" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="a_25" value="&lt;font style='font-size:11px' color='#038387'&gt;&lt;b&gt;List&lt;/b&gt;&lt;/font&gt;&lt;br&gt;ALMConfig" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="a_24" vertex="1">
+          <mxGeometry x="20" y="50" width="170" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="a_26" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="a_25" vertex="1">
+          <mxGeometry x="10" y="15.878787878787875" width="40.0" height="24.242424242424242" as="geometry" />
+        </mxCell>
+        <mxCell id="a_27" value="&lt;font style='font-size:11px' color='#038387'&gt;&lt;b&gt;List&lt;/b&gt;&lt;/font&gt;&lt;br&gt;ALMConnections" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="a_24" vertex="1">
+          <mxGeometry x="200" y="50" width="170" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="a_28" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="a_27" vertex="1">
+          <mxGeometry x="10" y="15.878787878787875" width="40.0" height="24.242424242424242" as="geometry" />
+        </mxCell>
+        <mxCell id="a_29" value="&lt;font style='font-size:11px' color='#038387'&gt;&lt;b&gt;List&lt;/b&gt;&lt;/font&gt;&lt;br&gt;ALMVariables" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="a_24" vertex="1">
+          <mxGeometry x="380" y="50" width="165" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="a_30" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="a_29" vertex="1">
+          <mxGeometry x="10" y="15.878787878787875" width="40.0" height="24.242424242424242" as="geometry" />
+        </mxCell>
+        <mxCell id="a_31" value="&lt;font style='font-size:11px' color='#038387'&gt;&lt;b&gt;Library&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Solutions · ZIP archive" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="a_24" vertex="1">
+          <mxGeometry x="20" y="130" width="255" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="a_32" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="a_31" vertex="1">
+          <mxGeometry x="10" y="15.878787878787875" width="40.0" height="24.242424242424242" as="geometry" />
+        </mxCell>
+        <mxCell id="a_33" value="&lt;font style='font-size:11px' color='#038387'&gt;&lt;b&gt;Library&lt;/b&gt;&lt;/font&gt;&lt;br&gt;DeploymentLogs · run JSON" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="a_24" vertex="1">
+          <mxGeometry x="285" y="130" width="260" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="a_34" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="a_33" vertex="1">
+          <mxGeometry x="10" y="15.878787878787875" width="40.0" height="24.242424242424242" as="geometry" />
+        </mxCell>
+        <mxCell id="a_35" value="Edit rights on these lists = deploy rights." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;fontSize=11;fontColor=#666666;" parent="a_24" vertex="1">
+          <mxGeometry x="20" y="198" width="500" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="a_36" value="Power Platform environment · TEST" style="swimlane;startSize=36;rounded=1;arcSize=3;html=1;whiteSpace=wrap;fillColor=#742774;fontColor=#FFFFFF;strokeColor=#742774;swimlaneFillColor=#FAF3FA;fontStyle=1;fontSize=14;strokeWidth=2;collapsible=0;" parent="1" vertex="1">
+          <mxGeometry x="1080" y="130" width="380" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="a_37" value="Solution Demo · managed" style="swimlane;startSize=30;rounded=1;arcSize=3;html=1;whiteSpace=wrap;fillColor=#EBD9EE;fontColor=#4A154B;strokeColor=#9C27B0;swimlaneFillColor=#FFFFFF;fontStyle=1;fontSize=13;dashed=1;collapsible=0;" parent="a_36" vertex="1">
+          <mxGeometry x="20" y="50" width="340" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="a_38" value="&lt;font style='font-size:11px' color='#742774'&gt;&lt;b&gt;Connection reference&lt;/b&gt;&lt;/font&gt;&lt;br&gt;dev_SharePoint (bound at import)" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=6;fontSize=12;" parent="a_37" vertex="1">
+          <mxGeometry x="15" y="40" width="310" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="a_39" value="&lt;font style='font-size:11px' color='#742774'&gt;&lt;b&gt;Environment variable values&lt;/b&gt;&lt;/font&gt;&lt;br&gt;set from ALMVariables" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=6;fontSize=12;" parent="a_37" vertex="1">
+          <mxGeometry x="15" y="100" width="310" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="a_40" value="&lt;font style='font-size:11px' color='#9E9E9E'&gt;&lt;b&gt;Connection · kriall076&lt;/b&gt;&lt;/font&gt;&lt;br&gt;SharePoint 0f567e53" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="a_36" vertex="1">
+          <mxGeometry x="20" y="250" width="250" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="a_41" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="a_40" vertex="1">
+          <mxGeometry x="10" y="15.878787878787875" width="40.0" height="24.242424242424242" as="geometry" />
+        </mxCell>
+        <mxCell id="a_42" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#9E9E9E;fontColor=#9E9E9E;dashed=1;dashPattern=8 5;exitX=0.3;exitY=1;exitDx=0;exitDy=0;entryX=0.3;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_38" target="a_40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_43" value="Power Platform environment · PROD (to build)" style="swimlane;startSize=36;rounded=1;arcSize=3;html=1;whiteSpace=wrap;fillColor=#742774;fontColor=#FFFFFF;strokeColor=#742774;swimlaneFillColor=#FAF3FA;fontStyle=1;fontSize=14;strokeWidth=2;collapsible=0;dashed=1;dashPattern=8 5;" parent="1" vertex="1">
+          <mxGeometry x="1080" y="510" width="380" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="a_44" value="&lt;font style='font-size:11px' color='#742774'&gt;&lt;b&gt;Solution&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Demo · managed · same ZIP as TEST" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=6;fontSize=12;dashed=1;dashPattern=8 5;" parent="a_43" vertex="1">
+          <mxGeometry x="20" y="50" width="340" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="a_45" value="SharePoint site · ALM-Test" style="swimlane;startSize=36;rounded=1;arcSize=3;html=1;whiteSpace=wrap;fillColor=#038387;fontColor=#FFFFFF;strokeColor=#038387;swimlaneFillColor=#F2FAFA;fontStyle=1;fontSize=14;strokeWidth=2;collapsible=0;" parent="1" vertex="1">
+          <mxGeometry x="1520" y="130" width="300" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="a_46" value="&lt;font style='font-size:11px' color='#038387'&gt;&lt;b&gt;List · to create&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Products (app data)" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;dashed=1;dashPattern=8 5;" parent="a_45" vertex="1">
+          <mxGeometry x="20" y="55" width="260" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a_47" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="a_46" vertex="1">
+          <mxGeometry x="10" y="17.878787878787875" width="40.0" height="24.242424242424242" as="geometry" />
+        </mxCell>
+        <mxCell id="a_48" value="Entra ID (future)" style="swimlane;startSize=36;rounded=1;arcSize=3;html=1;whiteSpace=wrap;fillColor=#D86613;fontColor=#FFFFFF;strokeColor=#D86613;swimlaneFillColor=#FFF5EC;fontStyle=1;fontSize=14;strokeWidth=2;collapsible=0;dashed=1;dashPattern=8 5;" parent="1" vertex="1">
+          <mxGeometry x="1520" y="330" width="300" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="a_49" value="&lt;font style='font-size:11px' color='#D86613'&gt;&lt;b&gt;Security group&lt;/b&gt;&lt;/font&gt;&lt;br&gt;App users group" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#D86613;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;dashed=1;dashPattern=8 5;" parent="a_48" vertex="1">
+          <mxGeometry x="20" y="55" width="260" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="a_50" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/identity/Groups.svg;" parent="a_49" vertex="1">
+          <mxGeometry x="10" y="13.461538461538453" width="40.0" height="33.07692307692308" as="geometry" />
+        </mxCell>
+        <mxCell id="a_51" value="① export" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#742774;fontColor=#742774;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.26;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_11" target="a_4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_52" value="② C1: read settings · store ZIP · write log" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#038387;fontColor=#038387;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_9" target="a_24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_53" value="③ import" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#742774;fontColor=#742774;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.85;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_13" target="a_37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_54" value="④ check + set values" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#742774;fontColor=#742774;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.85;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_15" target="a_36">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_55" value="⑤ same ZIP (to build)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#742774;fontColor=#742774;dashed=1;dashPattern=8 5;exitX=1;exitY=0.9;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_9" target="a_43">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_56" value="app reads" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#038387;fontColor=#038387;dashed=1;dashPattern=8 5;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" edge="1" source="a_37" target="a_45">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a_57" value="&lt;b&gt;Matches ALMPipeline 1.0.0.0&lt;/b&gt; (ADMIN) · Demo 1.0.0.0&lt;br&gt;pipeline/ code @ 9f20d8d · diagram 2026-09-26" style="rounded=1;arcSize=20;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=11;align=left;spacingLeft=8;" parent="1" vertex="1">
+          <mxGeometry x="1480" y="16" width="330" height="42" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="c" name="3 C1 Deploy run">
+    <mxGraphModel grid="1" gridSize="10" guides="1" connect="1" arrows="1" page="1" pageWidth="1654" pageHeight="1169" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="c_1" value="C1 Deploy: one run, stage by stage" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;fontSize=24;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="24" width="1400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="c_2" value="Flow in ADMIN. Each column is a stage (a Scope). Cards = key actions with the connector used. A stage runs only if the one before succeeded." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;fontColor=#555555;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="40" y="64" width="1400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="c_3" value="&lt;font style='font-size:11px' color='#0066FF'&gt;&lt;b&gt;Manual trigger&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Inputs: &lt;b&gt;Solution&lt;/b&gt; (Demo) · &lt;b&gt;Target&lt;/b&gt; (TEST)" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#0066FF;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="40" y="110" width="400" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="c_4" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/PowerAutomate.svg;" parent="c_3" vertex="1">
+          <mxGeometry x="10" y="11.84615384615384" width="40.0" height="32.30769230769231" as="geometry" />
+        </mxCell>
+        <mxCell id="c_5" value="1 Prechecks" style="swimlane;startSize=34;rounded=1;arcSize=3;html=1;whiteSpace=wrap;fillColor=#0066FF;fontColor=#FFFFFF;strokeColor=#0066FF;swimlaneFillColor=#F7FAFF;fontStyle=1;fontSize=14;strokeWidth=2;collapsible=0;" parent="1" vertex="1">
+          <mxGeometry x="40" y="200" width="270" height="470" as="geometry" />
+        </mxCell>
+        <mxCell id="c_6" value="&lt;font style='font-size:11px' color='#038387'&gt;&lt;b&gt;SharePoint · Get items&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Read ALMConfig row" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="c_5" vertex="1">
+          <mxGeometry x="12" y="50" width="246" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="c_7" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="c_6" vertex="1">
+          <mxGeometry x="10" y="20.878787878787875" width="40.0" height="24.242424242424242" as="geometry" />
+        </mxCell>
+        <mxCell id="c_8" value="Row found?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=12;" parent="c_5" vertex="1">
+          <mxGeometry x="20" y="130" width="230" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="c_9" value="&lt;font style='font-size:11px' color='#038387'&gt;&lt;b&gt;SharePoint · Get items&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Read connection + variable mappings" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="c_5" vertex="1">
+          <mxGeometry x="12" y="200" width="246" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="c_10" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="c_9" vertex="1">
+          <mxGeometry x="10" y="20.878787878787875" width="40.0" height="24.242424242424242" as="geometry" />
+        </mxCell>
+        <mxCell id="c_11" value="&lt;font style='font-size:11px' color='#742774'&gt;&lt;b&gt;Dataverse · List rows (DEV)&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Refs + variables in the solution" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="c_5" vertex="1">
+          <mxGeometry x="12" y="280" width="246" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="c_12" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/Dataverse.svg;" parent="c_11" vertex="1">
+          <mxGeometry x="10" y="17.61538461538464" width="40.0" height="30.76923076923077" as="geometry" />
+        </mxCell>
+        <mxCell id="c_13" value="All mapped?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=12;" parent="c_5" vertex="1">
+          <mxGeometry x="20" y="360" width="230" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="c_14" value="2 Export" style="swimlane;startSize=34;rounded=1;arcSize=3;html=1;whiteSpace=wrap;fillColor=#0066FF;fontColor=#FFFFFF;strokeColor=#0066FF;swimlaneFillColor=#F7FAFF;fontStyle=1;fontSize=14;strokeWidth=2;collapsible=0;" parent="1" vertex="1">
+          <mxGeometry x="340" y="200" width="270" height="470" as="geometry" />
+        </mxCell>
+        <mxCell id="c_15" value="&lt;font style='font-size:11px' color='#742774'&gt;&lt;b&gt;Dataverse · ExportSolutionAsync&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Managed export in DEV" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="c_14" vertex="1">
+          <mxGeometry x="12" y="50" width="246" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="c_16" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/Dataverse.svg;" parent="c_15" vertex="1">
+          <mxGeometry x="10" y="17.61538461538464" width="40.0" height="30.76923076923077" as="geometry" />
+        </mxCell>
+        <mxCell id="c_17" value="&lt;font style='font-size:11px' color='#742774'&gt;&lt;b&gt;Dataverse · Get row (loop 20 s)&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Wait for the export job" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="c_14" vertex="1">
+          <mxGeometry x="12" y="130" width="246" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="c_18" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/Dataverse.svg;" parent="c_17" vertex="1">
+          <mxGeometry x="10" y="17.61538461538464" width="40.0" height="30.76923076923077" as="geometry" />
+        </mxCell>
+        <mxCell id="c_19" value="&lt;font style='font-size:11px' color='#742774'&gt;&lt;b&gt;Dataverse · DownloadSolutionExportData&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Get the ZIP" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="c_14" vertex="1">
+          <mxGeometry x="12" y="210" width="246" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="c_20" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/Dataverse.svg;" parent="c_19" vertex="1">
+          <mxGeometry x="10" y="17.61538461538464" width="40.0" height="30.76923076923077" as="geometry" />
+        </mxCell>
+        <mxCell id="c_21" value="&lt;font style='font-size:11px' color='#038387'&gt;&lt;b&gt;SharePoint · Create file&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Save to Solutions/Demo/" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="c_14" vertex="1">
+          <mxGeometry x="12" y="290" width="246" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="c_22" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="c_21" vertex="1">
+          <mxGeometry x="10" y="20.878787878787875" width="40.0" height="24.242424242424242" as="geometry" />
+        </mxCell>
+        <mxCell id="c_23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.2;entryDx=0;entryDy=0;" parent="1" edge="1" source="c_5" target="c_14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_24" value="3 Import" style="swimlane;startSize=34;rounded=1;arcSize=3;html=1;whiteSpace=wrap;fillColor=#0066FF;fontColor=#FFFFFF;strokeColor=#0066FF;swimlaneFillColor=#F7FAFF;fontStyle=1;fontSize=14;strokeWidth=2;collapsible=0;" parent="1" vertex="1">
+          <mxGeometry x="640" y="200" width="270" height="470" as="geometry" />
+        </mxCell>
+        <mxCell id="c_25" value="switch: RunImport" style="rounded=1;arcSize=50;html=1;fillColor=#FFF2CC;strokeColor=#B8860B;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="700" y="680" width="150" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c_26" value="RunImport on?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=12;" parent="c_24" vertex="1">
+          <mxGeometry x="20" y="50" width="230" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="c_27" value="&lt;font style='font-size:11px' color='#0066FF'&gt;&lt;b&gt;Run a Child Flow&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;C2 Import&lt;/b&gt; with ZIP path" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#0066FF;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="c_24" vertex="1">
+          <mxGeometry x="12" y="120" width="246" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="c_28" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/PowerAutomate.svg;" parent="c_27" vertex="1">
+          <mxGeometry x="10" y="16.846153846153868" width="40.0" height="32.30769230769231" as="geometry" />
+        </mxCell>
+        <mxCell id="c_29" value="C2 replied Succeeded?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=12;" parent="c_24" vertex="1">
+          <mxGeometry x="20" y="200" width="230" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="c_30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.2;entryDx=0;entryDy=0;" parent="1" edge="1" source="c_14" target="c_24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_31" value="4 Post-import" style="swimlane;startSize=34;rounded=1;arcSize=3;html=1;whiteSpace=wrap;fillColor=#0066FF;fontColor=#FFFFFF;strokeColor=#0066FF;swimlaneFillColor=#F7FAFF;fontStyle=1;fontSize=14;strokeWidth=2;collapsible=0;" parent="1" vertex="1">
+          <mxGeometry x="940" y="200" width="270" height="470" as="geometry" />
+        </mxCell>
+        <mxCell id="c_32" value="switch: RunPostImport" style="rounded=1;arcSize=50;html=1;fillColor=#FFF2CC;strokeColor=#B8860B;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="1000" y="680" width="150" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c_33" value="RunPostImport on?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=12;" parent="c_31" vertex="1">
+          <mxGeometry x="20" y="50" width="230" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="c_34" value="&lt;font style='font-size:11px' color='#0066FF'&gt;&lt;b&gt;Run a Child Flow&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;b&gt;C3 Post-import&lt;/b&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#0066FF;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="c_31" vertex="1">
+          <mxGeometry x="12" y="120" width="246" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="c_35" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/PowerAutomate.svg;" parent="c_34" vertex="1">
+          <mxGeometry x="10" y="16.846153846153868" width="40.0" height="32.30769230769231" as="geometry" />
+        </mxCell>
+        <mxCell id="c_36" value="C3 replied Succeeded?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=12;" parent="c_31" vertex="1">
+          <mxGeometry x="20" y="200" width="230" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="c_37" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.2;entryDx=0;entryDy=0;" parent="1" edge="1" source="c_24" target="c_31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_38" value="5 Log (always runs)" style="swimlane;startSize=34;rounded=1;arcSize=3;html=1;whiteSpace=wrap;fillColor=#9E9E9E;fontColor=#FFFFFF;strokeColor=#9E9E9E;swimlaneFillColor=#F7F7F7;fontStyle=1;fontSize=14;strokeWidth=2;collapsible=0;" parent="1" vertex="1">
+          <mxGeometry x="1240" y="200" width="270" height="470" as="geometry" />
+        </mxCell>
+        <mxCell id="c_39" value="&lt;font style='font-size:11px' color='#9E9E9E'&gt;&lt;b&gt;Compose&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Build log: status + seconds per stage" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=6;fontSize=12;" parent="c_38" vertex="1">
+          <mxGeometry x="12" y="50" width="246" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="c_40" value="&lt;font style='font-size:11px' color='#038387'&gt;&lt;b&gt;SharePoint · Create file&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Save to DeploymentLogs/" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="c_38" vertex="1">
+          <mxGeometry x="12" y="130" width="246" height="66" as="geometry" />
+        </mxCell>
+        <mxCell id="c_41" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="c_40" vertex="1">
+          <mxGeometry x="10" y="20.878787878787875" width="40.0" height="24.242424242424242" as="geometry" />
+        </mxCell>
+        <mxCell id="c_42" value="Everything OK?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;fontSize=12;" parent="c_38" vertex="1">
+          <mxGeometry x="20" y="210" width="230" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="c_43" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;exitX=1;exitY=0.2;exitDx=0;exitDy=0;entryX=0;entryY=0.2;entryDx=0;entryDy=0;" parent="1" edge="1" source="c_31" target="c_38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="c_44" value="&lt;b&gt;A check says no?&lt;/b&gt;  FailMessage is set → the stage fails → later stages are skipped → &lt;b&gt;Log still runs&lt;/b&gt; → run ends &lt;b&gt;Failed&lt;/b&gt; with that message (and FlowAdmin-Monitoring alerts)." style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;strokeWidth=2;fontSize=13;align=left;spacingLeft=14;" parent="1" vertex="1">
+          <mxGeometry x="40" y="730" width="1470" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="c_45" value="Off switch = stage does nothing and the log says &lt;b&gt;Skipped&lt;/b&gt;." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="40" y="800" width="900" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="c_46" value="&lt;b&gt;Matches ALMPipeline 1.0.0.0&lt;/b&gt; (ADMIN) · Demo 1.0.0.0&lt;br&gt;pipeline/ code @ 9f20d8d · diagram 2026-09-26" style="rounded=1;arcSize=20;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=11;align=left;spacingLeft=8;" parent="1" vertex="1">
+          <mxGeometry x="1480" y="16" width="330" height="42" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="k" name="4 C2 + C3 children">
+    <mxGraphModel grid="1" gridSize="10" guides="1" connect="1" arrows="1" page="1" pageWidth="1654" pageHeight="1169" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="k_1" value="The child flows: C2 Import and C3 Post-import" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;fontSize=24;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="24" width="1400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="k_2" value="Both live in ADMIN, work on the TARGET environment, and always reply to C1 (Succeeded or Failed + reason) within 120 s." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;fontColor=#555555;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="40" y="64" width="1400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="k_3" value="C2 Import (child) · input: ZIP path, Solution, Target" style="swimlane;startSize=34;rounded=1;arcSize=3;html=1;whiteSpace=wrap;fillColor=#0066FF;fontColor=#FFFFFF;strokeColor=#0066FF;swimlaneFillColor=#F7FAFF;fontStyle=1;fontSize=14;strokeWidth=2;collapsible=0;" parent="1" vertex="1">
+          <mxGeometry x="40" y="120" width="1500" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="k_4" value="&lt;font style='font-size:11px' color='#038387'&gt;&lt;b&gt;SharePoint · Get items&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Read settings + mappings" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="k_3" vertex="1">
+          <mxGeometry x="20" y="60" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="k_5" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="k_4" vertex="1">
+          <mxGeometry x="10" y="22.878787878787875" width="40.0" height="24.242424242424242" as="geometry" />
+        </mxCell>
+        <mxCell id="k_6" value="&lt;font style='font-size:11px' color='#9E9E9E'&gt;&lt;b&gt;Select&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Build parameters: connection per reference, value per variable" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#9E9E9E;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=12;spacingRight=6;fontSize=12;" parent="k_3" vertex="1">
+          <mxGeometry x="310" y="60" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="k_7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;" parent="1" edge="1" source="k_4" target="k_6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="k_8" value="&lt;font style='font-size:11px' color='#038387'&gt;&lt;b&gt;SharePoint · Get file content&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Read the archived ZIP" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="k_3" vertex="1">
+          <mxGeometry x="600" y="60" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="k_9" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="k_8" vertex="1">
+          <mxGeometry x="10" y="22.878787878787875" width="40.0" height="24.242424242424242" as="geometry" />
+        </mxCell>
+        <mxCell id="k_10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;" parent="1" edge="1" source="k_6" target="k_8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="k_11" value="&lt;font style='font-size:11px' color='#742774'&gt;&lt;b&gt;Dataverse · ImportSolutionAsync&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Import into TARGET, wait for job" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="k_3" vertex="1">
+          <mxGeometry x="890" y="60" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="k_12" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/Dataverse.svg;" parent="k_11" vertex="1">
+          <mxGeometry x="10" y="19.615384615384613" width="40.0" height="30.76923076923077" as="geometry" />
+        </mxCell>
+        <mxCell id="k_13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;" parent="1" edge="1" source="k_8" target="k_11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="k_14" value="&lt;font style='font-size:11px' color='#0066FF'&gt;&lt;b&gt;Respond to a flow&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Reply &lt;b&gt;Succeeded&lt;/b&gt; + import job id" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#0066FF;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="k_3" vertex="1">
+          <mxGeometry x="1180" y="60" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="k_15" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/PowerAutomate.svg;" parent="k_14" vertex="1">
+          <mxGeometry x="10" y="18.84615384615384" width="40.0" height="32.30769230769231" as="geometry" />
+        </mxCell>
+        <mxCell id="k_16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;" parent="1" edge="1" source="k_11" target="k_14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="k_17" value="&lt;b&gt;Any failure&lt;/b&gt; → Reply Failed + reason → run marked Failed" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=12;align=left;spacingLeft=10;" parent="k_3" vertex="1">
+          <mxGeometry x="20" y="145" width="1440" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="k_18" value="C3 Post-import (child) · input: Solution, Target" style="swimlane;startSize=34;rounded=1;arcSize=3;html=1;whiteSpace=wrap;fillColor=#0066FF;fontColor=#FFFFFF;strokeColor=#0066FF;swimlaneFillColor=#F7FAFF;fontStyle=1;fontSize=14;strokeWidth=2;collapsible=0;" parent="1" vertex="1">
+          <mxGeometry x="40" y="360" width="1500" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="k_19" value="&lt;font style='font-size:11px' color='#038387'&gt;&lt;b&gt;SharePoint · Get items&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Read settings + mappings" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#038387;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="k_18" vertex="1">
+          <mxGeometry x="20" y="60" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="k_20" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="k_19" vertex="1">
+          <mxGeometry x="10" y="22.878787878787875" width="40.0" height="24.242424242424242" as="geometry" />
+        </mxCell>
+        <mxCell id="k_21" value="&lt;font style='font-size:11px' color='#742774'&gt;&lt;b&gt;Dataverse · List rows (TARGET)&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Every reference bound to the mapped connection?" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="k_18" vertex="1">
+          <mxGeometry x="310" y="60" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="k_22" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/Dataverse.svg;" parent="k_21" vertex="1">
+          <mxGeometry x="10" y="19.61538461538464" width="40.0" height="30.76923076923077" as="geometry" />
+        </mxCell>
+        <mxCell id="k_23" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;" parent="1" edge="1" source="k_19" target="k_21">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="k_24" value="&lt;font style='font-size:11px' color='#742774'&gt;&lt;b&gt;Dataverse · Update a row&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Set each variable value from ALMVariables" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="k_18" vertex="1">
+          <mxGeometry x="600" y="60" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="k_25" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/Dataverse.svg;" parent="k_24" vertex="1">
+          <mxGeometry x="10" y="19.61538461538464" width="40.0" height="30.76923076923077" as="geometry" />
+        </mxCell>
+        <mxCell id="k_26" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;" parent="1" edge="1" source="k_21" target="k_24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="k_27" value="&lt;font style='font-size:11px' color='#742774'&gt;&lt;b&gt;Dataverse · Update a row&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Turn on the solution's flows that are off" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#742774;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="k_18" vertex="1">
+          <mxGeometry x="890" y="60" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="k_28" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/Dataverse.svg;" parent="k_27" vertex="1">
+          <mxGeometry x="10" y="19.61538461538464" width="40.0" height="30.76923076923077" as="geometry" />
+        </mxCell>
+        <mxCell id="k_29" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;" parent="1" edge="1" source="k_24" target="k_27">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="k_30" value="&lt;font style='font-size:11px' color='#0066FF'&gt;&lt;b&gt;Respond to a flow&lt;/b&gt;&lt;/font&gt;&lt;br&gt;Reply &lt;b&gt;Succeeded&lt;/b&gt;: bindings OK, n values, m flows" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#0066FF;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="k_18" vertex="1">
+          <mxGeometry x="1180" y="60" width="250" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="k_31" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/PowerAutomate.svg;" parent="k_30" vertex="1">
+          <mxGeometry x="10" y="18.846153846153868" width="40.0" height="32.30769230769231" as="geometry" />
+        </mxCell>
+        <mxCell id="k_32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;" parent="1" edge="1" source="k_27" target="k_30">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="k_33" value="&lt;b&gt;Wrong binding, missing value row, any error&lt;/b&gt; → Reply Failed + reason → run marked Failed" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#F8CECC;strokeColor=#B85450;fontSize=12;align=left;spacingLeft=10;" parent="k_18" vertex="1">
+          <mxGeometry x="20" y="145" width="1440" height="32" as="geometry" />
+        </mxCell>
+        <mxCell id="k_34" value="&lt;b&gt;Why this split?&lt;/b&gt; C2 can run alone (fresh import). C3 can run alone too (fix values without importing: RunImport off, RunPostImport on)." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="40" y="580" width="1300" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="k_35" value="&lt;b&gt;Matches ALMPipeline 1.0.0.0&lt;/b&gt; (ADMIN) · Demo 1.0.0.0&lt;br&gt;pipeline/ code @ 9f20d8d · diagram 2026-09-26" style="rounded=1;arcSize=20;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=11;align=left;spacingLeft=8;" parent="1" vertex="1">
+          <mxGeometry x="1480" y="16" width="330" height="42" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="s" name="5 Settings">
+    <mxGraphModel grid="1" gridSize="10" guides="1" connect="1" arrows="1" page="1" pageWidth="1654" pageHeight="1169" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="s_1" value="Settings: the three ALM-Admin lists" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;fontSize=24;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="24" width="1400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="s_2" value="One row per combination. Add rows for a new product or target; no flow changes needed." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;fontColor=#555555;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="40" y="64" width="1400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s_3" value="&lt;b&gt;ALMConfig&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px'&gt;one row per solution × target&lt;/font&gt;" style="swimlane;startSize=56;childLayout=stackLayout;horizontal=1;horizontalStack=0;resizeParent=1;collapsible=0;html=1;whiteSpace=wrap;rounded=1;arcSize=4;fillColor=#038387;fontColor=#FFFFFF;strokeColor=#038387;swimlaneFillColor=#FFFFFF;fontSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="40" y="130" width="420" height="266" as="geometry" />
+        </mxCell>
+        <mxCell id="s_4" value="&lt;b&gt;SolutionName&lt;/b&gt; &lt;font color='#777777'&gt;Demo&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=10;fontSize=12;whiteSpace=wrap;strokeColor=none;fillColor=none;" parent="s_3" vertex="1">
+          <mxGeometry x="0" y="56" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s_5" value="&lt;b&gt;TargetEnvironment&lt;/b&gt; &lt;font color='#777777'&gt;TEST / PROD&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=10;fontSize=12;whiteSpace=wrap;strokeColor=none;fillColor=none;" parent="s_3" vertex="1">
+          <mxGeometry x="0" y="86" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s_6" value="&lt;b&gt;Dev / Target URLs&lt;/b&gt; &lt;font color='#777777'&gt;Power Platform + SharePoint&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=10;fontSize=12;whiteSpace=wrap;strokeColor=none;fillColor=none;" parent="s_3" vertex="1">
+          <mxGeometry x="0" y="116" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s_7" value="&lt;b&gt;RunImport&lt;/b&gt; &lt;font color='#777777'&gt;✅ switch for C2&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=10;fontSize=12;whiteSpace=wrap;strokeColor=none;fillColor=none;" parent="s_3" vertex="1">
+          <mxGeometry x="0" y="146" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s_8" value="&lt;b&gt;RunPostImport&lt;/b&gt; &lt;font color='#777777'&gt;✅ switch for C3&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=10;fontSize=12;whiteSpace=wrap;strokeColor=none;fillColor=none;" parent="s_3" vertex="1">
+          <mxGeometry x="0" y="176" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s_9" value="&lt;b&gt;RunShare&lt;/b&gt; &lt;font color='#777777'&gt;❌ future C4&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=10;fontSize=12;whiteSpace=wrap;strokeColor=none;fillColor=none;" parent="s_3" vertex="1">
+          <mxGeometry x="0" y="206" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s_10" value="&lt;b&gt;AppShareGroupId&lt;/b&gt; &lt;font color='#777777'&gt;future Entra group&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=10;fontSize=12;whiteSpace=wrap;strokeColor=none;fillColor=none;" parent="s_3" vertex="1">
+          <mxGeometry x="0" y="236" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s_11" value="&lt;b&gt;ALMConnections&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px'&gt;one row per environment × connection reference&lt;/font&gt;" style="swimlane;startSize=56;childLayout=stackLayout;horizontal=1;horizontalStack=0;resizeParent=1;collapsible=0;html=1;whiteSpace=wrap;rounded=1;arcSize=4;fillColor=#038387;fontColor=#FFFFFF;strokeColor=#038387;swimlaneFillColor=#FFFFFF;fontSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="520" y="130" width="420" height="176" as="geometry" />
+        </mxCell>
+        <mxCell id="s_12" value="&lt;b&gt;Environment&lt;/b&gt; &lt;font color='#777777'&gt;TEST&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=10;fontSize=12;whiteSpace=wrap;strokeColor=none;fillColor=none;" parent="s_11" vertex="1">
+          <mxGeometry x="0" y="56" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s_13" value="&lt;b&gt;ConnectionReference&lt;/b&gt; &lt;font color='#777777'&gt;dev_SharePoint&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=10;fontSize=12;whiteSpace=wrap;strokeColor=none;fillColor=none;" parent="s_11" vertex="1">
+          <mxGeometry x="0" y="86" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s_14" value="&lt;b&gt;ConnectionId&lt;/b&gt; &lt;font color='#777777'&gt;shared-sharepointonl-0f567e53&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=10;fontSize=12;whiteSpace=wrap;strokeColor=none;fillColor=none;" parent="s_11" vertex="1">
+          <mxGeometry x="0" y="116" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s_15" value="&lt;b&gt;ConnectorId&lt;/b&gt; &lt;font color='#777777'&gt;shared_sharepointonline&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=10;fontSize=12;whiteSpace=wrap;strokeColor=none;fillColor=none;" parent="s_11" vertex="1">
+          <mxGeometry x="0" y="146" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s_16" value="&lt;b&gt;ALMVariables&lt;/b&gt;&lt;br&gt;&lt;font style='font-size:12px'&gt;one row per solution × environment × variable&lt;/font&gt;" style="swimlane;startSize=56;childLayout=stackLayout;horizontal=1;horizontalStack=0;resizeParent=1;collapsible=0;html=1;whiteSpace=wrap;rounded=1;arcSize=4;fillColor=#038387;fontColor=#FFFFFF;strokeColor=#038387;swimlaneFillColor=#FFFFFF;fontSize=14;strokeWidth=2;" parent="1" vertex="1">
+          <mxGeometry x="1000" y="130" width="420" height="176" as="geometry" />
+        </mxCell>
+        <mxCell id="s_17" value="&lt;b&gt;SolutionName&lt;/b&gt; &lt;font color='#777777'&gt;Demo&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=10;fontSize=12;whiteSpace=wrap;strokeColor=none;fillColor=none;" parent="s_16" vertex="1">
+          <mxGeometry x="0" y="56" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s_18" value="&lt;b&gt;Environment&lt;/b&gt; &lt;font color='#777777'&gt;TEST&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=10;fontSize=12;whiteSpace=wrap;strokeColor=none;fillColor=none;" parent="s_16" vertex="1">
+          <mxGeometry x="0" y="86" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s_19" value="&lt;b&gt;SchemaName&lt;/b&gt; &lt;font color='#777777'&gt;dev_SharePointSite&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=10;fontSize=12;whiteSpace=wrap;strokeColor=none;fillColor=none;" parent="s_16" vertex="1">
+          <mxGeometry x="0" y="116" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s_20" value="&lt;b&gt;Value&lt;/b&gt; &lt;font color='#777777'&gt;ALM-Test site URL&lt;/font&gt;" style="text;html=1;align=left;verticalAlign=middle;spacingLeft=10;fontSize=12;whiteSpace=wrap;strokeColor=none;fillColor=none;" parent="s_16" vertex="1">
+          <mxGeometry x="0" y="146" width="420" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="s_21" value="&lt;font style='font-size:11px' color='#0066FF'&gt;&lt;b&gt;C1 Prechecks&lt;/b&gt;&lt;/font&gt;&lt;br&gt;all three: row must exist before export" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#0066FF;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="520" y="380" width="310" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="s_22" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/PowerAutomate.svg;" parent="s_21" vertex="1">
+          <mxGeometry x="10" y="14.846153846153868" width="40.0" height="32.30769230769231" as="geometry" />
+        </mxCell>
+        <mxCell id="s_23" value="&lt;font style='font-size:11px' color='#0066FF'&gt;&lt;b&gt;C2 Import&lt;/b&gt;&lt;/font&gt;&lt;br&gt;connections + values go into the import" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#0066FF;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="850" y="380" width="310" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="s_24" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/PowerAutomate.svg;" parent="s_23" vertex="1">
+          <mxGeometry x="10" y="14.846153846153868" width="40.0" height="32.30769230769231" as="geometry" />
+        </mxCell>
+        <mxCell id="s_25" value="&lt;font style='font-size:11px' color='#0066FF'&gt;&lt;b&gt;C3 Post-import&lt;/b&gt;&lt;/font&gt;&lt;br&gt;verifies connections, re-sets values" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFFFFF;strokeColor=#0066FF;strokeWidth=2;align=left;verticalAlign=middle;spacingLeft=58;spacingRight=6;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="1180" y="380" width="310" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="s_26" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/PowerAutomate.svg;" parent="s_25" vertex="1">
+          <mxGeometry x="10" y="14.846153846153868" width="40.0" height="32.30769230769231" as="geometry" />
+        </mxCell>
+        <mxCell id="s_27" value="&lt;b&gt;New product or target&lt;/b&gt;&lt;br&gt;1. ALMConfig row&lt;br&gt;2. ALMConnections row per connection reference&lt;br&gt;3. ALMVariables row per variable&lt;br&gt;Prechecks stop the run until 2 and 3 are complete." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="40" y="500" width="600" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="s_28" value="&lt;b&gt;Matches ALMPipeline 1.0.0.0&lt;/b&gt; (ADMIN) · Demo 1.0.0.0&lt;br&gt;pipeline/ code @ 9f20d8d · diagram 2026-09-26" style="rounded=1;arcSize=20;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=11;align=left;spacingLeft=8;" parent="1" vertex="1">
+          <mxGeometry x="1480" y="16" width="330" height="42" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="m" name="6 Roadmap">
+    <mxGraphModel grid="1" gridSize="10" guides="1" connect="1" arrows="1" page="1" pageWidth="1654" pageHeight="1169" background="#FFFFFF">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="m_1" value="Roadmap (proposal)" style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;fontSize=24;fontStyle=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="24" width="1400" height="36" as="geometry" />
+        </mxCell>
+        <mxCell id="m_2" value="Green = live. Dashed = to build. Each new step gets its own on/off switch." style="text;html=1;whiteSpace=wrap;align=left;verticalAlign=top;fontSize=13;fontColor=#555555;fontSize=14;" parent="1" vertex="1">
+          <mxGeometry x="40" y="64" width="1400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="m_3" value="&lt;b style='font-size:15px'&gt;Prechecks&lt;/b&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#F1F8F2;strokeColor=#2E7D32;strokeWidth=2;verticalAlign=top;align=center;spacingTop=66;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="40" y="150" width="160" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="m_4" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="m_3" vertex="1">
+          <mxGeometry x="47.0" y="14" width="66" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="m_5" value="&lt;b style='font-size:15px'&gt;SharePoint deploy&lt;/b&gt;&lt;br&gt;&lt;font color='#444444'&gt;C5 · RunSharePoint&lt;br&gt;create / update lists&lt;/font&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFF8E1;strokeColor=#B8860B;strokeWidth=2;verticalAlign=top;align=center;spacingTop=66;fontSize=13;dashed=1;dashPattern=8 5;" parent="1" vertex="1">
+          <mxGeometry x="220" y="150" width="160" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="m_6" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="m_5" vertex="1">
+          <mxGeometry x="47.0" y="14" width="66" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="m_7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;" parent="1" edge="1" source="m_3" target="m_5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m_8" value="&lt;b style='font-size:15px'&gt;Export&lt;/b&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#F1F8F2;strokeColor=#2E7D32;strokeWidth=2;verticalAlign=top;align=center;spacingTop=66;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="400" y="150" width="160" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="m_9" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/Dataverse.svg;" parent="m_8" vertex="1">
+          <mxGeometry x="54.0" y="14" width="52" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="m_10" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;" parent="1" edge="1" source="m_5" target="m_8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m_11" value="&lt;b style='font-size:15px'&gt;Import · C2&lt;/b&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#F1F8F2;strokeColor=#2E7D32;strokeWidth=2;verticalAlign=top;align=center;spacingTop=66;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="580" y="150" width="160" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="m_12" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/PowerAutomate.svg;" parent="m_11" vertex="1">
+          <mxGeometry x="54.0" y="14" width="52" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="m_13" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;" parent="1" edge="1" source="m_8" target="m_11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m_14" value="&lt;b style='font-size:15px'&gt;Post-import · C3&lt;/b&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#F1F8F2;strokeColor=#2E7D32;strokeWidth=2;verticalAlign=top;align=center;spacingTop=66;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="760" y="150" width="160" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="m_15" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/PowerAutomate.svg;" parent="m_14" vertex="1">
+          <mxGeometry x="54.0" y="14" width="52" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="m_16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;" parent="1" edge="1" source="m_11" target="m_14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m_17" value="&lt;b style='font-size:15px'&gt;Security groups&lt;/b&gt;&lt;br&gt;&lt;font color='#444444'&gt;C6 · RunSecurity&lt;br&gt;Entra group + members&lt;/font&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFF8E1;strokeColor=#B8860B;strokeWidth=2;verticalAlign=top;align=center;spacingTop=66;fontSize=13;dashed=1;dashPattern=8 5;" parent="1" vertex="1">
+          <mxGeometry x="940" y="150" width="160" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="m_18" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/identity/Groups.svg;" parent="m_17" vertex="1">
+          <mxGeometry x="54.0" y="14" width="52" height="43" as="geometry" />
+        </mxCell>
+        <mxCell id="m_19" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;" parent="1" edge="1" source="m_14" target="m_17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m_20" value="&lt;b style='font-size:15px'&gt;Share app&lt;/b&gt;&lt;br&gt;&lt;font color='#444444'&gt;C4 · RunShare&lt;br&gt;share with the group&lt;/font&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFF8E1;strokeColor=#B8860B;strokeWidth=2;verticalAlign=top;align=center;spacingTop=66;fontSize=13;dashed=1;dashPattern=8 5;" parent="1" vertex="1">
+          <mxGeometry x="1120" y="150" width="160" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="m_21" value="" style="image;aspect=fixed;html=1;image=img/lib/azure2/power_platform/PowerApps.svg;" parent="m_20" vertex="1">
+          <mxGeometry x="57.0" y="14" width="46" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="m_22" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;" parent="1" edge="1" source="m_17" target="m_20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m_23" value="&lt;b style='font-size:15px'&gt;Log&lt;/b&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#F1F8F2;strokeColor=#2E7D32;strokeWidth=2;verticalAlign=top;align=center;spacingTop=66;fontSize=13;" parent="1" vertex="1">
+          <mxGeometry x="1300" y="150" width="160" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="m_24" value="" style="shape=mxgraph.office.clouds.cloud_sharepoint;html=1;strokeColor=none;fillColor=#038387;" parent="m_23" vertex="1">
+          <mxGeometry x="47.0" y="14" width="66" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="m_25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeWidth=2;fontSize=13;labelBackgroundColor=#FFFFFF;strokeColor=#333333;fontColor=#333333;" parent="1" edge="1" source="m_20" target="m_23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="m_26" value="&lt;b style='font-size:15px'&gt;Release to PROD&lt;/b&gt;&lt;br&gt;&lt;font color='#444444'&gt;deploy the archived ZIP that passed TEST&lt;br&gt;(page 1, steps ③ ④)&lt;/font&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;container=1;collapsible=0;fillColor=#FFF8E1;strokeColor=#B8860B;strokeWidth=2;verticalAlign=top;align=center;spacingTop=14;fontSize=13;dashed=1;dashPattern=8 5;" parent="1" vertex="1">
+          <mxGeometry x="40" y="380" width="520" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="m_27" value="&lt;b&gt;Matches ALMPipeline 1.0.0.0&lt;/b&gt; (ADMIN) · Demo 1.0.0.0&lt;br&gt;pipeline/ code @ 9f20d8d · diagram 2026-09-26" style="rounded=1;arcSize=20;html=1;whiteSpace=wrap;fillColor=#F5F5F5;strokeColor=#9E9E9E;fontSize=11;align=left;spacingLeft=8;" parent="1" vertex="1">
+          <mxGeometry x="1480" y="16" width="330" height="42" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

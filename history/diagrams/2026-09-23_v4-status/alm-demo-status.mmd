@@ -1,0 +1,26 @@
+flowchart LR
+  subgraph DONE["Done in tenant"]
+    direction LR
+    S1["1. Environments<br/>ADMIN, DEV, TEST"] --> S2["2. SharePoint<br/>3 sites · DEV Products 3 rows · TEST empty"]
+    S2 --> S3["3. Demo solution 1.0.0.0<br/>env vars Site, List · conn ref dev_SharePoint"]
+    S3 --> S4["4. Canvas app<br/>published in DEV"]
+    S4 --> S5["5. New SP connection<br/>4f3b8a9e · owner bosso"]
+  end
+  S5 --> S6["6. NEXT: rebind dev_SharePoint<br/>DEV → Demo → Connection references → pick 4f3b8a9e"]
+  subgraph TODO["Not started"]
+    direction LR
+    S7["7. Flow: Demo - Get First Product"] --> S8["8. Spike: export managed ZIP from DEV<br/>save to ALM-Admin"]
+    S8 --> S9["9. Import same ZIP to TEST<br/>TEST Site/List + connection"]
+    S9 --> S10{"10. TEST reads TEST data?<br/>DEV still DEV?<br/>= DEMO DONE"}
+  end
+  S6 --> S7
+  P["Parked: ALMAdmin request/worker flows · operator UI · JS helpers + tests · failure matrix · Prod"]
+
+  classDef done fill:#D5E8D4,stroke:#82B366,color:#1B3A1B
+  classDef next fill:#FFE6CC,stroke:#D79B00,stroke-width:3px,color:#4A3000
+  classDef todo fill:#F5F5F5,stroke:#999999,color:#333333
+  classDef parked fill:#FFFFFF,stroke:#B85450,stroke-dasharray:5 5,color:#B85450
+  class S1,S2,S3,S4,S5 done
+  class S6 next
+  class S7,S8,S9,S10 todo
+  class P parked

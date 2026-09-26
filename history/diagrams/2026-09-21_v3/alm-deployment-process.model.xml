@@ -1,0 +1,123 @@
+<mxGraphModel grid="0" page="0" pageWidth="1530" pageHeight="1010" background="#FFFFFF" adaptiveColors="auto">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <mxCell id="title" parent="1" value="Release once. Test it. Promote the same package." style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=35;fontColor=#19354A;fontStyle=1;align=left;verticalAlign=middle;spacing=12;strokeColor=none;fillColor=none;strokeWidth=2;" vertex="1">
+      <mxGeometry x="40" y="25" width="1450" height="55" as="geometry" />
+    </mxCell>
+    <mxCell id="subtitle" parent="1" value="A simple manual ALM process · three Power Platform environments · SharePoint stores release files until Git is available" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=19;fontColor=#19354A;fontStyle=0;align=left;verticalAlign=middle;spacing=12;strokeColor=none;fillColor=none;strokeWidth=2;" vertex="1">
+      <mxGeometry x="40" y="88" width="1450" height="42" as="geometry" />
+    </mxCell>
+    <mxCell id="dev" parent="1" value="" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=20;fontColor=#19354A;fontStyle=0;align=center;verticalAlign=middle;spacing=12;strokeColor=#1766B3;fillColor=#F0F6FC;strokeWidth=2;container=1;collapsible=0;recursiveResize=0;" vertex="1">
+      <mxGeometry x="50" y="175" width="410" height="420" as="geometry" />
+    </mxCell>
+    <mxCell id="devtitle" parent="dev" value="DEV" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=27;fontColor=#19354A;fontStyle=1;align=left;verticalAlign=middle;spacing=12;strokeColor=none;fillColor=none;strokeWidth=2;" vertex="1">
+      <mxGeometry x="15" y="10" width="380" height="43" as="geometry" />
+    </mxCell>
+    <mxCell id="devsub" parent="dev" value="Unmanaged · all development happens here" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=17;fontColor=#19354A;fontStyle=0;align=left;verticalAlign=middle;spacing=12;strokeColor=none;fillColor=none;strokeWidth=2;" vertex="1">
+      <mxGeometry x="15" y="55" width="380" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="test" parent="1" value="" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=20;fontColor=#19354A;fontStyle=0;align=center;verticalAlign=middle;spacing=12;strokeColor=#7353AC;fillColor=#F6F2FA;strokeWidth=2;container=1;collapsible=0;recursiveResize=0;" vertex="1">
+      <mxGeometry x="560" y="175" width="410" height="420" as="geometry" />
+    </mxCell>
+    <mxCell id="testtitle" parent="test" value="TEST" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=27;fontColor=#19354A;fontStyle=1;align=left;verticalAlign=middle;spacing=12;strokeColor=none;fillColor=none;strokeWidth=2;" vertex="1">
+      <mxGeometry x="15" y="10" width="380" height="43" as="geometry" />
+    </mxCell>
+    <mxCell id="testsub" parent="test" value="Managed · validate the release" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=17;fontColor=#19354A;fontStyle=0;align=left;verticalAlign=middle;spacing=12;strokeColor=none;fillColor=none;strokeWidth=2;" vertex="1">
+      <mxGeometry x="15" y="55" width="380" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="prod" parent="1" value="" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=20;fontColor=#19354A;fontStyle=0;align=center;verticalAlign=middle;spacing=12;strokeColor=#087F78;fillColor=#EFF8F5;strokeWidth=2;container=1;collapsible=0;recursiveResize=0;" vertex="1">
+      <mxGeometry x="1070" y="175" width="410" height="420" as="geometry" />
+    </mxCell>
+    <mxCell id="prodtitle" parent="prod" value="PROD" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=27;fontColor=#19354A;fontStyle=1;align=left;verticalAlign=middle;spacing=12;strokeColor=none;fillColor=none;strokeWidth=2;" vertex="1">
+      <mxGeometry x="15" y="10" width="380" height="43" as="geometry" />
+    </mxCell>
+    <mxCell id="prodsub" parent="prod" value="Managed · approved releases only" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=17;fontColor=#19354A;fontStyle=0;align=left;verticalAlign=middle;spacing=12;strokeColor=none;fillColor=none;strokeWidth=2;" vertex="1">
+      <mxGeometry x="15" y="55" width="380" height="40" as="geometry" />
+    </mxCell>
+    <mxCell id="build" parent="dev" value="1  Build &amp; check&#10;Apps, flows and configuration" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=21;fontColor=#19354A;fontStyle=0;align=center;verticalAlign=middle;spacing=12;strokeColor=#1766B3;fillColor=#FFFFFF;strokeWidth=2;" vertex="1">
+      <mxGeometry x="25" y="120" width="360" height="90" as="geometry" />
+    </mxCell>
+    <mxCell id="export" parent="dev" value="2  Freeze a release version&#10;Publish, then export both&#10;unmanaged + managed ZIPs" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=21;fontColor=#19354A;fontStyle=0;align=center;verticalAlign=middle;spacing=12;strokeColor=#1766B3;fillColor=#FFFFFF;strokeWidth=2;" vertex="1">
+      <mxGeometry x="25" y="260" width="360" height="115" as="geometry" />
+    </mxCell>
+    <mxCell id="import-test" parent="test" value="3  Import managed ZIP&#10;Apply Test configuration" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=21;fontColor=#19354A;fontStyle=0;align=center;verticalAlign=middle;spacing=12;strokeColor=#7353AC;fillColor=#FFFFFF;strokeWidth=2;" vertex="1">
+      <mxGeometry x="25" y="120" width="360" height="90" as="geometry" />
+    </mxCell>
+    <mxCell id="uat" parent="test" value="4  Test &amp; approve&#10;App + flows + user permissions&#10;Business owner signs off" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=21;fontColor=#19354A;fontStyle=0;align=center;verticalAlign=middle;spacing=12;strokeColor=#7353AC;fillColor=#FFFFFF;strokeWidth=2;" vertex="1">
+      <mxGeometry x="25" y="250" width="360" height="125" as="geometry" />
+    </mxCell>
+    <mxCell id="import-prod" parent="prod" value="5  Import approved ZIP&#10;Apply Prod configuration" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=21;fontColor=#19354A;fontStyle=0;align=center;verticalAlign=middle;spacing=12;strokeColor=#087F78;fillColor=#FFFFFF;strokeWidth=2;" vertex="1">
+      <mxGeometry x="25" y="120" width="360" height="90" as="geometry" />
+    </mxCell>
+    <mxCell id="verify-prod" parent="prod" value="6  Verify &amp; record&#10;Smoke test, check flows&#10;Record deployed version" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=21;fontColor=#19354A;fontStyle=0;align=center;verticalAlign=middle;spacing=12;strokeColor=#087F78;fillColor=#FFFFFF;strokeWidth=2;" vertex="1">
+      <mxGeometry x="25" y="250" width="360" height="125" as="geometry" />
+    </mxCell>
+    <mxCell id="dev-work" parent="1" source="build" target="export" value="" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;whiteSpace=nowrap;fontFamily=Helvetica;fontSize=17;fontColor=#1766B3;labelBackgroundColor=#FFFFFF;strokeColor=#1766B3;strokeWidth=2;endArrow=block;endFill=1;dashed=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="test-work" parent="1" source="import-test" target="uat" value="" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;whiteSpace=nowrap;fontFamily=Helvetica;fontSize=17;fontColor=#7353AC;labelBackgroundColor=#FFFFFF;strokeColor=#7353AC;strokeWidth=2;endArrow=block;endFill=1;dashed=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="prod-work" parent="1" source="import-prod" target="verify-prod" value="" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;whiteSpace=nowrap;fontFamily=Helvetica;fontSize=17;fontColor=#087F78;labelBackgroundColor=#FFFFFF;strokeColor=#087F78;strokeWidth=2;endArrow=block;endFill=1;dashed=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="deploy-test" parent="1" source="export" target="import-test" value="" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;whiteSpace=nowrap;fontFamily=Helvetica;fontSize=17;fontColor=#1766B3;labelBackgroundColor=#FFFFFF;strokeColor=#1766B3;strokeWidth=2;endArrow=block;endFill=1;dashed=0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="510" y="492.5" />
+          <mxPoint x="510" y="340" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="test-arrow-note" parent="1" value="Managed&#10;release" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=15;fontColor=#19354A;fontStyle=0;align=left;verticalAlign=middle;spacing=12;strokeColor=none;fillColor=none;strokeWidth=2;" vertex="1">
+      <mxGeometry x="468" y="220" width="84" height="65" as="geometry" />
+    </mxCell>
+    <mxCell id="approve-prod" parent="1" source="uat" target="import-prod" value="" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;whiteSpace=nowrap;fontFamily=Helvetica;fontSize=17;fontColor=#087F78;labelBackgroundColor=#FFFFFF;strokeColor=#087F78;strokeWidth=2;endArrow=block;endFill=1;dashed=0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="1020" y="487.5" />
+          <mxPoint x="1020" y="340" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="prod-arrow-note" parent="1" value="Approved:&#10;same&#10;managed&#10;ZIP" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=15;fontColor=#19354A;fontStyle=0;align=left;verticalAlign=middle;spacing=12;strokeColor=none;fillColor=none;strokeWidth=2;" vertex="1">
+      <mxGeometry x="976" y="205" width="88" height="100" as="geometry" />
+    </mxCell>
+    <mxCell id="rework" parent="1" source="uat" target="build" value="Issues → fix in Dev → new version → retest" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;whiteSpace=nowrap;fontFamily=Helvetica;fontSize=17;fontColor=#7353AC;labelBackgroundColor=#FFFFFF;strokeColor=#7353AC;strokeWidth=2;endArrow=block;endFill=1;dashed=1;exitX=0.5;exitY=1;entryX=0;entryY=0.5;">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="765" y="640" />
+          <mxPoint x="25" y="640" />
+          <mxPoint x="25" y="340" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="archive" parent="1" value="" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=20;fontColor=#19354A;fontStyle=0;align=center;verticalAlign=middle;spacing=12;strokeColor=#AB7A24;fillColor=#FFFAEF;strokeWidth=2;container=1;collapsible=0;recursiveResize=0;" vertex="1">
+      <mxGeometry x="50" y="710" width="1430" height="180" as="geometry" />
+    </mxCell>
+    <mxCell id="archive-title" parent="archive" value="SHAREPOINT RELEASE LIBRARY  ·  one folder per solution / release version" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=21;fontColor=#19354A;fontStyle=1;align=left;verticalAlign=middle;spacing=12;strokeColor=none;fillColor=none;strokeWidth=2;" vertex="1">
+      <mxGeometry x="15" y="10" width="1390" height="35" as="geometry" />
+    </mxCell>
+    <mxCell id="source-zip" parent="archive" value="Unmanaged ZIP&#10;Source snapshot / recovery input" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=19;fontColor=#19354A;fontStyle=0;align=center;verticalAlign=middle;spacing=12;strokeColor=#AB7A24;fillColor=#FFFFFF;strokeWidth=2;" vertex="1">
+      <mxGeometry x="25" y="65" width="395" height="75" as="geometry" />
+    </mxCell>
+    <mxCell id="managed-zip" parent="archive" value="Managed ZIP&#10;One package used for Test and Prod" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=19;fontColor=#19354A;fontStyle=0;align=center;verticalAlign=middle;spacing=12;strokeColor=#AB7A24;fillColor=#FFFFFF;strokeWidth=2;" vertex="1">
+      <mxGeometry x="455" y="65" width="420" height="75" as="geometry" />
+    </mxCell>
+    <mxCell id="release-record" parent="archive" value="Release notes + deployment record&#10;Settings, SharePoint changes and approval" style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=19;fontColor=#19354A;fontStyle=0;align=center;verticalAlign=middle;spacing=12;strokeColor=#AB7A24;fillColor=#FFFFFF;strokeWidth=2;" vertex="1">
+      <mxGeometry x="910" y="65" width="495" height="75" as="geometry" />
+    </mxCell>
+    <mxCell id="save-release" parent="1" source="export" target="archive" value="Store both exports" edge="1" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=0;whiteSpace=nowrap;fontFamily=Helvetica;fontSize=17;fontColor=#AB7A24;labelBackgroundColor=#FFFFFF;strokeColor=#AB7A24;strokeWidth=2;endArrow=block;endFill=1;dashed=1;exitX=0.5;exitY=1;entryX=0.266;entryY=0;">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="255" y="675" />
+          <mxPoint x="430" y="675" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="footer" parent="1" value="Before each target import: prepare SharePoint list changes, site/list values and connection mappings.&#10;Keep release ZIPs unchanged. Make fixes in Dev. SharePoint business data is not transported by the solution." style="rounded=1;arcSize=10;html=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=19;fontColor=#19354A;fontStyle=0;align=left;verticalAlign=middle;spacing=12;strokeColor=none;fillColor=none;strokeWidth=2;" vertex="1">
+      <mxGeometry x="50" y="912" width="1430" height="64" as="geometry" />
+    </mxCell>
+  </root>
+</mxGraphModel>

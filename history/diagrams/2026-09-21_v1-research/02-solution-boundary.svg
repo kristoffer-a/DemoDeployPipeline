@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1580" height="1140" viewBox="0 0 1580 1140">
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="context-stroke"/></marker></defs>
+<rect width="1580" height="1140" fill="#F3F7FA"/>
+<text x="50" y="66" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" text-anchor="start">
+<tspan x="50" dy="0">One business capability, one release boundary</tspan>
+</text>
+<text x="50" y="106" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="400" text-anchor="start">
+<tspan x="50" dy="0">Package the app and its automation together; make external data, identity and permissions explicit.</tspan>
+</text>
+<rect x="50" y="139" width="1480" height="58" rx="14" fill="#FFF5DD" stroke="#FFF5DD" stroke-width="1.5"/>
+<text x="70" y="174" fill="#986310" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="70" dy="0">A solution is a deployment boundary. It does not isolate users, credentials or SharePoint data.</tspan>
+</text>
+<rect x="50" y="222" width="865" height="539" rx="14" fill="white" stroke="#1766B3" stroke-width="1.5"/>
+<text x="75" y="254" fill="#1766B3" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" text-anchor="start">
+<tspan x="75" dy="0">BUSINESS SOLUTION  /  Exported components</tspan>
+</text>
+<rect x="100" y="325" width="290" height="110" rx="14" fill="#EAF3FD" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="120" y="359" fill="#1766B3" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="120" dy="0">Canvas app(s)</tspan>
+</text>
+<text x="120" y="390" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="120" dy="0">Screens, formulas</tspan>
+<tspan x="120" dy="22.950000000000003">and app-to-flow calls</tspan>
+</text>
+<rect x="575" y="325" width="290" height="110" rx="14" fill="#F1ECF8" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="595" y="359" fill="#7353AC" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="595" dy="0">Environment variables</tspan>
+</text>
+<text x="595" y="390" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="595" dy="0">Site + list definitions</tspan>
+<tspan x="595" dy="22.950000000000003">and other configuration</tspan>
+</text>
+<rect x="100" y="570" width="290" height="110" rx="14" fill="#EAF3FD" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="120" y="604" fill="#1766B3" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="120" dy="0">Solution cloud flows</tspan>
+</text>
+<text x="120" y="635" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="120" dy="0">Triggers, actions</tspan>
+<tspan x="120" dy="22.950000000000003">and authorization checks</tspan>
+</text>
+<rect x="575" y="570" width="290" height="110" rx="14" fill="#F1ECF8" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="595" y="604" fill="#7353AC" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="595" dy="0">Connection references</tspan>
+</text>
+<text x="595" y="635" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="595" dy="0">Flow connector bindings</tspan>
+<tspan x="595" dy="22.950000000000003">owned by this solution</tspan>
+</text>
+<text x="75" y="730" fill="#1766B3" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" text-anchor="start">
+<tspan x="75" dy="0">Independent release • one owning team • no dependencies on other business solutions</tspan>
+</text>
+<rect x="1050" y="260" width="430" height="110" rx="14" fill="#E6F5F1" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="1070" y="294" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="1070" dy="0">User’s SharePoint connection</tspan>
+</text>
+<text x="1070" y="325" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="1070" dy="0">Canvas app OAuth path</tspan>
+<tspan x="1070" dy="22.950000000000003">Acts with the signed-in user’s rights</tspan>
+</text>
+<rect x="1050" y="402" width="430" height="122" rx="14" fill="white" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="1070" y="436" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="1070" dy="0">Outside the exported solution</tspan>
+</text>
+<text x="1070" y="467" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="1070" dy="0">Connections and credentials; Entra groups;</tspan>
+<tspan x="1070" dy="22.950000000000003">SharePoint sites, schema, data and grants.</tspan>
+<tspan x="1070" dy="22.950000000000003">Provision / configure these per stage.</tspan>
+</text>
+<rect x="1050" y="570" width="430" height="110" rx="14" fill="#E6F5F1" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="1070" y="604" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="1070" dy="0">Flow’s SharePoint connection</tspan>
+</text>
+<text x="1070" y="635" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="1070" dy="0">Service account in this design*</tspan>
+<tspan x="1070" dy="22.950000000000003">Acts with that account’s SharePoint rights</tspan>
+</text>
+<rect x="1050" y="810" width="430" height="133" rx="14" fill="#E6F5F1" stroke="#C7D4DC" stroke-width="1.5"/>
+<text x="1070" y="844" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" text-anchor="start">
+<tspan x="1070" dy="0">SharePoint site(s) + lists</tspan>
+</text>
+<text x="1070" y="875" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="1070" dy="0">Enforce actual read / write permissions.</tspan>
+<tspan x="1070" dy="22.950000000000003">Separate Dev, Test and Prod resources.</tspan>
+<tspan x="1070" dy="22.950000000000003">Keep compatible list and column metadata.</tspan>
+</text>
+<polyline points="575,380.0 390,380.0" fill="none" stroke="#7353AC" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="7 5"/>
+<text x="416" y="359" fill="#7353AC" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" text-anchor="start">
+<tspan x="416" dy="0">configuration</tspan>
+</text>
+<polyline points="575,402.0 475,400 475,530 245,530 245.0,570" fill="none" stroke="#7353AC" stroke-width="2" marker-end="url(#arrow)" stroke-dasharray="7 5"/>
+<polyline points="158.0,435 158.0,570" fill="none" stroke="#1766B3" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="180" y="489" fill="#1766B3" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" text-anchor="start">
+<tspan x="180" dy="0">Optional flow call</tspan>
+</text>
+<polyline points="390,625.0 575,625.0" fill="none" stroke="#1766B3" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="420" y="607" fill="#1766B3" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" text-anchor="start">
+<tspan x="420" dy="0">uses</tspan>
+</text>
+<polyline points="865,625.0 1050,625.0" fill="none" stroke="#087F78" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="926" y="606" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="400" text-anchor="start">
+<tspan x="926" dy="0">bind on import</tspan>
+</text>
+<polyline points="245.0,325 245,295 1000,295 1000,315 1050,315.0" fill="none" stroke="#087F78" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="465" y="280" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" text-anchor="start">
+<tspan x="465" dy="0">Direct SharePoint access uses user OAuth</tspan>
+</text>
+<polyline points="1480,315.0 1510,315 1510,875 1480,876.5" fill="none" stroke="#087F78" stroke-width="2" marker-end="url(#arrow)"/>
+<polyline points="1265.0,680 1265.0,810" fill="none" stroke="#087F78" stroke-width="2" marker-end="url(#arrow)"/>
+<text x="1285" y="745" fill="#087F78" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="400" text-anchor="start">
+<tspan x="1285" dy="0">Permission check</tspan>
+</text>
+<rect x="50" y="798" width="865" height="164" rx="14" fill="#F1ECF8" stroke="#F1ECF8" stroke-width="1.5"/>
+<text x="75" y="830" fill="#7353AC" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" text-anchor="start">
+<tspan x="75" dy="0">ACCESS IS CONFIGURED AT THREE SEPARATE LAYERS</tspan>
+</text>
+<text x="75" y="869" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="400" text-anchor="start">
+<tspan x="75" dy="0">1   Environment group admits eligible users; roles control platform privileges.</tspan>
+<tspan x="75" dy="28.8">2   Business audience group receives app sharing / applicable flow run rights.</tspan>
+<tspan x="75" dy="28.8">3   SharePoint grants protect data; use role groups for finer segmentation.</tspan>
+</text>
+<text x="50" y="1006" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="400" text-anchor="start">
+<tspan x="50" dy="0">* For eligible instant flows, a run-only user connection is an alternative. Check each trigger and connection setting.</tspan>
+</text>
+<text x="50" y="1038" fill="#172B3A" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="700" text-anchor="start">
+<tspan x="50" dy="0">A privileged flow must authorize each operation. UI filtering and a user-supplied email address are not sufficient controls.</tspan>
+</text>
+<text x="50" y="1075" fill="#526775" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="400" text-anchor="start">
+<tspan x="50" dy="0">Solid arrows = runtime call or connection binding. Dashed arrows = configuration. Target variable values are supplied per environment.</tspan>
+<tspan x="50" dy="21.6">SharePoint OAuth canvas connections do not follow the flow connection-reference path. Sources and decisions: research note.</tspan>
+</text>
+</svg>
