@@ -1,6 +1,6 @@
 # Deploy orchestrator design
 
-Date: 2026-09-23. Status: approved in chat, awaiting written review.
+Date: 2026-09-23. Status: approved and implemented (2026-09-24, tag `alm-pipeline-1.0.0.0`). Open work: `docs/alm/HANDOFF.md`.
 Builds on: `history/2026-09-15_simple-alm/spec.md` and the ALMSpike results below.
 
 ## Goal
@@ -126,6 +126,6 @@ own result to the log.
 
 ## Cleanup (each needs user approval)
 
-- Delete spike flows A1, A2, B (and C1/C2 once replaced).
+- Delete spike flows A1, A2, B (and C1/C2 once replaced). Done 2026-09-24 (ALMSpike solution deleted).
 - Rename `spike/build_spike.py` into the pipeline builder (done: `pipeline/`; spike now in `history/`).
-- Remove `Test*` columns from `ALMConfig`.
+- Remove `Test*` columns from `ALMConfig`. Not verified; see HANDOFF.

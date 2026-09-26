@@ -25,20 +25,21 @@ Older handoffs, plans and reviews are in `history/` — do not read them unless 
 ## Open — check first
 
 1. **TEST mapping may still be the test-6 value.** The last C1 run was acceptance test 6 (ConnectionId `shared-sharepointonl-WRONG0000`). Run `python3 -m pipeline.sp_setup readback` + the setup flow and confirm `dev_SharePoint` → `shared-sharepointonl-0f567e53` before the next real deploy.
-2. **TEST `dev_ProductsList` is a placeholder** (`00000000-…`). Create the TEST Products list, then `python3 -m pipeline.sp_setup variable dev_ProductsList=<id>`, run C1, and test the app as a target user.
+2. **ALMConfig may still have old `Test*` columns** (spec cleanup item, never verified). The same readback shows them; delete only with the user's yes.
+3. **TEST `dev_ProductsList` is a placeholder** (`00000000-…`). Create the TEST Products list, then `python3 -m pipeline.sp_setup variable dev_ProductsList=<id>`, run C1, and test the app as a target user.
 
 ## Open — code fixes (from review 2026-09-25)
 
-3. `pipeline/flowapi.py` checks the tenant but not the account before getting a token. Also check the account.
-4. `pipeline/deploy.py` finds flows by display name across all of ADMIN. Scope the lookup to solution ALMPipeline and fail on duplicates.
+4. `pipeline/flowapi.py` checks the tenant but not the account before getting a token. Also check it is kriall076 or bosso.
+5. `pipeline/deploy.py` finds flows by display name across all of ADMIN. Scope the lookup to solution ALMPipeline and fail on duplicates.
 
 ## Open — design
 
-5. **Release to PROD with the same ZIP** (diagram page 1, steps ③ ④): version in ZIP name, C1 option "deploy archived ZIP" (skip export), approval step, PROD rows in the 3 lists.
-6. **Solution versions never change.** ALMPipeline and Demo are both 1.0.0.0. Bump versions on each release, so ZIPs, run logs and diagrams can name the version.
-7. Future children: C5 SharePoint deploy, C6 security groups, C4 share app (needs a Power Apps for Admins connection, `docs/alm/c4-share-spike.md`).
-8. Service account to replace kriall076.
+6. **Release to PROD with the same ZIP** (diagram page 1, steps ③ ④): version in ZIP name, C1 option "deploy archived ZIP" (skip export), approval step, PROD rows in the 3 lists.
+7. **Solution versions never change.** ALMPipeline and Demo are both 1.0.0.0. Bump versions on each release, so ZIPs, run logs and diagrams can name the version.
+8. Future children: C5 SharePoint deploy, C6 security groups, C4 share app (needs a Power Apps for Admins connection, `docs/alm/c4-share-spike.md`).
+9. Service account to replace kriall076.
 
 ## Tooling
 
-- ChatGPT/Codex uses `.codex/config.example.toml` + `docs/alm/flowagent-*.mjs` (tenant guard). The example still has Windows paths and pins DEV as default environment; adjust per machine. The `.mjs` files are JavaScript (workspace rule prefers TypeScript) — convert if they are changed.
+- ChatGPT/Codex uses `.codex/config.example.toml` + `docs/alm/flowagent-*.mjs` (tenant guard). The example still has Windows paths and pins DEV as default environment; adjust per machine. Its tenant guard (`flowagent-auth-policy.mjs`) pins **bosso**, so Codex signs in as bosso while Claude uses kriall076; both are approved. The `.mjs` files are JavaScript (workspace rule prefers TypeScript) — convert if they are changed.
