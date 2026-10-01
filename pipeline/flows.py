@@ -1,7 +1,15 @@
 """Definitions of the deploy pipeline flows: C1 parent, C2 import child, C3 post-import child."""
 from pipeline import settings as s
+from pipeline.activation import apply_policy, block_cloud_imports, validate_policy
+from pipeline.artifact_bridge import add_authorization_parameter, verification_action
+import json
+from pathlib import Path
+
+RELEASE_SCHEMA = json.loads((Path(__file__).parents[1] / "contracts/release-artifact.schema.json").read_text())
 from pipeline.defs import (after, clientdata, fail_steps, fetch_in_solution, if_job_succeeded, job_message, list_rows,
-                           manual_trigger, op, poll_block, respond, run_child, seq, sp_items, terminate, unbound, url_expr)
+                           manual_trigger, op, poll_block, respond, run_child, runtime_json_schema, seq,
+                           sp_items, terminate, unbound, url_expr)
+RELEASE_RUNTIME_SCHEMA = runtime_json_schema(RELEASE_SCHEMA)
 
 DV, SP = s.DV_KEY, s.SP_KEY
 
@@ -98,7 +106,7 @@ def c2():
 
     importing = {
         "Import_to_target": unbound(DV, "@outputs('Target_url')", "ImportSolutionAsync", {
-            "CustomizationFile": "@body('Get_archived_ZIP')?['$content']",
+            "CustomizationFile": "@body('Verify_archived_ZIP')?['zipBase64']",
             "OverwriteUnmanagedCustomizations": False,
             "PublishWorkflows": True,
             "ComponentParameters": "@json(replace(string(union(body('Connection_params'), body('Variable_params'))), '\"odata_type\"', '\"@odata.type\"'))",
@@ -116,6 +124,8 @@ def c2():
 
     try_actions = seq(
         config_actions(C2_SOL, C2_TARGET, fail_steps("Stop_no_config", no_config_message(C2_SOL, C2_TARGET))),
+        validate_policy("@triggerBody()?['text_3']", C2_SOL, "@outputs('Dev_url')"),
+        block_cloud_imports(C2_SOL, "@outputs('Target_url')"),
         solution_connections(),
         {"Connection_params": {"type": "Select", "inputs": {
             "from": "@body('Solution_connections')", "select": conn_param}}},
@@ -123,14 +133,22 @@ def c2():
             "from": "@body('Get_variable_map')?['value']", "select": var_param}}},
         {"Get_archived_ZIP": op(SP, s.SP_API, "GetFileContentByPath", {
             "dataset": s.ADMIN_SITE, "path": "@triggerBody()?['text']", "inferContentType": False})},
+        {"Release_descriptor": {"type": "ParseJson", "inputs": {
+            "content": "@triggerBody()?['text_4']", "schema": RELEASE_RUNTIME_SCHEMA}}},
+        {"Verify_archived_ZIP": verification_action(
+            "@body('Get_archived_ZIP')?['$content']", "@body('Activation_policy')",
+            "@triggerBody()?['text_1']", "@body('Release_descriptor')?['solutionVersion']",
+            "@body('Release_descriptor')")},
         importing,
     )
     actions = child_wrapper(try_actions, {"status": "Failed", "importjobkey": ""})
-    return clientdata(manual_trigger([
+    return add_authorization_parameter(clientdata(manual_trigger([
         ("text", "Archived ZIP path", "Set by C1, e.g. /Solutions/Demo/Demo_managed_20260923-164536.zip"),
         ("text_1", "Solution", "Solution unique name, e.g. Demo"),
         ("text_2", "Target", "TEST or PROD"),
-    ]), actions, s.FLOW_REFS)
+        ("text_3", "Activation manifest", "Required v1 JSON; all solution flows explicitly listed"),
+        ("text_4", "Release descriptor", "Required verified artifact identity, version and hashes"),
+    ]), actions, s.FLOW_REFS))
 
 
 # ---------- C3: post-import child ----------
@@ -199,33 +217,24 @@ def c3():
             ),
         }},
     )
-    turn_on = seq(
-        {"Off_flows": list_rows(DV, target, "workflows", fetch=fetch_in_solution(
-            "workflow", "workflowid", ["workflowid", "name"], C3_SOL, [("category", "5"), ("statecode", "0")]))},
-        {"For_each_flow": {
-            "type": "Foreach",
-            "foreach": "@body('Off_flows')?['value']",
-            "actions": {"Turn_on_flow": op(DV, s.DV_API, "UpdateOnlyRecordWithOrganization", {
-                "organization": target,
-                "entityName": "workflows",
-                "recordId": "@items('For_each_flow')?['workflowid']",
-                "item": {"statecode": 1, "statuscode": 2},
-            })},
-        }},
+    activation = seq(
+        apply_policy(target, C3_SOL),
         {"Reply": respond({
             "status": "Succeeded",
             "message": "@{concat('Bindings OK; variables set: ', length(body('Get_variable_map')?['value']), "
-                       "'; flows turned on: ', length(body('Off_flows')?['value']))}",
+                       "'; flow states verified: ', length(body('Expected_states')))}",
         })},
     )
     try_actions = seq(
         config_actions(C3_SOL, C3_TARGET, fail_steps("Stop_no_config", no_config_message(C3_SOL, C3_TARGET))),
-        check, variables, turn_on,
+        validate_policy("@triggerBody()?['text_2']", C3_SOL, target),
+        check, variables, activation,
     )
     actions = child_wrapper(try_actions, {"status": "Failed"})
     return clientdata(manual_trigger([
         ("text", "Solution", "Solution unique name, e.g. Demo"),
         ("text_1", "Target", "TEST or PROD"),
+        ("text_2", "Activation manifest", "Required v1 JSON; enable children before parents"),
     ]), actions, s.FLOW_REFS)
 
 
@@ -238,18 +247,36 @@ PLACEHOLDER_ID = "00000000-0000-0000-0000-000000000000"
 def export_steps():
     """Export managed from DEV, wait, download, archive as Solutions/<sol>/<sol>_managed_<time>.zip."""
     dev = "@outputs('Dev_url')"
-    acts = {"Export_from_DEV": unbound(DV, dev, "ExportSolutionAsync", {"SolutionName": f"@{SOL}", "Managed": True})}
+    acts = seq(
+        {"Dev_solution_metadata": list_rows(DV, dev, "solutions", select="uniquename,version",
+                                             filter_=f"uniquename eq '@{{{SOL}}}'")},
+        {"Export_from_DEV": unbound(DV, dev, "ExportSolutionAsync", {"SolutionName": f"@{SOL}", "Managed": True})},
+    )
     acts.update({k: after(v, "Export_from_DEV") for k, v in poll_block(
         DV, dev, "@body('Export_from_DEV')?['AsyncOperationId']", "Export").items()})
     acts["Export_succeeded"] = after(if_job_succeeded("Export", {
         "Download_export": unbound(DV, dev, "DownloadSolutionExportData",
                                    {"ExportJobId": "@body('Export_from_DEV')?['ExportJobId']"}),
+        "Inspect_export": after(verification_action(
+            "@body('Download_export')?['ExportSolutionFile']", "@body('Activation_policy')",
+            f"@{SOL}", "@first(body('Dev_solution_metadata')?['value'])?['version']"), "Download_export"),
         "Archive_ZIP": after(op(SP, s.SP_API, "CreateFile", {
             "dataset": s.ADMIN_SITE,
             "folderPath": f"/Solutions/@{{{SOL}}}",
             "name": f"@{{concat({SOL}, '_managed_', utcNow('yyyyMMdd-HHmmss'), '.zip')}}",
-            "body": "@base64ToBinary(body('Download_export')?['ExportSolutionFile'])",
-        }), "Download_export"),
+            "body": "@base64ToBinary(body('Inspect_export')?['zipBase64'])",
+        }), "Inspect_export"),
+        "Archive_activation": after(op(SP, s.SP_API, "CreateFile", {
+            "dataset": s.ADMIN_SITE,
+            "folderPath": f"/Solutions/@{{{SOL}}}",
+            "name": "@concat(body('Archive_ZIP')?['Name'], '.activation.json')",
+            "body": "@string(body('Activation_policy'))",
+        }), "Archive_ZIP"),
+        "Archive_release": after(op(SP, s.SP_API, "CreateFile", {
+            "dataset": s.ADMIN_SITE, "folderPath": f"/Solutions/@{{{SOL}}}",
+            "name": "@concat(body('Archive_ZIP')?['Name'], '.release.json')",
+            "body": "@string(body('Inspect_export')?['descriptor'])",
+        }), "Archive_activation"),
     }, fail_steps("Fail_export", "@" + job_message("Export"))), "Export_Wait_for_job")
     return acts
 
@@ -310,6 +337,10 @@ def c1(ids):
                "join(union(body('Missing_refs'), body('Missing_vars')), ', '))")
     prechecks = seq(
         config_actions(SOL, TARGET, fail_steps("Fail_no_config", no_config_message(SOL, TARGET))),
+        validate_policy("@triggerBody()?['text_2']", SOL,
+                        "@if(and(equals(outputs('Config')?['RunImport'], false), "
+                        "equals(outputs('Config')?['RunPostImport'], true)), outputs('Target_url'), outputs('Dev_url'))"),
+        block_cloud_imports(SOL, "@outputs('Target_url')", conditional=True),
         {"Mapped_refs": {"type": "Select", "inputs": {
             "from": "@body('Get_connection_map')?['value']", "select": "@item()?['ConnectionReference']"}}},
         {"Missing_refs": {"type": "Query", "inputs": {
@@ -327,7 +358,9 @@ def c1(ids):
                          "expression": {"equals": ["@outputs('Config')?['RunImport']", True]},
                          "actions": seq(
                              {"Run_C2_import": run_child(ids.get(s.C2_NAME, PLACEHOLDER_ID), {
-                                 "text": "@body('Archive_ZIP')?['Path']", "text_1": f"@{SOL}", "text_2": f"@{TARGET}"})},
+                                 "text": "@body('Archive_ZIP')?['Path']", "text_1": f"@{SOL}", "text_2": f"@{TARGET}",
+                                 "text_3": "@string(body('Activation_policy'))",
+                                 "text_4": "@string(body('Inspect_export')?['descriptor'])"})},
                              {"Check_C2": {"type": "If",
                                           "expression": {"equals": ["@body('Run_C2_import')?['status']", "Succeeded"]},
                                           "actions": {},
@@ -339,7 +372,8 @@ def c1(ids):
                              "expression": {"equals": ["@outputs('Config')?['RunPostImport']", True]},
                              "actions": seq(
                                  {"Run_C3_post_import": run_child(ids.get(s.C3_NAME, PLACEHOLDER_ID), {
-                                     "text": f"@{SOL}", "text_1": f"@{TARGET}"})},
+                                     "text": f"@{SOL}", "text_1": f"@{TARGET}",
+                                     "text_2": "@string(body('Activation_policy'))"})},
                                  {"Check_C3": {"type": "If",
                                               "expression": {"equals": ["@body('Run_C3_post_import')?['status']", "Succeeded"]},
                                               "actions": {},
@@ -347,12 +381,16 @@ def c1(ids):
                                                   "Fail_post_import",
                                                   "@concat('Post-import: ', body('Run_C3_post_import')?['message'])")}}},
                              )}}
-    # Four stage Scopes, in sequence, each running only after the previous one Succeeded: a
-    # failure in one stage stops the later stages, and each Scope's own start/end/status become
+    # Four stage Scopes run only after the previous one Succeeded. A failure stops later stages,
+    # and each Scope's own start/end/status become
     # the run log's per-step status/seconds/message (see log_step).
     main = seq(
         {"Prechecks": {"type": "Scope", "actions": prechecks}},
-        {"Export": {"type": "Scope", "actions": export_steps()}},
+        { "Export": {"type": "Scope", "actions": {"If_export_release": {"type": "If",
+            "expression": {"not": {"and": [
+                {"equals": ["@outputs('Config')?['RunImport']", False]},
+                {"equals": ["@outputs('Config')?['RunPostImport']", True]}]}},
+            "actions": export_steps()}}}},
         {"Import": {"type": "Scope", "actions": import_actions}},
         {"PostImport": {"type": "Scope", "actions": post_import_actions}},
     )
@@ -372,6 +410,10 @@ def c1(ids):
             "target": f"@{{{TARGET}}}",
             "status": "@{actions('Main')?['status']}",
             "zipPath": "@{actions('Archive_ZIP')?['outputs']?['body']?['Path']}",
+            "activationPolicy": "@actions('Activation_policy')?['outputs']?['body']",
+            "activationPolicyPath": "@actions('Archive_activation')?['outputs']?['body']?['Path']",
+            "releaseDescriptor": "@actions('Inspect_export')?['outputs']?['body']?['descriptor']",
+            "releaseDescriptorPath": "@actions('Archive_release')?['outputs']?['body']?['Path']",
             "switches": {
                 "RunImport": "@{actions('Config')?['outputs']?['RunImport']}",
                 "RunPostImport": "@{actions('Config')?['outputs']?['RunPostImport']}",
@@ -379,7 +421,8 @@ def c1(ids):
             "message": top_message,
             "steps": [
                 log_step("Prechecks", "Prechecks"),
-                log_step("Export", "Export"),
+                log_step("Export", "Export", switch_expr="not(and(equals(actions('Config')?['outputs']?['RunImport'], false), "
+                         "equals(actions('Config')?['outputs']?['RunPostImport'], true)))"),
                 log_step("Import", "Import", switch_expr="actions('Config')?['outputs']?['RunImport']",
                          child_action="Run_C2_import"),
                 log_step("PostImport", "PostImport", switch_expr="actions('Config')?['outputs']?['RunPostImport']",
@@ -411,10 +454,11 @@ def c1(ids):
         "actions": {},
         "else": {"actions": {"Stop_failed": terminate(report_message)}},
     }, "Log", status=("Succeeded", "Failed"))
-    return clientdata(manual_trigger([
+    return add_authorization_parameter(clientdata(manual_trigger([
         ("text", "Solution", "Solution unique name (default Demo)"),
         ("text_1", "Target", "TEST or PROD (default TEST)"),
-    ]), actions, s.FLOW_REFS)
+        ("text_2", "Activation manifest", "Required v1 JSON, including an empty flows array for flowless solutions"),
+    ]), actions, s.FLOW_REFS))
 
 
 FLOWS = [

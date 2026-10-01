@@ -1,0 +1,8 @@
+{
+  "harnessRun": "08584107759509566157103010392CU18",
+  "reply": {
+    "status": "Failed",
+    "importjobkey": "",
+    "message": "Cloud-flow imports are not qualified yet. Import can activate flows before C3; PublishWorkflows does not control cloud flows. Complete the isolated TEST import qualification first."
+  }
+}

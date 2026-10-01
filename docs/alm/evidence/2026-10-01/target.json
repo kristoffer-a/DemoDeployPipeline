@@ -1,0 +1,21 @@
+{
+  "mode": "isolated",
+  "tenant_id": "1c5afb69-a82c-4c81-b2cc-743ce7f91dac",
+  "allowed_accounts": [
+    "kriall076@7xpydh.onmicrosoft.com"
+  ],
+  "environment_id": "8fcc484b-d74e-e479-84da-ad5a78d6d55b",
+  "organization_url": "https://testorg5fd244de.crm17.dynamics.com",
+  "site_url": "https://7xpydh.sharepoint.com/sites/ALM-Test",
+  "solution": "ALMQualification",
+  "publisher": "almqualification",
+  "connections": {
+    "dataverse": "shared-commondataser-3dbb75d1",
+    "sharepoint": "shared-sharepointonl-0f567e53"
+  },
+  "lists": {
+    "config": "17884d93-230c-4fd8-8c46-135820ae5d2e",
+    "connections": "4c42f19b-c2c4-47bb-bead-791fe18f0f42",
+    "variables": "414b4dc7-3118-42bc-b7e0-09a493ecf6e7"
+  }
+}

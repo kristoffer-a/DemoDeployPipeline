@@ -1,0 +1,17 @@
+{
+  "candidateC3Sha256": "254a4a67a9dfe3246356eb31e00d785af3cf3b4528900465e3f55cef15e9c0a5",
+  "testEnvironment": "8fcc484b-d74e-e479-84da-ad5a78d6d55b",
+  "fixtureSolution": "ALMQualificationFixtures",
+  "candidateSolution": "ALMQualification",
+  "importsEnabled": false,
+  "productionDeploymentQualified": false,
+  "limits": [
+    "No hosted verifier or import executed",
+    "C3 variable fixtures contained zero variables",
+    "Readback failure used an explicit fault clone, not a concurrent operator edit",
+    "Browser target-user acceptance pending sign-in",
+    "No module fresh install/upgrade or ADMIN managed conversion executed",
+    "C1 core orchestration/logging qualified with fixed-input clone; actual button input binding not exercised"
+  ],
+  "candidateC3HashScope": "full clientdata after applying recorded TEST target; equals Dataverse live clientdata"
+}

@@ -1,0 +1,13 @@
+{
+  "runId": "08584107778048979457891902197CU09",
+  "reply": {
+    "status": "Succeeded",
+    "message": "Bindings OK; variables set: 0; flow states verified: 4"
+  },
+  "fixtureStates": {
+    "helper": 0,
+    "legacy": 0,
+    "child": 1,
+    "parent": 1
+  }
+}

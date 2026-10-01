@@ -1,0 +1,40 @@
+{
+  "duplicate": {
+    "runId": "08584107779542304002945357223CU31",
+    "flow": "5b981a03-9286-9e81-2e5c-6ddf54e651b8",
+    "reply": {
+      "status": "Failed",
+      "message": "Activation manifest must list every solution flow exactly once, with no foreign IDs."
+    }
+  },
+  "foreign": {
+    "runId": "08584107778823355687106515348CU02",
+    "flow": "76445545-74ab-4c82-de26-da7cb6ba69af",
+    "reply": {
+      "status": "Failed",
+      "message": "Activation manifest must list every solution flow exactly once, with no foreign IDs."
+    }
+  },
+  "incomplete": {
+    "runId": "08584107778734209163721277148CU19",
+    "flow": "e0bfbec5-429f-0e2f-9e95-24bfd9f9bd6f",
+    "reply": {
+      "status": "Failed",
+      "message": "Activation manifest must list every solution flow exactly once, with no foreign IDs."
+    }
+  },
+  "missing": {
+    "runId": "08584107778646158503422160735CU27",
+    "flow": "e86c800f-f63b-4fc3-2d4b-0f8f5df087d6",
+    "reply": {
+      "status": "Failed",
+      "message": "Unable to process template language expressions in action 'Activation_policy' inputs at line '0' and column '0': 'Required property 'content' expects a value but got null. Path ''.'."
+    }
+  },
+  "fixtureStatesAfterNegativeCases": {
+    "helper": 0,
+    "legacy": 1,
+    "child": 0,
+    "parent": 0
+  }
+}

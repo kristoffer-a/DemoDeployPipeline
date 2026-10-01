@@ -1,0 +1,67 @@
+{
+  "runId": "08584107761021258907649152855CU22",
+  "solution": "ALMQualificationFixtures",
+  "target": "TEST",
+  "status": "Failed",
+  "zipPath": "",
+  "activationPolicy": {
+    "version": 1,
+    "solution": "ALMQualificationFixtures",
+    "flows": [
+      {
+        "workflowId": "6c04db5b-41bd-f111-aaad-002248da91c5",
+        "enabled": false
+      },
+      {
+        "workflowId": "5f04db5b-41bd-f111-aaad-002248da91c5",
+        "enabled": false
+      },
+      {
+        "workflowId": "7f04db5b-41bd-f111-aaad-002248da91c5",
+        "enabled": true
+      },
+      {
+        "workflowId": "8c04db5b-41bd-f111-aaad-002248da91c5",
+        "enabled": true
+      },
+      {
+        "workflowId": "6c04db5b-41bd-f111-aaad-002248da91c5",
+        "enabled": false
+      }
+    ]
+  },
+  "activationPolicyPath": null,
+  "releaseDescriptor": null,
+  "releaseDescriptorPath": null,
+  "switches": {
+    "RunImport": "False",
+    "RunPostImport": "True"
+  },
+  "message": "Activation manifest must list every solution flow exactly once, with no foreign IDs.",
+  "steps": [
+    {
+      "step": "Prechecks",
+      "status": "Failed",
+      "seconds": "2",
+      "message": "Activation manifest must list every solution flow exactly once, with no foreign IDs."
+    },
+    {
+      "step": "Export",
+      "status": "Skipped",
+      "seconds": "0",
+      "message": ""
+    },
+    {
+      "step": "Import",
+      "status": "Skipped",
+      "seconds": "0",
+      "message": ""
+    },
+    {
+      "step": "PostImport",
+      "status": "Skipped",
+      "seconds": "0",
+      "message": ""
+    }
+  ]
+}

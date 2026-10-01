@@ -1,6 +1,10 @@
 """Constants for the ALM deploy pipeline. Everything tenant-specific lives here."""
 
 TENANT = "1c5afb69-a82c-4c81-b2cc-743ce7f91dac"
+ALLOWED_ACCOUNTS = frozenset({
+    "kriall076@7xpydh.onmicrosoft.com",
+    "bosso@7xpydh.onmicrosoft.com",
+})
 ADMIN_ENV_ID = "f2280ea5-6793-e664-8f21-ea3ba6a4cb5c"
 ADMIN = "https://adminorg774eae27.crm17.dynamics.com"
 ADMIN_SITE = "https://7xpydh.sharepoint.com/sites/ALM-Admin"

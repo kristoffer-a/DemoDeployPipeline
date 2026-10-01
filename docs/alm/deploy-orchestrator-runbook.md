@@ -3,6 +3,14 @@
 Deploys a solution from DEV to a target environment with one click on flow **ALM C1 - Deploy (parent)** in ADMIN.
 Design: `docs/superpowers/specs/2026-09-23-deploy-orchestrator-design.md`. Plan (done): `history/2026-09-24_deploy-orchestrator/plan.md`.
 
+## Candidate status — 2026-10-01
+
+This branch requires explicit activation manifests and verified release descriptors. It is deployed only to the dedicated TEST qualification solution, not to ADMIN. Historical acceptance below describes ALMPipeline 1.0.0.0. ADMIN Demo now has `RunImport=false`, its Products mapping is real, and direct C2 is stopped. User explicitly deferred verifier hosting; keep imports disabled.
+
+Generate candidates with `python3 -m pipeline.deploy --dry-run`. Live deployment requires an explicit isolated target profile; the default ADMIN route is blocked by this branch's CLI. Read [runtime qualification](qualification-2026-10-01.md), [verifier](artifact-verifier.md) and [recovery](release-recovery.md) before any rollout.
+
+C1 adds `text_2` (activation JSON); C2 adds `text_3` plus `text_4` (release descriptor); C3 adds `text_2`. Even flowless Demo requires an explicit empty manifest. C3 reconciles exact desired states. C1/C2 now inspect exact ZIP bytes through a verifier bridge and reject cloud-flow imports until import-time activation is qualified. Unconfigured verification fails closed. Configuration-only C1 skips export/archive entirely. Full contract: [contracts/README.md](../../contracts/README.md).
+
 ## 1. Prerequisites
 
 - `az login` into tenant `1c5afb69-a82c-4c81-b2cc-743ce7f91dac`. Every script stops if az shows another tenant.
@@ -35,17 +43,17 @@ python3 -m pytest pipeline/tests -q
 ```
 
 ```bash
-python3 -m pipeline.deploy
+python3 -m pipeline.deploy --dry-run --target-config <reviewed-isolated-profile.json> --solution-version 1.1.0.0
 ```
 
-This deploys C2, C3, then C1 into solution `ALMPipeline` and prints each flow's Power Automate ID. `--dry-run` writes the same JSON to a fresh temp directory (`tempfile.mkdtemp(prefix="alm-defs-")`, printed by the command) instead of `pipeline/definitions/`, so it never overwrites the committed definitions - those carry real, already-deployed child workflow ids that a dry run has no ids to substitute for.
+This generates the explicitly bound isolated candidate. An authorized live rollout omits `--dry-run`: it pauses an existing parent, proves quiescence, updates children, updates the parent while stopped, sets the version, then activates the parent last. Default/no-profile live deployment is blocked. `--dry-run` writes the same JSON to a fresh temp directory (`tempfile.mkdtemp(prefix="alm-defs-")`, printed by the command) instead of `pipeline/definitions/`, so it never overwrites the committed definitions - those carry real, already-deployed child workflow ids that a dry run has no ids to substitute for.
 
 ## 4. Run a deployment
 
 - Portal: run **ALM C1 - Deploy (parent)**. Inputs are Solution (default `Demo`) and Target (default `TEST`).
 - API: FlowAgent `run_flow` on C1. Inputs can't be passed as kriall076, so the defaults apply.
 
-C1 order: pre-checks (config row, mapping rows for every connection reference and variable in the DEV solution) → export managed → archive `Solutions/<Solution>/<Solution>_managed_<time>.zip` → C2 import (if `RunImport`) → C3 post-import (if `RunPostImport`) → log.
+C1 order: pre-checks (config row, mapping rows for every connection reference and variable in the DEV solution) → export managed → archive `Solutions/<Solution>/<Solution>_managed_<time>.zip` → C2 import (if `RunImport`) → C3 post-import (if `RunPostImport`: verify bindings, apply variables and reconcile explicit flow states) → log. C5 SharePoint metadata deployment remains proposed; there is no current C5 flow or RunSharePoint switch.
 
 Read the run log:
 
@@ -70,7 +78,7 @@ It shows the Demo solution (managed, version), the last import job, the `dev_*` 
 - ADMIN's preferred solution is `Development` (not ours). `pipeline.deploy` always sends `MSCRM.SolutionUniqueName: ALMPipeline`.
 - C4 (share app) is not built. See `docs/alm/c4-share-spike.md`.
 - Service account still to replace kriall076.
-- C3's flow turn-on step is untested live: Demo has no cloud flow in TEST to turn on, so that code path has only been validated by unit tests, not a real run.
+- Candidate C3 state reconciliation, ordering, idempotence and injected failure/readback paths passed dedicated TEST runs on October 1. This does not qualify import-time activation or the historical baseline's blanket turn-on behavior.
 - Resolved 2026-09-24: an earlier non-idempotent `provision` run (before commit 9a1b7aa) created 11 duplicate columns (`RunImport0`, `ConnectionId0`, …). The user approved deletion; `python3 -m pipeline.sp_setup delete-duplicates` removed them (run `08584113333816292777389315330CU12`), and readback confirmed the real columns and values are intact. `provision` now checks before it creates.
 - The setup flow (**ALM Setup - SharePoint config**) stays deployed in ADMIN after use - turn it off after each use and delete it at cleanup.
 
