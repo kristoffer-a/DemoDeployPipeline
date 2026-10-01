@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "purpose": "Record controlled live acceptance. Replace unknown values only after observing the run.",
+  "cases": {
+    "same-flow-failure-recovery": {"result": "unknown", "source_hashes": {}, "environment": "", "executed_at": "", "owner": "", "run_ids": [], "evidence_links": [], "notes": "Demonstrate one flow failing and then recovering; verify one incident resolves against that same flow."},
+    "notification-failure-retry": {"result": "unknown", "source_hashes": {}, "environment": "", "executed_at": "", "owner": "", "run_ids": [], "evidence_links": [], "notes": "Force Teams create/update failure, then retry; verify persisted Pending/Failed state and no failure-count increment on retry."},
+    "replay-60": {"result": "unknown", "source_hashes": {}, "environment": "", "executed_at": "", "owner": "", "run_ids": [], "evidence_links": [], "notes": "Replay 60 failures and record scanner and per-child durations, cursor outcome, incident count, and notification results."},
+    "backlog-over-900": {"result": "unknown", "source_hashes": {}, "environment": "", "executed_at": "", "owner": "", "run_ids": [], "evidence_links": [], "notes": "Exercise a backlog greater than 900 including failures 1-900, success 901, failure 902; verify recovery waits until drain."},
+    "overlong-run-id": {"result": "unknown", "source_hashes": {}, "environment": "", "executed_at": "", "owner": "", "run_ids": [], "evidence_links": [], "notes": "Verify a run ID over the storage limit reports an environment error, preserves its cursor, and does not block other environments."},
+    "child-duration-under-120s": {"result": "unknown", "source_hashes": {}, "environment": "", "executed_at": "", "owner": "", "run_ids": [], "evidence_links": [], "notes": "Measure slowest synchronous incident-child duration under representative load; record sample size and maximum."},
+    "coverage-and-heartbeat-routing": {"result": "unknown", "source_hashes": {}, "desired_scanner_states": {}, "environment": "", "executed_at": "", "owner": "", "run_ids": [], "evidence_links": [], "notes": "Verify enabled inventory source coverage, scanner routing, and missing/stale heartbeat behavior for applicable sources. Then set desired_scanner_states with MON-FailureScan and MON-FailureScan-Dataverse mapped to observed desired statecodes (0=Stopped, 1=Started)."},
+    "owner-and-run-links": {"result": "unknown", "source_hashes": {}, "environment": "", "executed_at": "", "owner": "", "run_ids": [], "evidence_links": [], "notes": "Verify incident card owner and run links for created and updated incidents."}
+  }
+}

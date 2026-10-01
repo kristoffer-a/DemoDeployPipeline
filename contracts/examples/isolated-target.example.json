@@ -1,0 +1,19 @@
+{
+  "mode": "isolated",
+  "tenant_id": "1c5afb69-a82c-4c81-b2cc-743ce7f91dac",
+  "allowed_accounts": ["replace-me@example.invalid"],
+  "environment_id": "33333333-3333-4333-8333-333333333333",
+  "organization_url": "https://example.crm.dynamics.com",
+  "site_url": "https://7xpydh.sharepoint.com/sites/ALM-Isolated",
+  "solution": "ALMPipelineIsolated",
+  "publisher": "almsandbox",
+  "connections": {
+    "dataverse": "replace-me-dataverse-connection-id",
+    "sharepoint": "replace-me-sharepoint-connection-id"
+  },
+  "lists": {
+    "config": "44444444-4444-4444-8444-444444444444",
+    "connections": "55555555-5555-4555-8555-555555555555",
+    "variables": "66666666-6666-4666-8666-666666666666"
+  }
+}

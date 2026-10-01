@@ -2,6 +2,13 @@
 
 Power Platform ALM for the Demo solution: one click in ADMIN exports a managed solution from DEV, archives the ZIP in SharePoint, imports it into TEST (later PROD, same ZIP) and sets connections and variables. The runtime is Power Automate; the flows are built and deployed from Python in `pipeline/`.
 
+## Integration work in this branch
+
+The activation contract has been deployed only to a dedicated TEST qualification solution. It is **not deployed to ADMIN**. One-click imports remain disabled pending verifier hosting and import qualification. See
+[platform integration](docs/alm/platform-integration.md) and
+[activation contract](contracts/README.md), [runtime evidence](docs/alm/qualification-2026-10-01.md) and [recovery procedure](docs/alm/release-recovery.md) before deploying this branch.
+The existing committed flow JSON remains a historical deployed snapshot.
+
 ## Start here
 
 Agents: follow `AGENTS.md` (Claude Code and ChatGPT/Codex). Each agent works in its own worktree and branch.

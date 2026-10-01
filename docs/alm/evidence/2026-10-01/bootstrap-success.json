@@ -1,0 +1,90 @@
+{
+  "lists": {
+    "ALMQConfig": {
+      "id": "17884d93-230c-4fd8-8c46-135820ae5d2e",
+      "exists": true
+    },
+    "ALMQConnections": {
+      "id": "4c42f19b-c2c4-47bb-bead-791fe18f0f42",
+      "exists": true
+    },
+    "ALMQVariables": {
+      "id": "414b4dc7-3118-42bc-b7e0-09a493ecf6e7",
+      "exists": true
+    }
+  },
+  "fields": {
+    "ALMQConfig.SolutionName": {
+      "exists": true,
+      "type": "Text"
+    },
+    "ALMQConfig.TargetEnvironment": {
+      "exists": true,
+      "type": "Choice"
+    },
+    "ALMQConfig.DevPowerPlatformUrl": {
+      "exists": true,
+      "type": "URL"
+    },
+    "ALMQConfig.TargetPowerPlatformUrl": {
+      "exists": true,
+      "type": "URL"
+    },
+    "ALMQConfig.TargetSharePointUrl": {
+      "exists": true,
+      "type": "URL"
+    },
+    "ALMQConfig.RunImport": {
+      "exists": true,
+      "type": "Boolean"
+    },
+    "ALMQConfig.RunPostImport": {
+      "exists": true,
+      "type": "Boolean"
+    },
+    "ALMQConfig.RunShare": {
+      "exists": true,
+      "type": "Boolean"
+    },
+    "ALMQConfig.AppShareGroupId": {
+      "exists": true,
+      "type": "Text"
+    },
+    "ALMQConnections.Environment": {
+      "exists": true,
+      "type": "Choice"
+    },
+    "ALMQConnections.ConnectionReference": {
+      "exists": true,
+      "type": "Text"
+    },
+    "ALMQConnections.ConnectionId": {
+      "exists": true,
+      "type": "Text"
+    },
+    "ALMQConnections.ConnectorId": {
+      "exists": true,
+      "type": "Text"
+    },
+    "ALMQVariables.SolutionName": {
+      "exists": true,
+      "type": "Text"
+    },
+    "ALMQVariables.Environment": {
+      "exists": true,
+      "type": "Choice"
+    },
+    "ALMQVariables.SchemaName": {
+      "exists": true,
+      "type": "Text"
+    },
+    "ALMQVariables.Value": {
+      "exists": true,
+      "type": "Text"
+    }
+  },
+  "failMessage": "",
+  "fixtureMatchCountBefore": 0,
+  "fixtureId": 1,
+  "fixtureSafe": true
+}

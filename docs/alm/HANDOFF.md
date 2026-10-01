@@ -1,13 +1,27 @@
-# Handoff — current state (updated 2026-09-26)
+# Handoff — current state (updated 2026-10-01)
+
+## Integration candidate — qualified paths in isolated TEST only
+
+Branch `codex/flowadmin-deployment-contract`, based on `4883edd`. October 1 source adds ZIP inspection, release descriptors, a local authenticated verifier, explicit isolated targets, controlled rollout, independent bootstrap, qualification fixtures, recovery documentation and offline CI. User decision: prepare the verifier locally and keep imports disabled. The verifier is not hosted; cloud-flow imports remain blocked.
+
+Candidate C3 passed isolated TEST coverage, state ordering, idempotence, injected write failure and readback mismatch checks. A fixed-input C1 clone passed configuration-only orchestration and logging, plus failed-policy logging. See [runtime evidence](qualification-2026-10-01.md), [integration gates](platform-integration.md), [contract](../../contracts/README.md) and [verifier](artifact-verifier.md). These tests do not qualify ZIP imports or ADMIN deployment. Historical `pipeline/definitions/` are preserved.
+
+The missing TEST Products list is now `9ca71bdc-8192-4321-85ce-f29ac9d3a7d8`; schema readback matches DEV. ALM-Admin's Demo TEST mapping and TEST environment value now use that ID. Demo `RunImport=false` and ADMIN direct C2 is stopped. The setup helper's original definition and stopped state were restored. ADMIN C1/C2/C3 definitions otherwise remain on their existing release.
+
+Dedicated resources in TEST: `almqualification` publisher, `ALMQualification` 1.1.0.0, inert fixtures, qualification lists and logging library, connection `shared-commondataser-3dbb75d1`. Completed harnesses and fault clones are stopped; no resources deleted. No ZIP imports or source merges were performed during qualification. The non-diagram source is prepared for publication through a reviewed PR. Diagrams are outside scope and existing diagram changes are preserved.
+
+Browser app acceptance is waiting for fresh interactive sign-in. FlowError is clean on local main `08798c7`, with 48 tests and 15 static checks passing. Its documented large-load/Poll limits remain. Additive operational-readiness tooling is under `integrations/flowerror-readiness/`. Preserve both FlowError checkouts and ALM's SharePoint worktree.
+
+## Deployed baseline
 
 Branch `main` (tag `alm-pipeline-1.0.0.0`). Work in your own worktree + branch (see `AGENTS.md`). How to operate it: `docs/alm/deploy-orchestrator-runbook.md`. Picture: `docs/alm/diagrams/alm-pipeline.drawio`.
 Older handoffs, plans and reviews are in `history/` — do not read them unless asked.
 
-## Live now
+## Deployed baseline and October 1 changes
 
 | Environment | Solution | What is in it |
 |---|---|---|
-| ADMIN | ALMPipeline 1.0.0.0, unmanaged | C1 Deploy, C2 Import, C3 Post-import (on); ALM Setup - SharePoint config (off); 2 connection references |
+| ADMIN | ALMPipeline 1.0.0.0, unmanaged | C1 Deploy and C3 Post-import (on); C2 Import (off by user decision Oct 1); ALM Setup - SharePoint config (off); 2 connection references |
 | DEV | Demo 1.0.0.0, unmanaged | Demo Products canvas app, dev_SharePointSite, dev_ProductsList, dev_SharePoint |
 | TEST | Demo 1.0.0.0, managed | same, imported by C2 |
 
@@ -24,20 +38,20 @@ Older handoffs, plans and reviews are in `history/` — do not read them unless 
 
 ## Open — check first
 
-1. **TEST mapping may still be the test-6 value.** The last C1 run was acceptance test 6 (ConnectionId `shared-sharepointonl-WRONG0000`). Run `python3 -m pipeline.sp_setup readback` + the setup flow and confirm `dev_SharePoint` → `shared-sharepointonl-0f567e53` before the next real deploy.
-2. **ALMConfig may still have old `Test*` columns** (spec cleanup item, never verified). The same readback shows them; delete only with the user's yes.
-3. **TEST `dev_ProductsList` is a placeholder** (`00000000-…`). Create the TEST Products list, then `python3 -m pipeline.sp_setup variable dev_ProductsList=<id>`, run C1, and test the app as a target user.
+1. **TEST mapping resolved by live UI read, September 30.** `dev_SharePoint` maps to `shared-sharepointonl-0f567e53`; connection authentication was not retested.
+2. **Legacy Test* columns confirmed present September 30:** TestPowerPlatformUrl and TestSharePointUrl. Leave them until explicitly authorized cleanup.
+3. **TEST Products provisioned and mapped October 1.** Both stored mapping and target value are `9ca71bdc-8192-4321-85ce-f29ac9d3a7d8`. Target-user app acceptance remains pending fresh browser sign-in. Do not enable imports to perform that check.
 
-## Open — code fixes (from review 2026-09-25)
+## Code fixes — implemented locally, not deployed
 
-4. `pipeline/flowapi.py` checks the tenant but not the account before getting a token. Also check it is kriall076 or bosso.
-5. `pipeline/deploy.py` finds flows by display name across all of ADMIN. Scope the lookup to solution ALMPipeline and fail on duplicates.
+4. `pipeline/flowapi.py` now checks the tenant, interactive-account type and kriall076/bosso allowlist before token acquisition; regression-tested.
+5. `pipeline/deploy.py` now scopes lookup to ALMPipeline and definition-type cloud flows, rejects duplicates and sends the solution header on updates. Failed authentication no longer overwrites deployed definition snapshots.
 
 ## Open — design
 
 6. **Release to PROD with the same ZIP** (diagram page 1, steps ③ ④): version in ZIP name, C1 option "deploy archived ZIP" (skip export), approval step, PROD rows in the 3 lists.
 7. **Solution versions never change.** ALMPipeline and Demo are both 1.0.0.0. Bump versions on each release, so ZIPs, run logs and diagrams can name the version.
-8. Future children: C5 SharePoint deploy, C6 security groups, C4 share app (needs a Power Apps for Admins connection, `docs/alm/c4-share-spike.md`).
+8. **C5 SharePoint metadata deployment is proposed, not implemented.** Opt in per deployment: copy DEV metadata to an empty target; report differences and offer a force push for an existing target. Define metadata scope before implementation. There is no RunSharePoint switch or C5 flow. C4 app sharing and C6 security groups remain future work.
 9. Service account to replace kriall076.
 
 ## Tooling

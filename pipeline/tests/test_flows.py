@@ -61,7 +61,7 @@ def test_c3_runs_check_then_variables_then_flows():
     assert a["Check_bindings"]["runAfter"] == {"Wrong_bindings": ["Succeeded"]}
     assert a["Target_defs"]["runAfter"] == {"Check_bindings": ["Succeeded"]}
     assert a["For_each_variable"]["runAfter"] == {"Check_value_rows": ["Succeeded"]}
-    assert a["Off_flows"]["runAfter"] == {"For_each_variable": ["Succeeded"]}
+    assert a["Disable_flows"]["runAfter"] == {"For_each_variable": ["Succeeded"]}
     assert a["For_each_variable"]["runtimeConfiguration"] == {"concurrency": {"repetitions": 1}}
     assert a["Check_value_rows"]["actions"]["Stop_no_value_row"]["inputs"] == "@int(variables('FailMessage'))"
     upd = a["For_each_variable"]["actions"]["Update_value"]["inputs"]["parameters"]
@@ -208,8 +208,9 @@ def test_c1_prechecks_before_export():
     prechecks = main["Prechecks"]["actions"]
     assert prechecks["Missing_refs"]["inputs"]["where"] == "@not(contains(body('Mapped_refs'), item()))"
     assert prechecks["Check_config"]["actions"]["Fail_no_config"]["inputs"] == "@int(variables('FailMessage'))"
-    export = main["Export"]["actions"]
-    assert "runAfter" not in export["Export_from_DEV"]
+    export = main["Export"]["actions"]["If_export_release"]["actions"]
+    assert "runAfter" not in export["Dev_solution_metadata"]
+    assert export["Export_from_DEV"]["runAfter"] == {"Dev_solution_metadata": ["Succeeded"]}
 
 
 def test_config_actions_checks_before_reading_config():
@@ -222,7 +223,7 @@ def test_config_actions_checks_before_reading_config():
 
 def test_c1_archives_per_solution_and_logs_per_run():
     a = acts(flows.c1(IDS))
-    archive = a["Main"]["actions"]["Export"]["actions"]["Export_succeeded"]["actions"]["Archive_ZIP"]["inputs"]["parameters"]
+    archive = a["Main"]["actions"]["Export"]["actions"]["If_export_release"]["actions"]["Export_succeeded"]["actions"]["Archive_ZIP"]["inputs"]["parameters"]
     assert archive["folderPath"] == "/Solutions/@{outputs('Solution')}"
     assert archive["name"] == "@{concat(outputs('Solution'), '_managed_', utcNow('yyyyMMdd-HHmmss'), '.zip')}"
     log = a["Log"]["actions"]["Write_log"]["inputs"]["parameters"]
@@ -314,7 +315,7 @@ def test_c1_log_steps_read_stage_scopes_with_skip_mapping():
         child_action="Run_C3_post_import")["status"]
     assert "actions('Run_C3_post_import')?['outputs']?['body']?['message']" in by_step["PostImport"]["message"]
     assert by_step["Prechecks"]["status"] == "@{actions('Prechecks')?['status']}"
-    assert by_step["Export"]["status"] == "@{actions('Export')?['status']}"
+    assert "not(and(equals(actions('Config')?['outputs']?['RunImport'], false)" in by_step["Export"]["status"]
 
 
 def test_child_stop_failed_uses_same_message_as_reply_failed():

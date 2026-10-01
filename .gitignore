@@ -1,5 +1,7 @@
 # Machine-local Codex/browser state
 .playwright-mcp/
+.playwright-cli/
+output/playwright/
 .codex/config.toml
 
 # Reinstallable Power Platform skill bundle
@@ -33,3 +35,6 @@ __pycache__/
 BACKUP*.drawio
 *.bkp
 .$*.drawio.bkp
+
+# Generated diagram QA
+qa/

@@ -1,4 +1,5 @@
 """Logic Apps workflow-definition building blocks for the ALM pipeline flows."""
+import copy
 import re
 
 from pipeline.settings import DV_API, URL_AS_OBJECT
@@ -183,6 +184,24 @@ def url_expr(obj_expr, field):
 
 
 # ---------- validation ----------
+
+def runtime_json_schema(schema):
+    """Return a non-mutating copy without JSON Schema regex keywords unsupported by ParseJson.
+
+    Canonical schemas remain the source of offline validation. Runtime callers must retain
+    equivalent domain checks in flow actions where removing a pattern would weaken safety.
+    """
+    source = copy.deepcopy(schema)
+
+    def strip(node):
+        if isinstance(node, dict):
+            return {key: strip(value) for key, value in node.items()
+                    if key not in {"pattern", "patternProperties"}}
+        if isinstance(node, list):
+            return [strip(value) for value in node]
+        return node
+
+    return strip(source)
 
 _REF = re.compile(r"\b(?:body|outputs|actions|items|result)\('([^']+)'\)")
 

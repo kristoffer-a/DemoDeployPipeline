@@ -1,0 +1,63 @@
+{
+  "runId": "08584107763340532984387476585CU23",
+  "solution": "ALMQualificationFixtures",
+  "target": "TEST",
+  "status": "Succeeded",
+  "zipPath": "",
+  "activationPolicy": {
+    "version": 1,
+    "solution": "ALMQualificationFixtures",
+    "flows": [
+      {
+        "workflowId": "6c04db5b-41bd-f111-aaad-002248da91c5",
+        "enabled": false
+      },
+      {
+        "workflowId": "5f04db5b-41bd-f111-aaad-002248da91c5",
+        "enabled": false
+      },
+      {
+        "workflowId": "7f04db5b-41bd-f111-aaad-002248da91c5",
+        "enabled": true
+      },
+      {
+        "workflowId": "8c04db5b-41bd-f111-aaad-002248da91c5",
+        "enabled": true
+      }
+    ]
+  },
+  "activationPolicyPath": null,
+  "releaseDescriptor": null,
+  "releaseDescriptorPath": null,
+  "switches": {
+    "RunImport": "False",
+    "RunPostImport": "True"
+  },
+  "message": "",
+  "steps": [
+    {
+      "step": "Prechecks",
+      "status": "Succeeded",
+      "seconds": "2",
+      "message": ""
+    },
+    {
+      "step": "Export",
+      "status": "Skipped",
+      "seconds": "0",
+      "message": ""
+    },
+    {
+      "step": "Import",
+      "status": "Skipped",
+      "seconds": "0",
+      "message": ""
+    },
+    {
+      "step": "PostImport",
+      "status": "Succeeded",
+      "seconds": "6",
+      "message": "Bindings OK; variables set: 0; flow states verified: 4"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "runId": "08584107769506040605031293603CU30",
+  "configBefore": [
+    {
+      "Id": 1,
+      "RunImport": true,
+      "RunPostImport": true
+    }
+  ],
+  "configAfter": [
+    {
+      "Id": 1,
+      "RunImport": false,
+      "RunPostImport": true
+    }
+  ],
+  "mappingBefore": [
+    "00000000-0000-0000-0000-000000000000"
+  ],
+  "mappingAfter": [
+    "9ca71bdc-8192-4321-85ce-f29ac9d3a7d8"
+  ],
+  "adminC2StateBefore": 1,
+  "adminC2StateAfter": 0,
+  "setupRestored": true
+}
